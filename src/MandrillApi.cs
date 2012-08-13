@@ -5,9 +5,9 @@ using System.Linq;
 using System.Net;
 using System.Text;
 
-namespace PostageApp
+namespace Mandrill
 {
-    public class Mandrill
+    public class MandrillApi
     {
         #region Properties
         /// <summary>
@@ -16,11 +16,11 @@ namespace PostageApp
         public string ApiKey { get; set; }
 
         #endregion
-        public Mandrill()
+        public MandrillApi()
         {
         }
 
-        public Mandrill(string apiKey)
+        public MandrillApi(string apiKey)
         {
             ApiKey = apiKey;
         }
