@@ -4,6 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using Mandrill.Utilities;
+using RestSharp;
 
 namespace Mandrill
 {
@@ -13,21 +15,29 @@ namespace Mandrill
         /// <summary>
         /// The Api Key for the project received from the PostageApp website
         /// </summary>
-        public string ApiKey { get; set; }
+        public string ApiKey { get; private set; }
 
         #endregion
-        public MandrillApi()
-        {
-        }
+
+        #region Fields
+
+        private RestClient client;
+        #endregion
 
         public MandrillApi(string apiKey)
         {
             ApiKey = apiKey;
+
+            client = new RestClient(Configuration.BASE_URL);
+            client.AddDefaultParameter("key", ApiKey);
+            client.AddHandler("application/json", new DynamicJsonDeserializer());
         }
 
         public dynamic GetAccountInformation()
         {
-            throw new NotImplementedException();
+            var request = new RestRequest("/users/info.json", Method.POST);
+            var response = client.Execute<dynamic>(request);
+            return response.Data;
         }
 
 

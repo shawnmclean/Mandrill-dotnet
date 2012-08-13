@@ -7,8 +7,6 @@ namespace Mandrill
 {
     internal static class Configuration
     {
-        public const string BASE_URL = "";
-
-        public const string ACCOUNT_INFORMATION_PATH = "";
+        public static string BASE_URL = "https://mandrillapp.com/api/1.0/";
     }
 }
