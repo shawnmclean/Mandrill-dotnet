@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using Mandrill.Utilities;
+using Newtonsoft.Json;
 using RestSharp;
 
 namespace Mandrill
@@ -29,18 +30,45 @@ namespace Mandrill
             ApiKey = apiKey;
 
             client = new RestClient(Configuration.BASE_URL);
-            client.AddDefaultParameter("key", ApiKey);
+            //client.AddDefaultParameter("key", ApiKey);
             client.AddHandler("application/json", new DynamicJsonDeserializer());
         }
 
-        public dynamic GetAccountInformation()
+        public dynamic Info()
         {
             var request = new RestRequest("/users/info.json", Method.POST);
             var response = client.Execute<dynamic>(request);
             return response.Data;
         }
 
+        public void Send(List<EmailAddress> recipients, string subject, string content, EmailAddress from)
+        {
+            var request = new RestRequest("/messages/send.json", Method.POST);
 
+            string payload = JsonConvert.SerializeObject(new
+                              {
+                                  key= ApiKey,
+                                  message=new
+                                              {
+                                                  subject = subject,
+                                                  html = content,
+                                                  from_email=from.Email,
+                                                  from_name=from.Name,
+                                                  to= recipients
+                                              }
+                              });
 
+            request.AddParameter("text/json", payload, ParameterType.RequestBody);
+            var response = client.Execute<dynamic>(request);
+        }
+
+    }
+
+    public class EmailAddress
+    {
+        [JsonProperty("email")]
+        public string Email { get; set; }
+        [JsonProperty("name")]
+        public string Name { get; set; }
     }
 }
