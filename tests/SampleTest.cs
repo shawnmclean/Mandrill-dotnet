@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Mandrill;
 using NUnit.Framework;
 
 namespace PostageApp.Tests
@@ -13,7 +14,6 @@ namespace PostageApp.Tests
         [Test]
         public void test()
         {
-
-        }
+            }
     }
 }
