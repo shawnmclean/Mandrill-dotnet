@@ -62,7 +62,7 @@ namespace Mandrill
             request.AddParameter("text/json", payload, ParameterType.RequestBody);
             var response = client.Execute<dynamic>(request);
         }
-        public void Send(List<EmailAddress> recipients, string subject, string content, EmailAddress from, string templateName)
+        public void Send(List<EmailAddress> recipients, string subject, EmailAddress from, string templateName, List<TemplateContent> templateContents)
         {
             var request = new RestRequest("/messages/send-template.json", Method.POST);
 
@@ -71,13 +71,13 @@ namespace Mandrill
                 key = ApiKey,
                 message = new
                 {
-                    template_name=templateName,
                     subject = subject,
-                    html = content,
                     from_email = from.Email,
                     from_name = from.Name,
                     to = recipients
-                }
+                },
+                template_name = templateName,
+                template_content = templateContents
             });
 
             request.AddParameter("text/json", payload, ParameterType.RequestBody);
@@ -89,6 +89,15 @@ namespace Mandrill
     {
         [JsonProperty("email")]
         public string Email { get; set; }
+        [JsonProperty("name")]
+        public string Name { get; set; }
+    }
+
+    public class TemplateContent
+    {
+
+        [JsonProperty("content")]
+        public string Content { get; set; }
         [JsonProperty("name")]
         public string Name { get; set; }
     }
