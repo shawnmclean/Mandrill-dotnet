@@ -6,7 +6,7 @@ task :deploy => [:zip, :nup] do
 end
 
 zip :zip => :output do | zip |
-	sh "New-Item build -type directory -force"
+	Dir.mkdir("build") unless Dir.exists?("build")
     zip.directories_to_zip "out"
     zip.output_file = "Mandrill.v#{bumper_version.to_s}.zip"
     zip.output_path = "build"
@@ -44,7 +44,7 @@ nugetpack :nup => :nus do |nuget|
 end
 
 nuspec :nus => :output do |nuspec|
-   nuspec.id="PostageApp"
+   nuspec.id="Mandrill"
    nuspec.version = bumper_version.to_s
    nuspec.authors = "Shawn Mclean"
    nuspec.description = "Mandrill .Net is a wrapper for the Mandrill API."
