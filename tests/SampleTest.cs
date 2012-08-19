@@ -6,14 +6,7 @@ using System.Threading.Tasks;
 using Mandrill;
 using NUnit.Framework;
 
-namespace PostageApp.Tests
+namespace Mandrill.Tests
 {
-    [TestFixture]
-    public class SampleTest
-    {
-        [Test]
-        public void test()
-        {
-            }
-    }
+
 }
