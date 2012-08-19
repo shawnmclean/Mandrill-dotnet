@@ -9,7 +9,7 @@ Visual Studio users can install this directly into their .NET projects by execut
 ## Description
 
 Mandrill Dot Net is a library that wraps the [Mandrill](http://mandrill.com/) mail API to easily get started in sending mail. It contains methods that
-accept just the minimal amount of strongly typed parameters required to start sending out emails.
+accept just the minimal amount of strongly typed parameters required to start sending out emails. All API calls have their Async counterparts.
 
 ## Usage
 
@@ -18,11 +18,24 @@ Unzip the file files and reference the following file in your .net project:
 
 	Mandrill.dll
 
-Sample Source:
+#### Sample Source:
+
+Synchronous:
 
     MandrillApi api = new MandrillApi("xxxxx-xxxx-xxxx-xxxx");
-	dynamic info = api.Info();
+    dynamic info = api.Info();
+    Console.WriteLine(info.reputation);
 
+Asychronous:
+
+    MandrillApi api = new MandrillApi("xxxxx-xxxx-xxxx-xxxx");
+    var task= api.InfoAsyc();
+
+    task.ContinueWith(data =>
+                      {
+                           var res = data.Result;
+                           Console.WriteLine(res.reputation);
+                      });
 
 ## Api methods Covered
 
