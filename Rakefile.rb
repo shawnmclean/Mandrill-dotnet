@@ -24,19 +24,19 @@ end
 desc "Test"
 nunit :test => :build do |nunit|
 	nunit.command = "tools/NUnit/nunit-console.exe"
-	nunit.assemblies "tests/bin/release/PostageApp.Tests.dll"
+	nunit.assemblies "tests/bin/Release/Mandrill.Tests.dll"
 end
 
 desc "Build"
 msbuild :build => :assemblyinfo do |msb|
   msb.properties :configuration => :Release
   msb.targets :Clean, :Build
-  msb.solution = "PostageApp.sln"
+  msb.solution = "Mandrill.sln"
 end
 
 nugetpack :nup => :nus do |nuget|
    nuget.command     = "tools/NuGet/NuGet.exe"
-   nuget.nuspec      = "PostageApp.nuspec"
+   nuget.nuspec      = "Mandrill.nuspec"
    nuget.base_folder = "out/"
    nuget.output      = "build/"
 end
@@ -45,13 +45,13 @@ nuspec :nus => :output do |nuspec|
    nuspec.id="PostageApp"
    nuspec.version = bumper_version.to_s
    nuspec.authors = "Shawn Mclean"
-   nuspec.description = "PostageApp .Net is a wrapper for the PostageApp API."
-   nuspec.title = "PostageApp"
+   nuspec.description = "Mandrill .Net is a wrapper for the Mandrill API."
+   nuspec.title = "Mandrill"
    nuspec.language = "en-US"
-   nuspec.projectUrl = "https://github.com/shawnmclean/PostageApp-dotnet"
+   nuspec.projectUrl = "https://github.com/shawnmclean/Mandrill-dotnet"
    nuspec.working_directory = "out/"
-   nuspec.output_file = "PostageApp.nuspec"
-   nuspec.file "PostageApp.dll", "lib"
+   nuspec.output_file = "Mandrill.nuspec"
+   nuspec.file "Mandrill.dll", "lib"
 end
 
 
@@ -60,7 +60,7 @@ assemblyinfo :assemblyinfo do |asm|
   asm.file_version = bumper_version.to_s
 
   asm.company_name = "Self"
-  asm.product_name = "PostageApp"
+  asm.product_name = "Mandrill"
   asm.copyright = "Shawn Mclean (c) 2012"
   asm.output_file = "AssemblyInfo.cs"
 end
