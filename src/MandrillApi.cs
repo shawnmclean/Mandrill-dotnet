@@ -34,10 +34,16 @@ namespace Mandrill
             //client.AddDefaultParameter("key", ApiKey);
             client.AddHandler("application/json", new DynamicJsonDeserializer());
         }
+        #region Async Methods
+
         public async Task<dynamic> InfoAsyc()
         {
             return await Task.Run(() => Info());
         }
+
+
+
+        #endregion
         public dynamic Info()
         {
             var request = new RestRequest("/users/info.json", Method.POST);
@@ -46,13 +52,13 @@ namespace Mandrill
             return response.Data;
         }
 
-        public void Send(List<EmailAddress> recipients, string subject, string content, EmailAddress from)
+        public List<EmailResult> Send(List<EmailAddress> recipients, string subject, string content, EmailAddress from)
         {
             var request = new RestRequest("/messages/send.json", Method.POST);
 
             string payload = JsonConvert.SerializeObject(new
                               {
-                                  key= ApiKey,
+                                  //key= ApiKey,
                                   message=new
                                               {
                                                   subject = subject,
@@ -64,7 +70,27 @@ namespace Mandrill
                               });
 
             request.AddParameter("text/json", payload, ParameterType.RequestBody);
-            var response = client.Execute<dynamic>(request);
+            var response = client.Execute<dynamic>(request).Data;
+
+            var emailResults = new List<EmailResult>();
+            //result comes back as array, if loop doesn't work, error occured.
+            try
+            {
+                foreach (var result in response)
+                {
+                    emailResults.Add(new EmailResult
+                                         {
+                                             Email = result.email,
+                                             IsSuccess = result.status == "success"
+                                         });
+                }
+                return emailResults;
+            }
+            catch (Exception ex)
+            {
+                //if (response.status == "error")
+                    throw new Exception();
+            }
         }
         public void Send(List<EmailAddress> recipients, string subject, EmailAddress from, string templateName, List<TemplateContent> templateContents)
         {
