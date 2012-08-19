@@ -6,14 +6,14 @@ end
 
 zip :zip => :output do | zip |
     zip.directories_to_zip "out"
-    zip.output_file = "PostageApp.v#{bumper_version.to_s}.zip"
+    zip.output_file = "Mandrill.v#{bumper_version.to_s}.zip"
     zip.output_path = "build"
 end
 
 output :output => :test do |out|
 	out.from '.'
 	out.to 'out'
-	out.file 'src/bin/release/PostageApp.dll', :as=>'PostageApp.dll'
+	out.file 'src/bin/release/Mandrill.dll', :as=>'Mandrill.dll'
 	out.file 'LICENSE.txt'
 	out.file 'README.md'
 	out.file 'VERSION'

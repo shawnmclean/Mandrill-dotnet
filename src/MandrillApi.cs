@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -11,6 +12,9 @@ using RestSharp;
 
 namespace Mandrill
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class MandrillApi
     {
         #region Properties
@@ -25,7 +29,10 @@ namespace Mandrill
 
         private RestClient client;
         #endregion
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="apiKey">The API Key recieved from MandrillApp</param>
         public MandrillApi(string apiKey)
         {
             ApiKey = apiKey;
@@ -70,29 +77,10 @@ namespace Mandrill
                               });
 
             request.AddParameter("text/json", payload, ParameterType.RequestBody);
-            var response = client.Execute<dynamic>(request).Data;
 
-            var emailResults = new List<EmailResult>();
-            //result comes back as array, if loop doesn't work, error occured.
-            try
-            {
-                foreach (var result in response)
-                {
-                    emailResults.Add(new EmailResult
-                                         {
-                                             Email = result.email,
-                                             IsSuccess = result.status == "success"
-                                         });
-                }
-                return emailResults;
-            }
-            catch (Exception ex)
-            {
-                //if (response.status == "error")
-                    throw new Exception();
-            }
+            return enumerateMessageResult(client.Execute<dynamic>(request).Data);
         }
-        public void Send(List<EmailAddress> recipients, string subject, EmailAddress from, string templateName, List<TemplateContent> templateContents)
+        public List<EmailResult> Send(List<EmailAddress> recipients, string subject, EmailAddress from, string templateName, List<TemplateContent> templateContents)
         {
             var request = new RestRequest("/messages/send-template.json", Method.POST);
 
@@ -111,7 +99,44 @@ namespace Mandrill
             });
 
             request.AddParameter("text/json", payload, ParameterType.RequestBody);
-            var response = client.Execute<dynamic>(request);
+            return enumerateMessageResult(client.Execute<dynamic>(request).Data);
+
+            
         }
+
+        #region private methods
+
+        private List<EmailResult> enumerateMessageResult(dynamic response)
+        {
+            var emailResults = new List<EmailResult>();
+            //result comes back as array, if loop doesn't work, error occured.
+            try
+            {
+                foreach (var result in response)
+                {
+                    emailResults.Add(new EmailResult
+                    {
+                        Email = result.email,
+                        IsSuccess = result.status == "success"
+                    });
+                }
+                return emailResults;
+            }
+            catch (Exception ex)
+            {
+                //try to get the error from the result
+                var dict = response as IDictionary;
+                if (dict != null && dict.Contains("message"))
+                {
+                    throw new Exception(response.message);
+                }
+                else
+                {
+                    throw new Exception("response was not in an expected format.");
+                }
+            }
+        }
+
+        #endregion
     }
 }
