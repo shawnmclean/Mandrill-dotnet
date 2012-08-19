@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading.Tasks;
 using Mandrill.Utilities;
 using Newtonsoft.Json;
 using RestSharp;
@@ -33,11 +34,14 @@ namespace Mandrill
             //client.AddDefaultParameter("key", ApiKey);
             client.AddHandler("application/json", new DynamicJsonDeserializer());
         }
-
+        public async Task<dynamic> InfoAsyc()
+        {
+            return await Task.Run(() => Info());
+        }
         public dynamic Info()
         {
             var request = new RestRequest("/users/info.json", Method.POST);
-            request.AddParameter("text/json", new {key = ApiKey}, ParameterType.RequestBody);
+            request.AddParameter("key", ApiKey);
             var response = client.Execute<dynamic>(request);
             return response.Data;
         }
@@ -83,22 +87,5 @@ namespace Mandrill
             request.AddParameter("text/json", payload, ParameterType.RequestBody);
             var response = client.Execute<dynamic>(request);
         }
-    }
-
-    public class EmailAddress
-    {
-        [JsonProperty("email")]
-        public string Email { get; set; }
-        [JsonProperty("name")]
-        public string Name { get; set; }
-    }
-
-    public class TemplateContent
-    {
-
-        [JsonProperty("content")]
-        public string Content { get; set; }
-        [JsonProperty("name")]
-        public string Name { get; set; }
     }
 }

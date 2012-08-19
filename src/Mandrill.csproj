@@ -47,8 +47,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration.cs" />
+    <Compile Include="Models\EmailAddress.cs" />
     <Compile Include="MandrillApi.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Models\TemplateContent.cs" />
     <Compile Include="Utilities\DynamicJsonDeserializer.cs" />
   </ItemGroup>
   <ItemGroup>
