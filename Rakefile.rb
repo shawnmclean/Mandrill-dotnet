@@ -1,3 +1,4 @@
+include Rake::DSL
 require 'albacore'
 require 'version_bumper'
 
@@ -5,6 +6,7 @@ task :deploy => [:zip, :nup] do
 end
 
 zip :zip => :output do | zip |
+	sh "New-Item build -type directory -force"
     zip.directories_to_zip "out"
     zip.output_file = "Mandrill.v#{bumper_version.to_s}.zip"
     zip.output_path = "build"
