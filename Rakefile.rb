@@ -1,6 +1,7 @@
 include Rake::DSL
 require 'albacore'
 require 'version_bumper'
+require './rakefile.config'
 
 task :deploy => [:zip, :nup] do
 end
@@ -47,7 +48,7 @@ nuspec :nus => :output do |nuspec|
    nuspec.id="Mandrill"
    nuspec.version = bumper_version.to_s
    nuspec.authors = "Shawn Mclean"
-   nuspec.description = "Mandrill .Net is a wrapper for the Mandrill API."
+   nuspec.description = "Mandrill .Net is a quick and easy wrapper for getting started with the Mandrill API."
    nuspec.title = "Mandrill"
    nuspec.language = "en-US"
    nuspec.projectUrl = "https://github.com/shawnmclean/Mandrill-dotnet"
