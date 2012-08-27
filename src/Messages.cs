@@ -119,7 +119,7 @@ namespace Mandrill
                     emailResults.Add(new EmailResult
                     {
                         Email = result.email,
-                        IsSuccess = result.status == "success"
+                        IsSuccess = result.status == "sent"
                     });
                 }
                 return emailResults;
