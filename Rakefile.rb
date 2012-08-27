@@ -3,7 +3,7 @@ require 'albacore'
 require 'version_bumper'
 require './rakefile.config'
 
-task :deploy => [:zip, :nup] do
+task :deploy => [:zip, :nuget_push] do
 end
 
 zip :zip => :output do | zip |
@@ -20,8 +20,6 @@ output :output => :test do |out|
 	out.file 'LICENSE.txt'
 	out.file 'README.md'
 	out.file 'VERSION'
-	# output can also build a nuspec :) 
-	# out.erb 'build/nchurn.nuspec.erb', :as => 'nchurn.nuspec', :locals => { :version => bumper_version }
 end
 
 desc "Test"
@@ -37,11 +35,24 @@ msbuild :build => :assemblyinfo do |msb|
   msb.solution = "Mandrill.sln"
 end
 
-nugetpack :nup => :nus do |nuget|
-   nuget.command     = "tools/NuGet/NuGet.exe"
-   nuget.nuspec      = "Mandrill.nuspec"
-   nuget.base_folder = "out/"
-   nuget.output      = "build/"
+nugetpush :nuget_push => :nup do |nuget|
+    nuget.command = "nuget.exe"
+    nuget.package = "Mandrill.#{bumper_version.to_s}.nupkg"
+    nuget.apikey = "#{Configuration::Build.api_key}"
+    nuget.create_only = true
+end
+
+##This does not work from albacore.
+#nugetpack :nup => :nus do |nuget|
+#   nuget.command     = "tools/NuGet/NuGet.exe"
+#   nuget.nuspec      = "Mandrill.nuspec"
+#   nuget.base_folder = "out/"
+#   nuget.output      = "build/"
+#end
+
+##use this until patched
+task :nup => :nus do
+	sh "tools/NuGet/NuGet.exe pack -BasePath out/ -Output build/ out/Mandrill.nuspec"
 end
 
 nuspec :nus => :output do |nuspec|
@@ -51,6 +62,8 @@ nuspec :nus => :output do |nuspec|
    nuspec.description = "Mandrill .Net is a quick and easy wrapper for getting started with the Mandrill API."
    nuspec.title = "Mandrill"
    nuspec.language = "en-US"
+   nuspec.licenseUrl = "http://www.apache.org/licenses/LICENSE-2.0"
+   nuspec.dependency "RestSharp", "103.4.0.0"
    nuspec.projectUrl = "https://github.com/shawnmclean/Mandrill-dotnet"
    nuspec.working_directory = "out/"
    nuspec.output_file = "Mandrill.nuspec"
@@ -61,7 +74,6 @@ end
 assemblyinfo :assemblyinfo do |asm|
   asm.version = bumper_version.to_s
   asm.file_version = bumper_version.to_s
-
   asm.company_name = "Self"
   asm.product_name = "Mandrill"
   asm.copyright = "Shawn Mclean (c) 2012"
