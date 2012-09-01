@@ -41,6 +41,7 @@ Asychronous:
 
  1. User Calls
    1. Info
+   2. Ping
  2. Messages Calls
    1. Send
    2. Send-Template
