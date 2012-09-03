@@ -64,6 +64,7 @@ nuspec :nus => :output do |nuspec|
    nuspec.language = "en-US"
    nuspec.licenseUrl = "http://www.apache.org/licenses/LICENSE-2.0"
    nuspec.dependency "RestSharp", "103.4.0.0"
+   nuspec.dependency "Newtonsoft.Json", "4.5.8"
    nuspec.projectUrl = "https://github.com/shawnmclean/Mandrill-dotnet"
    nuspec.working_directory = "out/"
    nuspec.output_file = "Mandrill.nuspec"
