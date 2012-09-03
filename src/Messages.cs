@@ -54,7 +54,7 @@ namespace Mandrill
 
             string payload = JsonConvert.SerializeObject(new
             {
-                //key= ApiKey,
+                key= ApiKey,
                 message = new
                 {
                     subject = subject,
@@ -67,7 +67,7 @@ namespace Mandrill
 
             request.AddParameter("text/json", payload, ParameterType.RequestBody);
 
-            return enumerateMessageResult(client.Execute<dynamic>(request).Data);
+            return enumerateMessageResult(client.Execute<dynamic>(request));
         }
 
         /// <summary>
@@ -98,7 +98,8 @@ namespace Mandrill
             });
 
             request.AddParameter("text/json", payload, ParameterType.RequestBody);
-            return enumerateMessageResult(client.Execute<dynamic>(request).Data);
+
+            return enumerateMessageResult(client.Execute<dynamic>(request));
         }
 
         #region private methods
@@ -108,13 +109,17 @@ namespace Mandrill
         /// </summary>
         /// <param name="response"></param>
         /// <returns></returns>
-        private List<EmailResult> enumerateMessageResult(dynamic response)
+        private List<EmailResult> enumerateMessageResult(IRestResponse<dynamic> response)
         {
+            if(response.ResponseStatus != ResponseStatus.Completed)
+                throw new Exception(response.ErrorMessage);
+
+            var data = response.Data;
             var emailResults = new List<EmailResult>();
             //result comes back as array, if loop doesn't work, error occured.
             try
             {
-                foreach (var result in response)
+                foreach (var result in data)
                 {
                     emailResults.Add(new EmailResult
                     {
@@ -127,10 +132,10 @@ namespace Mandrill
             catch (Exception ex)
             {
                 //try to get the error from the result
-                var dict = response as IDictionary;
+                var dict = data as IDictionary;
                 if (dict != null && dict.Contains("message"))
                 {
-                    throw new Exception(response.message);
+                    throw new Exception(data.message);
                 }
                 else
                 {
