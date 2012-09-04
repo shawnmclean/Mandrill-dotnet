@@ -1,54 +1,47 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using RestSharp;
 
 namespace Mandrill
 {
     public partial class MandrillApi
     {
-        #region Async Methods
-        /// <summary>
-        ///  Async version to return the information about the API-connected user
-        /// </summary>
-        /// <returns></returns>
-        public async Task<dynamic> InfoAsyc()
+        public UserInfo UserInfo()
         {
-            return await Task.Run(() => Info());
+            return UserInfoAsync().Result;            
         }
-
-        /// <summary>
-        /// Async version to validate an API key and respond to a ping
-        /// </summary>
-        /// <returns></returns>
-        public async Task<dynamic> PingAsyc()
-        {
-            return await Task.Run(() => Ping());
-        }
-
-        #endregion Async Methods
 
         /// <summary>
         /// Return the information about the API-connected user
         /// </summary>
         /// <returns></returns>
         /// <see cref="https://mandrillapp.com/api/docs/users.html#method=info"/>
-        public dynamic Info()
+        public Task<UserInfo> UserInfoAsync()
         {
-            var request = new RestRequest("/users/info.json", Method.POST);
-            request.AddParameter("key", ApiKey);
-            var response = client.Execute<dynamic>(request);
-            return response.Data;
+            var path = "/users/info.json";
+            return PostAsync<UserInfo>(path, null);
         }
 
         /// <summary>
         /// Validate an API key and respond to a ping
         /// </summary>
         /// <returns></returns>
-        public dynamic Ping()
+        public string Ping()
         {
-            var request = new RestRequest("/users/ping.json", Method.POST);
-            request.AddParameter("key", ApiKey);
-            var response = client.Execute<dynamic>(request);
-            return response.Data;
+            return PingAsync().Result;
+        }
+
+        /// <summary>
+        /// Validate an API key and respond to a ping
+        /// </summary>
+        /// <returns></returns>
+        public Task<string> PingAsync()
+        {
+            var path = "/users/ping.json";
+            return PostAsync(path, null).ContinueWith(p =>
+            {
+                return p.Result.Content;
+            });
         }
     }
 }
