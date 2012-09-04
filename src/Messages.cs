@@ -19,9 +19,12 @@ namespace Mandrill
         /// <param name="content"></param>
         /// <param name="from"></param>
         /// <returns></returns>
-        public async Task<List<EmailResult>> SendAsync(List<EmailAddress> recipients, string subject, string content, EmailAddress from)
+        public Task<List<EmailResult>> SendAsync(List<EmailAddress> recipients, string subject, string content, EmailAddress from)
         {
-            return await Task.Run(() => Send(recipients, subject, content, from));
+            return Task.Factory.StartNew<List<EmailResult>>(() =>
+            {
+                return Send(recipients, subject, content, from);
+            });
         }
 
         /// <summary>
@@ -33,9 +36,13 @@ namespace Mandrill
         /// <param name="templateName"></param>
         /// <param name="templateContents"></param>
         /// <returns></returns>
-        public async Task<List<EmailResult>> SendAsync(List<EmailAddress> recipients, string subject, EmailAddress from, string templateName, List<TemplateContent> templateContents)
+        public Task<List<EmailResult>> SendAsync(List<EmailAddress> recipients, string subject, EmailAddress from, string templateName, List<TemplateContent> templateContents)
         {
-            return await Task.Run(() => Send(recipients, subject, from, templateName, templateContents));
+            return Task.Factory.StartNew<List<EmailResult>>(() =>
+            {
+                return Send(recipients, subject, from, templateName, templateContents);
+            });
+
         }
 
         #endregion Async Methods
