@@ -29,13 +29,13 @@ Synchronous:
 Asychronous:
 
     MandrillApi api = new MandrillApi("xxxxx-xxxx-xxxx-xxxx");
-    var task= api.InfoAsyc();
+    var task= api.UserInfoAsyc();
 
     task.ContinueWith(data =>
-                      {
-                           var res = data.Result;
-                           Console.WriteLine(res.reputation);
-                      });
+    {
+        var userInfo = data.Result;
+        Console.WriteLine(userInfo.reputation);
+    });
 
 ## Api methods Covered
 
