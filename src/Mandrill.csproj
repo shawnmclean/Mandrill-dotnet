@@ -52,6 +52,7 @@
     <Compile Include="Messages.cs" />
     <Compile Include="Models\EmailAddress.cs" />
     <Compile Include="MandrillApi.cs" />
+    <Compile Include="Models\EmailMessage.cs" />
     <Compile Include="Models\EmailResult.cs" />
     <Compile Include="Models\ErrorResponse.cs" />
     <Compile Include="Models\UserInfo.cs" />
