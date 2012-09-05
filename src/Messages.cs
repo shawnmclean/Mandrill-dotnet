@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Dynamic;
+using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using RestSharp;
@@ -8,44 +10,20 @@ using RestSharp;
 namespace Mandrill
 {
     public partial class MandrillApi
-    {
-        #region Async Methods
-
+    {        
         /// <summary>
-        /// Async method to send a new transactional message through Mandrill.
+        /// Send a new transactional message through Mandrill.
         /// </summary>
         /// <param name="recipients"></param>
         /// <param name="subject"></param>
         /// <param name="content"></param>
         /// <param name="from"></param>
         /// <returns></returns>
-        public Task<List<EmailResult>> SendAsync(List<EmailAddress> recipients, string subject, string content, EmailAddress from)
+        public List<EmailResult> Send(IEnumerable<EmailAddress> recipients, string subject, string content, EmailAddress from)
         {
-            return Task.Factory.StartNew<List<EmailResult>>(() =>
-            {
-                return Send(recipients, subject, content, from);
-            });
+            return SendAsync(recipients, subject, content, from).Result;
         }
 
-        /// <summary>
-        /// Async version to send a new transactional message through Mandrill using a template
-        /// </summary>
-        /// <param name="recipients"></param>
-        /// <param name="subject"></param>
-        /// <param name="from"></param>
-        /// <param name="templateName"></param>
-        /// <param name="templateContents"></param>
-        /// <returns></returns>
-        public Task<List<EmailResult>> SendAsync(List<EmailAddress> recipients, string subject, EmailAddress from, string templateName, List<TemplateContent> templateContents)
-        {
-            return Task.Factory.StartNew<List<EmailResult>>(() =>
-            {
-                return Send(recipients, subject, from, templateName, templateContents);
-            });
-
-        }
-
-        #endregion Async Methods
 
         /// <summary>
         /// Send a new transactional message through Mandrill.
@@ -55,26 +33,29 @@ namespace Mandrill
         /// <param name="content"></param>
         /// <param name="from"></param>
         /// <returns></returns>
-        public List<EmailResult> Send(List<EmailAddress> recipients, string subject, string content, EmailAddress from)
+        public Task<List<EmailResult>> SendAsync(IEnumerable<EmailAddress> recipients, string subject, string content, EmailAddress from)
         {
-            var request = new RestRequest("/messages/send.json", Method.POST);
+            var path = "/messages/send.json";
 
-            string payload = JsonConvert.SerializeObject(new
+            var message = new EmailMessage()
             {
-                key= ApiKey,
-                message = new
-                {
-                    subject = subject,
-                    html = content,
-                    from_email = from.Email,
-                    from_name = from.Name,
-                    to = recipients
-                }
-            });
+                to = recipients,
+                from_name = from.name,
+                from_email = from.email,
+                subject = subject,
+                html = content,
+                auto_text = true,
+            };
 
-            request.AddParameter("text/json", payload, ParameterType.RequestBody);
+            dynamic payload = new ExpandoObject();
+            payload.message = message;
+            
+            Task<IRestResponse> post = PostAsync(path, payload);
 
-            return enumerateMessageResult(client.Execute<dynamic>(request));
+            return post.ContinueWith(p =>
+            {
+                return JSON.Parse<List<EmailResult>>(p.Result.Content);
+            }, TaskContinuationOptions.ExecuteSynchronously);            
         }
 
         /// <summary>
@@ -86,71 +67,73 @@ namespace Mandrill
         /// <param name="templateName"></param>
         /// <param name="templateContents"></param>
         /// <returns></returns>
-        public List<EmailResult> Send(List<EmailAddress> recipients, string subject, EmailAddress from, string templateName, List<TemplateContent> templateContents)
+        public List<EmailResult> SendTemplate(IEnumerable<EmailAddress> recipients, string subject, EmailAddress from, string templateName, IEnumerable<TemplateContent> templateContents)
         {
-            var request = new RestRequest("/messages/send-template.json", Method.POST);
-
-            string payload = JsonConvert.SerializeObject(new
-            {
-                key = ApiKey,
-                message = new
-                {
-                    subject = subject,
-                    from_email = from.Email,
-                    from_name = from.Name,
-                    to = recipients
-                },
-                template_name = templateName,
-                template_content = templateContents
-            });
-
-            request.AddParameter("text/json", payload, ParameterType.RequestBody);
-
-            return enumerateMessageResult(client.Execute<dynamic>(request));
+            return SendTemplateAsync(recipients, subject, from, templateName, templateContents).Result;
         }
-
-        #region private methods
 
         /// <summary>
-        ///
+        /// Send a new transactional message through Mandrill using a template
         /// </summary>
-        /// <param name="response"></param>
+        /// <param name="recipients"></param>
+        /// <param name="subject"></param>
+        /// <param name="from"></param>
+        /// <param name="templateName"></param>
+        /// <param name="templateContents"></param>
         /// <returns></returns>
-        private List<EmailResult> enumerateMessageResult(IRestResponse<dynamic> response)
+        public Task<List<EmailResult>> SendTemplateAsync(IEnumerable<EmailAddress> recipients, string subject, EmailAddress from, string templateName, IEnumerable<TemplateContent> templateContents)
         {
-            if(response.ResponseStatus != ResponseStatus.Completed)
-                throw new Exception(response.ErrorMessage);
+            var message = new EmailMessage()
+            {
+                to = recipients,
+                from_name = from.name,
+                from_email = from.email,
+                subject = subject,
+            };
 
-            var data = response.Data;
-            var emailResults = new List<EmailResult>();
-            //result comes back as array, if loop doesn't work, error occured.
-            try
-            {
-                foreach (var result in data)
-                {
-                    emailResults.Add(new EmailResult
-                    {
-                        Email = result.email,
-                        IsSuccess = result.status == "sent"
-                    });
-                }
-                return emailResults;
-            }
-            catch (Exception ex)
-            {
-                //try to get the error from the result
-                var dict = data as IDictionary;
-                if (dict != null && dict.Contains("message"))
-                {
-                    throw new Exception(data.message);
-                }
-                else
-                {
-                    throw new Exception("response was not in an expected format.");
-                }
-            }
+            return SendTemplateAsync(message, templateName, templateContents);
         }
 
-        #endregion private methods
+
+
+        /// <summary>
+        /// Send a new transactional message through Mandrill using a template
+        /// </summary>
+        /// <param name="recipients"></param>
+        /// <param name="subject"></param>
+        /// <param name="from"></param>
+        /// <param name="templateName"></param>
+        /// <param name="templateContents"></param>
+        /// <returns></returns>
+        public List<EmailResult> SendTemplate(EmailMessage message, string templateName, IEnumerable<TemplateContent> templateContents)
+        {
+            return SendTemplateAsync(message, templateName, templateContents).Result;
+        }
+
+        /// <summary>
+        /// Send a new transactional message through Mandrill using a template
+        /// </summary>
+        /// <param name="recipients"></param>
+        /// <param name="subject"></param>
+        /// <param name="from"></param>
+        /// <param name="templateName"></param>
+        /// <param name="templateContents"></param>
+        /// <returns></returns>
+        public Task<List<EmailResult>> SendTemplateAsync(EmailMessage message, string templateName, IEnumerable<TemplateContent> templateContents)
+        {
+            var path = "/messages/send-template.json";
+
+            dynamic payload = new ExpandoObject();
+            payload.message = message;
+            payload.template_name = templateName;
+            payload.template_content = templateContents != null ? templateContents : Enumerable.Empty<TemplateContent>();
+
+            Task<IRestResponse> post = PostAsync(path, payload);
+            return post.ContinueWith(p =>
+            {
+                return JSON.Parse<List<EmailResult>>(p.Result.Content);
+            }, TaskContinuationOptions.ExecuteSynchronously);
+        }       
+
     }
 }

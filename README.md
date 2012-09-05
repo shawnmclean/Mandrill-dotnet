@@ -23,19 +23,19 @@ Unzip the file files and reference the following file in your .net project:
 Synchronous:
 
     MandrillApi api = new MandrillApi("xxxxx-xxxx-xxxx-xxxx");
-    dynamic info = api.Info();
+    UserInfo info = api.UserInfo();
     Console.WriteLine(info.reputation);
 
 Asychronous:
 
     MandrillApi api = new MandrillApi("xxxxx-xxxx-xxxx-xxxx");
-    var task= api.InfoAsyc();
+    var task= api.UserInfoAsyc();
 
     task.ContinueWith(data =>
-                      {
-                           var res = data.Result;
-                           Console.WriteLine(res.reputation);
-                      });
+    {
+        var userInfo = data.Result;
+        Console.WriteLine(userInfo.reputation);
+    });
 
 ## Api methods Covered
 
