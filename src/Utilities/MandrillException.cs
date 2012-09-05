@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Mandrill
 {
+    /// <summary>
+    /// General Exception that is thrown by the Mandrill Api
+    /// </summary>
     public class MandrillException : Exception
     {
         public ErrorResponse Error { get; private set; }
