@@ -28,7 +28,16 @@ namespace Mandrill
         /// <returns></returns>
         public string Ping()
         {
-            return PingAsync().Result;
+            try
+            {
+                return PingAsync().Result;
+            }
+            catch(AggregateException aex)
+            {
+                var ex = aex.Flatten();
+                //catch and throw the inner exception
+                throw aex.Flatten().InnerException;
+            }
         }
 
         /// <summary>
@@ -40,7 +49,7 @@ namespace Mandrill
             var path = "/users/ping.json";
             return PostAsync(path, null).ContinueWith(p =>
             {
-                return p.Result.Content;
+               return p.Result.Content;
             });
         }
     }
