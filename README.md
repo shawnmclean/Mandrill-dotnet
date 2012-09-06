@@ -49,3 +49,14 @@ Asychronous:
 ## Necessary prerequisites
 
 .NET 4
+
+## Contributing
+
+#### Building the source
+
+The source can be built from the rake task `rake build` or using visual studio. If using rake, ensure `albacore`
+and `version_bumper` gems are installed. Rename `rakefile.config.example.rb` to `rakefile.config.rb`. 
+
+For running tests, ensure to rename `AppSettings.example.config` to `AppSettings.config` and 
+set your own Api Key in the test project. Tests can be executed from rake: `rake test` or from any nunit test runner
+tool.
