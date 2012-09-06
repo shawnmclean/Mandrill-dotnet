@@ -34,7 +34,6 @@ namespace Mandrill
             }
             catch(AggregateException aex)
             {
-                var ex = aex.Flatten();
                 //catch and throw the inner exception
                 throw aex.Flatten().InnerException;
             }
