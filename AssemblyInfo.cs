@@ -5,4 +5,3 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCopyright("Shawn Mclean (c) 2012")]
 [assembly: AssemblyVersion("0.0.0.6")]
 [assembly: AssemblyFileVersion("0.0.0.6")]
-
