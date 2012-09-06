@@ -58,7 +58,7 @@ end
 nuspec :nus => :output do |nuspec|
    nuspec.id="Mandrill"
    nuspec.version = bumper_version.to_s
-   nuspec.authors = "Shawn Mclean"
+   nuspec.authors = "Shawn Mclean, Eli Schleifer"
    nuspec.description = "Mandrill .Net is a quick and easy wrapper for getting started with the Mandrill API."
    nuspec.title = "Mandrill"
    nuspec.language = "en-US"
