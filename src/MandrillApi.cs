@@ -31,6 +31,7 @@ namespace Mandrill
         ///
         /// </summary>
         /// <param name="apiKey">The API Key recieved from MandrillApp</param>
+        /// <param name="useSsl"></param>
         public MandrillApi(string apiKey, bool useSsl = true)
         {
             ApiKey = apiKey;
