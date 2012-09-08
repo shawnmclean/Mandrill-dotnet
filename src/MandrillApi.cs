@@ -1,4 +1,5 @@
 ﻿using System.Dynamic;
+using System.Net;
 using System.Threading.Tasks;
 using Mandrill.Utilities;
 using RestSharp;
@@ -104,11 +105,17 @@ namespace Mandrill
 
                 var response = client.Execute(request);
 
-                if (response.StatusCode != System.Net.HttpStatusCode.OK)
+                //if internal server error, then mandrill should return a custom error.
+                if (response.StatusCode == System.Net.HttpStatusCode.InternalServerError)
                 {
                     var error = JSON.Parse<ErrorResponse>(response.Content);
                     var ex = new MandrillException(error, string.Format("Post failed {0}", path));
                     throw ex;
+                }
+                else if(response.StatusCode != HttpStatusCode.OK)
+                {
+                    //used to throw errors not returned from the server, such as no response, etc.
+                    throw response.ErrorException;
                 }
                 else
                 {
