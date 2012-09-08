@@ -39,5 +39,19 @@ namespace Mandrill.Tests.IntegrationTests
             var ex = Assert.Throws<MandrillException>(() => api.Ping());
             Assert.That(ex.Error.name, Is.EqualTo("Invalid_Key"));
         }
+
+        [Test]
+        public void UserInfo_Throws_Exception_On_Invalid_ApiKey()
+        {
+            // Setup
+            var apiKey = " ";
+
+            // Exercise
+            var api = new MandrillApi(apiKey);
+
+            // Verify
+            var ex = Assert.Throws<MandrillException>(() => api.UserInfo());
+            Assert.That(ex.Error.name, Is.EqualTo("Invalid_Key"));
+        }
     }
 }
