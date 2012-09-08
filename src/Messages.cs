@@ -19,9 +19,9 @@ namespace Mandrill
         /// <param name="content"></param>
         /// <param name="from"></param>
         /// <returns></returns>
-        public List<EmailResult> Send(IEnumerable<EmailAddress> recipients, string subject, string content, EmailAddress from)
+        public List<EmailResult> SendMessage(IEnumerable<EmailAddress> recipients, string subject, string content, EmailAddress from)
         {
-            return SendAsync(recipients, subject, content, from).Result;
+            return SendMessageAsync(recipients, subject, content, from).Result;
         }
 
 
@@ -33,7 +33,7 @@ namespace Mandrill
         /// <param name="content"></param>
         /// <param name="from"></param>
         /// <returns></returns>
-        public Task<List<EmailResult>> SendAsync(IEnumerable<EmailAddress> recipients, string subject, string content, EmailAddress from)
+        public Task<List<EmailResult>> SendMessageAsync(IEnumerable<EmailAddress> recipients, string subject, string content, EmailAddress from)
         {
             var path = "/messages/send.json";
 
@@ -67,9 +67,9 @@ namespace Mandrill
         /// <param name="templateName"></param>
         /// <param name="templateContents"></param>
         /// <returns></returns>
-        public List<EmailResult> SendTemplate(IEnumerable<EmailAddress> recipients, string subject, EmailAddress from, string templateName, IEnumerable<TemplateContent> templateContents)
+        public List<EmailResult> SendMessage(IEnumerable<EmailAddress> recipients, string subject, EmailAddress from, string templateName, IEnumerable<TemplateContent> templateContents)
         {
-            return SendTemplateAsync(recipients, subject, from, templateName, templateContents).Result;
+            return SendMessageAsync(recipients, subject, from, templateName, templateContents).Result;
         }
 
         /// <summary>
@@ -81,7 +81,7 @@ namespace Mandrill
         /// <param name="templateName"></param>
         /// <param name="templateContents"></param>
         /// <returns></returns>
-        public Task<List<EmailResult>> SendTemplateAsync(IEnumerable<EmailAddress> recipients, string subject, EmailAddress from, string templateName, IEnumerable<TemplateContent> templateContents)
+        public Task<List<EmailResult>> SendMessageAsync(IEnumerable<EmailAddress> recipients, string subject, EmailAddress from, string templateName, IEnumerable<TemplateContent> templateContents)
         {
             var message = new EmailMessage()
             {
@@ -91,7 +91,7 @@ namespace Mandrill
                 subject = subject,
             };
 
-            return SendTemplateAsync(message, templateName, templateContents);
+            return SendMessageAsync(message, templateName, templateContents);
         }
 
 
@@ -105,9 +105,9 @@ namespace Mandrill
         /// <param name="templateName"></param>
         /// <param name="templateContents"></param>
         /// <returns></returns>
-        public List<EmailResult> SendTemplate(EmailMessage message, string templateName, IEnumerable<TemplateContent> templateContents)
+        public List<EmailResult> SendMessage(EmailMessage message, string templateName, IEnumerable<TemplateContent> templateContents)
         {
-            return SendTemplateAsync(message, templateName, templateContents).Result;
+            return SendMessageAsync(message, templateName, templateContents).Result;
         }
 
         /// <summary>
@@ -119,7 +119,7 @@ namespace Mandrill
         /// <param name="templateName"></param>
         /// <param name="templateContents"></param>
         /// <returns></returns>
-        public Task<List<EmailResult>> SendTemplateAsync(EmailMessage message, string templateName, IEnumerable<TemplateContent> templateContents)
+        public Task<List<EmailResult>> SendMessageAsync(EmailMessage message, string templateName, IEnumerable<TemplateContent> templateContents)
         {
             var path = "/messages/send-template.json";
 
