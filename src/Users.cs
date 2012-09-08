@@ -8,7 +8,15 @@ namespace Mandrill
     {
         public UserInfo UserInfo()
         {
-            return UserInfoAsync().Result;            
+            try
+            {
+                return UserInfoAsync().Result;
+            }
+            catch (AggregateException aex)
+            {
+                //catch and throw the inner exception
+                throw aex.Flatten().InnerException;
+            }
         }
 
         /// <summary>
