@@ -58,6 +58,11 @@
     <Compile Include="Models\UserInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\TemplateContent.cs" />
+    <Compile Include="Rejects.cs" />
+    <Compile Include="Senders.cs" />
+    <Compile Include="Tags.cs" />
+    <Compile Include="Templates.cs" />
+    <Compile Include="Urls.cs" />
     <Compile Include="Users.cs" />
     <Compile Include="Utilities\DynamicJsonDeserializer.cs" />
     <Compile Include="Utilities\JSON.cs" />
