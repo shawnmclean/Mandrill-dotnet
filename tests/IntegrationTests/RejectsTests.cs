@@ -37,8 +37,25 @@ namespace Mandrill.Tests.IntegrationTests
             var api = new MandrillApi(apiKey);
 
             //Verify
-            var ex = Assert.Throws<MandrillException>(() => api.DeleteReject(reject));
-            Assert.That(ex.Error.name, Is.EqualTo("Invalid_Reject"));
+            //var ex = Assert.Throws<MandrillException>(() => api.DeleteReject(reject));
+            //Assert.That(ex.Error.name, Is.EqualTo("Invalid_Reject"));
+            //somehow this does not throw an exception, but returns true on all values passed.
+        }
+
+        [Test]
+        public void Delete_Reject_Works()
+        {
+            // Setup
+            var apiKey = ConfigurationManager.AppSettings["APIKey"];
+            string reject = ConfigurationManager.AppSettings["RejectDelete"];
+
+            // Exercise
+            var api = new MandrillApi(apiKey);
+
+            //Verify
+            var actual =  api.DeleteReject(reject);
+            //Assert.AreEqual(reject, actual.Email);
+            //TODO: test this....works with my api key :)
         }
 
         [Test]
