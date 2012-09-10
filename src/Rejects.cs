@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,7 +24,10 @@ namespace Mandrill
         public Task<RejectDeleteResult> DeleteRejectAsync(string email)
         {
             var path = "/rejects/delete.json";
-            return PostAsync<RejectDeleteResult>(path, new {email});
+
+            dynamic param = new ExpandoObject();
+            param.email = email;
+            return PostAsync<RejectDeleteResult>(path, param);
         }
 
         /// <summary>
@@ -51,7 +55,11 @@ namespace Mandrill
         public Task<List<RejectInfo>> ListRejectsAsync(string email)
         {
             var path = "/rejects/list.json";
-            return PostAsync<List<RejectInfo>>(path, new {email});
+
+
+            dynamic param = new ExpandoObject();
+            param.email = email;
+            return PostAsync<List<RejectInfo>>(path, param);
         }
 
     }
