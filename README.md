@@ -39,12 +39,15 @@ Asychronous:
 
 ## Api methods Covered
 
- 1. User Calls
+ 1. Users
    1. Info
    2. Ping
- 2. Messages Calls
+ 2. Messages
    1. Send
    2. Send-Template
+ 3. Rejects
+   1. List
+   2. Delete
 	
 ## Necessary prerequisites
 
