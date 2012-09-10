@@ -35,7 +35,7 @@ namespace Mandrill
         /// </summary>
         /// <param name="email">email address to limit the results</param>
         /// <returns></returns>
-        public List<RejectInfo> ListRejects(string email)
+        public List<RejectInfo> ListRejects(string email="")
         {
             try
             {
@@ -52,7 +52,7 @@ namespace Mandrill
         /// </summary>
         /// <param name="email">email address to limit the results</param>
         /// <returns></returns>
-        public Task<List<RejectInfo>> ListRejectsAsync(string email)
+        public Task<List<RejectInfo>> ListRejectsAsync(string email="")
         {
             var path = "/rejects/list.json";
 
