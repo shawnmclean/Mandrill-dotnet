@@ -66,7 +66,7 @@ namespace Mandrill.Tests.IntegrationTests
 
             // Verify
             var rejects = api.ListRejects();
-            //TODO: test this....
+            //TODO: test this....works with my api key :)
         }
     }
 }
