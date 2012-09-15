@@ -4,10 +4,8 @@ namespace Mandrill
 {
     public class TemplateContent
     {
-        [JsonProperty("content")]
-        public string Content { get; set; }
+        public string content { get; set; }
 
-        [JsonProperty("name")]
-        public string Name { get; set; }
+        public string name { get; set; }
     }
 }
