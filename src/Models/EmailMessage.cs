@@ -85,7 +85,7 @@ namespace Mandrill
             var entry = merge_vars.Where(e => e.rcpt == recipient).FirstOrDefault();
             if (entry == null)
             {
-                entry = new rcpt_merge_var();
+                entry = new rcpt_merge_var{rcpt = recipient};
                 merge_vars.Add(entry);
             }
 
