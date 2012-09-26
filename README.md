@@ -65,3 +65,9 @@ and `version_bumper` gems are installed. Rename `rakefile.config.example.rb` to 
 For running tests, ensure to rename `AppSettings.example.config` to `AppSettings.config` and 
 set your own Api Key in the test project. Tests can be executed from rake: `rake test` or from any nunit test runner
 tool.
+
+#### Contributors
+
+  1. [Eli Schleifer](https://github.com/EliSchleifer)
+  2. [Marko](https://github.com/markokristian)
+  3. [Maksymilian Majer](https://github.com/maksymilian-majer)
