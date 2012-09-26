@@ -48,6 +48,8 @@ Asychronous:
  3. Rejects
    1. List
    2. Delete
+ 4. Templates
+   1. Render
 	
 ## Necessary prerequisites
 
