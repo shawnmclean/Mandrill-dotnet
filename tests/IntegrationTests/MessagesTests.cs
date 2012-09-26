@@ -8,7 +8,7 @@ using NUnit.Framework;
 
 namespace Mandrill.Tests.IntegrationTests
 {
-            [TestFixture]
+    [TestFixture]
     public class MessagesTests
     {
         [Test]
