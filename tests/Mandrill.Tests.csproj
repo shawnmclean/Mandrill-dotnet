@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="IntegrationTests\MessagesTests.cs" />
     <Compile Include="IntegrationTests\RejectsTests.cs" />
+    <Compile Include="IntegrationTests\TemplatesTests.cs" />
     <Compile Include="IntegrationTests\UsersTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -61,6 +62,7 @@
     </None>
     <None Include="AppSettings.example.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
