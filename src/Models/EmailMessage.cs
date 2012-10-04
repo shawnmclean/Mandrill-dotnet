@@ -57,7 +57,7 @@ namespace Mandrill
         public IEnumerable<string> tags { get; set; }
         public IEnumerable<string> google_analytics_domains { get; set; }
         public string google_analytics_campaign { get; set; }
-        public IEnumerable<string> metadata { get; set; }
+        public IEnumerable<KeyValuePair<string,string>> metadata { get; set; }
         public IEnumerable<rcpt_metadata> recipient_metadata { get; set; }
         public IEnumerable<attachment> attachments { get; set; }
 

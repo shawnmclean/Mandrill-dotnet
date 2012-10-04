@@ -59,6 +59,8 @@
     <Compile Include="Models\ErrorResponse.cs" />
     <Compile Include="Models\RejectInfo.cs" />
     <Compile Include="Models\RenderedTemplate.cs" />
+    <Compile Include="Models\Search.cs" />
+    <Compile Include="Models\SearchResult.cs" />
     <Compile Include="Models\UserInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\TemplateContent.cs" />
