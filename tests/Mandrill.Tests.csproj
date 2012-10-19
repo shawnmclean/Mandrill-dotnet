@@ -59,6 +59,7 @@
     <None Include="App.config" />
     <None Include="AppSettings.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
     <None Include="AppSettings.example.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

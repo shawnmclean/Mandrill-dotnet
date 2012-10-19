@@ -57,7 +57,7 @@ namespace Mandrill
         public IEnumerable<string> tags { get; set; }
         public IEnumerable<string> google_analytics_domains { get; set; }
         public string google_analytics_campaign { get; set; }
-        public IEnumerable<string> metadata { get; set; }
+        public JsonObject metadata { get; private set; }
         public IEnumerable<rcpt_metadata> recipient_metadata { get; set; }
         public IEnumerable<attachment> attachments { get; set; }
 
@@ -107,6 +107,15 @@ namespace Mandrill
             };
 
             entry.vars.Add(mv);
+        }
+
+        public void AddMetadata(string key, string value)
+        {
+            if (this.metadata == null)
+            {
+                this.metadata = new JsonObject();
+            }
+            this.metadata[key] = value;
         }
     }
 }
