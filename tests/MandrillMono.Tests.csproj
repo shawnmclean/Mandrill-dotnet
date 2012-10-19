@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Mandrill.Tests</RootNamespace>
     <AssemblyName>Mandrill.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -38,7 +39,6 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -48,12 +48,6 @@
     <Compile Include="IntegrationTests\TemplatesTests.cs" />
     <Compile Include="IntegrationTests\UsersTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\src\Mandrill.csproj">
-      <Project>{0563ee3c-a65e-4d55-9302-7663c0fe77f7}</Project>
-      <Name>Mandrill</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -73,4 +67,10 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ItemGroup>
+    <ProjectReference Include="..\src\MandrillMono.csproj">
+      <Project>{0563EE3C-A65E-4D55-9302-7663C0FE77F7}</Project>
+      <Name>MandrillMono</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>
