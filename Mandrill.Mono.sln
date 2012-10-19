@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mandrill", "src\MandrillMono.csproj", "{0563EE3C-A65E-4D55-9302-7663C0FE77F7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mandrill", "src\Mandrill.Mono.csproj", "{0563EE3C-A65E-4D55-9302-7663C0FE77F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mandrill.Tests", "tests\MandrillMono.Tests.csproj", "{0675EF0D-79F9-473A-ABF4-B2F1B22843C9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mandrill.Tests", "tests\Mandrill.Mono.Tests.csproj", "{0675EF0D-79F9-473A-ABF4-B2F1B22843C9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +21,6 @@ Global
 		{0675EF0D-79F9-473A-ABF4-B2F1B22843C9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = src\Mandrill.csproj
+		StartupItem = src\Mandrill.Mono.csproj
 	EndGlobalSection
 EndGlobal
