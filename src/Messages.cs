@@ -61,8 +61,18 @@ namespace Mandrill
         /// <summary>
         /// Send a new search instruction through Mandrill.
         /// </summary>
+        /// <param name="search"></param>
         /// <returns></returns>
-        public Task<List<SearchResult>> Search(Search search)
+        public List<SearchResult> Search(Search search)
+        {
+            return SearchAsync(search).Result;
+        }
+
+        /// <summary>
+        /// Send a new search instruction through Mandrill.
+        /// </summary>
+        /// <returns></returns>
+        public Task<List<SearchResult>> SearchAsync(Search search)
         {
             var path = "/messages/search.json";
 
@@ -81,6 +91,8 @@ namespace Mandrill
                 return JSON.Parse<List<SearchResult>>(p.Result.Content);
             }, TaskContinuationOptions.ExecuteSynchronously);
         }
+
+
         /// <summary>
         /// Send a new transactional message through Mandrill using a template
         /// </summary>

@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
 namespace Mandrill
@@ -13,6 +14,7 @@ namespace Mandrill
     public class SearchResult
     {
         public int ts { get; set; }
+        public string _id { get; set; }
         public string sender { get; set; }
         public string subject { get; set; }
         public string email { get; set; }
@@ -22,5 +24,7 @@ namespace Mandrill
 
         [JsonConverter(typeof(StringEnumConverter))]
         public SearchResultState state { get; set; }
+
+        public Dictionary<string,string> metadata { get; set; }
     }
 }
