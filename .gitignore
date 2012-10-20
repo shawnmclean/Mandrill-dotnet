@@ -3,6 +3,7 @@ Thumbs.db
 *.exe
 *.pdb
 *.user
+*.userprefs
 *.aps
 *.pch
 *.vspscc
@@ -31,3 +32,4 @@ packages/
 rakefile.config.rb
 /tests/Settings.cs
 /tests/AppSettings.config
+test-results

@@ -6,12 +6,26 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using NUnit.Framework;
+using System.Net;
+using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Mandrill.Tests.IntegrationTests
 {
     [TestFixture]
     public class MessagesTests
     {
+        public static bool Validator (object sender, X509Certificate certificate, X509Chain chain, 
+                                      SslPolicyErrors sslPolicyErrors) {
+            return true;
+        }
+
+        [TestFixtureSetUp]
+        public void Init () {
+            if (ConfigurationManager.AppSettings["IgnoreInvalidSSLCertificate"] == "True")
+                ServicePointManager.ServerCertificateValidationCallback = Validator;
+        }
+
         [Test]
         public void Template_Message_Is_Sent()
         {
@@ -38,6 +52,7 @@ namespace Mandrill.Tests.IntegrationTests
         }
 
         [Test]
+        [Ignore("Need a unique existing email")]
         public void Can_Search_Message()
         {
             // Setup
