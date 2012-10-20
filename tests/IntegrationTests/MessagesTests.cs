@@ -77,5 +77,35 @@ namespace Mandrill.Tests.IntegrationTests
             Assert.AreEqual(1, result.Count);
             Assert.AreEqual(subjSKey, result[0].subject);
         }
+
+        [Test]
+        public void Raw_Message_Is_Sent ()
+        {
+            // Setup
+            var apiKey = ConfigurationManager.AppSettings["APIKey"];
+            string toEmail = ConfigurationManager.AppSettings["ValidToEmail"];
+            string fromEmail = ConfigurationManager.AppSettings["FromEMail"];
+
+            // Exercise
+            var api = new MandrillApi(apiKey);
+
+            var message = "From: " + fromEmail + "\n" +
+                "Subject: Mandrill Integration Test Raw\n" +
+                "To: " + toEmail + "\n" +
+                "MIME-Version: 1.0\n" +
+                "Content-Type: text/html; charset=utf-8\n" +
+                "Content-Transfer-Encoding: 7bit\n" +
+                "\n" +
+                "Test\n";
+            var result = api.SendMessage(new EmailMessage
+                                             {
+                                                 to =
+                                                     new List<EmailAddress> { new EmailAddress { email = toEmail, name = "" } },
+                                                 from_email = fromEmail,
+                                                 from_name = "",
+                                                 raw_message = message
+                                             });
+
+        }
     }
 }

@@ -129,7 +129,10 @@ namespace Mandrill
             return SendMessageAsync(message, templateName, templateContents);
         }
 
-
+        public List<EmailResult> SendMessage (EmailMessage raw_message)
+        {
+            return SendRawMessageAsync(raw_message).Result;
+        }
 
         /// <summary>
         /// Send a new transactional message through Mandrill using a template
@@ -170,5 +173,21 @@ namespace Mandrill
             }, TaskContinuationOptions.ExecuteSynchronously);
         }       
 
+        public Task<List<EmailResult>> SendRawMessageAsync(EmailMessage message)
+        {
+            var path = "/messages/send-raw.json";
+
+            dynamic payload = new ExpandoObject();
+            payload.raw_message = message.raw_message;
+            payload.from_email = message.from_email;
+            payload.from_name = message.from_name;
+            //payload.to = message.to;  // Does not work as advertised, silently fails with {"email":"Array","status":"invalid"}
+
+            Task<IRestResponse> post = PostAsync(path, payload);
+            return post.ContinueWith(p =>
+            {
+                return JSON.Parse<List<EmailResult>>(p.Result.Content);
+            }, TaskContinuationOptions.ExecuteSynchronously);
+        }       
     }
 }
