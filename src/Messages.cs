@@ -59,6 +59,41 @@ namespace Mandrill
         }
 
         /// <summary>
+        /// Send a new search instruction through Mandrill.
+        /// </summary>
+        /// <param name="search"></param>
+        /// <returns></returns>
+        public List<SearchResult> Search(Search search)
+        {
+            return SearchAsync(search).Result;
+        }
+
+        /// <summary>
+        /// Send a new search instruction through Mandrill.
+        /// </summary>
+        /// <returns></returns>
+        public Task<List<SearchResult>> SearchAsync(Search search)
+        {
+            var path = "/messages/search.json";
+
+            dynamic payload = new ExpandoObject();
+            payload.query = search.query;
+            payload.date_from = search.date_from;
+            payload.date_to = search.date_to;
+            payload.tags = search.tags;
+            payload.senders = search.senders;
+            payload.limit = search.limit;
+
+            Task<IRestResponse> post = PostAsync(path, payload);
+
+            return post.ContinueWith(p =>
+            {
+                return JSON.Parse<List<SearchResult>>(p.Result.Content);
+            }, TaskContinuationOptions.ExecuteSynchronously);
+        }
+
+
+        /// <summary>
         /// Send a new transactional message through Mandrill using a template
         /// </summary>
         /// <param name="recipients"></param>
