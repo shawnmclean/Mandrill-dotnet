@@ -68,8 +68,8 @@
   </Target>
   -->
   <ItemGroup>
-    <ProjectReference Include="..\src\Mandrill.Mono.csproj">
-      <Project>{0563EE3C-A65E-4D55-9302-7663C0FE77F7}</Project>
+    <ProjectReference Include="..\src\Mandrill.Mono\Mandrill.Mono.csproj">
+      <Project>{728FE7F9-213E-47C6-BF9F-9D762BD7EB62}</Project>
       <Name>Mandrill.Mono</Name>
     </ProjectReference>
   </ItemGroup>

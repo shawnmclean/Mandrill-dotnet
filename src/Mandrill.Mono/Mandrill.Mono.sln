@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mandrill.Mono", "Mandrill.Mono.csproj", "{728FE7F9-213E-47C6-BF9F-9D762BD7EB62}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mandrill.Mono.Tests", "..\..\tests\Mandrill.Mono.Tests.csproj", "{0675EF0D-79F9-473A-ABF4-B2F1B22843C9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0675EF0D-79F9-473A-ABF4-B2F1B22843C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0675EF0D-79F9-473A-ABF4-B2F1B22843C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0675EF0D-79F9-473A-ABF4-B2F1B22843C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0675EF0D-79F9-473A-ABF4-B2F1B22843C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{728FE7F9-213E-47C6-BF9F-9D762BD7EB62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{728FE7F9-213E-47C6-BF9F-9D762BD7EB62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{728FE7F9-213E-47C6-BF9F-9D762BD7EB62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{728FE7F9-213E-47C6-BF9F-9D762BD7EB62}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Mandrill.Mono.csproj
+	EndGlobalSection
+EndGlobal
