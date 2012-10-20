@@ -6,6 +6,8 @@ Visual Studio users can install this directly into their .NET projects by execut
 
     PM> Install-Package Mandrill
 
+To utilize the mono build, download and compile the project. The mono version will be up on NuGet soon.
+
 ## Description
 
 Mandrill Dot Net is a library that wraps the [Mandrill](http://mandrill.com/) mail API to easily get started in sending mail. It contains methods that
@@ -45,6 +47,7 @@ Asychronous:
  2. Messages
    1. Send
    2. Send-Template
+   3. Search
  3. Rejects
    1. List
    2. Delete
@@ -53,7 +56,7 @@ Asychronous:
 	
 ## Necessary prerequisites
 
-.NET 4
+.NET 4 or Mono
 
 ## Contributing
 
@@ -71,3 +74,5 @@ tool.
   1. [Eli Schleifer](https://github.com/EliSchleifer)
   2. [Marko](https://github.com/markokristian)
   3. [Maksymilian Majer](https://github.com/maksymilian-majer)
+  4. [Moacyr Rodrigues Pereira](https://github.com/moacyr)
+  5. [Stephen Jazdzewski](https://github.com/jazd)

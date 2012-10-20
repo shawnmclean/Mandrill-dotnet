@@ -3,7 +3,10 @@ require 'albacore'
 require 'version_bumper'
 require './rakefile.config'
 
-task :deploy => [:zip, :nuget_push] do
+MANDRILL_CORE_DIR = 'src/Mandrill/bin/release/Mandrill.dll'
+MANDRIL_MONO_DIR = 'src/Mandrill.Mono/bin/release/Mandrill.dll'
+
+task :deploy,[:build] => [:zip, :nuget_push] do
 end
 
 zip :zip => :output do | zip |
@@ -16,7 +19,7 @@ end
 output :output => :test do |out|
 	out.from '.'
 	out.to 'out'
-	out.file 'src/bin/release/Mandrill.dll', :as=>'Mandrill.dll'
+	out.file MANDRILL_CORE_DIR, :as=>'Mandrill.dll'
 	out.file 'LICENSE.txt'
 	out.file 'README.md'
 	out.file 'VERSION'
@@ -64,7 +67,7 @@ nuspec :nus => :output do |nuspec|
    nuspec.language = "en-US"
    nuspec.licenseUrl = "http://www.apache.org/licenses/LICENSE-2.0"
    nuspec.dependency "RestSharp", "104.1.0.0"
-   nuspec.dependency "Newtonsoft.Json", "4.5.0.0"
+   nuspec.dependency "Newtonsoft.Json", "4.5.10"
    nuspec.projectUrl = "https://github.com/shawnmclean/Mandrill-dotnet"
    nuspec.working_directory = "out/"
    nuspec.output_file = "Mandrill.nuspec"

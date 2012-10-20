@@ -50,7 +50,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\src\Mandrill.csproj">
+    <ProjectReference Include="..\src\Mandrill\Mandrill.csproj">
       <Project>{0563ee3c-a65e-4d55-9302-7663c0fe77f7}</Project>
       <Name>Mandrill</Name>
     </ProjectReference>

@@ -173,6 +173,9 @@ namespace Mandrill
             }, TaskContinuationOptions.ExecuteSynchronously);
         }       
 
+        /// <summary>
+        /// Send a new raw transactional message through Mandrill using a template
+        /// </summary>
         public Task<List<EmailResult>> SendRawMessageAsync(EmailMessage message)
         {
             var path = "/messages/send-raw.json";
