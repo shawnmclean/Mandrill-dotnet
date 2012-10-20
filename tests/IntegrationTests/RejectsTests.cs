@@ -5,12 +5,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
+using System.Net;
+using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Mandrill.Tests.IntegrationTests
 {
     [TestFixture]
     public class RejectsTests
     {
+        public static bool Validator (object sender, X509Certificate certificate, X509Chain chain, 
+                                      SslPolicyErrors sslPolicyErrors) {
+            return true;
+        }
+
+        [TestFixtureSetUp]
+        public void Init () {
+            if (ConfigurationManager.AppSettings["IgnoreInvalidSSLCertificate"] == "True")
+                ServicePointManager.ServerCertificateValidationCallback = Validator;
+        }
+
         [Test]
         public void Delete_Reject_Throws_Exception_On_Invalid_ApiKey()
         {
