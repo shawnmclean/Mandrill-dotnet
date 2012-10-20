@@ -105,6 +105,10 @@ namespace Mandrill.Tests.IntegrationTests
                                                  from_name = "",
                                                  raw_message = message
                                              });
+            // Verify
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(toEmail, result.First().Email);
+            Assert.AreEqual(EmailResultStatus.Sent, result.First().Status);
 
         }
     }
