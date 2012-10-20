@@ -69,6 +69,8 @@
     <Compile Include="Utilities\DynamicJsonDeserializer.cs" />
     <Compile Include="Utilities\JSON.cs" />
     <Compile Include="Utilities\MandrillException.cs" />
+    <Compile Include="Models\SearchResult.cs" />
+    <Compile Include="Models\Search.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
