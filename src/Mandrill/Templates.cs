@@ -30,5 +30,19 @@ namespace Mandrill
                 return JSON.Parse<RenderedTemplate>(p.Result.Content);
             }, TaskContinuationOptions.ExecuteSynchronously);
         }
+
+        public Task<List<TemplateInfo>> ListTemplatesAsync()
+        {
+            const string path = "/templates/list.json";
+
+            return this.PostAsync(path, null).ContinueWith(
+                p => JSON.Parse<List<TemplateInfo>>(p.Result.Content),
+                TaskContinuationOptions.ExecuteSynchronously);
+        }
+
+        public List<TemplateInfo> ListTemplates()
+        {
+            return this.ListTemplatesAsync().Result;
+        }
     }
 }
