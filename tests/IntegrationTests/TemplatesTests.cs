@@ -46,5 +46,22 @@ namespace Mandrill.Tests.IntegrationTests
             // Verify
             Assert.AreEqual(expected, result.html);
         }
+
+        [Test]
+        public void List_Templates_Returns_Correct_Count()
+        {
+            // Setup
+            var apiKey = ConfigurationManager.AppSettings["APIKey"];
+            var templateCount = int.Parse(ConfigurationManager.AppSettings["TemplateCount"]);
+
+            // Exercise
+            var api = new MandrillApi(apiKey);
+            var result = api.ListTemplates();
+
+            var expected = templateCount;
+
+            // Verify
+            Assert.AreEqual(expected, result.Count);
+        }
     }
 }

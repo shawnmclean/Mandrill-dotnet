@@ -9,7 +9,6 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Mandrill.Tests</RootNamespace>
     <AssemblyName>Mandrill.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
