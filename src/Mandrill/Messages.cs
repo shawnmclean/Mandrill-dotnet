@@ -35,8 +35,6 @@ namespace Mandrill
         /// <returns></returns>
         public Task<List<EmailResult>> SendMessageAsync(IEnumerable<EmailAddress> recipients, string subject, string content, EmailAddress from)
         {
-            var path = "/messages/send.json";
-
             var message = new EmailMessage()
             {
                 to = recipients,
@@ -47,15 +45,7 @@ namespace Mandrill
                 auto_text = true,
             };
 
-            dynamic payload = new ExpandoObject();
-            payload.message = message;
-            
-            Task<IRestResponse> post = PostAsync(path, payload);
-
-            return post.ContinueWith(p =>
-            {
-                return JSON.Parse<List<EmailResult>>(p.Result.Content);
-            }, TaskContinuationOptions.ExecuteSynchronously);            
+            return SendMessageAsync(message);
         }
 
         /// <summary>
@@ -129,7 +119,12 @@ namespace Mandrill
             return SendMessageAsync(message, templateName, templateContents);
         }
 
-        public List<EmailResult> SendMessage (EmailMessage raw_message)
+        public List<EmailResult> SendMessage (EmailMessage message)
+        {
+            return SendMessageAsync(message).Result;
+        }
+        
+        public List<EmailResult> SendRawMessage (EmailMessage raw_message)
         {
             return SendRawMessageAsync(raw_message).Result;
         }
@@ -149,11 +144,25 @@ namespace Mandrill
         }
 
         /// <summary>
+        /// Sends a new transactional message through Mandrill.
+        /// </summary>
+        /// <param name="message">The message.</param>
+        /// <returns></returns>
+        public Task<List<EmailResult>> SendMessageAsync(EmailMessage message)
+        {
+            var path = "/messages/send.json";
+
+            dynamic payload = new ExpandoObject();
+            payload.message = message;
+
+            Task<IRestResponse> post = PostAsync(path, payload);
+
+            return post.ContinueWith(p => JSON.Parse<List<EmailResult>>(p.Result.Content), TaskContinuationOptions.ExecuteSynchronously);
+        }
+
+        /// <summary>
         /// Send a new transactional message through Mandrill using a template
         /// </summary>
-        /// <param name="recipients"></param>
-        /// <param name="subject"></param>
-        /// <param name="from"></param>
         /// <param name="templateName"></param>
         /// <param name="templateContents"></param>
         /// <returns></returns>

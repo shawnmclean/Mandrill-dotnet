@@ -27,7 +27,7 @@ namespace Mandrill.Tests.IntegrationTests
         }
 
         [Test]
-        public void Template_Message_Is_Sent()
+        public void Message_Without_Template_Is_Sent()
         {
             // Setup
             var apiKey = ConfigurationManager.AppSettings["APIKey"];
@@ -38,12 +38,40 @@ namespace Mandrill.Tests.IntegrationTests
             var api = new MandrillApi(apiKey);
 
             var result = api.SendMessage(new EmailMessage
+            {
+                to =
+                    new List<EmailAddress> { new EmailAddress { email = toEmail, name = "" } },
+                from_email = fromEmail,
+                subject = "Mandrill Integration Test",
+                html = "<strong>Example HTML</strong>",
+                text = "Example text"
+            });
+
+            // Verify
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(toEmail, result.First().Email);
+            Assert.AreEqual(EmailResultStatus.Sent, result.First().Status);
+        }
+
+        [Test]
+        public void Template_Message_Is_Sent()
+        {
+            // Setup
+            var apiKey = ConfigurationManager.AppSettings["APIKey"];
+            string toEmail = ConfigurationManager.AppSettings["ValidToEmail"];
+            string fromEmail = ConfigurationManager.AppSettings["FromEMail"];
+            string templateExample = ConfigurationManager.AppSettings["TemplateExample"];
+
+            // Exercise
+            var api = new MandrillApi(apiKey);
+
+            var result = api.SendMessage(new EmailMessage
                                              {
                                                  to =
                                                      new List<EmailAddress> { new EmailAddress { email = toEmail, name = "" } },
                                                  from_email = fromEmail,
                                                  subject = "Mandrill Integration Test",
-                                             }, "Test", new List<TemplateContent> { new TemplateContent { name = "model1", content = "Content1" }, new TemplateContent { name = "model2", content = "Content2" } });
+                                             }, templateExample, new List<TemplateContent> { new TemplateContent { name = "model1", content = "Content1" }, new TemplateContent { name = "model2", content = "Content2" } });
 
             // Verify
             Assert.AreEqual(1, result.Count);
@@ -97,7 +125,7 @@ namespace Mandrill.Tests.IntegrationTests
                 "Content-Transfer-Encoding: 7bit\n" +
                 "\n" +
                 "Test\n";
-            var result = api.SendMessage(new EmailMessage
+            var result = api.SendRawMessage(new EmailMessage
                                              {
                                                  to =
                                                      new List<EmailAddress> { new EmailAddress { email = toEmail, name = "" } },
