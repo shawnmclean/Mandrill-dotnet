@@ -90,6 +90,9 @@
     <Compile Include="..\Mandrill\Models\UserInfo.cs">
       <Link>Models\UserInfo.cs</Link>
     </Compile>
+    <Compile Include="..\Mandrill\Models\WebHookEvent.cs">
+      <Link>Models\WebHookEvent.cs</Link>
+    </Compile>
     <Compile Include="..\Mandrill\Rejects.cs">
       <Link>Rejects.cs</Link>
     </Compile>
