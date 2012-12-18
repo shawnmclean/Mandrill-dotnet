@@ -8,24 +8,24 @@ namespace Mandrill
 {
 	public enum WebHookEventType
 	{
-		send, // message has been sent
-		hard_bounce, // message has hard bounced
-		soft_bounce, // message has soft bounced
-		open, // recipient opened a message; will only occur when open tracking is enabled
-		click, // recipient clicked a link in a message; will only occur when click tracking is enabled
-		spam, // recipient marked a message as spam
-		unsub, // recipient unsubscribed
-		reject // message was rejected
+		Send, // message has been sent
+		Hard_bounce, // message has hard bounced
+		Soft_bounce, // message has soft bounced
+		Open, // recipient opened a message; will only occur when open tracking is enabled
+		Click, // recipient clicked a link in a message; will only occur when click tracking is enabled
+		Spam, // recipient marked a message as spam
+		Unsub, // recipient unsubscribed
+		Reject // message was rejected
 	}
 
 	public enum WebHookMessageState
 	{
-		sent,
-		rejected,
-		spam,
-		unsub,
-		bounced,
-		soft_bounced
+		Sent,
+		Rejected,
+		Spam,
+		Unsub,
+		Bounced,
+		Soft_bounced
 	}
 
 	public class WebHookEvent

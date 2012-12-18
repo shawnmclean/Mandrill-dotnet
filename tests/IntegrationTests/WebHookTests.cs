@@ -53,12 +53,12 @@ namespace Mandrill.Tests.IntegrationTests
 			Assert.AreEqual (numberOfEvents, events.Count);
 			var e = events [0];
 
-			Assert.AreEqual (WebHookEventType.send, e.Event);
+			Assert.AreEqual (WebHookEventType.Send, e.Event);
 			Assert.AreEqual (eventTimeDate, e.TimeStamp);
 
 			var message = e.Msg;
 
-			Assert.AreEqual (WebHookMessageState.sent, message.State);
+			Assert.AreEqual (WebHookMessageState.Sent, message.State);
 			Assert.AreEqual (eventTimeDate, message.TimeStamp);
 			Assert.AreEqual ("Important Stuff", message.Subject);
 			Assert.AreEqual ("ValidFrom@From.com", message.Sender);
