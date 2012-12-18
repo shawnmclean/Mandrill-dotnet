@@ -22,7 +22,7 @@ namespace Mandrill.Tests.IntegrationTests
  ""subject"":""Important Stuff"",
  ""email"":""ValidToOne@Valid.com"",
  ""tags"":[],
- ""opens"":[],
+ ""opens"":[{""ts"":1355340679},{""ts"":1355412679}],
  ""clicks"":[],
  ""state"":""sent"",
  ""_id"":""fc8071b3575e44228d5dd7059349ba10"",
@@ -60,6 +60,12 @@ namespace Mandrill.Tests.IntegrationTests
 
 			Assert.AreEqual (WebHookMessageState.sent, message.State);
 			Assert.AreEqual (eventTimeDate, message.TimeStamp);
+			Assert.AreEqual ("Important Stuff", message.Subject);
+			Assert.AreEqual ("ValidFrom@From.com", message.Sender);
+			Assert.AreEqual ("ValidToOne@Valid.com", message.Email);
+			Assert.AreEqual ("fc8071b3575e44228d5dd7059349ba10", message.Id);
+			Assert.AreEqual (2,message.Opens.Count);
+			Assert.AreEqual (eventTimeDate, message.Opens[0].TimeStamp);
 		}
 	}
 }

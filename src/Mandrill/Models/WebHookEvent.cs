@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -41,6 +43,7 @@ namespace Mandrill
 
 		public WebHookMessage Msg { get; set; }
 	
+		// TODO Need to find the time zone for Mandrill time stamps
 		public static DateTime FromUnixTime (long unixTime)
 		{
 			var epoch = new DateTime (1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
@@ -50,9 +53,31 @@ namespace Mandrill
 
 	public class WebHookMessage
 	{
+		[JsonProperty("_id")]
+		public string Id { get; set; }
+
 		[JsonConverter(typeof(StringEnumConverter))]
 		public WebHookMessageState State { get; set; }
 
+		public uint TS { get; set; }
+
+		public DateTime TimeStamp {
+			get {
+				return WebHookEvent.FromUnixTime (TS);
+			}
+		}
+
+		public string Subject { get; set; }
+
+		public string Sender { get; set; }
+
+		public string Email { get; set; }
+
+		public List<WebHookOpen> Opens { get; set; }
+	}
+
+	public class WebHookOpen
+	{
 		public uint TS { get; set; }
 
 		public DateTime TimeStamp {
