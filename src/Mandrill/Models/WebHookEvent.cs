@@ -74,6 +74,8 @@ namespace Mandrill
 		public string Email { get; set; }
 
 		public List<WebHookOpen> Opens { get; set; }
+
+		public List<WebHookClick> Clicks { get; set; }
 	}
 
 	public class WebHookOpen
@@ -85,5 +87,18 @@ namespace Mandrill
 				return WebHookEvent.FromUnixTime (TS);
 			}
 		}
+	}
+
+	public class WebHookClick
+	{
+		public uint TS { get; set; }
+
+		public DateTime TimeStamp {
+			get {
+				return WebHookEvent.FromUnixTime (TS);
+			}
+		}
+
+		public string Url { get; set; }
 	}
 }

@@ -23,8 +23,8 @@ namespace Mandrill.Tests.IntegrationTests
  ""email"":""ValidToOne@Valid.com"",
  ""tags"":[],
  ""opens"":[{""ts"":1355340679},{""ts"":1355412679}],
- ""clicks"":[],
  ""state"":""sent"",
+ ""clicks"":[{""ts"":1355773922,""url"":""http:\/\/www.GitHub.com""}],
  ""_id"":""fc8071b3575e44228d5dd7059349ba10"",
  ""sender"":""ValidFrom@From.com""}
 },{
@@ -66,6 +66,8 @@ namespace Mandrill.Tests.IntegrationTests
 			Assert.AreEqual ("fc8071b3575e44228d5dd7059349ba10", message.Id);
 			Assert.AreEqual (2,message.Opens.Count);
 			Assert.AreEqual (eventTimeDate, message.Opens[0].TimeStamp);
+			Assert.AreEqual (1,message.Clicks.Count);
+			Assert.AreEqual ("http://www.GitHub.com",message.Clicks[0].Url);
 		}
 	}
 }
