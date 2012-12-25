@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -84,8 +84,14 @@
     <Compile Include="..\Mandrill\Models\TemplateContent.cs">
       <Link>Models\TemplateContent.cs</Link>
     </Compile>
+    <Compile Include="..\Mandrill\Models\TemplateInfo.cs">
+      <Link>Models\TemplateInfo.cs</Link>
+    </Compile>
     <Compile Include="..\Mandrill\Models\UserInfo.cs">
       <Link>Models\UserInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\Mandrill\Models\WebHookEvent.cs">
+      <Link>Models\WebHookEvent.cs</Link>
     </Compile>
     <Compile Include="..\Mandrill\Rejects.cs">
       <Link>Rejects.cs</Link>
