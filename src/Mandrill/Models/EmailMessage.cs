@@ -36,6 +36,13 @@ namespace Mandrill
         public string content;
     }
 
+    public struct image
+    {
+        public string type;
+        public string name;
+        public string content;
+    }
+
     public class EmailMessage
     {
         public string html { get; set; }
@@ -60,6 +67,7 @@ namespace Mandrill
         public JsonObject metadata { get; private set; }
         public IEnumerable<rcpt_metadata> recipient_metadata { get; set; }
         public IEnumerable<attachment> attachments { get; set; }
+        public IEnumerable<image> images { get; set; }
         public string raw_message { get; set; }
 
         public void AddGlobalVariable(string name, string content)
