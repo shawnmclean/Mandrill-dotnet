@@ -41,7 +41,7 @@ namespace Mandrill.Tests.IntegrationTests
                                       };
             var result = api.Render(templateName, new List<TemplateContent>{templateContent}, null);
 
-            string expected = "<!DOCTYPE html>\n<span>Test</span>";
+            string expected = "<span>Test</span>";
             
             // Verify
             Assert.AreEqual(expected, result.html);
