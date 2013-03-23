@@ -39,7 +39,7 @@ Asychronous:
         Console.WriteLine(userInfo.reputation);
     });
 
-## Api methods Covered
+#### Api methods Covered
 
  1. Users
    1. Info
@@ -78,3 +78,6 @@ tool.
   3. [Maksymilian Majer](https://github.com/maksymilian-majer)
   4. [Moacyr Rodrigues Pereira](https://github.com/moacyr)
   5. [Stephen Jazdzewski](https://github.com/jazd)
+
+## Change Log
+
