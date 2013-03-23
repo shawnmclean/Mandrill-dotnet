@@ -19,7 +19,7 @@ namespace Mandrill
                 TaskContinuationOptions.ExecuteSynchronously);
         }
 
-        public List<Sender> LisSenders()
+        public List<Sender> ListSenders()
         {
             return this.ListSendersAsync().Result;
         }
