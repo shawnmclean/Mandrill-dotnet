@@ -75,7 +75,6 @@ namespace Mandrill.Tests.IntegrationTests
 
 			Assert.AreEqual(2, message.Metadata.Count);
 			Assert.AreEqual("key1", message.Metadata[0].Key);
-			Assert.AreEqual("key1", message.Metadata[0].Key);
 			Assert.AreEqual("val1", message.Metadata[0].Value);
 			Assert.AreEqual("key2", message.Metadata[1].Key);
 			Assert.AreEqual("val2", message.Metadata[1].Value);
