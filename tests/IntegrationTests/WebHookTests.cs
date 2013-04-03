@@ -21,7 +21,8 @@ namespace Mandrill.Tests.IntegrationTests
  ""ts"":1355340679,
  ""subject"":""Important Stuff"",
  ""email"":""ValidToOne@Valid.com"",
- ""tags"":[],
+ ""tags"":[""tag1"",""tag2"",""tag3""],
+ ""metadata"":{ ""key1"":""val1"", ""key2"":""val2"" },
  ""opens"":[{""ts"":1355340679},{""ts"":1355412679}],
  ""state"":""sent"",
  ""clicks"":[{""ts"":1355773922,""url"":""http:\/\/www.GitHub.com""}],
@@ -35,12 +36,14 @@ namespace Mandrill.Tests.IntegrationTests
  ""subject"":""Important Stuff"",
  ""email"":""ValidToTwo@Valid.com"",
  ""tags"":[],
+ ""metadata"":{ },
  ""opens"":[],
  ""clicks"":[],
  ""state"":""sent"",
  ""_id"":""7572c81599d945cfb8dae3a8527f8232"",
  ""sender"":""ValidFrom@From.com""}
 }]";
+
 			var eventTimeDate = new DateTime (2012, 12, 12, 19, 31, 19);
 			var numberOfEvents = 2;
 
@@ -64,6 +67,18 @@ namespace Mandrill.Tests.IntegrationTests
 			Assert.AreEqual ("ValidFrom@From.com", message.Sender);
 			Assert.AreEqual ("ValidToOne@Valid.com", message.Email);
 			Assert.AreEqual ("fc8071b3575e44228d5dd7059349ba10", message.Id);
+
+			Assert.AreEqual(3, message.Tags.Count);
+			Assert.AreEqual("tag1", message.Tags[0]);
+			Assert.AreEqual("tag2", message.Tags[1]);
+			Assert.AreEqual("tag3", message.Tags[2]);
+
+			Assert.AreEqual(2, message.Metadata.Count);
+			Assert.AreEqual("key1", message.Metadata[0].Key);
+			Assert.AreEqual("val1", message.Metadata[0].Value);
+			Assert.AreEqual("key2", message.Metadata[1].Key);
+			Assert.AreEqual("val2", message.Metadata[1].Value);
+
 			Assert.AreEqual (2,message.Opens.Count);
 			Assert.AreEqual (eventTimeDate, message.Opens[0].TimeStamp);
 			Assert.AreEqual (1,message.Clicks.Count);
