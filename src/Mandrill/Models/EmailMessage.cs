@@ -59,6 +59,7 @@ namespace Mandrill
         public bool preserve_recipients { get; set; }
         public string bcc_address { get; set; }
         public bool merge { get; set; }
+        public bool important { get; set; }
         public List<merge_var> global_merge_vars { get; private set; }
         public List<rcpt_merge_var> merge_vars { get; private set; }
         public IEnumerable<string> tags { get; set; }
