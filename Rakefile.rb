@@ -61,13 +61,13 @@ end
 nuspec :nus => :output do |nuspec|
    nuspec.id="Mandrill"
    nuspec.version = bumper_version.to_s
-   nuspec.authors = "Shawn Mclean, Eli Schleifer"
+   nuspec.authors = "Shawn Mclean"
    nuspec.description = "Mandrill .Net is a quick and easy wrapper for getting started with the Mandrill API."
    nuspec.title = "Mandrill"
    nuspec.language = "en-US"
    nuspec.licenseUrl = "http://www.apache.org/licenses/LICENSE-2.0"
    nuspec.dependency "RestSharp", "104.1.0.0"
-   nuspec.dependency "Newtonsoft.Json", "4.5.10"
+   nuspec.dependency "Newtonsoft.Json", "5.0.5"
    nuspec.projectUrl = "https://github.com/shawnmclean/Mandrill-dotnet"
    nuspec.working_directory = "out/"
    nuspec.output_file = "Mandrill.nuspec"
@@ -80,6 +80,6 @@ assemblyinfo :assemblyinfo do |asm|
   asm.file_version = bumper_version.to_s
   asm.company_name = "Self"
   asm.product_name = "Mandrill"
-  asm.copyright = "Shawn Mclean (c) 2012"
+  asm.copyright = "Shawn Mclean (c) 2013"
   asm.output_file = "AssemblyInfo.cs"
 end
