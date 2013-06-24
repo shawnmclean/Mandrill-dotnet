@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
+using System.Runtime.Serialization;
 
 /* http://help.mandrill.com/entries/21738186-introduction-to-webhooks
    Simple MVC Controller example
@@ -36,6 +37,7 @@ namespace Mandrill
 		Spam,
 		Unsub,
 		Bounced,
+        [EnumMember(Value="soft-bounced")]
 		Soft_bounced
 	}
 
