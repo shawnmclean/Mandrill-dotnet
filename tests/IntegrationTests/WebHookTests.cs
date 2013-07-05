@@ -84,5 +84,34 @@ namespace Mandrill.Tests.IntegrationTests
 			Assert.AreEqual (1,message.Clicks.Count);
 			Assert.AreEqual ("http://www.GitHub.com",message.Clicks[0].Url);
 		}
+
+        [Test]
+        public void Soft_Bounce_Deserialize()
+        {
+            string events_json = @"[{
+    ""event"": ""soft_bounce"",
+    ""msg"": {
+      ""ts"": 1365109999,
+      ""subject"": ""This an example webhook message"",
+      ""email"": ""example.webhook@mandrillapp.com"",
+      ""sender"": ""example.sender@mandrillapp.com"",
+      ""tags"": [
+        ""webhook-example""
+      ],
+      ""state"": ""soft-bounced"",
+      ""metadata"": {
+        ""user_id"": 111
+      },
+      ""_id"": ""exampleaaaaaaaaaaaaaaaaaaaaaaaaa"",
+      ""_version"": ""exampleaaaaaaaaaaaaaaa"",
+      ""bounce_description"": ""mailbox_full"",
+      ""bgtools_code"": 22,
+      ""diag"": ""smtp;552 5.2.2 Over Quota""
+    }
+  }]";
+            var events = JSON.Parse<List<WebHookEvent>>(events_json);
+            Assert.AreEqual(1, events.Count);
+            Assert.AreEqual(WebHookMessageState.Soft_bounced, events[0].Msg.State);
+        }
 	}
 }
