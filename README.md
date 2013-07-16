@@ -48,6 +48,10 @@ Asychronous:
    1. Send
    2. Send-Template
    3. Search
+   4. Send-Raw
+   5. List-Scheduled
+   6. Cancel-Scheduled
+   7. Reschedule
  3. Rejects
    1. List
    2. Delete

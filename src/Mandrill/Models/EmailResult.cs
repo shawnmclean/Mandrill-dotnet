@@ -7,11 +7,15 @@ namespace Mandrill
         Sent, 
         Queued,
         Rejected,
-        Invalid
+        Invalid,
+        Scheduled
     }
 
     public class EmailResult
     {
+        [JsonProperty("_id")]
+        public string Id { get; set; }
+
         public string Email { get; set; }
 
         [JsonConverter(typeof(StringEnumConverter))]

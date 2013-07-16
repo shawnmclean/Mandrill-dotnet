@@ -139,5 +139,101 @@ namespace Mandrill.Tests.IntegrationTests
             Assert.AreEqual(EmailResultStatus.Sent, result.First().Status);
 
         }
+
+        [Test]
+        public void Message_With_Send_At_Is_Scheduled()
+        {
+            // Setup
+            var apiKey = ConfigurationManager.AppSettings["APIKey"];
+            string toEmail = ConfigurationManager.AppSettings["ValidToEmail"];
+            string fromEmail = ConfigurationManager.AppSettings["FromEMail"];
+
+            // Exercise
+            var api = new MandrillApi(apiKey);
+
+            var result = api.SendMessage(new EmailMessage
+            {
+                to =
+                    new List<EmailAddress> { new EmailAddress { email = toEmail, name = "" } },
+                from_email = fromEmail,
+                subject = "Mandrill Integration Test",
+                html = "<strong>Scheduled Email</strong>",
+                text = "Example text"
+            }, DateTime.UtcNow.AddMinutes(5.0));
+
+            // Verify
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(toEmail, result.First().Email);
+            Assert.AreEqual(EmailResultStatus.Scheduled, result.First().Status);
+
+            //Tear down
+            api.CancelScheduledMessage(result.First().Id);
+        }
+
+        [Test]
+        public void Scheduled_Message_Is_Rescheduled()
+        {
+            // Setup
+            var apiKey = ConfigurationManager.AppSettings["APIKey"];
+            string toEmail = ConfigurationManager.AppSettings["ValidToEmail"];
+            string fromEmail = ConfigurationManager.AppSettings["FromEMail"];
+
+            // Exercise
+            var api = new MandrillApi(apiKey);
+
+            var messages = api.SendMessage(new EmailMessage
+                {
+                    to =
+                        new List<EmailAddress> { new EmailAddress { email = toEmail, name = "" } },
+                    from_email = fromEmail,
+                    subject = "Mandrill Integration Test",
+                    html = "<strong>Scheduled Email</strong>",
+                    text = "Example text"
+                }, DateTime.UtcNow.AddMinutes(5.0));
+
+            var message = api.ListScheduledMessages().Find(s => s.Id == messages.First().Id);
+
+            var rescheduled = api.RescheduleMessage(message.Id, message.SendAt.AddMinutes(5.0));
+
+            //Verify
+            Assert.Greater(rescheduled.SendAt, message.SendAt);
+
+            //Tear down
+            api.CancelScheduledMessage(rescheduled.Id);
+        }
+
+        [Test]
+        public void Scheduled_Message_Is_Canceled()
+        {
+            // Setup
+            var apiKey = ConfigurationManager.AppSettings["APIKey"];
+            string toEmail = ConfigurationManager.AppSettings["ValidToEmail"];
+            string fromEmail = ConfigurationManager.AppSettings["FromEMail"];
+
+            // Exercise
+            var api = new MandrillApi(apiKey);
+
+            var messages = api.SendMessage(new EmailMessage
+            {
+                to =
+                    new List<EmailAddress> { new EmailAddress { email = toEmail, name = "" } },
+                from_email = fromEmail,
+                subject = "Mandrill Integration Test",
+                html = "<strong>Scheduled Email</strong>",
+                text = "Example text"
+            }, DateTime.UtcNow.AddMinutes(5.0));
+
+            var scheduled = api.ListScheduledMessages(toEmail);
+
+            //Verify that message was scheduled
+            Assert.AreEqual(1, scheduled.Count(s => s.Id == messages.First().Id));
+
+            api.CancelScheduledMessage(messages.First().Id);
+            scheduled = api.ListScheduledMessages(toEmail);
+
+            //Verify that message was cancelled.
+            Assert.AreEqual(0, scheduled.Count(s => s.Id == messages.First().Id));
+
+        }
     }
 }

@@ -60,6 +60,7 @@
     <Compile Include="Models\ErrorResponse.cs" />
     <Compile Include="Models\RejectInfo.cs" />
     <Compile Include="Models\RenderedTemplate.cs" />
+    <Compile Include="Models\ScheduledEmailResult.cs" />
     <Compile Include="Models\Search.cs" />
     <Compile Include="Models\SearchResult.cs" />
     <Compile Include="Models\Sender.cs" />
