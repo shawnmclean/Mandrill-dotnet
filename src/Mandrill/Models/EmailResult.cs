@@ -7,7 +7,8 @@ namespace Mandrill
         Sent, 
         Queued,
         Rejected,
-        Invalid
+        Invalid,
+        Scheduled
     }
 
     public class EmailResult
