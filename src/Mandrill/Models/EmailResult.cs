@@ -13,6 +13,9 @@ namespace Mandrill
 
     public class EmailResult
     {
+        [JsonProperty("_id")]
+        public string Id { get; set; }
+
         public string Email { get; set; }
 
         [JsonConverter(typeof(StringEnumConverter))]

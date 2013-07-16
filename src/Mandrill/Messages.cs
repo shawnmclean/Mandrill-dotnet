@@ -205,7 +205,7 @@ namespace Mandrill
             }, TaskContinuationOptions.ExecuteSynchronously);
         }
 
-        public List<EmailResult> ListScheduledMessages()
+        public List<ScheduledEmailResult> ListScheduledMessages()
         {
             var path = "/messages/list-scheduled.json";
             
@@ -213,11 +213,11 @@ namespace Mandrill
             Task<IRestResponse> post = PostAsync(path, payload);
             return post.ContinueWith(p =>
                 {
-                    return JSON.Parse<List<EmailResult>>(p.Result.Content);
+                    return JSON.Parse<List<ScheduledEmailResult>>(p.Result.Content);
                 }, TaskContinuationOptions.ExecuteSynchronously).Result;
         }
 
-        public List<EmailResult> ListScheduledMessages(string to)
+        public List<ScheduledEmailResult> ListScheduledMessages(string to)
         {
             var path = "/messages/list-scheduled.json";
             
@@ -227,11 +227,11 @@ namespace Mandrill
             Task<IRestResponse> post = PostAsync(path, payload);
             return post.ContinueWith(p =>
             {
-                return JSON.Parse<List<EmailResult>>(p.Result.Content);
+                return JSON.Parse<List<ScheduledEmailResult>>(p.Result.Content);
             }, TaskContinuationOptions.ExecuteSynchronously).Result;
         }
 
-        public List<EmailResult> CancelScheduledMessage(string id)
+        public ScheduledEmailResult CancelScheduledMessage(string id)
         {
             var path = "/messages/cancel-scheduled.json";
 
@@ -241,11 +241,11 @@ namespace Mandrill
             Task<IRestResponse> post = PostAsync(path, payload);
             return post.ContinueWith(p =>
             {
-                return JSON.Parse<List<EmailResult>>(p.Result.Content);
+                return JSON.Parse<ScheduledEmailResult>(p.Result.Content);
             }, TaskContinuationOptions.ExecuteSynchronously).Result;
         }
 
-        public List<EmailResult> RescheduleMessage(string id, DateTime send_at)
+        public ScheduledEmailResult RescheduleMessage(string id, DateTime send_at)
         {
             var path = "/messages/reschedule.json";
 
@@ -256,7 +256,7 @@ namespace Mandrill
             Task<IRestResponse> post = PostAsync(path, payload);
             return post.ContinueWith(p =>
             {
-                return JSON.Parse<List<EmailResult>>(p.Result.Content);
+                return JSON.Parse<ScheduledEmailResult>(p.Result.Content);
             }, TaskContinuationOptions.ExecuteSynchronously).Result;
         }
     }
