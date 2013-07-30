@@ -8,7 +8,7 @@ namespace Mandrill
 
     public string name { get; set; }
 
-    public EmailAddress();
+    public EmailAddress(){}
     public EmailAddress(string email)
     {
       this.email = email;
