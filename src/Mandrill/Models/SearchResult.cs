@@ -13,7 +13,8 @@ namespace Mandrill
         [EnumMember(Value = "soft-bounced")]
         SoftBounced,
         Spam,
-        Unsub
+        Unsub,
+        Deferred
     }
 
     public class SearchResult
