@@ -154,7 +154,7 @@ namespace Mandrill
 
             dynamic payload = new ExpandoObject();
             payload.message = message;
-            payload.send_at = send_at.ToString(Configuration.DATE_TIME_FORMAT_STRING);
+            payload.send_at = (send_at == DateTime.MinValue) ? "" : send_at.ToString(Configuration.DATE_TIME_FORMAT_STRING);
 
             Task<IRestResponse> post = PostAsync(path, payload);
 
@@ -175,7 +175,7 @@ namespace Mandrill
             payload.message = message;
             payload.template_name = templateName;
             payload.template_content = templateContents != null ? templateContents : Enumerable.Empty<TemplateContent>();
-            payload.send_at = send_at.ToString(Configuration.DATE_TIME_FORMAT_STRING);
+            payload.send_at = (send_at == DateTime.MinValue) ? "" : send_at.ToString(Configuration.DATE_TIME_FORMAT_STRING);
 
             Task<IRestResponse> post = PostAsync(path, payload);
             return post.ContinueWith(p =>
@@ -195,7 +195,7 @@ namespace Mandrill
             payload.raw_message = message.raw_message;
             payload.from_email = message.from_email;
             payload.from_name = message.from_name;
-            payload.send_at = send_at.ToString(Configuration.DATE_TIME_FORMAT_STRING);
+            payload.send_at = (send_at == DateTime.MinValue) ? "" : send_at.ToString(Configuration.DATE_TIME_FORMAT_STRING);
             //payload.to = message.to;  // Does not work as advertised, silently fails with {"email":"Array","status":"invalid"}
 
             Task<IRestResponse> post = PostAsync(path, payload);
@@ -251,7 +251,7 @@ namespace Mandrill
 
             dynamic payload = new ExpandoObject();
             payload.id = id;
-            payload.send_at = send_at.ToString(Configuration.DATE_TIME_FORMAT_STRING);
+            payload.send_at = (send_at == DateTime.MinValue) ? "" : send_at.ToString(Configuration.DATE_TIME_FORMAT_STRING);
 
             Task<IRestResponse> post = PostAsync(path, payload);
             return post.ContinueWith(p =>
