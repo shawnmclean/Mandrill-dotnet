@@ -82,6 +82,7 @@ tool.
   3. [Maksymilian Majer](https://github.com/maksymilian-majer)
   4. [Moacyr Rodrigues Pereira](https://github.com/moacyr)
   5. [Stephen Jazdzewski](https://github.com/jazd)
+  6. [Jacob Rillema](https://github.com/rillemjg)
 
 ## Change Log
 

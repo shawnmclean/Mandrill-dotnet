@@ -15,6 +15,7 @@ namespace Mandrill.Tests.IntegrationTests
     [TestFixture]
     public class MessagesTests
     {
+        private bool isPaidAccount;
         public static bool Validator (object sender, X509Certificate certificate, X509Chain chain, 
                                       SslPolicyErrors sslPolicyErrors) {
             return true;
@@ -24,6 +25,8 @@ namespace Mandrill.Tests.IntegrationTests
         public void Init () {
             if (ConfigurationManager.AppSettings["IgnoreInvalidSSLCertificate"] == "True")
                 ServicePointManager.ServerCertificateValidationCallback = Validator;
+
+            isPaidAccount = ConfigurationManager.AppSettings["IsPaidAccount"] == "True";
         }
 
         [Test]
@@ -141,8 +144,11 @@ namespace Mandrill.Tests.IntegrationTests
         }
 
         [Test]
-        public void Message_With_Send_At_Is_Scheduled()
+        public void Message_With_Send_At_Is_Scheduled_For_Paid_Account()
         {
+            if(!isPaidAccount)
+                Assert.Ignore("Not a paid account");
+
             // Setup
             var apiKey = ConfigurationManager.AppSettings["APIKey"];
             string toEmail = ConfigurationManager.AppSettings["ValidToEmail"];
@@ -171,8 +177,10 @@ namespace Mandrill.Tests.IntegrationTests
         }
 
         [Test]
-        public void Scheduled_Message_Is_Rescheduled()
+        public void Scheduled_Message_Is_Rescheduled_For_Paid_Account()
         {
+            if (!isPaidAccount)
+                Assert.Ignore("Not a paid account");
             // Setup
             var apiKey = ConfigurationManager.AppSettings["APIKey"];
             string toEmail = ConfigurationManager.AppSettings["ValidToEmail"];
@@ -203,8 +211,10 @@ namespace Mandrill.Tests.IntegrationTests
         }
 
         [Test]
-        public void Scheduled_Message_Is_Canceled()
+        public void Scheduled_Message_Is_Canceled_For_Paid_Account()
         {
+            if (!isPaidAccount)
+                Assert.Ignore("Not a paid account");
             // Setup
             var apiKey = ConfigurationManager.AppSettings["APIKey"];
             string toEmail = ConfigurationManager.AppSettings["ValidToEmail"];
