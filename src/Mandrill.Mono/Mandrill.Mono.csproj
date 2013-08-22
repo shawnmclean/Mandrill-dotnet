@@ -76,6 +76,9 @@
     <Compile Include="..\Mandrill\Models\RenderedTemplate.cs">
       <Link>Models\RenderedTemplate.cs</Link>
     </Compile>
+    <Compile Include="..\Mandrill\Models\ScheduledEmailResult.cs">
+      <Link>Models\ScheduledEmailResult.cs</Link>
+    </Compile>
     <Compile Include="..\Mandrill\Models\Search.cs">
       <Link>Models\Search.cs</Link>
     </Compile>
