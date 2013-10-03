@@ -31,7 +31,7 @@ Synchronous:
 Asychronous:
 
     MandrillApi api = new MandrillApi("xxxxx-xxxx-xxxx-xxxx");
-    var task= api.UserInfoAsyc();
+    var task= api.UserInfoAsync();
 
     task.ContinueWith(data =>
     {
