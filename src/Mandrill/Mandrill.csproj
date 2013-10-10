@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="Configuration.cs" />
     <Compile Include="Messages.cs" />
+    <Compile Include="Models\Info.cs" />    
     <Compile Include="Models\EmailAddress.cs" />
     <Compile Include="MandrillApi.cs" />
     <Compile Include="Models\EmailMessage.cs" />
