@@ -47,6 +47,36 @@ namespace Mandrill
 
             return SendMessageAsync(message, send_at);
         }
+        
+        /// <summary>
+        /// Send a new search instruction through Mandrill.
+        /// </summary>
+        /// <param name="info"></param>
+        /// <returns></returns>
+        public SearchResult Info(Info info)
+        {
+            return InfoAsync(info).Result;
+        }
+
+        /// <summary>
+        /// Send a new info instruction through Mandrill.
+        /// </summary>
+        /// <returns></returns>
+        public Task<SearchResult> InfoAsync(Info info)
+        {
+            var path = "/messages/info.json";
+
+            dynamic payload = new ExpandoObject();
+            payload.id = info.id;
+
+            Task<IRestResponse> post = PostAsync(path, payload);
+
+            return post.ContinueWith(p =>
+            {
+                return JSON.Parse<SearchResult>(p.Result.Content);
+            }, TaskContinuationOptions.ExecuteSynchronously);
+        }
+        
 
         /// <summary>
         /// Send a new search instruction through Mandrill.
