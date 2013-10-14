@@ -27,7 +27,8 @@ namespace Mandrill
 		Click, // recipient clicked a link in a message; will only occur when click tracking is enabled
 		Spam, // recipient marked a message as spam
 		Unsub, // recipient unsubscribed
-		Reject // message was rejected
+		Reject, // message was rejected
+        Inbound // Inbound message, more info at http://help.mandrill.com/categories/20102127-Inbound-Email-Processing
 	}
 
 	public enum WebHookMessageState
@@ -79,18 +80,29 @@ namespace Mandrill
 				return WebHookEvent.FromUnixTime (TS);
 			}
 		}
+        [JsonProperty("from_email")]
+        public string FromEmail { get; set; }
+        
+        [JsonProperty("from_name")]
+        public string FromName { get; set; }
 
-		public string Subject { get; set; }
+        public string Sender { get; set; }
+        
+        public string Subject { get; set; }
 
-		public string Sender { get; set; }
-
-		public string Email { get; set; }
+        public string Email { get; set; }
+        
+        public string Html { get; set; }
+        
+        public string Text { get; set; }
 
 		public List<WebHookOpen> Opens { get; set; }
 
 		public List<WebHookClick> Clicks { get; set; }
 
 		public List<string> Tags { get; set; }
+
+        public List<attachment> Attachments { get; set; }
 
 		[JsonConverter(typeof(MetadataConverter))]
 		public List<WebHookMetadata> Metadata { get; set; }
