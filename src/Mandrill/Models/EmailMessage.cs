@@ -58,6 +58,7 @@ namespace Mandrill
         public bool url_strip_qs { get; set; }
         public bool preserve_recipients { get; set; }
         public string bcc_address { get; set; }
+        public string subaccount { get; set; }
         public bool merge { get; set; }
         public bool important { get; set; }
         public List<merge_var> global_merge_vars { get; private set; }
