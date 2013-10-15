@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
-using Mandrill.Utilities;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
