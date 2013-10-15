@@ -110,6 +110,10 @@ namespace Mandrill
 		[JsonConverter(typeof(MetadataConverter))]
 		public List<WebHookMetadata> Metadata { get; set; }
 
+        public string Diag { get; set; }
+
+        public string BounceDescription { get; set; }
+
 		class MetadataConverter : JsonConverter
 		{
 			public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
