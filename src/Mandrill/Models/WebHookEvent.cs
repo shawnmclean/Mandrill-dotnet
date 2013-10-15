@@ -104,6 +104,9 @@ namespace Mandrill
 
         public List<attachment> Attachments { get; set; }
 
+        [JsonProperty("smtp_events")]
+        public List<SmtpEvent> SmtpEvents { get; set; }
+
 		[JsonConverter(typeof(MetadataConverter))]
 		public List<WebHookMetadata> Metadata { get; set; }
 
