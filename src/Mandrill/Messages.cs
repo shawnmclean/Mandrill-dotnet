@@ -10,7 +10,7 @@ using RestSharp;
 namespace Mandrill
 {
     public partial class MandrillApi
-    {        
+    {
         /// <summary>
         /// Send a new transactional message through Mandrill.
         /// </summary>
@@ -47,7 +47,72 @@ namespace Mandrill
 
             return SendMessageAsync(message, send_at);
         }
-        
+
+
+        /// <summary>
+        /// Send a new transactional message through Mandrill.
+        /// </summary>
+        /// <param name="to"></param>
+        /// <param name="cc"></param>
+        /// <param name="bcc"></param>
+        /// <param name="subject"></param>
+        /// <param name="content"></param>
+        /// <param name="from"></param>
+        /// <returns></returns>
+        public List<EmailResult> SendMessage(IEnumerable<EmailAddress> to, IEnumerable<EmailAddress> cc, IEnumerable<EmailAddress> bcc, string subject, string content, EmailAddress from, DateTime send_at = new DateTime())
+        {
+            return SendMessageAsync(to, cc, bcc, subject, content, from, send_at).Result;
+        }
+
+        /// <summary>
+        /// Send a new transactional message through Mandrill.
+        /// </summary>
+        /// <param name="to"></param>
+        /// <param name="cc"></param>
+        /// <param name="bcc"></param>
+        /// <param name="subject"></param>
+        /// <param name="content"></param>
+        /// <param name="from"></param>
+        /// <returns></returns>
+        public Task<List<EmailResult>> SendMessageAsync(IEnumerable<EmailAddress> to, IEnumerable<EmailAddress> cc, IEnumerable<EmailAddress> bcc, string subject, string content, EmailAddress from, DateTime send_at = new DateTime())
+        {
+            var allReciepients = new List<EmailAddress>();
+
+            var message = new EmailMessage
+            {
+                from_name = from.name,
+                from_email = from.email,
+                subject = subject,
+                html = content,
+                auto_text = true,
+                preserve_recipients = true // Very important for To & Cc to work
+            };
+
+            // Add To recipients and add the appropriate SMTP header
+            var toAddresses = to as EmailAddress[] ?? to.ToArray();
+            allReciepients.AddRange(toAddresses);
+            message.AddHeader("To", string.Join(", ", toAddresses.Select(r => string.Format("{0} <{1}>", r.name, r.email))));
+
+            // Add Cc recipients if any and add the appropriate SMTP header
+            var ccAddresses = cc as EmailAddress[] ?? cc.ToArray();
+            if (ccAddresses.Any())
+            {
+                allReciepients.AddRange(ccAddresses);
+                message.AddHeader("Cc", string.Join(", ", ccAddresses.Select(r => string.Format("{0} <{1}>", r.name, r.email))));
+            }
+
+            // Add Bcc recipients if any, not need to add SMTP header as 
+            // Mandrill will assume that all other recipients in the to array NOT specified in the
+            // the headers section will be assumed to be BCC and sent as such. 
+            var bccAddresses = bcc as EmailAddress[] ?? bcc.ToArray();
+            if (bccAddresses.Any())
+                allReciepients.AddRange(bccAddresses);
+
+            message.to = allReciepients;
+
+            return SendMessageAsync(message, send_at);
+        }
+
         /// <summary>
         /// Send a new search instruction through Mandrill.
         /// </summary>
@@ -76,7 +141,7 @@ namespace Mandrill
                 return JSON.Parse<SearchResult>(p.Result.Content);
             }, TaskContinuationOptions.ExecuteSynchronously);
         }
-        
+
 
         /// <summary>
         /// Send a new search instruction through Mandrill.
@@ -178,7 +243,7 @@ namespace Mandrill
         /// </summary>
         /// <param name="message">The message.</param>
         /// <returns></returns>
-        public Task<List<EmailResult>> SendMessageAsync(EmailMessage message, DateTime send_at=new DateTime())
+        public Task<List<EmailResult>> SendMessageAsync(EmailMessage message, DateTime send_at = new DateTime())
         {
             var path = "/messages/send.json";
 
@@ -197,7 +262,7 @@ namespace Mandrill
         /// <param name="templateName"></param>
         /// <param name="templateContents"></param>
         /// <returns></returns>
-        public Task<List<EmailResult>> SendMessageAsync(EmailMessage message, string templateName, IEnumerable<TemplateContent> templateContents, DateTime send_at=new DateTime())
+        public Task<List<EmailResult>> SendMessageAsync(EmailMessage message, string templateName, IEnumerable<TemplateContent> templateContents, DateTime send_at = new DateTime())
         {
             var path = "/messages/send-template.json";
 
@@ -212,12 +277,12 @@ namespace Mandrill
             {
                 return JSON.Parse<List<EmailResult>>(p.Result.Content);
             }, TaskContinuationOptions.ExecuteSynchronously);
-        }       
+        }
 
         /// <summary>
         /// Send a new raw transactional message through Mandrill using a template
         /// </summary>
-        public Task<List<EmailResult>> SendRawMessageAsync(EmailMessage message, DateTime send_at=new DateTime())
+        public Task<List<EmailResult>> SendRawMessageAsync(EmailMessage message, DateTime send_at = new DateTime())
         {
             var path = "/messages/send-raw.json";
 
@@ -238,7 +303,7 @@ namespace Mandrill
         public List<ScheduledEmailResult> ListScheduledMessages()
         {
             var path = "/messages/list-scheduled.json";
-            
+
             dynamic payload = new ExpandoObject();
             Task<IRestResponse> post = PostAsync(path, payload);
             return post.ContinueWith(p =>
@@ -250,7 +315,7 @@ namespace Mandrill
         public List<ScheduledEmailResult> ListScheduledMessages(string to)
         {
             var path = "/messages/list-scheduled.json";
-            
+
             dynamic payload = new ExpandoObject();
             payload.to = to;
 
