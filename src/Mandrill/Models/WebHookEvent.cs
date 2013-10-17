@@ -10,165 +10,177 @@ using System.Runtime.Serialization;
    Simple MVC Controller example
    [AcceptVerbs(HttpVerbs.Get | HttpVerbs.Post | HttpVerbs.Head)]
    public ActionResult Hook(string id, FormCollection val) {
-   	//...
-   	var events = Mandrill.JSON.Parse<List<Mandrill.WebHookEvent>> (val.Get("mandrill_events"));
-   	//...
-   	return View();
+    //...
+    var events = Mandrill.JSON.Parse<List<Mandrill.WebHookEvent>> (val.Get("mandrill_events"));
+    //...
+    return View();
    }
 */
 namespace Mandrill
 {
-	public enum WebHookEventType
-	{
-		Send, // message has been sent
-		Hard_bounce, // message has hard bounced
-		Soft_bounce, // message has soft bounced
-		Open, // recipient opened a message; will only occur when open tracking is enabled
-		Click, // recipient clicked a link in a message; will only occur when click tracking is enabled
-		Spam, // recipient marked a message as spam
-		Unsub, // recipient unsubscribed
-		Reject, // message was rejected
+    public enum WebHookEventType
+    {
+        Send, // message has been sent
+        Hard_bounce, // message has hard bounced
+        Soft_bounce, // message has soft bounced
+        Open, // recipient opened a message; will only occur when open tracking is enabled
+        Click, // recipient clicked a link in a message; will only occur when click tracking is enabled
+        Spam, // recipient marked a message as spam
+        Unsub, // recipient unsubscribed
+        Reject, // message was rejected
+        Deferral, // message have been deferred
         Inbound // Inbound message, more info at http://help.mandrill.com/categories/20102127-Inbound-Email-Processing
-	}
+    }
 
-	public enum WebHookMessageState
-	{
-		Sent,
-		Rejected,
-		Spam,
-		Unsub,
-		Bounced,
-        [EnumMember(Value="soft-bounced")]
-		Soft_bounced
-	}
 
-	public class WebHookEvent
-	{
-		[JsonConverter(typeof(StringEnumConverter))]
-		public WebHookEventType Event { get; set; }
+    public enum WebHookMessageState
+    {
+        Sent,
+        Rejected,
+        Spam,
+        Unsub,
+        Bounced,
+        [EnumMember(Value = "soft-bounced")]
+        Soft_bounced,
+        Deferred, 
+        Inbound 
+    }
 
-		public uint TS { get; set; }
+    public class WebHookEvent
+    {
+        [JsonConverter(typeof(StringEnumConverter))]
+        public WebHookEventType Event { get; set; }
 
-		public DateTime TimeStamp {
-			get {
-				return FromUnixTime (TS);
-			}
-		}
+        public uint TS { get; set; }
 
-		public WebHookMessage Msg { get; set; }
-	
-		// TODO Need to find the time zone for Mandrill time stamps
-		public static DateTime FromUnixTime (long unixTime)
-		{
-			var epoch = new DateTime (1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-			return epoch.AddSeconds (unixTime);
-		}
-	}
+        public DateTime TimeStamp
+        {
+            get
+            {
+                return FromUnixTime(TS);
+            }
+        }
 
-	public class WebHookMessage
-	{
-		[JsonProperty("_id")]
-		public string Id { get; set; }
+        public WebHookMessage Msg { get; set; }
 
-		[JsonConverter(typeof(StringEnumConverter))]
-		public WebHookMessageState State { get; set; }
+        // TODO Need to find the time zone for Mandrill time stamps
+        public static DateTime FromUnixTime(long unixTime)
+        {
+            var epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+            return epoch.AddSeconds(unixTime);
+        }
+    }
 
-		public uint TS { get; set; }
+    public class WebHookMessage
+    {
+        [JsonProperty("_id")]
+        public string Id { get; set; }
 
-		public DateTime TimeStamp {
-			get {
-				return WebHookEvent.FromUnixTime (TS);
-			}
-		}
+        [JsonConverter(typeof(StringEnumConverter))]
+        public WebHookMessageState State { get; set; }
+
+        public uint TS { get; set; }
+
+        public DateTime TimeStamp
+        {
+            get
+            {
+                return WebHookEvent.FromUnixTime(TS);
+            }
+        }
         [JsonProperty("from_email")]
         public string FromEmail { get; set; }
-        
+
         [JsonProperty("from_name")]
         public string FromName { get; set; }
 
         public string Sender { get; set; }
-        
+
         public string Subject { get; set; }
 
         public string Email { get; set; }
-        
+
         public string Html { get; set; }
-        
+
         public string Text { get; set; }
 
-		public List<WebHookOpen> Opens { get; set; }
+        public List<WebHookOpen> Opens { get; set; }
 
-		public List<WebHookClick> Clicks { get; set; }
+        public List<WebHookClick> Clicks { get; set; }
 
-		public List<string> Tags { get; set; }
+        public List<string> Tags { get; set; }
 
         public List<attachment> Attachments { get; set; }
 
         [JsonProperty("smtp_events")]
         public List<SmtpEvent> SmtpEvents { get; set; }
 
-		[JsonConverter(typeof(MetadataConverter))]
-		public List<WebHookMetadata> Metadata { get; set; }
+        [JsonConverter(typeof(MetadataConverter))]
+        public List<WebHookMetadata> Metadata { get; set; }
 
         public string Diag { get; set; }
 
         public string BounceDescription { get; set; }
 
-		class MetadataConverter : JsonConverter
-		{
-			public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
-			{
-				throw new NotImplementedException();
-			}
+        class MetadataConverter : JsonConverter
+        {
+            public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+            {
+                throw new NotImplementedException();
+            }
 
-			public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
-			{
-				JObject jObject = JObject.Load(reader);
+            public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+            {
+                JObject jObject = JObject.Load(reader);
 
-				var list = new List<WebHookMetadata>();
+                var list = new List<WebHookMetadata>();
 
-				foreach (var prop in jObject)
-				{
-					list.Add(new WebHookMetadata { Key = prop.Key, Value = prop.Value.ToString() });
-				}
+                foreach (var prop in jObject)
+                {
+                    list.Add(new WebHookMetadata { Key = prop.Key, Value = prop.Value.ToString() });
+                }
 
-				return list;
-			}
+                return list;
+            }
 
-			public override bool CanConvert(Type objectType)
-			{
-				return typeof(WebHookMetadata).IsAssignableFrom(objectType);
-			}
-		}
-	}
+            public override bool CanConvert(Type objectType)
+            {
+                return typeof(WebHookMetadata).IsAssignableFrom(objectType);
+            }
+        }
+    }
 
-	public class WebHookOpen
-	{
-		public uint TS { get; set; }
+    public class WebHookOpen
+    {
+        public uint TS { get; set; }
 
-		public DateTime TimeStamp {
-			get {
-				return WebHookEvent.FromUnixTime (TS);
-			}
-		}
-	}
+        public DateTime TimeStamp
+        {
+            get
+            {
+                return WebHookEvent.FromUnixTime(TS);
+            }
+        }
+    }
 
-	public class WebHookClick
-	{
-		public uint TS { get; set; }
+    public class WebHookClick
+    {
+        public uint TS { get; set; }
 
-		public DateTime TimeStamp {
-			get {
-				return WebHookEvent.FromUnixTime (TS);
-			}
-		}
+        public DateTime TimeStamp
+        {
+            get
+            {
+                return WebHookEvent.FromUnixTime(TS);
+            }
+        }
 
-		public string Url { get; set; }
-	}
+        public string Url { get; set; }
+    }
 
-	public class WebHookMetadata
-	{
-		public string Key { get; set; }
-		public string Value { get; set; }
-	}
+    public class WebHookMetadata
+    {
+        public string Key { get; set; }
+        public string Value { get; set; }
+    }
 }
