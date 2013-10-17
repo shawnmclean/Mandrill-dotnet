@@ -122,6 +122,14 @@ namespace Mandrill
 
         public string BounceDescription { get; set; }
 
+        public WebHookDkim Dkim { get; set; }
+
+        public WebHookSpf Spf { get; set; }
+
+
+        [JsonProperty("raw_msg ")]
+        public string RawMsg { get; set; }
+
         class MetadataConverter : JsonConverter
         {
             public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
@@ -182,5 +190,18 @@ namespace Mandrill
     {
         public string Key { get; set; }
         public string Value { get; set; }
+    }
+
+    
+    public class WebHookDkim
+    {
+        public bool Signed { get; set; }
+        public bool Valid { get; set; }
+    }
+
+    public class WebHookSpf
+    {
+        public string Result { get; set; }
+        public string Detail { get; set; }
     }
 }
