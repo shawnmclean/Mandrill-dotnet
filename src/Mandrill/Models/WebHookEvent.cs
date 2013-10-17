@@ -8,6 +8,7 @@ using System.Runtime.Serialization;
 
 /* http://help.mandrill.com/entries/21738186-introduction-to-webhooks
    Simple MVC Controller example
+   [ValidateInput(false)] // May be required if accepting inbound webhooks, http://msdn.microsoft.com/en-us/library/hh882339.aspx
    [AcceptVerbs(HttpVerbs.Get | HttpVerbs.Post | HttpVerbs.Head)]
    public ActionResult Hook(string id, FormCollection val) {
     //...
