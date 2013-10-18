@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -111,7 +110,7 @@ namespace Mandrill
 
         public List<string> Tags { get; set; }
 
-        public List<attachment> Attachments { get; set; }
+        public Dictionary<string, attachment> Attachments { get; set; }
 
         [JsonProperty("smtp_events")]
         public List<SmtpEvent> SmtpEvents { get; set; }
@@ -192,7 +191,6 @@ namespace Mandrill
         public string Key { get; set; }
         public string Value { get; set; }
     }
-
     
     public class WebHookDkim
     {
