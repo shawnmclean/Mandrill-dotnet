@@ -19,7 +19,6 @@ namespace Mandrill
 
     public class SearchResult
     {
-
         public int ts { get; set; }
         public string _id { get; set; }
         public string sender { get; set; }
@@ -36,5 +35,6 @@ namespace Mandrill
 
         public string diag { get; set; }
         public string bounce_description { get; set; }
+        public IEnumerable<SmtpEvent> smtp_events { get; set; }
     }
 }
