@@ -111,6 +111,7 @@ namespace Mandrill
         public List<string> Tags { get; set; }
 
         public Dictionary<string, attachment> Attachments { get; set; }
+        public Dictionary<string, image> Images { get; set; }
 
         [JsonProperty("smtp_events")]
         public List<SmtpEvent> SmtpEvents { get; set; }
@@ -125,7 +126,6 @@ namespace Mandrill
         public WebHookDkim Dkim { get; set; }
 
         public WebHookSpf Spf { get; set; }
-
 
         [JsonProperty("raw_msg ")]
         public string RawMsg { get; set; }
