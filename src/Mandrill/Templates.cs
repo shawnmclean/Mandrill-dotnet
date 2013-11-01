@@ -1,19 +1,98 @@
-﻿using System.Collections.Generic;
-using System.Dynamic;
-using System.Threading.Tasks;
-using Mandrill.Models;
-using RestSharp;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Templates.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   The mandrill api.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace Mandrill
 {
+    using System.Collections.Generic;
+    using System.Dynamic;
+    using System.Threading.Tasks;
+
+    using Mandrill.Models;
+
+    using RestSharp;
+
+    /// <summary>
+    /// The mandrill api.
+    /// </summary>
     public partial class MandrillApi
     {
-        public RenderedTemplate Render(string templateName, IEnumerable<TemplateContent> templateContents, IEnumerable<merge_var> mergeVars)
+        #region Public Methods and Operators
+
+        /// <summary>
+        /// The list templates.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="List"/>.
+        /// </returns>
+        public List<TemplateInfo> ListTemplates()
         {
-            return RenderAsync(templateName, templateContents, mergeVars).Result;
+            return this.ListTemplatesAsync().Result;
         }
 
-        public Task<RenderedTemplate> RenderAsync(string templateName, IEnumerable<TemplateContent> templateContents, IEnumerable<merge_var> mergeVars)
+        /// <summary>
+        /// The list templates async.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        public Task<List<TemplateInfo>> ListTemplatesAsync()
+        {
+            const string path = "/templates/list.json";
+
+            return this.PostAsync(path, null)
+                .ContinueWith(
+                    p => JSON.Parse<List<TemplateInfo>>(p.Result.Content), 
+                    TaskContinuationOptions.ExecuteSynchronously);
+        }
+
+        /// <summary>
+        /// The render.
+        /// </summary>
+        /// <param name="templateName">
+        /// The template name.
+        /// </param>
+        /// <param name="templateContents">
+        /// The template contents.
+        /// </param>
+        /// <param name="mergeVars">
+        /// The merge vars.
+        /// </param>
+        /// <returns>
+        /// The <see cref="RenderedTemplate"/>.
+        /// </returns>
+        public RenderedTemplate Render(
+            string templateName, 
+            IEnumerable<TemplateContent> templateContents, 
+            IEnumerable<merge_var> mergeVars)
+        {
+            return this.RenderAsync(templateName, templateContents, mergeVars).Result;
+        }
+
+        /// <summary>
+        /// The render async.
+        /// </summary>
+        /// <param name="templateName">
+        /// The template name.
+        /// </param>
+        /// <param name="templateContents">
+        /// The template contents.
+        /// </param>
+        /// <param name="mergeVars">
+        /// The merge vars.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        public Task<RenderedTemplate> RenderAsync(
+            string templateName, 
+            IEnumerable<TemplateContent> templateContents, 
+            IEnumerable<merge_var> mergeVars)
         {
             const string path = "/templates/render.json";
 
@@ -23,26 +102,13 @@ namespace Mandrill
             payload.template_content = templateContents;
             payload.merge_vars = mergeVars;
 
-            Task<IRestResponse> post = PostAsync(path, payload);
+            Task<IRestResponse> post = this.PostAsync(path, payload);
 
-            return post.ContinueWith(p =>
-            {
-                return JSON.Parse<RenderedTemplate>(p.Result.Content);
-            }, TaskContinuationOptions.ExecuteSynchronously);
-        }
-
-        public Task<List<TemplateInfo>> ListTemplatesAsync()
-        {
-            const string path = "/templates/list.json";
-
-            return this.PostAsync(path, null).ContinueWith(
-                p => JSON.Parse<List<TemplateInfo>>(p.Result.Content),
+            return post.ContinueWith(
+                p => { return JSON.Parse<RenderedTemplate>(p.Result.Content); }, 
                 TaskContinuationOptions.ExecuteSynchronously);
         }
 
-        public List<TemplateInfo> ListTemplates()
-        {
-            return this.ListTemplatesAsync().Result;
-        }
+        #endregion
     }
 }

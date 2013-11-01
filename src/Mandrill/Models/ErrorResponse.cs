@@ -1,16 +1,41 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ErrorResponse.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   The error response.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace Mandrill
 {
+    /// <summary>
+    /// The error response.
+    /// </summary>
     public struct ErrorResponse
     {
-        public string status;
+        #region Fields
+
+        /// <summary>
+        /// The code.
+        /// </summary>
         public int code;
+
+        /// <summary>
+        /// The message.
+        /// </summary>
+        public string message;
+
+        /// <summary>
+        /// The name.
+        /// </summary>
         public string name;
-        public string message; 
+
+        /// <summary>
+        /// The status.
+        /// </summary>
+        public string status;
+
+        #endregion
     }
 }
