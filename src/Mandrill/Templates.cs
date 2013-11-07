@@ -109,6 +109,32 @@ namespace Mandrill
                 TaskContinuationOptions.ExecuteSynchronously);
         }
 
+        public object AddTemplate(object data)
+        {
+            return this.AddTemplateAsync(data).Result;
+        }
+
+        public Task<object> AddTemplateAsync(object data)
+        {
+            const string path = "/templates/add.json";
+            return this.PostAsync(path, data).ContinueWith(
+                p => JSON.Parse<object>(p.Result.Content),
+                TaskContinuationOptions.ExecuteSynchronously);
+        }
+
+        public object UpdateTemplate(object data)
+        {
+            return this.UpdateTemplateAsync(data).Result;
+        }
+
+        public Task<object> UpdateTemplateAsync(object data)
+        {
+            const string path = "/templates/update.json";
+            return this.PostAsync(path, data).ContinueWith(
+                p => JSON.Parse<object>(p.Result.Content),
+                TaskContinuationOptions.ExecuteSynchronously);
+        }
+
         #endregion
     }
 }
