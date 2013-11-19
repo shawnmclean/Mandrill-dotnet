@@ -81,5 +81,5 @@ assemblyinfo :assemblyinfo do |asm|
   asm.company_name = "Self"
   asm.product_name = "Mandrill"
   asm.copyright = "Shawn Mclean (c) 2013"
-  asm.output_file = "AssemblyInfo.cs"
+  asm.output_file = "src/Mandrill/Properties/AssemblyInfo.cs"
 end
