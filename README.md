@@ -1,4 +1,4 @@
-# Mandrill Dot Net
+# Mandrill Dot Net [![Build status](https://ci.appveyor.com/api/projects/status?id=5382p1nuei9ryx1f)](https://ci.appveyor.com/project/mandrill-dotnet)
 
 ## NuGet
 
