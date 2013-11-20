@@ -58,6 +58,8 @@ Asychronous:
    2. Delete
  4. Templates
    1. Render
+   2. Add
+   3. Update
  5. Senders
    1. List
 	
