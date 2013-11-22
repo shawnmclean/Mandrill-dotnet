@@ -50,6 +50,7 @@
     <Compile Include="IntegrationTests\MessagesTests.cs" />
     <Compile Include="IntegrationTests\RejectsTests.cs" />
     <Compile Include="IntegrationTests\SendersTests.cs" />
+    <Compile Include="IntegrationTests\SubaccountTests.cs" />
     <Compile Include="IntegrationTests\TemplatesTests.cs" />
     <Compile Include="IntegrationTests\UsersTests.cs" />
     <Compile Include="IntegrationTests\WebHookTests.cs" />
