@@ -66,6 +66,7 @@
     <Compile Include="Models\SearchResult.cs" />
     <Compile Include="Models\Sender.cs" />
     <Compile Include="Models\SmtpEvent.cs" />
+    <Compile Include="Models\SubaccountInfo.cs" />
     <Compile Include="Models\TemplateInfo.cs" />
     <Compile Include="Models\UserInfo.cs" />
     <Compile Include="Models\WebHookEvent.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="Models\TemplateContent.cs" />
     <Compile Include="Rejects.cs" />
     <Compile Include="Senders.cs" />
+    <Compile Include="Subaccounts.cs" />
     <Compile Include="Tags.cs" />
     <Compile Include="Templates.cs" />
     <Compile Include="Urls.cs" />
