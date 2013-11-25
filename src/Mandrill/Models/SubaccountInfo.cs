@@ -14,8 +14,8 @@ namespace Mandrill
         ///     An optional manual hourly quota for the subaccount. If not specified, the hourly quota will be managed based on
         ///     reputation
         /// </summary>
-        [JsonProperty("custom_quota")]
-        public int CustomQuota { get; set; }
+        [JsonProperty("custom_quota", NullValueHandling = NullValueHandling.Ignore)]
+        public int? CustomQuota { get; set; }
 
         /// <summary>
         ///     The date and time that the subaccount first sent as a UTC string in YYYY-MM-DD HH:MM:SS format
