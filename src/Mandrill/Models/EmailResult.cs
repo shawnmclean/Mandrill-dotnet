@@ -67,6 +67,12 @@ namespace Mandrill
         [JsonConverter(typeof(StringEnumConverter))]
         public EmailResultStatus Status { get; set; }
 
+		/// <summary>
+		/// Reason for reject
+		/// </summary>
+		[JsonProperty("reject_reason")]
+		public string RejectReason { get; set; }
+
         #endregion
     }
 }
