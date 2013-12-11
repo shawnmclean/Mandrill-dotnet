@@ -234,6 +234,17 @@ namespace Mandrill
         public IEnumerable<rcpt_metadata> recipient_metadata { get; set; }
 
         /// <summary>
+        /// Gets or sets the signing_domain.
+        /// </summary>
+        /// <remarks>
+        /// a custom domain to use for SPF/DKIM signing instead of mandrill (for "via" or "on behalf of" in email clients) 
+        /// </remarks>
+        /// <value>
+        /// The signing_domain.
+        /// </value>
+        public string signing_domain { get; set; }
+
+        /// <summary>
         /// Gets or sets the subaccount.
         /// </summary>
         public string subaccount { get; set; }
@@ -267,6 +278,17 @@ namespace Mandrill
         /// Gets or sets a value indicating whether track_opens.
         /// </summary>
         public bool track_opens { get; set; }
+
+        /// <summary>
+        /// Gets or sets the tracking_domain.
+        /// </summary>
+        /// <remarks>
+        /// a custom domain to use for tracking opens and clicks instead of mandrillapp.com 
+        /// </remarks>
+        /// <value>
+        /// The tracking_domain.
+        /// </value>
+        public string tracking_domain { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether url_strip_qs.
