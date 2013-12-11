@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="Configuration.cs" />
     <Compile Include="Messages.cs" />
+    <Compile Include="Models\Dkim.cs" />
     <Compile Include="Models\Info.cs" />
     <Compile Include="Models\EmailAddress.cs" />
     <Compile Include="MandrillApi.cs" />
@@ -65,7 +66,9 @@
     <Compile Include="Models\Search.cs" />
     <Compile Include="Models\SearchResult.cs" />
     <Compile Include="Models\Sender.cs" />
+    <Compile Include="Models\SenderDomain.cs" />
     <Compile Include="Models\SmtpEvent.cs" />
+    <Compile Include="Models\Spf.cs" />
     <Compile Include="Models\SubaccountInfo.cs" />
     <Compile Include="Models\TemplateInfo.cs" />
     <Compile Include="Models\UserInfo.cs" />

@@ -39,5 +39,32 @@ namespace Mandrill.Tests.IntegrationTests
             //var senders = api.ListSenders();
             
         }
+
+        [Test]
+        public void SenderDomains_Returns_Domains()
+        {
+            // Setup
+            var apiKey = ConfigurationManager.AppSettings["APIKey"];
+
+            // Exercise
+            var api = new MandrillApi(apiKey);
+
+            // Verify
+            var domains = api.SenderDomains();
+        }
+
+        [Test]
+        public void CheckSenderDomain_Returns_Domain()
+        {
+            // Setup
+            var apiKey = ConfigurationManager.AppSettings["APIKey"];
+
+            // Exercise
+            var api = new MandrillApi(apiKey);
+
+            // Verify
+            var domain = api.CheckSenderDomain("example.com");
+            Assert.IsNotNull(domain);
+        }
     }
 }
