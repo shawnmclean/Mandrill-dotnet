@@ -81,7 +81,7 @@ namespace Mandrill
         /// <summary>
         /// The values.
         /// </summary>
-        public IEnumerable<string> values;
+		public JsonObject values;
 
         #endregion
     }
