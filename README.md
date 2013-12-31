@@ -53,6 +53,7 @@ Asychronous:
    6. List-Scheduled
    7. Cancel-Scheduled
    8. Reschedule
+   9. Content
  3. Rejects
    1. List
    2. Delete

@@ -53,6 +53,8 @@
   <ItemGroup>
     <Compile Include="Configuration.cs" />
     <Compile Include="Messages.cs" />
+    <Compile Include="Models\Attachment.cs" />
+    <Compile Include="Models\Content.cs" />
     <Compile Include="Models\Dkim.cs" />
     <Compile Include="Models\Info.cs" />
     <Compile Include="Models\EmailAddress.cs" />
@@ -60,6 +62,7 @@
     <Compile Include="Models\EmailMessage.cs" />
     <Compile Include="Models\EmailResult.cs" />
     <Compile Include="Models\ErrorResponse.cs" />
+    <Compile Include="Models\Recipient.cs" />
     <Compile Include="Models\RejectInfo.cs" />
     <Compile Include="Models\RenderedTemplate.cs" />
     <Compile Include="Models\ScheduledEmailResult.cs" />

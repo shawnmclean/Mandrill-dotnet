@@ -84,6 +84,45 @@ namespace Mandrill
         }
 
         /// <summary>
+        /// Get the full content of a recently sent message.
+        /// </summary>
+        /// <param name="id">
+        /// Unique id of the message to get -- passed as the "_id" field in
+        /// webhooks, send calls, or search calls.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Content"/>
+        /// </returns>
+        public Content Content(string id)
+        {
+            return this.ContentAsync(id).Result;
+        }
+
+        /// <summary>
+        /// Get the full content of a recently sent message.
+        /// </summary>
+        /// <param name="id">
+        /// Unique id of the message to get -- passed as the "_id" field in
+        /// webhooks, send calls, or search calls.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Content"/>
+        /// </returns>
+        public Task<Content> ContentAsync(string id)
+        {
+            string path = "/messages/content.json";
+
+            dynamic payload = new ExpandoObject();
+            payload.id = id;
+
+            Task<IRestResponse> post = this.PostAsync(path, payload);
+
+            return post.ContinueWith(
+                p => { return JSON.Parse<Content>(p.Result.Content); },
+                TaskContinuationOptions.ExecuteSynchronously);
+        }
+
+        /// <summary>
         /// The list scheduled messages.
         /// </summary>
         /// <returns>
