@@ -41,17 +41,26 @@ namespace Mandrill
         /// </param>
         /// <param name="useSsl">
         /// </param>
-        public MandrillApi(string apiKey, bool useSsl = true)
+        /// <param name="timeout">
+        /// Timeout in milliseconds to use for requests.
+        /// </param>
+        public MandrillApi(string apiKey, bool useSsl = true, int timeout = 0)
         {
             this.ApiKey = apiKey;
 
             if (useSsl)
             {
-                this.client = new RestClient(Configuration.BASE_SECURE_URL);
+                this.client = new RestClient(Configuration.BASE_SECURE_URL)
+                {
+                    Timeout = timeout
+                };
             }
             else
             {
-                this.client = new RestClient(Configuration.BASE_URL);
+                this.client = new RestClient(Configuration.BASE_URL)
+                {
+                    Timeout = timeout
+                };
             }
 
             this.client.AddHandler("application/json", new DynamicJsonDeserializer());
