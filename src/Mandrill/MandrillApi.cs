@@ -50,20 +50,15 @@ namespace Mandrill
 
             if (useSsl)
             {
-                this.client = new RestClient(Configuration.BASE_SECURE_URL)
-                {
-                    Timeout = timeout
-                };
+                this.client = new RestClient(Configuration.BASE_SECURE_URL);
             }
             else
             {
-                this.client = new RestClient(Configuration.BASE_URL)
-                {
-                    Timeout = timeout
-                };
+                this.client = new RestClient(Configuration.BASE_URL);
             }
 
             this.client.AddHandler("application/json", new DynamicJsonDeserializer());
+            this.client.Timeout = timeout;
         }
 
         #endregion
