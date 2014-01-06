@@ -70,6 +70,21 @@ namespace Mandrill
         /// </summary>
         public string ApiKey { get; private set; }
 
+        /// <summary>
+        ///     UserAgent to use for requests.
+        /// </summary>
+        public string UserAgent
+        {
+            get
+            {
+                return client.UserAgent;
+            }
+            set
+            {
+                client.UserAgent = value;
+            }
+        }
+
         #endregion
 
         // CODEPATH IS DISABLED (USES EXECUTEASYNC). EXECUTE ASYNC HAS A BUG
