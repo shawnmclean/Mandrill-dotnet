@@ -41,7 +41,10 @@ namespace Mandrill
         /// </param>
         /// <param name="useSsl">
         /// </param>
-        public MandrillApi(string apiKey, bool useSsl = true)
+        /// <param name="timeout">
+        /// Timeout in milliseconds to use for requests.
+        /// </param>
+        public MandrillApi(string apiKey, bool useSsl = true, int timeout = 0)
         {
             this.ApiKey = apiKey;
 
@@ -55,6 +58,7 @@ namespace Mandrill
             }
 
             this.client.AddHandler("application/json", new DynamicJsonDeserializer());
+            this.client.Timeout = timeout;
         }
 
         #endregion
