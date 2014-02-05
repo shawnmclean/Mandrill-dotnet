@@ -84,6 +84,21 @@ namespace Mandrill
                 client.UserAgent = value;
             }
         }
+        
+        public System.Net.IWebProxy Proxy
+         {
+            get
+            {
+                return client.Proxy;
+            }
+            set
+            {
+                client.Proxy = value;
+            }
+        }
+        
+        
+        
 
         #endregion
 
