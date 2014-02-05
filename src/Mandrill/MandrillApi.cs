@@ -85,7 +85,7 @@ namespace Mandrill
             }
         }
         
-        public System.Net.WebProxy Proxy
+        public System.Net.IWebProxy Proxy
          {
             get
             {
