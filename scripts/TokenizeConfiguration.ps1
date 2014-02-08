@@ -3,7 +3,7 @@ Param(
     [hashtable]$lookupTable = @{}
 )
 
-[xml]$xml = gc "$filePath/AppSettings.example.config"
+[xml]$xml = gc "$filePath/tests/AppSettings.example.config"
 $xml.appSettings.add | ForEach-Object {
     $element = $_
     $lookupTable.GetEnumerator() | ForEach-Object {
@@ -13,4 +13,4 @@ $xml.appSettings.add | ForEach-Object {
         }
     } 
 }
-$xml.Save("$filePath/AppSettings.config")
+$xml.Save("$filePath/tests/AppSettings.config")
