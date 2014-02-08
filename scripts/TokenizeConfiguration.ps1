@@ -1,11 +1,9 @@
 Param(
+    $filePath = "",
     [hashtable]$lookupTable = @{}
 )
 
-$executingScriptDirectory = Split-Path -Path $MyInvocation.MyCommand.Definition -Parent
-$file = "$executingScriptDirectory/AppSettings.config"
-
-[xml]$xml = gc $file
+[xml]$xml = gc "$filePath/AppSettings.example.config"
 $xml.appSettings.add | ForEach-Object {
     $element = $_
     $lookupTable.GetEnumerator() | ForEach-Object {
@@ -15,4 +13,4 @@ $xml.appSettings.add | ForEach-Object {
         }
     } 
 }
-$xml.Save($file)
+$xml.Save("$filePath/AppSettings.config")
