@@ -12,7 +12,10 @@ Write-Host "Looking for file: $readFile"
 Write-Host "File read into memory: $readFile"
 
 $xml.appSettings.add | ForEach-Object {
+    Write-Host "Key Found: " $_.key
+
     $element = $_
+
     $lookupTable.GetEnumerator() | ForEach-Object {
         if ($element.key -eq $_.Key)
         {
