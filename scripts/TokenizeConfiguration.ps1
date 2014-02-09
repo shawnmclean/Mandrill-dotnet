@@ -1,7 +1,10 @@
 Param(
-    $filePath = "",
-    [hashtable]$lookupTable = @{}
+    [Parameter(Mandatory=$true)] [string]$filePath = "",
+    [Parameter(Mandatory=$true)] [string]$lookupTableString = ""
 )
+
+$lookupTable = ConvertFrom-StringData -StringData $lookupTableString
+
 $readFile = "$filePath/tests/AppSettings.example.config"
 $saveFile = "$filePath/tests/AppSettings.config"
 
