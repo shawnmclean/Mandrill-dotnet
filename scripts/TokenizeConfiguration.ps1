@@ -1,9 +1,8 @@
 Param(
-    [Parameter(Mandatory=$true)] [string]$filePath = "",
-    [Parameter(Mandatory=$true)] [string]$lookupTableString = ""
+    [Parameter(Mandatory=$true)] [string]$filePath = "D:\Projects\Open Source\Mandrill-dotnet\scripts",
+    [Parameter(Mandatory=$true)] [hashtable]$lookupTable = @{}
 )
 
-$lookupTable = ConvertFrom-StringData -StringData $lookupTableString
 
 $readFile = "$filePath/tests/AppSettings.example.config"
 $saveFile = "$filePath/tests/AppSettings.config"
