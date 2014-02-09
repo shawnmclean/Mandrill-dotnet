@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration.cs" />
+    <Compile Include="IMandrillApi.cs" />
     <Compile Include="Messages.cs" />
     <Compile Include="Models\Attachment.cs" />
     <Compile Include="Models\Content.cs" />

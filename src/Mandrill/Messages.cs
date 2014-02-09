@@ -20,7 +20,7 @@ namespace Mandrill
     /// <summary>
     ///     The mandrill api.
     /// </summary>
-    public partial class MandrillApi
+    public partial class MandrillApi : IMandrillApi
     {
         #region Public Methods and Operators
 
