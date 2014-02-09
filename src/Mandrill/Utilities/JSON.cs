@@ -15,14 +15,14 @@ namespace Mandrill
     using Newtonsoft.Json.Converters;
 
     /// <summary>
-    /// The json.
+    ///     The json.
     /// </summary>
     public class JSON
     {
         #region Static Fields
 
         /// <summary>
-        /// The settings.
+        ///     The settings.
         /// </summary>
         private static readonly JsonSerializerSettings settings = new JsonSerializerSettings
                                                                       {
@@ -31,13 +31,13 @@ namespace Mandrill
                                                                                   {
                                                                                       new IsoDateTimeConverter
                                                                                           ()
-                                                                                  }, 
+                                                                                  },
                                                                           DefaultValueHandling =
                                                                               DefaultValueHandling
-                                                                              .Ignore, 
+                                                                              .Ignore,
                                                                           NullValueHandling =
                                                                               NullValueHandling
-                                                                              .Ignore, 
+                                                                              .Ignore,
                                                                       };
 
         #endregion
@@ -45,13 +45,13 @@ namespace Mandrill
         #region Public Methods and Operators
 
         /// <summary>
-        /// The parse.
+        ///     The parse.
         /// </summary>
         /// <param name="json">
-        /// The json.
+        ///     The json.
         /// </param>
         /// <returns>
-        /// The <see cref="dynamic"/>.
+        ///     The <see cref="dynamic" />.
         /// </returns>
         public static dynamic Parse(string json)
         {
@@ -59,15 +59,15 @@ namespace Mandrill
         }
 
         /// <summary>
-        /// The parse.
+        ///     The parse.
         /// </summary>
         /// <param name="json">
-        /// The json.
+        ///     The json.
         /// </param>
         /// <typeparam name="T">
         /// </typeparam>
         /// <returns>
-        /// The <see cref="T"/>.
+        ///     The <see cref="T" />.
         /// </returns>
         public static T Parse<T>(string json) where T : new()
         {
@@ -88,13 +88,13 @@ namespace Mandrill
         }
 
         /// <summary>
-        /// The serialize.
+        ///     The serialize.
         /// </summary>
         /// <param name="dyn">
-        /// The dyn.
+        ///     The dyn.
         /// </param>
         /// <returns>
-        /// The <see cref="string"/>.
+        ///     The <see cref="string" />.
         /// </returns>
         public static string Serialize(dynamic dyn)
         {

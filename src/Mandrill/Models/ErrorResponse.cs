@@ -10,29 +10,29 @@
 namespace Mandrill
 {
     /// <summary>
-    /// The error response.
+    ///     The error response.
     /// </summary>
     public struct ErrorResponse
     {
         #region Fields
 
         /// <summary>
-        /// The code.
+        ///     The code.
         /// </summary>
         public int code;
 
         /// <summary>
-        /// The message.
+        ///     The message.
         /// </summary>
         public string message;
 
         /// <summary>
-        /// The name.
+        ///     The name.
         /// </summary>
         public string name;
 
         /// <summary>
-        /// The status.
+        ///     The status.
         /// </summary>
         public string status;
 

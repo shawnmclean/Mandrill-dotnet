@@ -19,17 +19,17 @@ namespace Mandrill
         #region Constructors and Destructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MandrillException"/> class.
+        ///     Initializes a new instance of the <see cref="MandrillException" /> class.
         /// </summary>
         public MandrillException()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MandrillException"/> class.
+        ///     Initializes a new instance of the <see cref="MandrillException" /> class.
         /// </summary>
         /// <param name="message">
-        /// The message.
+        ///     The message.
         /// </param>
         public MandrillException(string message)
             : base(message)
@@ -37,13 +37,13 @@ namespace Mandrill
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MandrillException"/> class.
+        ///     Initializes a new instance of the <see cref="MandrillException" /> class.
         /// </summary>
         /// <param name="error">
-        /// The error.
+        ///     The error.
         /// </param>
         /// <param name="message">
-        /// The message.
+        ///     The message.
         /// </param>
         public MandrillException(ErrorResponse error, string message)
             : base(message)
@@ -52,13 +52,13 @@ namespace Mandrill
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MandrillException"/> class.
+        ///     Initializes a new instance of the <see cref="MandrillException" /> class.
         /// </summary>
         /// <param name="message">
-        /// The message.
+        ///     The message.
         /// </param>
         /// <param name="innerException">
-        /// The inner exception.
+        ///     The inner exception.
         /// </param>
         public MandrillException(string message, Exception innerException)
             : base(message, innerException)
@@ -70,7 +70,7 @@ namespace Mandrill
         #region Public Properties
 
         /// <summary>
-        /// Gets the error.
+        ///     Gets the error.
         /// </summary>
         public ErrorResponse Error { get; private set; }
 

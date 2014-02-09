@@ -16,117 +16,117 @@ namespace Mandrill
     using Newtonsoft.Json.Converters;
 
     /// <summary>
-    /// The search result state.
+    ///     The search result state.
     /// </summary>
     public enum SearchResultState
     {
         /// <summary>
-        /// The sent.
+        ///     The sent.
         /// </summary>
-        Sent, 
+        Sent,
 
         /// <summary>
-        /// The bounced.
+        ///     The bounced.
         /// </summary>
-        Bounced, 
+        Bounced,
 
         /// <summary>
-        /// The rejected.
+        ///     The rejected.
         /// </summary>
-        Rejected, 
+        Rejected,
 
         /// <summary>
-        /// The soft bounced.
+        ///     The soft bounced.
         /// </summary>
         [EnumMember(Value = "soft-bounced")]
-        SoftBounced, 
+        SoftBounced,
 
         /// <summary>
-        /// The spam.
+        ///     The spam.
         /// </summary>
-        Spam, 
+        Spam,
 
         /// <summary>
-        /// The unsub.
+        ///     The unsub.
         /// </summary>
-        Unsub, 
+        Unsub,
 
         /// <summary>
-        /// The deferred.
+        ///     The deferred.
         /// </summary>
         Deferred
     }
 
     /// <summary>
-    /// The search result.
+    ///     The search result.
     /// </summary>
     public class SearchResult
     {
         #region Public Properties
 
         /// <summary>
-        /// Gets or sets the _id.
+        ///     Gets or sets the _id.
         /// </summary>
         public string _id { get; set; }
 
         /// <summary>
-        /// Gets or sets the bounce_description.
+        ///     Gets or sets the bounce_description.
         /// </summary>
         public string bounce_description { get; set; }
 
         /// <summary>
-        /// Gets or sets the clicks.
+        ///     Gets or sets the clicks.
         /// </summary>
         public int clicks { get; set; }
 
         /// <summary>
-        /// Gets or sets the diag.
+        ///     Gets or sets the diag.
         /// </summary>
         public string diag { get; set; }
 
         /// <summary>
-        /// Gets or sets the email.
+        ///     Gets or sets the email.
         /// </summary>
         public string email { get; set; }
 
         /// <summary>
-        /// Gets or sets the metadata.
+        ///     Gets or sets the metadata.
         /// </summary>
         public Dictionary<string, string> metadata { get; set; }
 
         /// <summary>
-        /// Gets or sets the opens.
+        ///     Gets or sets the opens.
         /// </summary>
         public int opens { get; set; }
 
         /// <summary>
-        /// Gets or sets the sender.
+        ///     Gets or sets the sender.
         /// </summary>
         public string sender { get; set; }
 
         /// <summary>
-        /// Gets or sets the smtp_events.
+        ///     Gets or sets the smtp_events.
         /// </summary>
         public IEnumerable<SmtpEvent> smtp_events { get; set; }
 
         /// <summary>
-        /// Gets or sets the state.
+        ///     Gets or sets the state.
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
         public SearchResultState state { get; set; }
 
         /// <summary>
-        /// Gets or sets the subject.
+        ///     Gets or sets the subject.
         /// </summary>
         public string subject { get; set; }
 
         /// <summary>
-        /// Gets or sets the tags.
+        ///     Gets or sets the tags.
         /// </summary>
         public string[] tags { get; set; }
 
         /// <summary>
-        /// Gets or sets the ts.
+        ///     Gets or sets the ts.
         /// </summary>
         public int ts { get; set; }
 

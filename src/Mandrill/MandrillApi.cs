@@ -34,15 +34,15 @@ namespace Mandrill
         #region Constructors and Destructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MandrillApi"/> class. 
+        ///     Initializes a new instance of the <see cref="MandrillApi" /> class.
         /// </summary>
         /// <param name="apiKey">
-        /// The API Key recieved from MandrillApp
+        ///     The API Key recieved from MandrillApp
         /// </param>
         /// <param name="useSsl">
         /// </param>
         /// <param name="timeout">
-        /// Timeout in milliseconds to use for requests.
+        ///     Timeout in milliseconds to use for requests.
         /// </param>
         public MandrillApi(string apiKey, bool useSsl = true, int timeout = 0)
         {
@@ -70,6 +70,18 @@ namespace Mandrill
         /// </summary>
         public string ApiKey { get; private set; }
 
+        public IWebProxy Proxy
+        {
+            get
+            {
+                return this.client.Proxy;
+            }
+            set
+            {
+                this.client.Proxy = value;
+            }
+        }
+
         /// <summary>
         ///     UserAgent to use for requests.
         /// </summary>
@@ -77,28 +89,13 @@ namespace Mandrill
         {
             get
             {
-                return client.UserAgent;
+                return this.client.UserAgent;
             }
             set
             {
-                client.UserAgent = value;
+                this.client.UserAgent = value;
             }
         }
-        
-        public System.Net.IWebProxy Proxy
-         {
-            get
-            {
-                return client.Proxy;
-            }
-            set
-            {
-                client.Proxy = value;
-            }
-        }
-        
-        
-        
 
         #endregion
 
@@ -134,17 +131,18 @@ namespace Mandrill
 
         // return tcs.Task;
         // }
+
         #region Public Methods and Operators
 
         /// <summary>
-        /// PostAsync (uses synchronous function right now because ExecuteAsync has a bug)
+        ///     PostAsync (uses synchronous function right now because ExecuteAsync has a bug)
         /// </summary>
         /// <param name="path">
         /// </param>
         /// <param name="data">
         /// </param>
         /// <returns>
-        /// The <see cref="Task"/>.
+        ///     The <see cref="Task" />.
         /// </returns>
         public Task<IRestResponse> PostAsync(string path, dynamic data)
         {
@@ -184,18 +182,18 @@ namespace Mandrill
         }
 
         /// <summary>
-        /// The post async.
+        ///     The post async.
         /// </summary>
         /// <param name="path">
-        /// The path.
+        ///     The path.
         /// </param>
         /// <param name="data">
-        /// The data.
+        ///     The data.
         /// </param>
         /// <typeparam name="T">
         /// </typeparam>
         /// <returns>
-        /// The <see cref="Task"/>.
+        ///     The <see cref="Task" />.
         /// </returns>
         public Task<T> PostAsync<T>(string path, dynamic data) where T : new()
         {
@@ -206,7 +204,7 @@ namespace Mandrill
                     {
                         var t = JSON.Parse<T>(p.Result.Content);
                         return t;
-                    }, 
+                    },
                 TaskContinuationOptions.ExecuteSynchronously);
         }
 

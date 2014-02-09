@@ -15,14 +15,14 @@ namespace Mandrill
     using Newtonsoft.Json.Converters;
 
     /// <summary>
-    /// The smtp event.
+    ///     The smtp event.
     /// </summary>
     public class SmtpEvent
     {
         #region Public Properties
 
         /// <summary>
-        /// Gets the time stamp.
+        ///     Gets the time stamp.
         /// </summary>
         public DateTime TimeStamp
         {
@@ -33,32 +33,32 @@ namespace Mandrill
         }
 
         /// <summary>
-        /// Gets or sets the destination_ip.
+        ///     Gets or sets the destination_ip.
         /// </summary>
         public string destination_ip { get; set; }
 
         /// <summary>
-        /// Gets or sets the diag.
+        ///     Gets or sets the diag.
         /// </summary>
         public string diag { get; set; }
 
         /// <summary>
-        /// Gets or sets the size.
+        ///     Gets or sets the size.
         /// </summary>
         public int size { get; set; }
 
         /// <summary>
-        /// Gets or sets the source_ip.
+        ///     Gets or sets the source_ip.
         /// </summary>
         public string source_ip { get; set; }
 
         /// <summary>
-        /// Gets or sets the ts.
+        ///     Gets or sets the ts.
         /// </summary>
         public int ts { get; set; }
 
         /// <summary>
-        /// Gets or sets the type.
+        ///     Gets or sets the type.
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
         public SearchResultState type { get; set; }

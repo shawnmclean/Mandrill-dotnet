@@ -15,24 +15,24 @@ namespace Mandrill.Utilities
     using RestSharp.Deserializers;
 
     /// <summary>
-    /// The dynamic json deserializer.
+    ///     The dynamic json deserializer.
     /// </summary>
     internal class DynamicJsonDeserializer : IDeserializer
     {
         #region Public Properties
 
         /// <summary>
-        /// Gets or sets the date format.
+        ///     Gets or sets the date format.
         /// </summary>
         public string DateFormat { get; set; }
 
         /// <summary>
-        /// Gets or sets the namespace.
+        ///     Gets or sets the namespace.
         /// </summary>
         public string Namespace { get; set; }
 
         /// <summary>
-        /// Gets or sets the root element.
+        ///     Gets or sets the root element.
         /// </summary>
         public string RootElement { get; set; }
 
@@ -41,15 +41,15 @@ namespace Mandrill.Utilities
         #region Public Methods and Operators
 
         /// <summary>
-        /// The deserialize.
+        ///     The deserialize.
         /// </summary>
         /// <param name="response">
-        /// The response.
+        ///     The response.
         /// </param>
         /// <typeparam name="T">
         /// </typeparam>
         /// <returns>
-        /// The <see cref="T"/>.
+        ///     The <see cref="T" />.
         /// </returns>
         public T Deserialize<T>(IRestResponse response)
         {

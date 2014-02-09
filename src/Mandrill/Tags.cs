@@ -10,7 +10,7 @@
 namespace Mandrill
 {
     /// <summary>
-    /// The mandrill api.
+    ///     The mandrill api.
     /// </summary>
     public partial class MandrillApi
     {

@@ -10,24 +10,24 @@
 namespace Mandrill
 {
     /// <summary>
-    /// The info.
+    ///     The info.
     /// </summary>
     public class Info
     {
         #region Constructors and Destructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Info"/> class.
+        ///     Initializes a new instance of the <see cref="Info" /> class.
         /// </summary>
         public Info()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Info"/> class.
+        ///     Initializes a new instance of the <see cref="Info" /> class.
         /// </summary>
         /// <param name="id">
-        /// The id.
+        ///     The id.
         /// </param>
         public Info(string id)
         {
@@ -39,7 +39,7 @@ namespace Mandrill
         #region Public Properties
 
         /// <summary>
-        /// Gets or sets the id.
+        ///     Gets or sets the id.
         /// </summary>
         public string id { get; set; }
 

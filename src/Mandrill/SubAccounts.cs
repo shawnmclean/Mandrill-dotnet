@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Dynamic;
-using System.Threading.Tasks;
-
-namespace Mandrill
+﻿namespace Mandrill
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Dynamic;
+    using System.Threading.Tasks;
+
     public partial class MandrillApi
     {
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Add a new subaccount.
         ///     <see cref="https://mandrillapp.com/api/docs/subaccounts.JSON.html#method=add">Mandrill API Documentation</see>
@@ -18,7 +20,7 @@ namespace Mandrill
         {
             try
             {
-                return AddSubaccountAsync(subaccount, notes).Result;
+                return this.AddSubaccountAsync(subaccount, notes).Result;
             }
             catch (AggregateException aex)
             {
@@ -44,7 +46,7 @@ namespace Mandrill
             payload.notes = notes;
             payload.custom_quota = subaccount.CustomQuota;
 
-            return PostAsync<SubaccountInfo>(path, payload);
+            return this.PostAsync<SubaccountInfo>(path, payload);
         }
 
         /// <summary>
@@ -58,7 +60,7 @@ namespace Mandrill
         {
             try
             {
-                return DeleteSubaccountAsync(id).Result;
+                return this.DeleteSubaccountAsync(id).Result;
             }
             catch (AggregateException aex)
             {
@@ -81,42 +83,7 @@ namespace Mandrill
             dynamic payload = new ExpandoObject();
             payload.id = id;
 
-            return PostAsync<SubaccountInfo>(path, payload);
-        }
-
-        /// <summary>
-        ///     Given the ID of an existing subaccount, return the data about it
-        ///     <see cref="https://mandrillapp.com/api/docs/subaccounts.JSON.html#method=info">Mandrill API Documentation</see>
-        /// </summary>
-        /// <param name="id">The unique identifier of the subaccount to query</param>
-        /// <returns>the information about the subaccount</returns>
-        public SubaccountInfo SubaccountInfo(string id)
-        {
-            try
-            {
-                return SubaccountInfoAsync(id).Result;
-            }
-            catch (AggregateException aex)
-            {
-                //catch and throw the inner exception
-                throw aex.Flatten().InnerException;
-            }
-        }
-
-        /// <summary>
-        ///     Given the ID of an existing subaccount, asynchronously return the data about it
-        ///     <see cref="https://mandrillapp.com/api/docs/subaccounts.JSON.html#method=info">Mandrill API Documentation</see>
-        /// </summary>
-        /// <param name="id">The unique identifier of the subaccount to query</param>
-        /// <returns>the information about the subaccount</returns>
-        public Task<SubaccountInfo> SubaccountInfoAsync(string id)
-        {
-            const string path = "/subaccounts/info.json";
-
-            dynamic payload = new ExpandoObject();
-            payload.id = id;
-
-            return PostAsync<SubaccountInfo>(path, payload);
+            return this.PostAsync<SubaccountInfo>(path, payload);
         }
 
         /// <summary>
@@ -129,7 +96,7 @@ namespace Mandrill
         {
             try
             {
-                return ListSubaccountsAsync(q).Result;
+                return this.ListSubaccountsAsync(q).Result;
             }
             catch (AggregateException aex)
             {
@@ -151,7 +118,7 @@ namespace Mandrill
             dynamic payload = new ExpandoObject();
             payload.q = q;
 
-            return PostAsync<List<SubaccountInfo>>(path, payload);
+            return this.PostAsync<List<SubaccountInfo>>(path, payload);
         }
 
         /// <summary>
@@ -165,7 +132,7 @@ namespace Mandrill
         {
             try
             {
-                return PauseSubaccountAsync(id).Result;
+                return this.PauseSubaccountAsync(id).Result;
             }
             catch (AggregateException aex)
             {
@@ -188,7 +155,7 @@ namespace Mandrill
             dynamic payload = new ExpandoObject();
             payload.id = id;
 
-            return PostAsync<SubaccountInfo>(path, payload);
+            return this.PostAsync<SubaccountInfo>(path, payload);
         }
 
         /// <summary>
@@ -201,7 +168,7 @@ namespace Mandrill
         {
             try
             {
-                return ResumeSubaccountAsync(id).Result;
+                return this.ResumeSubaccountAsync(id).Result;
             }
             catch (AggregateException aex)
             {
@@ -223,7 +190,42 @@ namespace Mandrill
             dynamic payload = new ExpandoObject();
             payload.id = id;
 
-            return PostAsync<SubaccountInfo>(path, payload);
+            return this.PostAsync<SubaccountInfo>(path, payload);
+        }
+
+        /// <summary>
+        ///     Given the ID of an existing subaccount, return the data about it
+        ///     <see cref="https://mandrillapp.com/api/docs/subaccounts.JSON.html#method=info">Mandrill API Documentation</see>
+        /// </summary>
+        /// <param name="id">The unique identifier of the subaccount to query</param>
+        /// <returns>the information about the subaccount</returns>
+        public SubaccountInfo SubaccountInfo(string id)
+        {
+            try
+            {
+                return this.SubaccountInfoAsync(id).Result;
+            }
+            catch (AggregateException aex)
+            {
+                //catch and throw the inner exception
+                throw aex.Flatten().InnerException;
+            }
+        }
+
+        /// <summary>
+        ///     Given the ID of an existing subaccount, asynchronously return the data about it
+        ///     <see cref="https://mandrillapp.com/api/docs/subaccounts.JSON.html#method=info">Mandrill API Documentation</see>
+        /// </summary>
+        /// <param name="id">The unique identifier of the subaccount to query</param>
+        /// <returns>the information about the subaccount</returns>
+        public Task<SubaccountInfo> SubaccountInfoAsync(string id)
+        {
+            const string path = "/subaccounts/info.json";
+
+            dynamic payload = new ExpandoObject();
+            payload.id = id;
+
+            return this.PostAsync<SubaccountInfo>(path, payload);
         }
 
         /// <summary>
@@ -237,7 +239,7 @@ namespace Mandrill
         {
             try
             {
-                return UpdateSubaccountAsync(subaccount, notes).Result;
+                return this.UpdateSubaccountAsync(subaccount, notes).Result;
             }
             catch (AggregateException aex)
             {
@@ -263,7 +265,9 @@ namespace Mandrill
             payload.notes = notes;
             payload.custom_quota = subaccount.CustomQuota;
 
-            return PostAsync<SubaccountInfo>(path, payload);
+            return this.PostAsync<SubaccountInfo>(path, payload);
         }
+
+        #endregion
     }
 }

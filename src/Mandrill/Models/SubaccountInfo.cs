@@ -1,9 +1,11 @@
-﻿using Newtonsoft.Json;
-
-namespace Mandrill
+﻿namespace Mandrill
 {
+    using Newtonsoft.Json;
+
     public class SubaccountInfo
     {
+        #region Public Properties
+
         /// <summary>
         ///     The date and time that the subaccount was created as a UTC string in YYYY-MM-DD HH:MM:SS format
         /// </summary>
@@ -70,10 +72,14 @@ namespace Mandrill
         /// </summary>
         [JsonProperty("status")]
         public string Status { get; set; }
+
+        #endregion
     }
 
     public class Last30Days
     {
+        #region Public Properties
+
         /// <summary>
         ///     The number of URLs that have been clicked for this subaccount in the last 30 days
         /// </summary>
@@ -133,5 +139,7 @@ namespace Mandrill
         /// </summary>
         [JsonProperty("unsubs")]
         public int Unsubs { get; set; }
+
+        #endregion
     }
 }

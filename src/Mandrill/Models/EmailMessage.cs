@@ -15,19 +15,19 @@ namespace Mandrill
     using RestSharp;
 
     /// <summary>
-    /// The merge_var.
+    ///     The merge_var.
     /// </summary>
     public struct merge_var
     {
         #region Fields
 
         /// <summary>
-        /// The content.
+        ///     The content.
         /// </summary>
         public string content;
 
         /// <summary>
-        /// The name.
+        ///     The name.
         /// </summary>
         public string name;
 
@@ -35,19 +35,19 @@ namespace Mandrill
     }
 
     /// <summary>
-    /// The rcpt_merge_var.
+    ///     The rcpt_merge_var.
     /// </summary>
     public class rcpt_merge_var
     {
         #region Fields
 
         /// <summary>
-        /// The rcpt.
+        ///     The rcpt.
         /// </summary>
         public string rcpt;
 
         /// <summary>
-        /// The vars.
+        ///     The vars.
         /// </summary>
         public List<merge_var> vars;
 
@@ -56,7 +56,7 @@ namespace Mandrill
         #region Constructors and Destructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="rcpt_merge_var"/> class.
+        ///     Initializes a new instance of the <see cref="rcpt_merge_var" /> class.
         /// </summary>
         public rcpt_merge_var()
         {
@@ -67,44 +67,44 @@ namespace Mandrill
     }
 
     /// <summary>
-    /// The rcpt_metadata.
+    ///     The rcpt_metadata.
     /// </summary>
     public struct rcpt_metadata
     {
         #region Fields
 
         /// <summary>
-        /// The rcpt.
+        ///     The rcpt.
         /// </summary>
         public string rcpt;
 
         /// <summary>
-        /// The values.
+        ///     The values.
         /// </summary>
-		public JsonObject values;
+        public JsonObject values;
 
         #endregion
     }
 
     /// <summary>
-    /// The attachment.
+    ///     The attachment.
     /// </summary>
     public struct attachment
     {
         #region Fields
 
         /// <summary>
-        /// The content.
+        ///     The content.
         /// </summary>
         public string content;
 
         /// <summary>
-        /// The name.
+        ///     The name.
         /// </summary>
         public string name;
 
         /// <summary>
-        /// The type.
+        ///     The type.
         /// </summary>
         public string type;
 
@@ -112,24 +112,24 @@ namespace Mandrill
     }
 
     /// <summary>
-    /// The image.
+    ///     The image.
     /// </summary>
     public struct image
     {
         #region Fields
 
         /// <summary>
-        /// The content.
+        ///     The content.
         /// </summary>
         public string content;
 
         /// <summary>
-        /// The name.
+        ///     The name.
         /// </summary>
         public string name;
 
         /// <summary>
-        /// The type.
+        ///     The type.
         /// </summary>
         public string type;
 
@@ -137,161 +137,161 @@ namespace Mandrill
     }
 
     /// <summary>
-    /// The email message.
+    ///     The email message.
     /// </summary>
     public class EmailMessage
     {
         #region Public Properties
 
         /// <summary>
-        /// Gets or sets the attachments.
+        ///     Gets or sets the attachments.
         /// </summary>
         public IEnumerable<attachment> attachments { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether auto_text.
+        ///     Gets or sets a value indicating whether auto_text.
         /// </summary>
         public bool auto_text { get; set; }
 
         /// <summary>
-        /// Gets or sets the bcc_address.
+        ///     Gets or sets the bcc_address.
         /// </summary>
         public string bcc_address { get; set; }
 
         /// <summary>
-        /// Gets or sets the from_email.
+        ///     Gets or sets the from_email.
         /// </summary>
         public string from_email { get; set; }
 
         /// <summary>
-        /// Gets or sets the from_name.
+        ///     Gets or sets the from_name.
         /// </summary>
         public string from_name { get; set; }
 
         /// <summary>
-        /// Gets the global_merge_vars.
+        ///     Gets the global_merge_vars.
         /// </summary>
         public List<merge_var> global_merge_vars { get; private set; }
 
         /// <summary>
-        /// Gets or sets the google_analytics_campaign.
+        ///     Gets or sets the google_analytics_campaign.
         /// </summary>
         public string google_analytics_campaign { get; set; }
 
         /// <summary>
-        /// Gets or sets the google_analytics_domains.
+        ///     Gets or sets the google_analytics_domains.
         /// </summary>
         public IEnumerable<string> google_analytics_domains { get; set; }
 
         /// <summary>
-        /// Gets the headers.
+        ///     Gets the headers.
         /// </summary>
         public JsonObject headers { get; private set; }
 
         /// <summary>
-        /// Gets or sets the html.
+        ///     Gets or sets the html.
         /// </summary>
         public string html { get; set; }
 
         /// <summary>
-        /// Gets or sets the images.
+        ///     Gets or sets the images.
         /// </summary>
         public IEnumerable<image> images { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether important.
+        ///     Gets or sets a value indicating whether important.
         /// </summary>
         public bool important { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether merge.
+        ///     Gets or sets a value indicating whether merge.
         /// </summary>
         public bool merge { get; set; }
 
         /// <summary>
-        /// Gets the merge_vars.
+        ///     Gets the merge_vars.
         /// </summary>
         public List<rcpt_merge_var> merge_vars { get; private set; }
 
         /// <summary>
-        /// Gets the metadata.
+        ///     Gets the metadata.
         /// </summary>
         public JsonObject metadata { get; private set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether preserve_recipients.
+        ///     Gets or sets a value indicating whether preserve_recipients.
         /// </summary>
         public bool preserve_recipients { get; set; }
 
         /// <summary>
-        /// Gets or sets the raw_message.
+        ///     Gets or sets the raw_message.
         /// </summary>
         public string raw_message { get; set; }
 
         /// <summary>
-        /// Gets or sets the recipient_metadata.
+        ///     Gets or sets the recipient_metadata.
         /// </summary>
         public IEnumerable<rcpt_metadata> recipient_metadata { get; set; }
 
         /// <summary>
-        /// Gets or sets the signing_domain.
+        ///     Gets or sets the signing_domain.
         /// </summary>
         /// <remarks>
-        /// a custom domain to use for SPF/DKIM signing instead of mandrill (for "via" or "on behalf of" in email clients) 
+        ///     a custom domain to use for SPF/DKIM signing instead of mandrill (for "via" or "on behalf of" in email clients)
         /// </remarks>
         /// <value>
-        /// The signing_domain.
+        ///     The signing_domain.
         /// </value>
         public string signing_domain { get; set; }
 
         /// <summary>
-        /// Gets or sets the subaccount.
+        ///     Gets or sets the subaccount.
         /// </summary>
         public string subaccount { get; set; }
 
         /// <summary>
-        /// Gets or sets the subject.
+        ///     Gets or sets the subject.
         /// </summary>
         public string subject { get; set; }
 
         /// <summary>
-        /// Gets or sets the tags.
+        ///     Gets or sets the tags.
         /// </summary>
         public IEnumerable<string> tags { get; set; }
 
         /// <summary>
-        /// Gets or sets the text.
+        ///     Gets or sets the text.
         /// </summary>
         public string text { get; set; }
 
         /// <summary>
-        /// Gets or sets the to.
+        ///     Gets or sets the to.
         /// </summary>
         public IEnumerable<EmailAddress> to { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether track_clicks.
+        ///     Gets or sets a value indicating whether track_clicks.
         /// </summary>
         public bool track_clicks { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether track_opens.
+        ///     Gets or sets a value indicating whether track_opens.
         /// </summary>
         public bool track_opens { get; set; }
 
         /// <summary>
-        /// Gets or sets the tracking_domain.
+        ///     Gets or sets the tracking_domain.
         /// </summary>
         /// <remarks>
-        /// a custom domain to use for tracking opens and clicks instead of mandrillapp.com 
+        ///     a custom domain to use for tracking opens and clicks instead of mandrillapp.com
         /// </remarks>
         /// <value>
-        /// The tracking_domain.
+        ///     The tracking_domain.
         /// </value>
         public string tracking_domain { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether url_strip_qs.
+        ///     Gets or sets a value indicating whether url_strip_qs.
         /// </summary>
         public bool url_strip_qs { get; set; }
 
@@ -300,13 +300,13 @@ namespace Mandrill
         #region Public Methods and Operators
 
         /// <summary>
-        /// The add global variable.
+        ///     The add global variable.
         /// </summary>
         /// <param name="name">
-        /// The name.
+        ///     The name.
         /// </param>
         /// <param name="content">
-        /// The content.
+        ///     The content.
         /// </param>
         public void AddGlobalVariable(string name, string content)
         {
@@ -320,13 +320,13 @@ namespace Mandrill
         }
 
         /// <summary>
-        /// The add header.
+        ///     The add header.
         /// </summary>
         /// <param name="name">
-        /// The name.
+        ///     The name.
         /// </param>
         /// <param name="value">
-        /// The value.
+        ///     The value.
         /// </param>
         public void AddHeader(string name, string value)
         {
@@ -339,13 +339,13 @@ namespace Mandrill
         }
 
         /// <summary>
-        /// The add metadata.
+        ///     The add metadata.
         /// </summary>
         /// <param name="key">
-        /// The key.
+        ///     The key.
         /// </param>
         /// <param name="value">
-        /// The value.
+        ///     The value.
         /// </param>
         public void AddMetadata(string key, string value)
         {
@@ -358,16 +358,16 @@ namespace Mandrill
         }
 
         /// <summary>
-        /// The add recipient variable.
+        ///     The add recipient variable.
         /// </summary>
         /// <param name="recipient">
-        /// The recipient.
+        ///     The recipient.
         /// </param>
         /// <param name="name">
-        /// The name.
+        ///     The name.
         /// </param>
         /// <param name="content">
-        /// The content.
+        ///     The content.
         /// </param>
         public void AddRecipientVariable(string recipient, string name, string content)
         {

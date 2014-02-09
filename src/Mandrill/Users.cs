@@ -13,17 +13,17 @@ namespace Mandrill
     using System.Threading.Tasks;
 
     /// <summary>
-    /// The mandrill api.
+    ///     The mandrill api.
     /// </summary>
     public partial class MandrillApi
     {
         #region Public Methods and Operators
 
         /// <summary>
-        /// Validate an API key and respond to a ping
+        ///     Validate an API key and respond to a ping
         /// </summary>
         /// <returns>
-        /// The <see cref="string"/>.
+        ///     The <see cref="string" />.
         /// </returns>
         public string Ping()
         {
@@ -39,10 +39,10 @@ namespace Mandrill
         }
 
         /// <summary>
-        /// Validate an API key and respond to a ping
+        ///     Validate an API key and respond to a ping
         /// </summary>
         /// <returns>
-        /// The <see cref="Task"/>.
+        ///     The <see cref="Task" />.
         /// </returns>
         public Task<string> PingAsync()
         {
@@ -51,10 +51,10 @@ namespace Mandrill
         }
 
         /// <summary>
-        /// The user info.
+        ///     The user info.
         /// </summary>
         /// <returns>
-        /// The <see cref="UserInfo"/>.
+        ///     The <see cref="UserInfo" />.
         /// </returns>
         /// <exception cref="Exception">
         /// </exception>
@@ -72,12 +72,12 @@ namespace Mandrill
         }
 
         /// <summary>
-        /// Return the information about the API-connected user
+        ///     Return the information about the API-connected user
         /// </summary>
         /// <returns>
-        /// The <see cref="Task"/>.
+        ///     The <see cref="Task" />.
         /// </returns>
-        /// <see cref="https://mandrillapp.com/api/docs/users.html#method=info"/>
+        /// <see cref="https://mandrillapp.com/api/docs/users.html#method=info" />
         public Task<UserInfo> UserInfoAsync()
         {
             string path = "/users/info.json";

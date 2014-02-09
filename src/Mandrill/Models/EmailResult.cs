@@ -13,65 +13,65 @@ namespace Mandrill
     using Newtonsoft.Json.Converters;
 
     /// <summary>
-    /// The email result status.
+    ///     The email result status.
     /// </summary>
     public enum EmailResultStatus
     {
         /// <summary>
-        /// The sent.
+        ///     The sent.
         /// </summary>
-        Sent, 
+        Sent,
 
         /// <summary>
-        /// The queued.
+        ///     The queued.
         /// </summary>
-        Queued, 
+        Queued,
 
         /// <summary>
-        /// The rejected.
+        ///     The rejected.
         /// </summary>
-        Rejected, 
+        Rejected,
 
         /// <summary>
-        /// The invalid.
+        ///     The invalid.
         /// </summary>
-        Invalid, 
+        Invalid,
 
         /// <summary>
-        /// The scheduled.
+        ///     The scheduled.
         /// </summary>
         Scheduled
     }
 
     /// <summary>
-    /// The email result.
+    ///     The email result.
     /// </summary>
     public class EmailResult
     {
         #region Public Properties
 
         /// <summary>
-        /// Gets or sets the email.
+        ///     Gets or sets the email.
         /// </summary>
         public string Email { get; set; }
 
         /// <summary>
-        /// Gets or sets the id.
+        ///     Gets or sets the id.
         /// </summary>
         [JsonProperty("_id")]
         public string Id { get; set; }
 
         /// <summary>
-        /// Gets or sets the status.
+        ///     Reason for reject
+        /// </summary>
+        [JsonProperty("reject_reason")]
+        public string RejectReason { get; set; }
+
+        /// <summary>
+        ///     Gets or sets the status.
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
         public EmailResultStatus Status { get; set; }
-
-		/// <summary>
-		/// Reason for reject
-		/// </summary>
-		[JsonProperty("reject_reason")]
-		public string RejectReason { get; set; }
 
         #endregion
     }

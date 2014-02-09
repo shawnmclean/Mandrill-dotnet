@@ -10,19 +10,19 @@
 namespace Mandrill
 {
     /// <summary>
-    /// The template content.
+    ///     The template content.
     /// </summary>
     public class TemplateContent
     {
         #region Public Properties
 
         /// <summary>
-        /// Gets or sets the content.
+        ///     Gets or sets the content.
         /// </summary>
         public string content { get; set; }
 
         /// <summary>
-        /// Gets or sets the name.
+        ///     Gets or sets the name.
         /// </summary>
         public string name { get; set; }
 

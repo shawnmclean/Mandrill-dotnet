@@ -10,24 +10,24 @@
 namespace Mandrill
 {
     /// <summary>
-    /// The email address.
+    ///     The email address.
     /// </summary>
     public class EmailAddress
     {
         #region Constructors and Destructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="EmailAddress"/> class.
+        ///     Initializes a new instance of the <see cref="EmailAddress" /> class.
         /// </summary>
         public EmailAddress()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="EmailAddress"/> class.
+        ///     Initializes a new instance of the <see cref="EmailAddress" /> class.
         /// </summary>
         /// <param name="email">
-        /// The email.
+        ///     The email.
         /// </param>
         public EmailAddress(string email)
         {
@@ -36,13 +36,13 @@ namespace Mandrill
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="EmailAddress"/> class.
+        ///     Initializes a new instance of the <see cref="EmailAddress" /> class.
         /// </summary>
         /// <param name="email">
-        /// The email.
+        ///     The email.
         /// </param>
         /// <param name="name">
-        /// The name.
+        ///     The name.
         /// </param>
         public EmailAddress(string email, string name)
         {
@@ -51,16 +51,16 @@ namespace Mandrill
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="EmailAddress"/> class.
+        ///     Initializes a new instance of the <see cref="EmailAddress" /> class.
         /// </summary>
         /// <param name="email">
-        /// The email.
+        ///     The email.
         /// </param>
         /// <param name="name">
-        /// The name.
+        ///     The name.
         /// </param>
         /// <param name="type">
-        /// The type.
+        ///     The type.
         /// </param>
         public EmailAddress(string email, string name, string type)
         {
@@ -74,12 +74,12 @@ namespace Mandrill
         #region Public Properties
 
         /// <summary>
-        /// Gets or sets the email.
+        ///     Gets or sets the email.
         /// </summary>
         public string email { get; set; }
 
         /// <summary>
-        /// Gets or sets the name.
+        ///     Gets or sets the name.
         /// </summary>
         public string name { get; set; }
 

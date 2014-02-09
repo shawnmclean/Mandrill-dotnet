@@ -15,20 +15,20 @@ namespace Mandrill
     using System.Threading.Tasks;
 
     /// <summary>
-    /// The mandrill api.
+    ///     The mandrill api.
     /// </summary>
     public partial class MandrillApi
     {
         #region Public Methods and Operators
 
         /// <summary>
-        /// The delete reject.
+        ///     The delete reject.
         /// </summary>
         /// <param name="email">
-        /// The email.
+        ///     The email.
         /// </param>
         /// <returns>
-        /// The <see cref="RejectDeleteResult"/>.
+        ///     The <see cref="RejectDeleteResult" />.
         /// </returns>
         /// <exception cref="Exception">
         /// </exception>
@@ -46,13 +46,13 @@ namespace Mandrill
         }
 
         /// <summary>
-        /// The delete reject async.
+        ///     The delete reject async.
         /// </summary>
         /// <param name="email">
-        /// The email.
+        ///     The email.
         /// </param>
         /// <returns>
-        /// The <see cref="Task"/>.
+        ///     The <see cref="Task" />.
         /// </returns>
         public Task<RejectDeleteResult> DeleteRejectAsync(string email)
         {
@@ -66,10 +66,10 @@ namespace Mandrill
         /// <summary>
         /// </summary>
         /// <param name="email">
-        /// email address to limit the results
+        ///     email address to limit the results
         /// </param>
         /// <returns>
-        /// The <see cref="List"/>.
+        ///     The <see cref="List" />.
         /// </returns>
         public List<RejectInfo> ListRejects(string email = "")
         {
@@ -87,10 +87,10 @@ namespace Mandrill
         /// <summary>
         /// </summary>
         /// <param name="email">
-        /// email address to limit the results
+        ///     email address to limit the results
         /// </param>
         /// <returns>
-        /// The <see cref="Task"/>.
+        ///     The <see cref="Task" />.
         /// </returns>
         public Task<List<RejectInfo>> ListRejectsAsync(string email = "")
         {

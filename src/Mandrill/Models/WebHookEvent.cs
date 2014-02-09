@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
- /* http://help.mandrill.com/entries/21738186-introduction-to-webhooks
+/* http://help.mandrill.com/entries/21738186-introduction-to-webhooks
    Simple MVC Controller example
    [ValidateInput(false)] // May be required if accepting inbound webhooks, http://msdn.microsoft.com/en-us/library/hh882339.aspx
    [AcceptVerbs(HttpVerbs.Get | HttpVerbs.Post | HttpVerbs.Head)]
@@ -30,133 +30,133 @@ namespace Mandrill
     using Newtonsoft.Json.Linq;
 
     /// <summary>
-    /// The web hook event type.
+    ///     The web hook event type.
     /// </summary>
     public enum WebHookEventType
     {
         /// <summary>
-        /// The send.
+        ///     The send.
         /// </summary>
         Send, // message has been sent
 
         /// <summary>
-        /// The hard_bounce.
+        ///     The hard_bounce.
         /// </summary>
         Hard_bounce, // message has hard bounced
 
         /// <summary>
-        /// The soft_bounce.
+        ///     The soft_bounce.
         /// </summary>
         Soft_bounce, // message has soft bounced
 
         /// <summary>
-        /// The open.
+        ///     The open.
         /// </summary>
         Open, // recipient opened a message; will only occur when open tracking is enabled
 
         /// <summary>
-        /// The click.
+        ///     The click.
         /// </summary>
         Click, // recipient clicked a link in a message; will only occur when click tracking is enabled
 
         /// <summary>
-        /// The spam.
+        ///     The spam.
         /// </summary>
         Spam, // recipient marked a message as spam
 
         /// <summary>
-        /// The unsub.
+        ///     The unsub.
         /// </summary>
         Unsub, // recipient unsubscribed
 
         /// <summary>
-        /// The reject.
+        ///     The reject.
         /// </summary>
         Reject, // message was rejected
 
         /// <summary>
-        /// The deferral.
+        ///     The deferral.
         /// </summary>
         Deferral, // message have been deferred
 
         /// <summary>
-        /// The inbound.
+        ///     The inbound.
         /// </summary>
         Inbound // Inbound message, more info at http://help.mandrill.com/categories/20102127-Inbound-Email-Processing
     }
 
     /// <summary>
-    /// The web hook message state.
+    ///     The web hook message state.
     /// </summary>
     public enum WebHookMessageState
     {
         /// <summary>
-        /// The sent.
+        ///     The sent.
         /// </summary>
-        Sent, 
+        Sent,
 
         /// <summary>
-        /// The rejected.
+        ///     The rejected.
         /// </summary>
-        Rejected, 
+        Rejected,
 
         /// <summary>
-        /// The spam.
+        ///     The spam.
         /// </summary>
-        Spam, 
+        Spam,
 
         /// <summary>
-        /// The unsub.
+        ///     The unsub.
         /// </summary>
-        Unsub, 
+        Unsub,
 
         /// <summary>
-        /// The bounced.
+        ///     The bounced.
         /// </summary>
-        Bounced, 
+        Bounced,
 
         /// <summary>
-        /// The soft_bounced.
+        ///     The soft_bounced.
         /// </summary>
         [EnumMember(Value = "soft-bounced")]
-        Soft_bounced, 
+        Soft_bounced,
 
         /// <summary>
-        /// The deferred.
+        ///     The deferred.
         /// </summary>
-        Deferred, 
+        Deferred,
 
         /// <summary>
-        /// The inbound.
+        ///     The inbound.
         /// </summary>
         Inbound
     }
 
     /// <summary>
-    /// The web hook event.
+    ///     The web hook event.
     /// </summary>
     public class WebHookEvent
     {
         #region Public Properties
 
         /// <summary>
-        /// Gets or sets the event.
+        ///     Gets or sets the event.
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
         public WebHookEventType Event { get; set; }
 
         /// <summary>
-        /// Gets or sets the msg.
+        ///     Gets or sets the msg.
         /// </summary>
         public WebHookMessage Msg { get; set; }
 
         /// <summary>
-        /// Gets or sets the ts.
+        ///     Gets or sets the ts.
         /// </summary>
         public uint TS { get; set; }
 
         /// <summary>
-        /// Gets the time stamp.
+        ///     Gets the time stamp.
         /// </summary>
         public DateTime TimeStamp
         {
@@ -169,16 +169,17 @@ namespace Mandrill
         #endregion
 
         // TODO Need to find the time zone for Mandrill time stamps
+
         #region Public Methods and Operators
 
         /// <summary>
-        /// The from unix time.
+        ///     The from unix time.
         /// </summary>
         /// <param name="unixTime">
-        /// The unix time.
+        ///     The unix time.
         /// </param>
         /// <returns>
-        /// The <see cref="DateTime"/>.
+        ///     The <see cref="DateTime" />.
         /// </returns>
         public static DateTime FromUnixTime(long unixTime)
         {
@@ -190,131 +191,131 @@ namespace Mandrill
     }
 
     /// <summary>
-    /// The web hook message.
+    ///     The web hook message.
     /// </summary>
     public class WebHookMessage
     {
         #region Public Properties
 
         /// <summary>
-        /// Gets or sets the attachments.
+        ///     Gets or sets the attachments.
         /// </summary>
         public Dictionary<string, attachment> Attachments { get; set; }
 
         /// <summary>
-        /// Gets or sets the bounce description.
+        ///     Gets or sets the bounce description.
         /// </summary>
         public string BounceDescription { get; set; }
 
         /// <summary>
-        /// Gets or sets the clicks.
+        ///     Gets or sets the clicks.
         /// </summary>
         public List<WebHookClick> Clicks { get; set; }
 
         /// <summary>
-        /// Gets or sets the diag.
+        ///     Gets or sets the diag.
         /// </summary>
         public string Diag { get; set; }
 
         /// <summary>
-        /// Gets or sets the dkim.
+        ///     Gets or sets the dkim.
         /// </summary>
         public WebHookDkim Dkim { get; set; }
 
         /// <summary>
-        /// Gets or sets the email.
+        ///     Gets or sets the email.
         /// </summary>
         public string Email { get; set; }
 
         /// <summary>
-        /// Gets or sets the from email.
+        ///     Gets or sets the from email.
         /// </summary>
         [JsonProperty("from_email")]
         public string FromEmail { get; set; }
 
         /// <summary>
-        /// Gets or sets the from name.
+        ///     Gets or sets the from name.
         /// </summary>
         [JsonProperty("from_name")]
         public string FromName { get; set; }
 
         /// <summary>
-        /// Gets or sets the html.
+        ///     Gets or sets the html.
         /// </summary>
         public string Html { get; set; }
 
         /// <summary>
-        /// Gets or sets the id.
+        ///     Gets or sets the id.
         /// </summary>
         [JsonProperty("_id")]
         public string Id { get; set; }
 
         /// <summary>
-        /// Gets or sets the images.
+        ///     Gets or sets the images.
         /// </summary>
         public Dictionary<string, image> Images { get; set; }
 
         /// <summary>
-        /// Gets or sets the metadata.
+        ///     Gets or sets the metadata.
         /// </summary>
         [JsonConverter(typeof(MetadataConverter))]
         public List<WebHookMetadata> Metadata { get; set; }
 
         /// <summary>
-        /// Gets or sets the opens.
+        ///     Gets or sets the opens.
         /// </summary>
         public List<WebHookOpen> Opens { get; set; }
 
         /// <summary>
-        /// Gets or sets the raw msg.
+        ///     Gets or sets the raw msg.
         /// </summary>
         [JsonProperty("raw_msg ")]
         public string RawMsg { get; set; }
 
         /// <summary>
-        /// Gets or sets the sender.
+        ///     Gets or sets the sender.
         /// </summary>
         public string Sender { get; set; }
 
         /// <summary>
-        /// Gets or sets the smtp events.
+        ///     Gets or sets the smtp events.
         /// </summary>
         [JsonProperty("smtp_events")]
         public List<SmtpEvent> SmtpEvents { get; set; }
 
         /// <summary>
-        /// Gets or sets the spf.
+        ///     Gets or sets the spf.
         /// </summary>
         public WebHookSpf Spf { get; set; }
 
         /// <summary>
-        /// Gets or sets the state.
+        ///     Gets or sets the state.
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
         public WebHookMessageState State { get; set; }
 
         /// <summary>
-        /// Gets or sets the subject.
+        ///     Gets or sets the subject.
         /// </summary>
         public string Subject { get; set; }
 
         /// <summary>
-        /// Gets or sets the ts.
+        ///     Gets or sets the ts.
         /// </summary>
         public uint TS { get; set; }
 
         /// <summary>
-        /// Gets or sets the tags.
+        ///     Gets or sets the tags.
         /// </summary>
         public List<string> Tags { get; set; }
 
         /// <summary>
-        /// Gets or sets the text.
+        ///     Gets or sets the text.
         /// </summary>
         public string Text { get; set; }
 
         /// <summary>
-        /// Gets the time stamp.
+        ///     Gets the time stamp.
         /// </summary>
         public DateTime TimeStamp
         {
@@ -327,20 +328,20 @@ namespace Mandrill
         #endregion
 
         /// <summary>
-        /// The metadata converter.
+        ///     The metadata converter.
         /// </summary>
         private class MetadataConverter : JsonConverter
         {
             #region Public Methods and Operators
 
             /// <summary>
-            /// The can convert.
+            ///     The can convert.
             /// </summary>
             /// <param name="objectType">
-            /// The object type.
+            ///     The object type.
             /// </param>
             /// <returns>
-            /// The <see cref="bool"/>.
+            ///     The <see cref="bool" />.
             /// </returns>
             public override bool CanConvert(Type objectType)
             {
@@ -348,27 +349,27 @@ namespace Mandrill
             }
 
             /// <summary>
-            /// The read json.
+            ///     The read json.
             /// </summary>
             /// <param name="reader">
-            /// The reader.
+            ///     The reader.
             /// </param>
             /// <param name="objectType">
-            /// The object type.
+            ///     The object type.
             /// </param>
             /// <param name="existingValue">
-            /// The existing value.
+            ///     The existing value.
             /// </param>
             /// <param name="serializer">
-            /// The serializer.
+            ///     The serializer.
             /// </param>
             /// <returns>
-            /// The <see cref="object"/>.
+            ///     The <see cref="object" />.
             /// </returns>
             public override object ReadJson(
-                JsonReader reader, 
-                Type objectType, 
-                object existingValue, 
+                JsonReader reader,
+                Type objectType,
+                object existingValue,
                 JsonSerializer serializer)
             {
                 JObject jObject = JObject.Load(reader);
@@ -384,16 +385,16 @@ namespace Mandrill
             }
 
             /// <summary>
-            /// The write json.
+            ///     The write json.
             /// </summary>
             /// <param name="writer">
-            /// The writer.
+            ///     The writer.
             /// </param>
             /// <param name="value">
-            /// The value.
+            ///     The value.
             /// </param>
             /// <param name="serializer">
-            /// The serializer.
+            ///     The serializer.
             /// </param>
             /// <exception cref="NotImplementedException">
             /// </exception>
@@ -407,19 +408,19 @@ namespace Mandrill
     }
 
     /// <summary>
-    /// The web hook open.
+    ///     The web hook open.
     /// </summary>
     public class WebHookOpen
     {
         #region Public Properties
 
         /// <summary>
-        /// Gets or sets the ts.
+        ///     Gets or sets the ts.
         /// </summary>
         public uint TS { get; set; }
 
         /// <summary>
-        /// Gets the time stamp.
+        ///     Gets the time stamp.
         /// </summary>
         public DateTime TimeStamp
         {
@@ -433,19 +434,19 @@ namespace Mandrill
     }
 
     /// <summary>
-    /// The web hook click.
+    ///     The web hook click.
     /// </summary>
     public class WebHookClick
     {
         #region Public Properties
 
         /// <summary>
-        /// Gets or sets the ts.
+        ///     Gets or sets the ts.
         /// </summary>
         public uint TS { get; set; }
 
         /// <summary>
-        /// Gets the time stamp.
+        ///     Gets the time stamp.
         /// </summary>
         public DateTime TimeStamp
         {
@@ -456,7 +457,7 @@ namespace Mandrill
         }
 
         /// <summary>
-        /// Gets or sets the url.
+        ///     Gets or sets the url.
         /// </summary>
         public string Url { get; set; }
 
@@ -464,19 +465,19 @@ namespace Mandrill
     }
 
     /// <summary>
-    /// The web hook metadata.
+    ///     The web hook metadata.
     /// </summary>
     public class WebHookMetadata
     {
         #region Public Properties
 
         /// <summary>
-        /// Gets or sets the key.
+        ///     Gets or sets the key.
         /// </summary>
         public string Key { get; set; }
 
         /// <summary>
-        /// Gets or sets the value.
+        ///     Gets or sets the value.
         /// </summary>
         public string Value { get; set; }
 
@@ -484,19 +485,19 @@ namespace Mandrill
     }
 
     /// <summary>
-    /// The web hook dkim.
+    ///     The web hook dkim.
     /// </summary>
     public class WebHookDkim
     {
         #region Public Properties
 
         /// <summary>
-        /// Gets or sets a value indicating whether signed.
+        ///     Gets or sets a value indicating whether signed.
         /// </summary>
         public bool Signed { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether valid.
+        ///     Gets or sets a value indicating whether valid.
         /// </summary>
         public bool Valid { get; set; }
 
@@ -504,19 +505,19 @@ namespace Mandrill
     }
 
     /// <summary>
-    /// The web hook spf.
+    ///     The web hook spf.
     /// </summary>
     public class WebHookSpf
     {
         #region Public Properties
 
         /// <summary>
-        /// Gets or sets the detail.
+        ///     Gets or sets the detail.
         /// </summary>
         public string Detail { get; set; }
 
         /// <summary>
-        /// Gets or sets the result.
+        ///     Gets or sets the result.
         /// </summary>
         public string Result { get; set; }
 
