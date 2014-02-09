@@ -1,4 +1,4 @@
-# Mandrill Dot Net [![Build Status](http://teamcity.codebetter.com/app/rest/builds/buildType:\(id:bt1135\)/statusIcon)](http://teamcity.codebetter.com/project.html?projectId=project321&guest=1)
+# Mandrill Dot Net [![Build Status](http://teamcity.codebetter.com/app/rest/builds/buildType:\(id:bt1136\)/statusIcon)](http://teamcity.codebetter.com/project.html?projectId=project321&guest=1)
 
 ## NuGet
 

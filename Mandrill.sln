@@ -12,10 +12,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{45609E63-CCF9-4A89-BAFE-0BE96C303BF4}"
 	ProjectSection(SolutionItems) = preProject
 		LICENSE.txt = LICENSE.txt
-		rakefile.config.rb = rakefile.config.rb
-		Rakefile.rb = Rakefile.rb
 		README.md = README.md
-		VERSION = VERSION
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mandrill", "src\Mandrill\Mandrill.csproj", "{0563EE3C-A65E-4D55-9302-7663C0FE77F7}"
