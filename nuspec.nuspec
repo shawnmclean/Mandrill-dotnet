@@ -18,8 +18,8 @@
         </dependencies>
     </metadata>
     <files>
-        <file src="src\Mandrill\bin\Release\Mandrill.dll" target="lib\net40\Mandrill.dll" />
-        <file src="src\Mandrill\bin\Release\Mandrill.pdb" target="lib\net40\Mandrill.pdb" />
-        <file src="src\Mandrill\bin\Release\Mandrill.XML" target="lib\net40\Mandrill.XML" />
+        <file src="out\Mandrill.dll" target="lib\net40\Mandrill.dll" />
+        <file src="out\Mandrill.pdb" target="lib\net40\Mandrill.pdb" />
+        <file src="out\Mandrill.XML" target="lib\net40\Mandrill.XML" />
     </files>
 </package>
