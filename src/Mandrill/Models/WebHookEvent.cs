@@ -205,6 +205,7 @@ namespace Mandrill
         /// <summary>
         ///     Gets or sets the bounce description.
         /// </summary>
+				[JsonProperty("bounce_description")]
         public string BounceDescription { get; set; }
 
         /// <summary>
