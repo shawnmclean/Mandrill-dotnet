@@ -48,6 +48,23 @@ namespace Mandrill.Tests.IntegrationTests
         }
 
         [Test]
+        public void Can_Return_Individial_Template()
+        {
+			// Setup
+			var apiKey = ConfigurationManager.AppSettings["APIKey"];
+			var templateName = ConfigurationManager.AppSettings["TemplateExample"];
+			
+			// Exercise
+			var api = new MandrillApi(apiKey);
+			var result = api.TemplateInfo(templateName);
+			
+			var expected = "<span mc:edit=\"model1\"></span>";
+			
+			// Verify
+			Assert.AreEqual(expected, result.code);
+        }
+
+        [Test]
         public void List_Templates_Returns_Correct_Count()
         {
             // Setup

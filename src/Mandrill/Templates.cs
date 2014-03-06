@@ -234,6 +234,44 @@ namespace Mandrill
                     TaskContinuationOptions.ExecuteSynchronously);
         }
 
+		/// <summary>
+		///     Fetch a specific template.
+		/// </summary>
+		/// <param name="name">
+		///     The unique name of the template.
+		/// </param>
+		/// <returns>
+		///     A <see cref="TemplateInfo"/> object.
+		/// </returns>
+		public TemplateInfo TemplateInfo(string name)
+		{
+			return TemplateInfoAsync(name).Result;
+		}
+
+		/// <summary>
+		///     Fetch a specific template.
+		/// </summary>
+		/// <param name="name">
+		///     The unique name of the template.
+		/// </param>
+		/// <returns>
+		///     The <see cref="Task" />.
+		/// </returns>
+		public Task<TemplateInfo> TemplateInfoAsync(string name)
+        {
+			const string path = "/templates/info.json";
+
+			dynamic payload = new ExpandoObject();
+
+			payload.name = name;
+
+			Task<IRestResponse> post = this.PostAsync(path, payload);
+
+			return post.ContinueWith(
+				p => JSON.Parse<TemplateInfo>(p.Result.Content),
+                TaskContinuationOptions.ExecuteSynchronously);
+        }
+
         /// <summary>
         ///     The render.
         /// </summary>
