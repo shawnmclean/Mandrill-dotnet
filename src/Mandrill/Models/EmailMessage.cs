@@ -295,6 +295,11 @@ namespace Mandrill
         /// </summary>
         public bool url_strip_qs { get; set; }
 
+        /// <summary>
+        ///     Gets or sets a value indicating whether inline_css.
+        /// </summary>
+        public bool inline_css { get; set; }
+
         #endregion
 
         #region Public Methods and Operators
