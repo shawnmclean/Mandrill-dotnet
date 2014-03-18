@@ -80,5 +80,56 @@ namespace Mandrill.Tests.IntegrationTests
             // Verify
             Assert.AreEqual(expected, result.Count);
         }
+
+        [Test]
+        public void Can_Update_Template()
+        {
+            // Setup
+            var apiKey = ConfigurationManager.AppSettings["APIKey"];
+            var templateName = ConfigurationManager.AppSettings["TemplateExample"];
+            const string original = "<span mc:edit=\"model1\"></span>";
+            const string modified = "<span mc:edit=\"model2\"></span>";
+
+            // Exercise
+            var api = new MandrillApi(apiKey);
+            var result = api.UpdateTemplate(templateName,
+                "test@test.invalid",
+                "Test",
+                "Template test",
+                modified,
+                "*|model1|*",
+                true,
+                null);
+            var result2 = api.UpdateTemplate(templateName,
+                "test@test.invalid",
+                "Test",
+                "Template test",
+                original,
+                "*|model1|*",
+                true,
+                null);
+
+            // Verify
+            Assert.AreEqual(modified, result.code);
+            Assert.AreEqual(original, result2.code);
+        }
+
+        [Test]
+        public void Can_Create_And_Delete_Template()
+        {
+            // Setup
+            var apiKey = ConfigurationManager.AppSettings["APIKey"];
+            var templateName = ConfigurationManager.AppSettings["TemplateExample"] + "_temp";
+            const string code = "Foobar";
+
+            // Exercise
+            var api = new MandrillApi(apiKey);
+            var result = api.AddTemplate(templateName, "test@test.invalid", "Test", "Template test", code, code, true);
+            var result2 = api.DeleteTemplate(templateName);
+
+            // Verify
+            Assert.AreEqual(code, result.code);
+            Assert.AreEqual(code, result2.code);
+        }
     }
 }
