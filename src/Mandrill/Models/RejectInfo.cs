@@ -54,6 +54,28 @@ namespace Mandrill
     }
 
     /// <summary>
+    ///     The reject add result.
+    /// </summary>
+    public class RejectAddResult
+    {
+        #region Public Properties
+
+        /// <summary>
+        ///     Gets or sets a value indicating whether added.
+        /// </summary>
+        [JsonProperty("added")]
+        public bool Added { get; set; }
+
+        /// <summary>
+        ///     Gets or sets the email.
+        /// </summary>
+        [JsonProperty("email")]
+        public string Email { get; set; }
+
+        #endregion
+    }
+
+    /// <summary>
     ///     The reject delete result.
     /// </summary>
     public class RejectDeleteResult

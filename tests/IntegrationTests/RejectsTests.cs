@@ -26,6 +26,36 @@ namespace Mandrill.Tests.IntegrationTests
         }
 
         [Test]
+        public void Add_Reject_Throws_Exception_On_Invalid_ApiKey()
+        {
+            // Setup
+            var apiKey = " ";
+            string reject = "test@test.com";
+
+            // Exercise
+            var api = new MandrillApi(apiKey);
+
+            // Verify
+            var ex = Assert.Throws<MandrillException>(() => api.AddReject(reject));
+            Assert.That(ex.Error.name, Is.EqualTo("Invalid_Key"));
+        }
+
+        [Test]
+        public void Add_Reject_Works()
+        {
+            // Setup
+            var apiKey = ConfigurationManager.AppSettings["APIKey"];
+            string reject = ConfigurationManager.AppSettings["RejectAdd"];
+
+            // Exercise
+            var api = new MandrillApi(apiKey);
+
+            //Verify
+            var actual =  api.AddReject(reject);
+            Assert.AreEqual(reject, actual.Email);
+        }
+
+        [Test]
         public void Delete_Reject_Throws_Exception_On_Invalid_ApiKey()
         {
             // Setup
