@@ -234,6 +234,11 @@ namespace Mandrill
         public IEnumerable<rcpt_metadata> recipient_metadata { get; set; }
 
         /// <summary>
+        ///     Gets or sets the return_path_domain.
+        /// </summary>
+        public string return_path_domain { get; set; }
+
+        /// <summary>
         ///     Gets or sets the signing_domain.
         /// </summary>
         /// <remarks>
