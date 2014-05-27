@@ -58,10 +58,11 @@ Asychronous:
    1. List
    2. Delete
  4. Templates
-   1. Render
-   2. Add
-   3. Update
-	 4. Info
+   1. List
+   2. Render
+   3. Add
+   4. Update
+	 5. Info
  5. Senders
    1. List
 	
@@ -78,7 +79,8 @@ set your own Api Key in the test project. Tests can be executed from rake: `rake
 tool.
 
 You will also need to create a test template in your Mandrill account. The template's html content must be set to '<span mc:edit="model1"></span>'.
-The template's name must match the TemplateExample setting in the AppSettings.config; 'Test' by default.
+The template's name must match the TemplateExample setting in the AppSettings.config; 'Test' by default. In addition, the template's label must
+match the TemplateLabel (default 'test').
 
 #### Contributors
 
