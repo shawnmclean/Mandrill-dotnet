@@ -521,7 +521,7 @@ namespace Mandrill
         /// <returns>
         ///     The <see cref="List{T}" />.
         /// </returns>
-        List<TemplateInfo> ListTemplates();
+        List<TemplateInfo> ListTemplates(string label = "");
 
         /// <summary>
         ///     The list templates async.
@@ -529,7 +529,7 @@ namespace Mandrill
         /// <returns>
         ///     The <see cref="Task" />.
         /// </returns>
-        Task<List<TemplateInfo>> ListTemplatesAsync();
+        Task<List<TemplateInfo>> ListTemplatesAsync(string label = "");
 
         /// <summary>
         ///     The render.

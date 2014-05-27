@@ -82,6 +82,24 @@ namespace Mandrill.Tests.IntegrationTests
         }
 
         [Test]
+        public void List_Templates_With_Label_Returns_Correct_Count()
+        {
+            // Setup
+            var apiKey = ConfigurationManager.AppSettings["APIKey"];
+            var templateCount = int.Parse(ConfigurationManager.AppSettings["TemplateCountWithLabel"]);
+            var label = ConfigurationManager.AppSettings["TemplateLabel"];            
+
+            // Exercise
+            var api = new MandrillApi(apiKey);
+            var result = api.ListTemplates(label);
+
+            var expected = templateCount;
+
+            // Verify
+            Assert.AreEqual(expected, result.Count);
+        }
+
+        [Test]
         public void Can_Update_Template()
         {
             // Setup
