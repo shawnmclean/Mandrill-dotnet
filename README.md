@@ -78,9 +78,9 @@ For running tests, ensure to rename `AppSettings.example.config` to `AppSettings
 set your own Api Key in the test project. Tests can be executed from rake: `rake test` or from any nunit test runner
 tool.
 
-You will also need to create a test template in your Mandrill account. The template's html content must be set to '<span mc:edit="model1"></span>'.
-The template's name must match the TemplateExample setting in the AppSettings.config; 'Test' by default. In addition, the template's label must
-match the TemplateLabel (default 'test').
+You will also need to create a test template in your Mandrill account. The template's html content must be set to ```<span mc:edit="model1"></span>```.
+The template's name must match the `TemplateExample` setting in the `AppSettings.config`; `Test` by default. In addition, the template's label must
+match the `TemplateLabel` (default `test`).
 
 #### Contributors
 

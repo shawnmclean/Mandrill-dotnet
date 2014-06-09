@@ -99,86 +99,54 @@ namespace Mandrill
 
         #endregion
 
-        // CODEPATH IS DISABLED (USES EXECUTEASYNC). EXECUTE ASYNC HAS A BUG
-        // public Task<IRestResponse> PostAsync(string path, dynamic data)
-        // {
-        // TaskCompletionSource<IRestResponse> tcs = new TaskCompletionSource<IRestResponse>();
-
-        // var request = new RestRequest(path, Method.POST);
-        // request.RequestFormat = DataFormat.Json;
-
-        // if (data == null)
-        // {
-        // data = new ExpandoObject();
-        // }
-
-        // data.key = ApiKey;
-
-        // request.AddBody(data);
-        // client.ExecuteAsync(request, (response) =>
-        // {
-        // if (response.StatusCode != System.Net.HttpStatusCode.OK)
-        // {
-        // var error = JSON.Parse<ErrorResponse>(response.Content);
-        // var ex = new MandrillException(error, string.Format("Post failed {0}", path));
-        // tcs.SetException(ex);
-        // }
-        // else
-        // {
-        // tcs.SetResult(response);
-        // }
-        // });
-
-        // return tcs.Task;
-        // }
-
         #region Public Methods and Operators
 
         /// <summary>
-        ///     PostAsync (uses synchronous function right now because ExecuteAsync has a bug)
+        ///     The post async.
         /// </summary>
         /// <param name="path">
+        ///     The path.
         /// </param>
         /// <param name="data">
+        ///     The data.
         /// </param>
         /// <returns>
         ///     The <see cref="Task" />.
         /// </returns>
         public Task<IRestResponse> PostAsync(string path, dynamic data)
         {
-            return Task.Factory.StartNew(
-                () =>
-                    {
-                        var request = new RestRequest(path, Method.POST);
-                        request.RequestFormat = DataFormat.Json;
+            var tcs = new TaskCompletionSource<IRestResponse>();
+            var request = new RestRequest(path, Method.POST) { RequestFormat = DataFormat.Json };
 
-                        if (data == null)
-                        {
-                            data = new ExpandoObject();
-                        }
+            if (data == null)
+            {
+                data = new ExpandoObject();
+            }
 
-                        data.key = this.ApiKey;
+            data.key = ApiKey;
 
-                        request.AddBody(data);
+            request.AddBody(data);
+            client.ExecuteAsync(request, (response) =>
+            {
+                // if internal server error, then mandrill should return a custom error.
+                if (response.StatusCode == HttpStatusCode.InternalServerError)
+                {
+                    var error = JSON.Parse<ErrorResponse>(response.Content);
+                    var ex = new MandrillException(error, string.Format("Post failed {0}", path));
+                    tcs.SetException(ex);
+                }
+                else if (response.StatusCode != HttpStatusCode.OK)
+                {
+                    // used to throw errors not returned from the server, such as no response, etc.
+                    tcs.SetException(response.ErrorException);
+                }
+                else
+                {
+                    tcs.SetResult(response);
+                }
+            });
 
-                        IRestResponse response = this.client.Execute(request);
-
-                        // if internal server error, then mandrill should return a custom error.
-                        if (response.StatusCode == HttpStatusCode.InternalServerError)
-                        {
-                            var error = JSON.Parse<ErrorResponse>(response.Content);
-                            var ex = new MandrillException(error, string.Format("Post failed {0}", path));
-                            throw ex;
-                        }
-
-                        if (response.StatusCode != HttpStatusCode.OK)
-                        {
-                            // used to throw errors not returned from the server, such as no response, etc.
-                            throw response.ErrorException;
-                        }
-
-                        return response;
-                    });
+            return tcs.Task;
         }
 
         /// <summary>
