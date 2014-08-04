@@ -200,7 +200,7 @@ namespace Mandrill
         /// <summary>
         ///     Gets or sets the attachments.
         /// </summary>
-        public Dictionary<string, attachment> Attachments { get; set; }
+        public Dictionary<string, email_attachment> Attachments { get; set; }
 
         /// <summary>
         ///     Gets or sets the bounce description.
