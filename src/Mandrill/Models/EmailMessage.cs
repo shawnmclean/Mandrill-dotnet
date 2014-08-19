@@ -89,7 +89,7 @@ namespace Mandrill
     /// <summary>
     ///     The attachment.
     /// </summary>
-    public struct attachment
+    public struct email_attachment
     {
         #region Fields
 
@@ -146,7 +146,7 @@ namespace Mandrill
         /// <summary>
         ///     Gets or sets the attachments.
         /// </summary>
-        public IEnumerable<attachment> attachments { get; set; }
+        public IEnumerable<email_attachment> attachments { get; set; }
 
         /// <summary>
         ///     Gets or sets a value indicating whether auto_text.
