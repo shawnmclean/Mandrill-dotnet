@@ -1,4 +1,8 @@
-# Mandrill Dot Net [![Build Status](http://teamcity.codebetter.com/app/rest/builds/buildType:\(id:bt1136\)/statusIcon)](http://teamcity.codebetter.com/project.html?projectId=project415&guest=1)
+[![NuGet](http://img.shields.io/nuget/v/Mandrill.svg?style=flat-square)](https://www.nuget.org/packages/Mandrill/)
+[![Downloads](http://img.shields.io/nuget/dt/Mandrill.svg?style=flat-square)](https://www.nuget.org/packages/Mandrill/)
+[![Build Status](http://img.shields.io/teamcity/codebetter/bt1136.svg?style=flat-square)](http://teamcity.codebetter.com/project.html?projectId=project415&guest=1)
+
+# Mandrill Dot Net 
 
 ## NuGet
 
