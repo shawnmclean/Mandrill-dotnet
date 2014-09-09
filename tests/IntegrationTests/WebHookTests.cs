@@ -1,8 +1,5 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using NUnit.Framework;
 
 namespace Mandrill.Tests.IntegrationTests
@@ -27,7 +24,9 @@ namespace Mandrill.Tests.IntegrationTests
  ""state"":""sent"",
  ""clicks"":[{""ts"":1355773922,""url"":""http:\/\/www.GitHub.com""}],
  ""_id"":""fc8071b3575e44228d5dd7059349ba10"",
- ""sender"":""ValidFrom@From.com""}
+ ""sender"":""ValidFrom@From.com"",
+ ""template"":""validTemplate"",
+ ""subaccount"":""validSubAccount""}
 },{
 ""event"":""send"",
 ""ts"":1355340679,
@@ -41,7 +40,9 @@ namespace Mandrill.Tests.IntegrationTests
  ""clicks"":[],
  ""state"":""sent"",
  ""_id"":""7572c81599d945cfb8dae3a8527f8232"",
- ""sender"":""ValidFrom@From.com""}
+ ""sender"":""ValidFrom@From.com"",
+ ""template"":""validTemplate"",
+ ""subaccount"":""validSubAccount""}
 }]";
 
 			var eventTimeDate = new DateTime (2012, 12, 12, 19, 31, 19);
@@ -61,7 +62,9 @@ namespace Mandrill.Tests.IntegrationTests
 
 			var message = e.Msg;
 
-			Assert.AreEqual (WebHookMessageState.Sent, message.State);
+			Assert.AreEqual("validSubAccount", message.SubAccount);
+			Assert.AreEqual("validTemplate", message.Template);
+			Assert.AreEqual(WebHookMessageState.Sent, message.State);
 			Assert.AreEqual (eventTimeDate, message.TimeStamp);
 			Assert.AreEqual ("Important Stuff", message.Subject);
 			Assert.AreEqual ("ValidFrom@From.com", message.Sender);
