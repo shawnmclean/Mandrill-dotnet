@@ -296,6 +296,11 @@ namespace Mandrill
         public WebHookMessageState State { get; set; }
 
         /// <summary>
+        ///     Gets or sets the sub account
+        /// </summary>             
+        public string SubAccount { get; set; }
+
+        /// <summary>
         ///     Gets or sets the subject.
         /// </summary>
         public string Subject { get; set; }
@@ -309,6 +314,11 @@ namespace Mandrill
         ///     Gets or sets the tags.
         /// </summary>
         public List<string> Tags { get; set; }
+
+        /// <summary>
+        ///     Gets or sets the template.
+        /// </summary>
+        public string Template { get; set; }
 
         /// <summary>
         ///     Gets or sets the text.
