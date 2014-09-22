@@ -831,6 +831,42 @@ namespace Mandrill
         Task<UserInfo> UserInfoAsync();
 
         /// <summary>
+        ///     The add reject.
+        /// </summary>
+        /// <param name="email">
+        ///     The email address to block
+        /// </param>
+        /// <param name="comment">
+        ///     An optional comment describing the rejection
+        /// </param>
+        /// <param name="subaccount">
+        ///     An optional unique identifier for the subaccount to limit the blacklist entry
+        /// </param>
+        /// <returns>
+        ///     The <see cref="RejectAddResult" />.
+        /// </returns>
+        /// <exception cref="Exception">
+        /// </exception>
+        RejectAddResult AddReject(string email, string comment = "", string subaccount = "");
+
+        /// <summary>
+        ///     The add reject async.
+        /// </summary>
+        /// <param name="email">
+        ///     The email address to block
+        /// </param>
+        /// <param name="comment">
+        ///     An optional comment describing the rejection
+        /// </param>
+        /// <param name="subaccount">
+        ///     An optional unique identifier for the subaccount to limit the blacklist entry
+        /// </param>
+        /// <returns>
+        ///     The <see cref="Task" />.
+        /// </returns>
+        Task<RejectAddResult> AddRejectAsync(string email, string comment = "", string subaccount = "");
+
+        /// <summary>
         ///     The delete reject.
         /// </summary>
         /// <param name="email">
