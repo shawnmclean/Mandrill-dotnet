@@ -149,9 +149,14 @@ namespace Mandrill
         public IEnumerable<email_attachment> attachments { get; set; }
 
         /// <summary>
+        ///     Gets or sets a value indicating whether auto_html.
+        /// </summary>
+        public bool? auto_html { get; set; }
+
+        /// <summary>
         ///     Gets or sets a value indicating whether auto_text.
         /// </summary>
-        public bool auto_text { get; set; }
+        public bool? auto_text { get; set; }
 
         /// <summary>
         ///     Gets or sets the bcc_address.
@@ -175,6 +180,7 @@ namespace Mandrill
 
         /// <summary>
         ///     Gets or sets the google_analytics_campaign.
+        ///     TODO the api docs state that this can be a string or an array
         /// </summary>
         public string google_analytics_campaign { get; set; }
 
@@ -199,14 +205,19 @@ namespace Mandrill
         public IEnumerable<image> images { get; set; }
 
         /// <summary>
-        ///     Gets or sets a value indicating whether important.
+        ///     Get s or sets a value indicating whether important.
         /// </summary>
-        public bool important { get; set; }
+        public bool? important { get; set; }
+
+        /// <summary>
+        ///     Gets or sets a value indicating whether inline_css.
+        /// </summary>
+        public bool? inline_css { get; set; }
 
         /// <summary>
         ///     Gets or sets a value indicating whether merge.
         /// </summary>
-        public bool merge { get; set; }
+        public bool? merge { get; set; }
 
         /// <summary>
         ///     Gets the merge_vars.
@@ -221,7 +232,7 @@ namespace Mandrill
         /// <summary>
         ///     Gets or sets a value indicating whether preserve_recipients.
         /// </summary>
-        public bool preserve_recipients { get; set; }
+        public bool? preserve_recipients { get; set; }
 
         /// <summary>
         ///     Gets or sets the raw_message.
@@ -277,12 +288,12 @@ namespace Mandrill
         /// <summary>
         ///     Gets or sets a value indicating whether track_clicks.
         /// </summary>
-        public bool track_clicks { get; set; }
+        public bool? track_clicks { get; set; }
 
         /// <summary>
         ///     Gets or sets a value indicating whether track_opens.
         /// </summary>
-        public bool track_opens { get; set; }
+        public bool? track_opens { get; set; }
 
         /// <summary>
         ///     Gets or sets the tracking_domain.
@@ -298,12 +309,12 @@ namespace Mandrill
         /// <summary>
         ///     Gets or sets a value indicating whether url_strip_qs.
         /// </summary>
-        public bool url_strip_qs { get; set; }
+        public bool? url_strip_qs { get; set; }
 
         /// <summary>
-        ///     Gets or sets a value indicating whether inline_css.
+        ///     Gets or sets a value indicating whether view_content_link 
         /// </summary>
-        public bool inline_css { get; set; }
+        public bool? view_content_link { get; set; }
 
         #endregion
 
