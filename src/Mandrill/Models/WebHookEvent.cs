@@ -411,7 +411,26 @@ namespace Mandrill
             /// </exception>
             public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
             {
-                throw new NotImplementedException();
+                if (value == null) return;
+
+                //generate JSON for WebHookMetadata
+                var webHookMetadata = value as WebHookMetadata;
+
+                if (webHookMetadata == null)
+                {
+                    writer.WriteNull();
+                    return;
+                }
+
+                writer.WriteStartObject();
+
+                writer.WritePropertyName("Key");
+                serializer.Serialize(writer, webHookMetadata.Key);
+
+                writer.WritePropertyName("Value");
+                serializer.Serialize(writer, webHookMetadata.Value);
+
+                writer.WriteEndObject();
             }
 
             #endregion
