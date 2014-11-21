@@ -292,7 +292,7 @@ namespace Mandrill
         {
             get
             {
-                return new EmailAddress { name = this.from_name, email = this.from_email, type = "from" };
+                return new EmailAddress { name = this.from_name, email = this.from_email };
             }
 
             set
