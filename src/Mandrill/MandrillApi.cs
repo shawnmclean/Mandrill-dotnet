@@ -39,16 +39,16 @@ namespace Mandrill
         /// <param name="apiKey">
         ///     The API Key recieved from MandrillApp
         /// </param>
-        /// <param name="useSsl">
+        /// <param name="useHttps">
         /// </param>
         /// <param name="timeout">
         ///     Timeout in milliseconds to use for requests.
         /// </param>
-        public MandrillApi(string apiKey, bool useSsl = true, int timeout = 0)
+        public MandrillApi(string apiKey, bool useHttps = true, int timeout = 0)
         {
             this.ApiKey = apiKey;
 
-            if (useSsl)
+            if (useHttps)
             {
                 this.client = new RestClient(Configuration.BASE_SECURE_URL);
             }
