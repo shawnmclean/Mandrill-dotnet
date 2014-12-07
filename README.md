@@ -98,3 +98,7 @@ match the `TemplateLabel` (default `test`).
 
 ## Change Log
 
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/shawnmclean/mandrill-dotnet/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
