@@ -22,12 +22,12 @@ namespace Mandrill
         /// <summary>
         /// Uses the MailChimp template syntax.
         /// </summary>
-        MailChimp = 0,
+        mailchimp = 0,
 
         /// <summary>
         /// Uses the handlebars template syntax.
         /// </summary>
-        Handlebars
+        handlebars
     }
 
     /// <summary>
