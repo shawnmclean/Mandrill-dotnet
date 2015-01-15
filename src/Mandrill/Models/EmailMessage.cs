@@ -15,6 +15,22 @@ namespace Mandrill
     using RestSharp;
 
     /// <summary>
+    /// Defines the template syntax.
+    /// </summary>
+    public enum TemplateSyntax
+    {
+        /// <summary>
+        /// Uses the MailChimp template syntax.
+        /// </summary>
+        MailChimp = 0,
+
+        /// <summary>
+        /// Uses the handlebars template syntax.
+        /// </summary>
+        Handlebars
+    }
+
+    /// <summary>
     ///     The merge_var.
     /// </summary>
     public struct merge_var
@@ -269,6 +285,11 @@ namespace Mandrill
         ///     Gets or sets the subject.
         /// </summary>
         public string subject { get; set; }
+
+        /// <summary>
+        ///     Gets or sets the merge language.
+        /// </summary>
+        public TemplateSyntax merge_language { get; set; }
 
         /// <summary>
         ///     Gets or sets the tags.
