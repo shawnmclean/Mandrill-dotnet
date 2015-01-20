@@ -17,17 +17,17 @@ namespace Mandrill
     /// <summary>
     /// Defines the template syntax.
     /// </summary>
-    public enum TemplateSyntax
+    public static class TemplateSyntax
     {
         /// <summary>
         /// Uses the MailChimp template syntax.
         /// </summary>
-        mailchimp = 0,
+        public const string mailchimp = "mailchimp";
 
         /// <summary>
         /// Uses the handlebars template syntax.
         /// </summary>
-        handlebars
+        public const string handlebars = "handlebars";
     }
 
     /// <summary>
@@ -289,7 +289,7 @@ namespace Mandrill
         /// <summary>
         ///     Gets or sets the merge language.
         /// </summary>
-        public TemplateSyntax merge_language { get; set; }
+        public string merge_language { get; set; }
 
         /// <summary>
         ///     Gets or sets the tags.
