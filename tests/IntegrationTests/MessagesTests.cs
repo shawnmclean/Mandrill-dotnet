@@ -15,7 +15,7 @@ namespace Mandrill.Tests.IntegrationTests
     [TestFixture]
     public class MessagesTests
     {
-        private bool isPaidAccount;
+        private bool _isPaidAccount;
         public static bool Validator (object sender, X509Certificate certificate, X509Chain chain, 
                                       SslPolicyErrors sslPolicyErrors) {
             return true;
@@ -26,7 +26,7 @@ namespace Mandrill.Tests.IntegrationTests
             if (ConfigurationManager.AppSettings["IgnoreInvalidSSLCertificate"] == "True")
                 ServicePointManager.ServerCertificateValidationCallback = Validator;
 
-            isPaidAccount = ConfigurationManager.AppSettings["IsPaidAccount"] == "True";
+            _isPaidAccount = ConfigurationManager.AppSettings["IsPaidAccount"] == "True";
         }
 
         [Test]
@@ -146,7 +146,7 @@ namespace Mandrill.Tests.IntegrationTests
         [Test]
         public void Message_With_Send_At_Is_Scheduled_For_Paid_Account()
         {
-            if(!isPaidAccount)
+            if(!_isPaidAccount)
                 Assert.Ignore("Not a paid account");
 
             // Setup
@@ -179,7 +179,7 @@ namespace Mandrill.Tests.IntegrationTests
         [Test]
         public void Scheduled_Message_Is_Rescheduled_For_Paid_Account()
         {
-            if (!isPaidAccount)
+            if (!_isPaidAccount)
                 Assert.Ignore("Not a paid account");
             // Setup
             var apiKey = ConfigurationManager.AppSettings["APIKey"];
@@ -213,7 +213,7 @@ namespace Mandrill.Tests.IntegrationTests
         [Test]
         public void Scheduled_Message_Is_Canceled_For_Paid_Account()
         {
-            if (!isPaidAccount)
+            if (!_isPaidAccount)
                 Assert.Ignore("Not a paid account");
             // Setup
             var apiKey = ConfigurationManager.AppSettings["APIKey"];
