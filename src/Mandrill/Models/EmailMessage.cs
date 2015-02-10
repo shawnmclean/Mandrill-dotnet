@@ -256,6 +256,11 @@ namespace Mandrill
         public string raw_message { get; set; }
 
         /// <summary>
+        ///     Gets or sets the string array to.
+        /// </summary>
+        public IEnumerable<string> raw_to { get; set; }
+
+        /// <summary>
         ///     Gets or sets the recipient_metadata.
         /// </summary>
         public IEnumerable<rcpt_metadata> recipient_metadata { get; set; }
