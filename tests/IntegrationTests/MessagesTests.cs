@@ -134,7 +134,8 @@ namespace Mandrill.Tests.IntegrationTests
                                                      new List<EmailAddress> { new EmailAddress { email = toEmail, name = "" } },
                                                  from_email = fromEmail,
                                                  from_name = "",
-                                                 raw_message = message
+                                                 raw_message = message,
+                                                 raw_to = new List<string> { toEmail }
                                              });
             // Verify
             Assert.AreEqual(1, result.Count);

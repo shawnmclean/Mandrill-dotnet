@@ -489,7 +489,7 @@ namespace Mandrill
         }
 
         /// <summary>
-        ///     Send a new raw transactional message through Mandrill using a template
+        ///     Send a new raw message through Mandrill.
         /// </summary>
         /// <param name="message">
         ///     The message.
@@ -513,7 +513,7 @@ namespace Mandrill
                 payload.send_at = send_at.Value.ToString(Configuration.DATE_TIME_FORMAT_STRING);
             }
 
-            // payload.to = message.to;  // Does not work as advertised, silently fails with {"email":"Array","status":"invalid"}
+            payload.to = message.raw_to;
             Task<IRestResponse> post = this.PostAsync(path, payload);
             return post.ContinueWith(
                 p => { return JSON.Parse<List<EmailResult>>(p.Result.Content); },
