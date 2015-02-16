@@ -27,7 +27,7 @@ namespace Mandrill
         /// <summary>
         ///     the main rest client for use throughout the whole app.
         /// </summary>
-        private readonly RestClient client;
+        private readonly RestClient _client;
 
         #endregion
 
@@ -50,15 +50,15 @@ namespace Mandrill
 
             if (useHttps)
             {
-                this.client = new RestClient(Configuration.BASE_SECURE_URL);
+                this._client = new RestClient(Configuration.BASE_SECURE_URL);
             }
             else
             {
-                this.client = new RestClient(Configuration.BASE_URL);
+                this._client = new RestClient(Configuration.BASE_URL);
             }
 
-            this.client.AddHandler("application/json", new DynamicJsonDeserializer());
-            this.client.Timeout = timeout;
+            this._client.AddHandler("application/json", new DynamicJsonDeserializer());
+            this._client.Timeout = timeout;
         }
 
         #endregion
@@ -74,11 +74,11 @@ namespace Mandrill
         {
             get
             {
-                return this.client.Proxy;
+                return this._client.Proxy;
             }
             set
             {
-                this.client.Proxy = value;
+                this._client.Proxy = value;
             }
         }
 
@@ -89,11 +89,11 @@ namespace Mandrill
         {
             get
             {
-                return this.client.UserAgent;
+                return this._client.UserAgent;
             }
             set
             {
-                this.client.UserAgent = value;
+                this._client.UserAgent = value;
             }
         }
 
@@ -126,7 +126,7 @@ namespace Mandrill
             data.key = ApiKey;
 
             request.AddBody(data);
-            client.ExecuteAsync(request, (response) =>
+            _client.ExecuteAsync(request, (response) =>
             {
                 // if internal server error, then mandrill should return a custom error.
                 if (response.StatusCode == HttpStatusCode.InternalServerError)

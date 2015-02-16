@@ -96,7 +96,7 @@ namespace Mandrill
         /// <returns>
         ///     The <see cref="ScheduledEmailResult" />.
         /// </returns>
-        ScheduledEmailResult RescheduleMessage(string id, DateTime send_at);
+        ScheduledEmailResult RescheduleMessage(string id, DateTime? send_at);
 
         /// <summary>
         ///     Send a new search instruction through Mandrill.
@@ -141,7 +141,7 @@ namespace Mandrill
             string subject,
             string content,
             EmailAddress from,
-            DateTime send_at = new DateTime());
+            DateTime? send_at);
 
         /// <summary>
         ///     Send a new transactional message through Mandrill using a template
@@ -168,7 +168,7 @@ namespace Mandrill
             EmailAddress from,
             string templateName,
             IEnumerable<TemplateContent> templateContents,
-            DateTime send_at = new DateTime());
+            DateTime? send_at);
 
         /// <summary>
         ///     The send message.
@@ -182,7 +182,7 @@ namespace Mandrill
         /// <returns>
         ///     The <see cref="List{T}" />.
         /// </returns>
-        List<EmailResult> SendMessage(EmailMessage message, DateTime send_at = new DateTime());
+        List<EmailResult> SendMessage(EmailMessage message, DateTime? send_at);
 
         /// <summary>
         ///     Send a new transactional message through Mandrill using a template
@@ -204,7 +204,7 @@ namespace Mandrill
             EmailMessage message,
             string templateName,
             IEnumerable<TemplateContent> templateContents,
-            DateTime send_at = new DateTime());
+            DateTime? send_at);
 
         /// <summary>
         ///     Send a new transactional message through Mandrill.
@@ -228,7 +228,7 @@ namespace Mandrill
             string subject,
             string content,
             EmailAddress from,
-            DateTime send_at = new DateTime());
+            DateTime? send_at);
 
         /// <summary>
         ///     Send a new transactional message through Mandrill using a template
@@ -255,7 +255,7 @@ namespace Mandrill
             EmailAddress from,
             string templateName,
             IEnumerable<TemplateContent> templateContents,
-            DateTime send_at = new DateTime());
+            DateTime? send_at);
 
         /// <summary>
         ///     Sends a new transactional message through Mandrill.
@@ -269,7 +269,7 @@ namespace Mandrill
         /// <returns>
         ///     The <see cref="Task" />.
         /// </returns>
-        Task<List<EmailResult>> SendMessageAsync(EmailMessage message, DateTime send_at = new DateTime());
+        Task<List<EmailResult>> SendMessageAsync(EmailMessage message, DateTime? send_at);
 
         /// <summary>
         ///     Send a new transactional message through Mandrill using a template
@@ -291,7 +291,7 @@ namespace Mandrill
             EmailMessage message,
             string templateName,
             IEnumerable<TemplateContent> templateContents,
-            DateTime send_at = new DateTime());
+            DateTime? send_at);
 
         /// <summary>
         ///     The send raw message.
@@ -305,7 +305,7 @@ namespace Mandrill
         /// <returns>
         ///     The <see cref="List{T}" />.
         /// </returns>
-        List<EmailResult> SendRawMessage(EmailMessage raw_message, DateTime send_at = new DateTime());
+        List<EmailResult> SendRawMessage(EmailMessage raw_message, DateTime? send_at);
 
         /// <summary>
         ///     Send a new raw transactional message through Mandrill using a template
@@ -319,7 +319,7 @@ namespace Mandrill
         /// <returns>
         ///     The <see cref="Task" />.
         /// </returns>
-        Task<List<EmailResult>> SendRawMessageAsync(EmailMessage message, DateTime send_at = new DateTime());
+        Task<List<EmailResult>> SendRawMessageAsync(EmailMessage message, DateTime? send_at);
 
         /// <summary>
         ///     The Api Key for the project received from the MandrillApp website
