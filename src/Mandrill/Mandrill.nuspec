@@ -14,7 +14,7 @@
         <copyright>Copyright 2014</copyright>
         <tags>Mandrill, MailChimp</tags>
 	    <releaseNotes>
-		    Nuget dependencies updated.
+		    Added a few fixes.
 	    </releaseNotes>
     </metadata>
 </package>
