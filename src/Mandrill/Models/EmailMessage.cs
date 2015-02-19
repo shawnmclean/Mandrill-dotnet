@@ -312,6 +312,23 @@ namespace Mandrill
         public IEnumerable<EmailAddress> to { get; set; }
 
         /// <summary>
+        /// Gets or sets the from e-mail address as EmailAddress.
+        /// </summary>
+        public EmailAddress from 
+        {
+            get
+            {
+                return new EmailAddress { name = this.from_name, email = this.from_email };
+            }
+
+            set
+            {
+                this.from_name = value.name;
+                this.from_email = value.email;
+            }
+        }
+
+        /// <summary>
         ///     Gets or sets a value indicating whether track_clicks.
         /// </summary>
         public bool? track_clicks { get; set; }
