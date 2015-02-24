@@ -207,6 +207,11 @@ namespace Mandrill
         /// </summary>
 				[JsonProperty("bounce_description")]
         public string BounceDescription { get; set; }
+        
+        /// <summary>
+        ///     Gets or sets the cc.
+        /// </summary>
+        public List<List<string>> CC { get; set; }
 
         /// <summary>
         ///     Gets or sets the clicks.
@@ -335,6 +340,11 @@ namespace Mandrill
                 return WebHookEvent.FromUnixTime(this.TS);
             }
         }
+        
+        /// <summary>
+        ///     Gets or sets the to.
+        /// </summary>
+        public List<List<string>> To { get; set; }
 
         #endregion
 
