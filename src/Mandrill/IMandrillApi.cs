@@ -141,7 +141,8 @@ namespace Mandrill
             string subject,
             string content,
             EmailAddress from,
-            DateTime? send_at);
+            DateTime? send_at,
+            bool async = false);
 
         /// <summary>
         ///     Send a new transactional message through Mandrill using a template
@@ -168,7 +169,8 @@ namespace Mandrill
             EmailAddress from,
             string templateName,
             IEnumerable<TemplateContent> templateContents,
-            DateTime? send_at);
+            DateTime? send_at,
+            bool async = false);
 
         /// <summary>
         ///     The send message.
@@ -182,7 +184,7 @@ namespace Mandrill
         /// <returns>
         ///     The <see cref="List{T}" />.
         /// </returns>
-        List<EmailResult> SendMessage(EmailMessage message, DateTime? send_at);
+        List<EmailResult> SendMessage(EmailMessage message, DateTime? send_at, bool async = false);
 
         /// <summary>
         ///     Send a new transactional message through Mandrill using a template
@@ -204,7 +206,8 @@ namespace Mandrill
             EmailMessage message,
             string templateName,
             IEnumerable<TemplateContent> templateContents,
-            DateTime? send_at);
+            DateTime? send_at,
+            bool async = false);
 
         /// <summary>
         ///     Send a new transactional message through Mandrill.
@@ -228,7 +231,8 @@ namespace Mandrill
             string subject,
             string content,
             EmailAddress from,
-            DateTime? send_at);
+            DateTime? send_at,
+            bool async = false);
 
         /// <summary>
         ///     Send a new transactional message through Mandrill using a template
@@ -255,7 +259,8 @@ namespace Mandrill
             EmailAddress from,
             string templateName,
             IEnumerable<TemplateContent> templateContents,
-            DateTime? send_at);
+            DateTime? send_at,
+            bool async = false);
 
         /// <summary>
         ///     Sends a new transactional message through Mandrill.
@@ -269,7 +274,7 @@ namespace Mandrill
         /// <returns>
         ///     The <see cref="Task" />.
         /// </returns>
-        Task<List<EmailResult>> SendMessageAsync(EmailMessage message, DateTime? send_at);
+        Task<List<EmailResult>> SendMessageAsync(EmailMessage message, DateTime? send_at, bool async = false);
 
         /// <summary>
         ///     Send a new transactional message through Mandrill using a template
@@ -291,7 +296,8 @@ namespace Mandrill
             EmailMessage message,
             string templateName,
             IEnumerable<TemplateContent> templateContents,
-            DateTime? send_at);
+            DateTime? send_at,
+            bool async = false);
 
         /// <summary>
         ///     The send raw message.
@@ -305,7 +311,7 @@ namespace Mandrill
         /// <returns>
         ///     The <see cref="List{T}" />.
         /// </returns>
-        List<EmailResult> SendRawMessage(EmailMessage raw_message, DateTime? send_at);
+        List<EmailResult> SendRawMessage(EmailMessage raw_message, DateTime? send_at, bool async = false);
 
         /// <summary>
         ///     Send a new raw transactional message through Mandrill using a template
@@ -319,7 +325,7 @@ namespace Mandrill
         /// <returns>
         ///     The <see cref="Task" />.
         /// </returns>
-        Task<List<EmailResult>> SendRawMessageAsync(EmailMessage message, DateTime? send_at);
+        Task<List<EmailResult>> SendRawMessageAsync(EmailMessage message, DateTime? send_at, bool async = false);
 
         /// <summary>
         ///     The Api Key for the project received from the MandrillApp website

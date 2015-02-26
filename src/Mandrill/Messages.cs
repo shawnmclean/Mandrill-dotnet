@@ -253,9 +253,9 @@ namespace Mandrill
         ///     The <see cref="List" />.
         /// </returns>
         public List<EmailResult> SendMessage(IEnumerable<EmailAddress> recipients, string subject,
-            string content, EmailAddress from, DateTime? send_at = null)
+            string content, EmailAddress from, DateTime? send_at = null, bool async = false)
         {
-            return SendMessageAsync(recipients, subject, content, from, send_at).Result;
+            return SendMessageAsync(recipients, subject, content, from, send_at, async).Result;
         }
 
         /// <summary>
@@ -283,9 +283,10 @@ namespace Mandrill
             EmailAddress from,
             string templateName,
             IEnumerable<TemplateContent> templateContents,
-            DateTime? send_at = null)
+            DateTime? send_at = null,
+            bool async = false)
         {
-            return this.SendMessageAsync(recipients, subject, from, templateName, templateContents, send_at).Result;
+            return this.SendMessageAsync(recipients, subject, from, templateName, templateContents, send_at, async).Result;
         }
 
         /// <summary>
@@ -300,9 +301,9 @@ namespace Mandrill
         /// <returns>
         ///     The <see cref="List" />.
         /// </returns>
-        public List<EmailResult> SendMessage(EmailMessage message, DateTime? send_at = null)
+        public List<EmailResult> SendMessage(EmailMessage message, DateTime? send_at = null, bool async = false)
         {
-            return this.SendMessageAsync(message, send_at).Result;
+            return this.SendMessageAsync(message, send_at, async).Result;
         }
 
         /// <summary>
@@ -325,9 +326,10 @@ namespace Mandrill
             EmailMessage message,
             string templateName,
             IEnumerable<TemplateContent> templateContents,
-            DateTime? send_at = null)
+            DateTime? send_at = null,
+            bool async = false)
         {
-            return SendMessageAsync(message, templateName, templateContents, send_at).Result;
+            return SendMessageAsync(message, templateName, templateContents, send_at, async).Result;
         }
 
         /// <summary>
@@ -348,7 +350,7 @@ namespace Mandrill
         ///     The <see cref="Task" />.
         /// </returns>
         public Task<List<EmailResult>> SendMessageAsync(IEnumerable<EmailAddress> recipients, string subject,
-            string content, EmailAddress from, DateTime? send_at = null)
+            string content, EmailAddress from, DateTime? send_at = null, bool async = false)
         {
             var message = new EmailMessage
                               {
@@ -360,7 +362,7 @@ namespace Mandrill
                                   auto_text = true,
                               };
 
-            return this.SendMessageAsync(message, send_at);
+            return this.SendMessageAsync(message, send_at, async);
         }
 
         /// <summary>
@@ -388,7 +390,8 @@ namespace Mandrill
             EmailAddress from,
             string templateName,
             IEnumerable<TemplateContent> templateContents,
-            DateTime? send_at = null)
+            DateTime? send_at = null,
+            bool async = false)
         {
             var message = new EmailMessage
                               {
@@ -398,7 +401,7 @@ namespace Mandrill
                                   subject = subject,
                               };
 
-            return SendMessageAsync(message, templateName, templateContents, send_at);
+            return SendMessageAsync(message, templateName, templateContents, send_at, async);
         }
 
         /// <summary>
@@ -413,12 +416,13 @@ namespace Mandrill
         /// <returns>
         ///     The <see cref="Task" />.
         /// </returns>
-        public Task<List<EmailResult>> SendMessageAsync(EmailMessage message, DateTime? send_at = null)
+        public Task<List<EmailResult>> SendMessageAsync(EmailMessage message, DateTime? send_at = null, bool async = false)
         {
             string path = "/messages/send.json";
 
             dynamic payload = new ExpandoObject();
             payload.message = message;
+            payload.async = async;
             if (send_at != null)
             {
                 payload.send_at = send_at.Value.ToString(Configuration.DATE_TIME_FORMAT_STRING);
@@ -452,7 +456,8 @@ namespace Mandrill
             EmailMessage message,
             string templateName,
             IEnumerable<TemplateContent> templateContents,
-            DateTime? send_at = null)
+            DateTime? send_at = null,
+            bool async = false)
         {
             string path = "/messages/send-template.json";
 
@@ -460,6 +465,7 @@ namespace Mandrill
             payload.message = message;
             payload.template_name = templateName;
             payload.template_content = templateContents != null ? templateContents : Enumerable.Empty<TemplateContent>();
+            payload.async = async;
             if (send_at != null)
             {
                 payload.send_at = send_at.Value.ToString(Configuration.DATE_TIME_FORMAT_STRING);
@@ -483,9 +489,9 @@ namespace Mandrill
         /// <returns>
         ///     The <see cref="List" />.
         /// </returns>
-        public List<EmailResult> SendRawMessage(EmailMessage raw_message, DateTime? send_at = null)
+        public List<EmailResult> SendRawMessage(EmailMessage raw_message, DateTime? send_at = null, bool async = false)
         {
-            return this.SendRawMessageAsync(raw_message, send_at).Result;
+            return this.SendRawMessageAsync(raw_message, send_at, async).Result;
         }
 
         /// <summary>
@@ -500,7 +506,7 @@ namespace Mandrill
         /// <returns>
         ///     The <see cref="Task" />.
         /// </returns>
-        public Task<List<EmailResult>> SendRawMessageAsync(EmailMessage message, DateTime? send_at = null)
+        public Task<List<EmailResult>> SendRawMessageAsync(EmailMessage message, DateTime? send_at = null, bool async = false)
         {
             string path = "/messages/send-raw.json";
 
@@ -508,6 +514,7 @@ namespace Mandrill
             payload.raw_message = message.raw_message;
             payload.from_email = message.from_email;
             payload.from_name = message.from_name;
+            payload.async = async;
             if (send_at != null)
             {
                 payload.send_at = send_at.Value.ToString(Configuration.DATE_TIME_FORMAT_STRING);
