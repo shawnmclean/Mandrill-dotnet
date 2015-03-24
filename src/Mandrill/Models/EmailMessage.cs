@@ -246,9 +246,9 @@ namespace Mandrill
         public JsonObject metadata { get; private set; }
 
         /// <summary>
-        ///     Gets or sets a value indicating whether preserve_recipients.
+        ///     Gets or sets whether or not to expose all recipients in to "To" header for each email.
         /// </summary>
-        public bool? preserve_recipients { get; set; }
+        public bool preserve_recipients { get; set; }
 
         /// <summary>
         ///     Gets or sets the raw_message.
