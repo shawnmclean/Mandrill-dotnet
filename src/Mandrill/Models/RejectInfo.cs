@@ -7,6 +7,9 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System;
+using Mandrill.Models;
+
 namespace Mandrill
 {
     using Newtonsoft.Json;
@@ -43,14 +46,30 @@ namespace Mandrill
         public string ExpiresAt { get; set; }
 
         /// <summary>
+        ///     Gets or sets the expires at.
+        /// </summary>
+        [JsonProperty("last_event_at")]
+        public DateTime LastEventAt { get; set; }
+
+        /// <summary>
         ///     Gets or sets the reason.
         /// </summary>
         [JsonProperty("reason")]
         public string Reason { get; set; }
 
-        #endregion
+        /// <summary>
+        ///     Gets or sets the reason.
+        /// </summary>
+        [JsonProperty("detail")]
+        public string Detail { get; set; }
 
-        // TODO: Add property: Sender: "Sender":{"...": "..."}
+        /// <summary>
+        ///     Gets or sets the reason.
+        /// </summary>
+        [JsonProperty("sender")]
+        public Sender Sender { get; set; }
+
+        #endregion
     }
 
     /// <summary>
