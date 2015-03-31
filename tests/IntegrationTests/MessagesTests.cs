@@ -247,27 +247,27 @@ namespace Mandrill.Tests.IntegrationTests
 
         }
 
-	    [Test]
-		[ExpectedException(ExpectedException = typeof(AggregateException))]
-	    public void Timeout_At_Endpoint()
-	    {
-			// Setup
-			var apiKey = ConfigurationManager.AppSettings["APIKey"];
-			string toEmail = ConfigurationManager.AppSettings["ValidToEmail"];
-			string fromEmail = ConfigurationManager.AppSettings["FromEMail"];
+        [Test]
+        [ExpectedException(ExpectedException = typeof(AggregateException))]
+        public void Timeout_At_Endpoint()
+        {
+            // Setup
+            var apiKey = ConfigurationManager.AppSettings["APIKey"];
+            string toEmail = ConfigurationManager.AppSettings["ValidToEmail"];
+            string fromEmail = ConfigurationManager.AppSettings["FromEMail"];
 
-			// Exercise
-			var api = new MandrillApi(apiKey, true, 5);
+            // Exercise
+            var api = new MandrillApi(apiKey, true, 5);
 
-			var result = api.SendMessage(new EmailMessage
-			{
-				to =
-					new List<EmailAddress> { new EmailAddress { email = toEmail, name = "" } },
-				from_email = fromEmail,
-				subject = "Mandrill Integration Test",
-				html = "<strong>Example HTML</strong>",
-				text = "Example text"
-			});
-	    }
+            var result = api.SendMessage(new EmailMessage
+            {
+                to =
+                    new List<EmailAddress> { new EmailAddress { email = toEmail, name = "" } },
+                from_email = fromEmail,
+                subject = "Mandrill Integration Test",
+                html = "<strong>Example HTML</strong>",
+                text = "Example text"
+            });
+        }
     }
 }
