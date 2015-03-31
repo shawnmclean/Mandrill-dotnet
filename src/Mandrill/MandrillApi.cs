@@ -185,10 +185,10 @@ namespace Mandrill
 
             return post.ContinueWith(
                 p =>
-                {
-                    var t = JSON.Parse<T>(p.Result.Content);
-                    return t;
-                },
+                    {
+                        var t = JSON.Parse<T>(p.Result.Content);
+                        return t;
+                    },
                 TaskContinuationOptions.ExecuteSynchronously);
         }
 
