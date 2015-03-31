@@ -160,23 +160,6 @@ namespace Mandrill
 				{
 					tcs.SetResult(response);
 				}
-				/*
-                // if internal server error, then mandrill should return a custom error.
-                if (response.StatusCode == HttpStatusCode.InternalServerError)
-                {
-                    var error = JSON.Parse<ErrorResponse>(response.Content);
-                    var ex = new MandrillException(error, string.Format("Post failed {0}", path));
-                    tcs.SetException(ex);
-                }
-                else if (response.StatusCode != HttpStatusCode.OK)
-                {
-                    // used to throw errors not returned from the server, such as no response, etc.
-                    tcs.SetException(response.ErrorException);
-                }
-                else
-                {
-                    tcs.SetResult(response);
-                }*/
             });
 
             return tcs.Task;
