@@ -7,6 +7,8 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System;
+
 namespace Mandrill
 {
     using System.Dynamic;
@@ -128,17 +130,31 @@ namespace Mandrill
             request.AddBody(data);
             _client.ExecuteAsync(request, (response) =>
             {
-                // if internal server error, then mandrill should return a custom error.
-                if (response.StatusCode == HttpStatusCode.InternalServerError)
+                if (response.ErrorException != null)
                 {
-                    var error = JSON.Parse<ErrorResponse>(response.Content);
-                    var ex = new MandrillException(error, string.Format("Post failed {0}", path));
+                    tcs.SetException(response.ErrorException);
+                }
+                else if (response.ResponseStatus != ResponseStatus.Completed)
+                {
+                    var ex = new MandrillException(string.Format("Post failed {0} with response status {1}", path, response.ResponseStatus));
                     tcs.SetException(ex);
                 }
                 else if (response.StatusCode != HttpStatusCode.OK)
                 {
-                    // used to throw errors not returned from the server, such as no response, etc.
-                    tcs.SetException(response.ErrorException);
+                    try
+                    {
+                        var error = JSON.Parse<ErrorResponse>(response.Content);
+                        var ex = new MandrillException(error, string.Format("Post failed {0} with status {1}", path, response.StatusCode));
+                        tcs.SetException(ex);
+                    }
+                    catch (Exception ex)
+                    {
+                        var content = response.Content ?? "";
+                        var mandrillException =
+                            new MandrillException(
+                                string.Format("Post failed {0} with status {1} and content '{2}'", path, response.StatusCode, content), ex);
+                        tcs.SetException(mandrillException);
+                    }
                 }
                 else
                 {
