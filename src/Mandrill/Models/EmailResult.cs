@@ -7,12 +7,12 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Mandrill
-{
-    using Newtonsoft.Json;
-    using Newtonsoft.Json.Converters;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
-    /// <summary>
+namespace Mandrill.Models
+{
+  /// <summary>
     ///     The email result status.
     /// </summary>
     public enum EmailResultStatus

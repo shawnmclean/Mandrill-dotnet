@@ -13,6 +13,7 @@ using System.Net;
 using System.Threading.Tasks;
 using Flurl;
 using Flurl.Http;
+using Mandrill.Models;
 using Mandrill.Models.Payloads;
 using RestSharp;
 
@@ -179,8 +180,9 @@ namespace Mandrill
       }
       catch (FlurlHttpException ex)
       {
-        throw new MandrillException(string.Format("Post failed {0} with status {1} and content '{2}'", path,
-          ex.Call.HttpStatus, ex.Call.ErrorResponseBody));
+        var response = ex.GetResponseJson<ErrorResponse>();
+        throw new MandrillException(response, string.Format("Post failed {0} with status {1} and content '{2}'", path,
+          ex.Call.HttpStatus, ex.Call.RequestBody));
       }
     }
 

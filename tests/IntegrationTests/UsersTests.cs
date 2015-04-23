@@ -51,7 +51,7 @@ namespace Mandrill.Tests.IntegrationTests
             
             // Verify
             var ex = Assert.Throws<MandrillException>(() => api.Ping());
-            Assert.That(ex.Error.name, Is.EqualTo("Invalid_Key"));
+            Assert.That(ex.Error.Name, Is.EqualTo("Invalid_Key"));
         }
 
         [Test]
@@ -65,7 +65,7 @@ namespace Mandrill.Tests.IntegrationTests
 
             // Verify
             var ex = Assert.Throws<MandrillException>(() => api.UserInfo());
-            Assert.That(ex.Error.name, Is.EqualTo("Invalid_Key"));
+            Assert.That(ex.Error.Name, Is.EqualTo("Invalid_Key"));
         }
     }
 }

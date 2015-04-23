@@ -7,35 +7,41 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Mandrill
+using Newtonsoft.Json;
+
+namespace Mandrill.Models
 {
+  /// <summary>
+  ///   The error response.
+  /// </summary>
+  public class ErrorResponse
+  {
+    #region Fields
+
     /// <summary>
-    ///     The error response.
+    ///   The code.
     /// </summary>
-    public struct ErrorResponse
-    {
-        #region Fields
+    [JsonProperty("code")]
+    public int Code { get; set; }
 
-        /// <summary>
-        ///     The code.
-        /// </summary>
-        public int code;
+    /// <summary>
+    ///   The message.
+    /// </summary>
+    [JsonProperty("message")]
+    public string Message { get; set; }
 
-        /// <summary>
-        ///     The message.
-        /// </summary>
-        public string message;
+    /// <summary>
+    ///   The name.
+    /// </summary>
+    [JsonProperty("name")]
+    public string Name { get; set; }
 
-        /// <summary>
-        ///     The name.
-        /// </summary>
-        public string name;
+    /// <summary>
+    ///   The status.
+    /// </summary>
+    [JsonProperty("status")]
+    public string Status { get; set; }
 
-        /// <summary>
-        ///     The status.
-        /// </summary>
-        public string status;
-
-        #endregion
-    }
+    #endregion
+  }
 }

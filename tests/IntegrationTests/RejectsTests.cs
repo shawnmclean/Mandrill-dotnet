@@ -37,7 +37,7 @@ namespace Mandrill.Tests.IntegrationTests
 
             // Verify
             var ex = Assert.Throws<MandrillException>(() => api.AddReject(reject));
-            Assert.That(ex.Error.name, Is.EqualTo("Invalid_Key"));
+            Assert.That(ex.Error.Name, Is.EqualTo("Invalid_Key"));
         }
 
         [Test]
@@ -67,7 +67,7 @@ namespace Mandrill.Tests.IntegrationTests
 
             // Verify
             var ex = Assert.Throws<MandrillException>(() => api.DeleteReject(reject));
-            Assert.That(ex.Error.name, Is.EqualTo("Invalid_Key"));
+            Assert.That(ex.Error.Name, Is.EqualTo("Invalid_Key"));
         }
 
         [Test]
@@ -113,7 +113,7 @@ namespace Mandrill.Tests.IntegrationTests
 
             // Verify
             var ex = Assert.Throws<MandrillException>(() => api.ListRejects());
-            Assert.That(ex.Error.name, Is.EqualTo("Invalid_Key"));
+            Assert.That(ex.Error.Name, Is.EqualTo("Invalid_Key"));
         }
 
         [Test]

@@ -34,11 +34,23 @@ namespace Mandrill.Tests.UnitTests
     }
 
     [Test]
-    public async Task Should_Throw_Mandrill_Exception_When_Server_Error() {
-      httpClient.RespondWith(500, "");
+    public async Task Should_Throw_Mandrill_Exception_When_Server_Error()
+    {
+      var responseString = @"{
+	      ""code"": ""501"",
+	      ""message"": ""m1"",
+	      ""name"": ""n1"",
+	      ""status"": ""s1""
+      }";
+
+      httpClient.RespondWith(500, responseString);
 
       var api = new MandrillApi("");
-      Assert.Throws<MandrillException>(async () => await api.Post<object>("", new SendMessagePayload()));
+      var ex = Assert.Throws<MandrillException>(async () => await api.Post<object>("", new SendMessagePayload()));
+      Assert.AreEqual(501, ex.Error.Code);
+      Assert.AreEqual("m1", ex.Error.Message);
+      Assert.AreEqual("n1", ex.Error.Name);
+      Assert.AreEqual("s1", ex.Error.Status);
 
     }
 
