@@ -356,12 +356,12 @@ namespace Mandrill
         {
             var message = new EmailMessage
                               {
-                                  to = recipients,
-                                  from_name = from.Name,
-                                  from_email = from.Email,
-                                  subject = subject,
-                                  html = content,
-                                  auto_text = true,
+                                  To = recipients,
+                                  FromName = from.Name,
+                                  FromEmail = from.Email,
+                                  Subject = subject,
+                                  Html = content,
+                                  AutoText = true,
                               };
 
             return this.SendMessageAsync(message, send_at, async);
@@ -397,10 +397,10 @@ namespace Mandrill
         {
             var message = new EmailMessage
                               {
-                                  to = recipients,
-                                  from_name = from.Name,
-                                  from_email = from.Email,
-                                  subject = subject,
+                                  To = recipients,
+                                  FromName = from.Name,
+                                  FromEmail = from.Email,
+                                  Subject = subject,
                               };
 
             return SendMessageAsync(message, templateName, templateContents, send_at, async);
@@ -434,7 +434,10 @@ namespace Mandrill
             Task<IRestResponse> post = this.PostAsync(path, payload);
 
             return post.ContinueWith(
-                p => JSON.Parse<List<EmailResult>>(p.Result.Content),
+              p =>
+              {
+                return JSON.Parse<List<EmailResult>>(p.Result.Content);
+              },
                 TaskContinuationOptions.ExecuteSynchronously);
         }
 
@@ -475,8 +478,10 @@ namespace Mandrill
 
             Task<IRestResponse> post = this.PostAsync(path, payload);
             return post.ContinueWith(
-                p => { return JSON.Parse<List<EmailResult>>(p.Result.Content); },
-                TaskContinuationOptions.ExecuteSynchronously);
+              p =>
+              {
+                return JSON.Parse<List<EmailResult>>(p.Result.Content);
+              }, TaskContinuationOptions.ExecuteSynchronously);
         }
 
         /// <summary>
@@ -513,16 +518,16 @@ namespace Mandrill
             string path = "/messages/send-raw.json";
 
             dynamic payload = new ExpandoObject();
-            payload.raw_message = message.raw_message;
-            payload.from_email = message.from_email;
-            payload.from_name = message.from_name;
+            payload.raw_message = message.RawMessage;
+            payload.from_email = message.FromEmail;
+            payload.from_name = message.FromName;
             payload.async = async;
             if (send_at != null)
             {
                 payload.send_at = send_at.Value.ToString(Configuration.DATE_TIME_FORMAT_STRING);
             }
 
-            payload.to = message.raw_to;
+            payload.to = message.RawTo;
             Task<IRestResponse> post = this.PostAsync(path, payload);
             return post.ContinueWith(
                 p => { return JSON.Parse<List<EmailResult>>(p.Result.Content); },

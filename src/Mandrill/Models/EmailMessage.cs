@@ -22,12 +22,12 @@ namespace Mandrill.Models
     /// <summary>
     ///   Uses the MailChimp template syntax.
     /// </summary>
-    public const string mailchimp = "mailchimp";
+    public const string Mailchimp = "mailchimp";
 
     /// <summary>
     ///   Uses the handlebars template syntax.
     /// </summary>
-    public const string handlebars = "handlebars";
+    public const string Handlebars = "handlebars";
   }
 
   /// <summary>
@@ -174,113 +174,135 @@ namespace Mandrill.Models
     /// <summary>
     ///   Gets or sets the attachments.
     /// </summary>
-    public IEnumerable<EmailAttachment> attachments { get; set; }
+    [JsonProperty("attachments")]
+    public IEnumerable<EmailAttachment> Attachments { get; set; }
 
     /// <summary>
     ///   Gets or sets a value indicating whether auto_html.
     /// </summary>
-    public bool? auto_html { get; set; }
+    [JsonProperty("auto_html")]
+    public bool? AutoHtml { get; set; }
 
     /// <summary>
     ///   Gets or sets a value indicating whether auto_text.
     /// </summary>
-    public bool? auto_text { get; set; }
+    [JsonProperty("auto_text")]
+    public bool? AutoText { get; set; }
 
     /// <summary>
     ///   Gets or sets the bcc_address.
     /// </summary>
-    public string bcc_address { get; set; }
+    [JsonProperty("bcc_address")]
+    public string BccAddress { get; set; }
 
     /// <summary>
     ///   Gets or sets the from_email.
     /// </summary>
-    public string from_email { get; set; }
+    [JsonProperty("from_email")]
+    public string FromEmail { get; set; }
 
     /// <summary>
     ///   Gets or sets the from_name.
     /// </summary>
-    public string from_name { get; set; }
+    [JsonProperty("from_name")]
+    public string FromName { get; set; }
 
     /// <summary>
     ///   Gets the global_merge_vars.
     /// </summary>
-    public List<MergeVar> global_merge_vars { get; private set; }
+    [JsonProperty("global_merge_vars")]
+    public List<MergeVar> GlobalMergeVars { get; private set; }
 
     /// <summary>
     ///   Gets or sets the google_analytics_campaign.
     ///   TODO the api docs state that this can be a string or an array
     /// </summary>
-    public string google_analytics_campaign { get; set; }
+    [JsonProperty("google_analytics_campaign")]
+    public string GoogleAnalyticsCampaign { get; set; }
 
     /// <summary>
     ///   Gets or sets the google_analytics_domains.
     /// </summary>
-    public IEnumerable<string> google_analytics_domains { get; set; }
+    [JsonProperty("google_analytics_domains")]
+    public IEnumerable<string> GoogleAnalyticsDomains { get; set; }
 
     /// <summary>
     ///   Gets the headers.
     /// </summary>
-    public JsonObject headers { get; private set; }
+    [JsonProperty("headers")]
+    public JsonObject Headers { get; private set; }
 
     /// <summary>
     ///   Gets or sets the html.
     /// </summary>
-    public string html { get; set; }
+    [JsonProperty("html")]
+    public string Html { get; set; }
 
     /// <summary>
     ///   Gets or sets the images.
     /// </summary>
-    public IEnumerable<Image> images { get; set; }
+    [JsonProperty("images")]
+    public IEnumerable<Image> Images { get; set; }
 
     /// <summary>
     ///   Get s or sets a value indicating whether important.
     /// </summary>
-    public bool? important { get; set; }
+    [JsonProperty("important")]
+    public bool? Important { get; set; }
 
     /// <summary>
     ///   Gets or sets a value indicating whether inline_css.
     /// </summary>
-    public bool? inline_css { get; set; }
+    [JsonProperty("inline_css")]
+    public bool? InlineCss { get; set; }
 
     /// <summary>
     ///   Gets or sets a value indicating whether merge.
     /// </summary>
-    public bool? merge { get; set; }
+    [JsonProperty("merge")]
+    public bool? Merge { get; set; }
 
     /// <summary>
     ///   Gets the merge_vars.
     /// </summary>
-    public List<RcptMergeVar> merge_vars { get; private set; }
+    [JsonProperty("merge_vars")]
+    public List<RcptMergeVar> MergeVars { get; private set; }
 
     /// <summary>
     ///   Gets the metadata.
     /// </summary>
-    public JsonObject metadata { get; private set; }
+    [JsonProperty("metadata")]
+    public JsonObject Metadata { get; private set; }
 
     /// <summary>
     ///   Gets or sets whether or not to expose all recipients in to "To" header for each email.
     /// </summary>
-    public bool preserve_recipients { get; set; }
+    [JsonProperty("preserve_recipients")]
+    public bool PreserveRecipients { get; set; }
 
     /// <summary>
     ///   Gets or sets the raw_message.
     /// </summary>
-    public string raw_message { get; set; }
+    [JsonProperty("raw_message")]
+    public string RawMessage { get; set; }
 
     /// <summary>
     ///   Gets or sets the string array to.
     /// </summary>
-    public IEnumerable<string> raw_to { get; set; }
+    [JsonProperty("raw_to")]
+    public IEnumerable<string> RawTo { get; set; }
 
     /// <summary>
     ///   Gets or sets the recipient_metadata.
     /// </summary>
-    public IEnumerable<RcptMetadata> recipient_metadata { get; set; }
+    [JsonProperty("recipient_metadata")]
+    public IEnumerable<RcptMetadata> RecipientMetadata { get; set; }
 
     /// <summary>
     ///   Gets or sets the return_path_domain.
     /// </summary>
-    public string return_path_domain { get; set; }
+    [JsonProperty("return_path_domain")]
+    public string ReturnPathDomain { get; set; }
 
     /// <summary>
     ///   Gets or sets the signing_domain.
@@ -291,47 +313,56 @@ namespace Mandrill.Models
     /// <value>
     ///   The signing_domain.
     /// </value>
-    public string signing_domain { get; set; }
+    [JsonProperty("signing_domain")]
+    public string SigningDomain { get; set; }
 
     /// <summary>
     ///   Gets or sets the subaccount.
     /// </summary>
-    public string subaccount { get; set; }
+    [JsonProperty("subaccount")]
+    public string Subaccount { get; set; }
 
     /// <summary>
     ///   Gets or sets the subject.
     /// </summary>
-    public string subject { get; set; }
+    [JsonProperty("subject")]
+    public string Subject { get; set; }
 
     /// <summary>
     ///   Gets or sets the merge language.
     /// </summary>
-    public string merge_language { get; set; }
+    [JsonProperty("merge_language")]
+    public string MergeLanguage { get; set; }
 
     /// <summary>
     ///   Gets or sets the tags.
     /// </summary>
-    public IEnumerable<string> tags { get; set; }
+    [JsonProperty("tags")]
+    public IEnumerable<string> Tags { get; set; }
 
     /// <summary>
     ///   Gets or sets the text.
     /// </summary>
-    public string text { get; set; }
+    [JsonProperty("text")]
+    public string Text { get; set; }
 
     /// <summary>
     ///   Gets or sets the to.
     /// </summary>
-    public IEnumerable<EmailAddress> to { get; set; }
+    [JsonProperty("to")]
+    public IEnumerable<EmailAddress> To { get; set; }
 
     /// <summary>
     ///   Gets or sets a value indicating whether track_clicks.
     /// </summary>
-    public bool? track_clicks { get; set; }
+    [JsonProperty("track_clicks")]
+    public bool? TrackClicks { get; set; }
 
     /// <summary>
     ///   Gets or sets a value indicating whether track_opens.
     /// </summary>
-    public bool? track_opens { get; set; }
+    [JsonProperty("track_opens")]
+    public bool? TrackOpens { get; set; }
 
     /// <summary>
     ///   Gets or sets the tracking_domain.
@@ -342,17 +373,20 @@ namespace Mandrill.Models
     /// <value>
     ///   The tracking_domain.
     /// </value>
-    public string tracking_domain { get; set; }
+    [JsonProperty("tracking_domain")]
+    public string TrackingDomain { get; set; }
 
     /// <summary>
     ///   Gets or sets a value indicating whether url_strip_qs.
     /// </summary>
-    public bool? url_strip_qs { get; set; }
+    [JsonProperty("url_strip_qs")]
+    public bool? UrlStripQs { get; set; }
 
     /// <summary>
     ///   Gets or sets a value indicating whether view_content_link
     /// </summary>
-    public bool? view_content_link { get; set; }
+    [JsonProperty("view_content_link")]
+    public bool? ViewContentLink { get; set; }
 
     #endregion
 
@@ -369,13 +403,13 @@ namespace Mandrill.Models
     /// </param>
     public void AddGlobalVariable(string name, string content)
     {
-      if (global_merge_vars == null)
+      if (GlobalMergeVars == null)
       {
-        global_merge_vars = new List<MergeVar>();
+        GlobalMergeVars = new List<MergeVar>();
       }
 
       var mv = new MergeVar {Name = name, Content = content};
-      global_merge_vars.Add(mv);
+      GlobalMergeVars.Add(mv);
     }
 
     /// <summary>
@@ -389,12 +423,12 @@ namespace Mandrill.Models
     /// </param>
     public void AddHeader(string name, string value)
     {
-      if (headers == null)
+      if (Headers == null)
       {
-        headers = new JsonObject();
+        Headers = new JsonObject();
       }
 
-      headers[name] = value;
+      Headers[name] = value;
     }
 
     /// <summary>
@@ -408,12 +442,12 @@ namespace Mandrill.Models
     /// </param>
     public void AddMetadata(string key, string value)
     {
-      if (metadata == null)
+      if (Metadata == null)
       {
-        metadata = new JsonObject();
+        Metadata = new JsonObject();
       }
 
-      metadata[key] = value;
+      Metadata[key] = value;
     }
 
     /// <summary>
@@ -430,16 +464,16 @@ namespace Mandrill.Models
     /// </param>
     public void AddRecipientVariable(string recipient, string name, string content)
     {
-      if (merge_vars == null)
+      if (MergeVars == null)
       {
-        merge_vars = new List<RcptMergeVar>();
+        MergeVars = new List<RcptMergeVar>();
       }
 
-      RcptMergeVar entry = merge_vars.Where(e => e.Rcpt == recipient).FirstOrDefault();
+      RcptMergeVar entry = MergeVars.Where(e => e.Rcpt == recipient).FirstOrDefault();
       if (entry == null)
       {
         entry = new RcptMergeVar {Rcpt = recipient};
-        merge_vars.Add(entry);
+        MergeVars.Add(entry);
       }
 
       var mv = new MergeVar {Name = name, Content = content};

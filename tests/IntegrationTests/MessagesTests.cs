@@ -43,12 +43,12 @@ namespace Mandrill.Tests.IntegrationTests
 
             var result = api.SendMessage(new EmailMessage
             {
-                to =
+                To =
                     new List<EmailAddress> { new EmailAddress { Email = toEmail, Name = "" } },
-                from_email = fromEmail,
-                subject = "Mandrill Integration Test",
-                html = "<strong>Example HTML</strong>",
-                text = "Example text"
+                FromEmail = fromEmail,
+                Subject = "Mandrill Integration Test",
+                Html = "<strong>Example HTML</strong>",
+                Text = "Example text"
             });
 
             // Verify
@@ -71,10 +71,10 @@ namespace Mandrill.Tests.IntegrationTests
 
             var result = api.SendMessage(new EmailMessage
                                              {
-                                                 to =
+                                                 To =
                                                      new List<EmailAddress> { new EmailAddress { Email = toEmail, Name = "" } },
-                                                 from_email = fromEmail,
-                                                 subject = "Mandrill Integration Test",
+                                                 FromEmail = fromEmail,
+                                                 Subject = "Mandrill Integration Test",
                                              }, templateExample, new List<TemplateContent> { new TemplateContent { name = "model1", content = "Content1" }, new TemplateContent { name = "model2", content = "Content2" } });
 
             // Verify
@@ -131,12 +131,12 @@ namespace Mandrill.Tests.IntegrationTests
                 "Test\n";
             var result = api.SendRawMessage(new EmailMessage
                                              {
-                                                 to =
+                                                 To =
                                                      new List<EmailAddress> { new EmailAddress { Email = toEmail, Name = "" } },
-                                                 from_email = fromEmail,
-                                                 from_name = "",
-                                                 raw_message = message,
-                                                 raw_to = new List<string> { toEmail }
+                                                 FromEmail = fromEmail,
+                                                 FromName = "",
+                                                 RawMessage = message,
+                                                 RawTo = new List<string> { toEmail }
                                              });
             // Verify
             Assert.AreEqual(1, result.Count);
@@ -161,12 +161,12 @@ namespace Mandrill.Tests.IntegrationTests
 
             var result = api.SendMessage(new EmailMessage
             {
-                to =
+                To =
                     new List<EmailAddress> { new EmailAddress { Email = toEmail, Name = "" } },
-                from_email = fromEmail,
-                subject = "Mandrill Integration Test",
-                html = "<strong>Scheduled Email</strong>",
-                text = "Example text"
+                FromEmail = fromEmail,
+                Subject = "Mandrill Integration Test",
+                Html = "<strong>Scheduled Email</strong>",
+                Text = "Example text"
             }, DateTime.UtcNow.AddMinutes(5.0));
 
             // Verify
@@ -193,12 +193,12 @@ namespace Mandrill.Tests.IntegrationTests
 
             var messages = api.SendMessage(new EmailMessage
                 {
-                    to =
+                    To =
                         new List<EmailAddress> { new EmailAddress { Email = toEmail, Name = "" } },
-                    from_email = fromEmail,
-                    subject = "Mandrill Integration Test",
-                    html = "<strong>Scheduled Email</strong>",
-                    text = "Example text"
+                    FromEmail = fromEmail,
+                    Subject = "Mandrill Integration Test",
+                    Html = "<strong>Scheduled Email</strong>",
+                    Text = "Example text"
                 }, DateTime.UtcNow.AddMinutes(5.0));
 
             var message = api.ListScheduledMessages().Find(s => s.Id == messages.First().Id);
@@ -227,12 +227,12 @@ namespace Mandrill.Tests.IntegrationTests
 
             var messages = api.SendMessage(new EmailMessage
             {
-                to =
+                To =
                     new List<EmailAddress> { new EmailAddress { Email = toEmail, Name = "" } },
-                from_email = fromEmail,
-                subject = "Mandrill Integration Test",
-                html = "<strong>Scheduled Email</strong>",
-                text = "Example text"
+                FromEmail = fromEmail,
+                Subject = "Mandrill Integration Test",
+                Html = "<strong>Scheduled Email</strong>",
+                Text = "Example text"
             }, DateTime.UtcNow.AddMinutes(5.0));
 
             var scheduled = api.ListScheduledMessages(toEmail);
@@ -262,12 +262,12 @@ namespace Mandrill.Tests.IntegrationTests
 
             var result = api.SendMessage(new EmailMessage
             {
-                to =
+                To =
                     new List<EmailAddress> { new EmailAddress { Email = toEmail, Name = "" } },
-                from_email = fromEmail,
-                subject = "Mandrill Integration Test",
-                html = "<strong>Example HTML</strong>",
-                text = "Example text"
+                FromEmail = fromEmail,
+                Subject = "Mandrill Integration Test",
+                Html = "<strong>Example HTML</strong>",
+                Text = "Example text"
             });
         }
     }
