@@ -14,7 +14,7 @@
         <copyright>Copyright 2014</copyright>
         <tags>Mandrill, MailChimp</tags>
 	    <releaseNotes>
-		    Added a few fixes.
+		    Removed sign assembly and dependency on RestSharpSigned.
 	    </releaseNotes>
     </metadata>
 </package>
