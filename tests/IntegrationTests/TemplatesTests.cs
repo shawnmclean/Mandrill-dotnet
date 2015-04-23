@@ -37,8 +37,8 @@ namespace Mandrill.Tests.IntegrationTests
             var api = new MandrillApi(apiKey);
             var templateContent = new TemplateContent
                                       {
-                                          content = "Test",
-                                          name = "model1"
+                                          Content = "Test",
+                                          Name = "model1"
                                       };
             var result = api.Render(templateName, new List<TemplateContent>{templateContent}, null);
 

@@ -76,7 +76,7 @@ namespace Mandrill.Tests.IntegrationTests
                                                      new List<EmailAddress> { new EmailAddress { Email = toEmail, Name = "" } },
                                                  FromEmail = fromEmail,
                                                  Subject = "Mandrill Integration Test",
-                                             }, templateExample, new List<TemplateContent> { new TemplateContent { name = "model1", content = "Content1" }, new TemplateContent { name = "model2", content = "Content2" } });
+                                             }, templateExample, new List<TemplateContent> { new TemplateContent { Name = "model1", Content = "Content1" }, new TemplateContent { Name = "model2", Content = "Content2" } });
 
             // Verify
             Assert.AreEqual(1, result.Count);

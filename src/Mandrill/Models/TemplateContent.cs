@@ -22,13 +22,13 @@ namespace Mandrill.Models
     ///   Gets or sets the content.
     /// </summary>
     [JsonProperty("content")]
-    public string content { get; set; }
+    public string Content { get; set; }
 
     /// <summary>
     ///   Gets or sets the name.
     /// </summary>
     [JsonProperty("name")]
-    public string name { get; set; }
+    public string Name { get; set; }
 
     #endregion
   }

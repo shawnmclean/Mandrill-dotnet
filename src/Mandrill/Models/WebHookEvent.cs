@@ -19,19 +19,16 @@
    }
 */
 
-using Mandrill.Models;
+using System;
+using System.Collections.Generic;
+using System.Runtime.Serialization;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 
-namespace Mandrill
+namespace Mandrill.Models
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Runtime.Serialization;
-
-    using Newtonsoft.Json;
-    using Newtonsoft.Json.Converters;
-    using Newtonsoft.Json.Linq;
-
-    /// <summary>
+  /// <summary>
     ///     The web hook event type.
     /// </summary>
     public enum WebHookEventType
