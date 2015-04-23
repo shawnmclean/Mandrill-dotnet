@@ -555,7 +555,7 @@ namespace Mandrill
         RenderedTemplate Render(
             string templateName,
             IEnumerable<TemplateContent> templateContents,
-            IEnumerable<merge_var> mergeVars);
+            IEnumerable<MergeVar> mergeVars);
 
         /// <summary>
         ///     The render async.
@@ -575,7 +575,7 @@ namespace Mandrill
         Task<RenderedTemplate> RenderAsync(
             string templateName,
             IEnumerable<TemplateContent> templateContents,
-            IEnumerable<merge_var> mergeVars);
+            IEnumerable<MergeVar> mergeVars);
 
         /// <summary>
         ///     Update the code for an existing template.

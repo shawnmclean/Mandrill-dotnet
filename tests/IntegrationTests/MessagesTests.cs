@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Mandrill.Models;
 using NUnit.Framework;
 using System.Net;
 using System.Net.Security;
@@ -43,7 +44,7 @@ namespace Mandrill.Tests.IntegrationTests
             var result = api.SendMessage(new EmailMessage
             {
                 to =
-                    new List<EmailAddress> { new EmailAddress { email = toEmail, name = "" } },
+                    new List<EmailAddress> { new EmailAddress { Email = toEmail, Name = "" } },
                 from_email = fromEmail,
                 subject = "Mandrill Integration Test",
                 html = "<strong>Example HTML</strong>",
@@ -71,7 +72,7 @@ namespace Mandrill.Tests.IntegrationTests
             var result = api.SendMessage(new EmailMessage
                                              {
                                                  to =
-                                                     new List<EmailAddress> { new EmailAddress { email = toEmail, name = "" } },
+                                                     new List<EmailAddress> { new EmailAddress { Email = toEmail, Name = "" } },
                                                  from_email = fromEmail,
                                                  subject = "Mandrill Integration Test",
                                              }, templateExample, new List<TemplateContent> { new TemplateContent { name = "model1", content = "Content1" }, new TemplateContent { name = "model2", content = "Content2" } });
@@ -131,7 +132,7 @@ namespace Mandrill.Tests.IntegrationTests
             var result = api.SendRawMessage(new EmailMessage
                                              {
                                                  to =
-                                                     new List<EmailAddress> { new EmailAddress { email = toEmail, name = "" } },
+                                                     new List<EmailAddress> { new EmailAddress { Email = toEmail, Name = "" } },
                                                  from_email = fromEmail,
                                                  from_name = "",
                                                  raw_message = message,
@@ -161,7 +162,7 @@ namespace Mandrill.Tests.IntegrationTests
             var result = api.SendMessage(new EmailMessage
             {
                 to =
-                    new List<EmailAddress> { new EmailAddress { email = toEmail, name = "" } },
+                    new List<EmailAddress> { new EmailAddress { Email = toEmail, Name = "" } },
                 from_email = fromEmail,
                 subject = "Mandrill Integration Test",
                 html = "<strong>Scheduled Email</strong>",
@@ -193,7 +194,7 @@ namespace Mandrill.Tests.IntegrationTests
             var messages = api.SendMessage(new EmailMessage
                 {
                     to =
-                        new List<EmailAddress> { new EmailAddress { email = toEmail, name = "" } },
+                        new List<EmailAddress> { new EmailAddress { Email = toEmail, Name = "" } },
                     from_email = fromEmail,
                     subject = "Mandrill Integration Test",
                     html = "<strong>Scheduled Email</strong>",
@@ -227,7 +228,7 @@ namespace Mandrill.Tests.IntegrationTests
             var messages = api.SendMessage(new EmailMessage
             {
                 to =
-                    new List<EmailAddress> { new EmailAddress { email = toEmail, name = "" } },
+                    new List<EmailAddress> { new EmailAddress { Email = toEmail, Name = "" } },
                 from_email = fromEmail,
                 subject = "Mandrill Integration Test",
                 html = "<strong>Scheduled Email</strong>",
@@ -262,7 +263,7 @@ namespace Mandrill.Tests.IntegrationTests
             var result = api.SendMessage(new EmailMessage
             {
                 to =
-                    new List<EmailAddress> { new EmailAddress { email = toEmail, name = "" } },
+                    new List<EmailAddress> { new EmailAddress { Email = toEmail, Name = "" } },
                 from_email = fromEmail,
                 subject = "Mandrill Integration Test",
                 html = "<strong>Example HTML</strong>",

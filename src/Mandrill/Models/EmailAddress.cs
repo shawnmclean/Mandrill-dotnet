@@ -7,88 +7,93 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Mandrill
+using Newtonsoft.Json;
+
+namespace Mandrill.Models
 {
+  /// <summary>
+  ///   The email address.
+  /// </summary>
+  public class EmailAddress
+  {
+    #region Constructors and Destructors
+
     /// <summary>
-    ///     The email address.
+    ///   Initializes a new instance of the <see cref="EmailAddress" /> class.
     /// </summary>
-    public class EmailAddress
+    public EmailAddress()
     {
-        #region Constructors and Destructors
-
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="EmailAddress" /> class.
-        /// </summary>
-        public EmailAddress()
-        {
-        }
-
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="EmailAddress" /> class.
-        /// </summary>
-        /// <param name="email">
-        ///     The email.
-        /// </param>
-        public EmailAddress(string email)
-        {
-            this.email = email;
-            this.name = string.Empty;
-        }
-
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="EmailAddress" /> class.
-        /// </summary>
-        /// <param name="email">
-        ///     The email.
-        /// </param>
-        /// <param name="name">
-        ///     The name.
-        /// </param>
-        public EmailAddress(string email, string name)
-        {
-            this.email = email;
-            this.name = name;
-        }
-
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="EmailAddress" /> class.
-        /// </summary>
-        /// <param name="email">
-        ///     The email.
-        /// </param>
-        /// <param name="name">
-        ///     The name.
-        /// </param>
-        /// <param name="type">
-        ///     The type.
-        /// </param>
-        public EmailAddress(string email, string name, string type)
-        {
-            this.email = email;
-            this.name = name;
-            this.type = type;
-        }
-
-        #endregion
-
-        #region Public Properties
-
-        /// <summary>
-        ///     Gets or sets the email.
-        /// </summary>
-        public string email { get; set; }
-
-        /// <summary>
-        ///     Gets or sets the name.
-        /// </summary>
-        public string name { get; set; }
-
-        /// <summary>
-        ///     The header type to use for the recipient, defaults to "to" if not provided
-        ///     oneof(to, cc, bcc)
-        /// </summary>
-        public string type { get; set; }
-
-        #endregion
     }
+
+    /// <summary>
+    ///   Initializes a new instance of the <see cref="EmailAddress" /> class.
+    /// </summary>
+    /// <param name="email">
+    ///   The email.
+    /// </param>
+    public EmailAddress(string email)
+    {
+      Email = email;
+      Name = string.Empty;
+    }
+
+    /// <summary>
+    ///   Initializes a new instance of the <see cref="EmailAddress" /> class.
+    /// </summary>
+    /// <param name="email">
+    ///   The email.
+    /// </param>
+    /// <param name="name">
+    ///   The name.
+    /// </param>
+    public EmailAddress(string email, string name)
+    {
+      Email = email;
+      Name = name;
+    }
+
+    /// <summary>
+    ///   Initializes a new instance of the <see cref="EmailAddress" /> class.
+    /// </summary>
+    /// <param name="email">
+    ///   The email.
+    /// </param>
+    /// <param name="name">
+    ///   The name.
+    /// </param>
+    /// <param name="type">
+    ///   The type.
+    /// </param>
+    public EmailAddress(string email, string name, string type)
+    {
+      Email = email;
+      Name = name;
+      Type = type;
+    }
+
+    #endregion
+
+    #region Public Properties
+
+    /// <summary>
+    ///   Gets or sets the email.
+    /// </summary>
+    [JsonProperty("email")]
+    public string Email { get; set; }
+
+    /// <summary>
+    ///   Gets or sets the name.
+    /// </summary>
+    [JsonProperty("name")]
+    public string Name { get; set; }
+
+    /// <summary>
+    ///   The header type to use for the recipient, defaults to "to" if not provided
+    ///   oneof(to, cc, bcc)
+    /// </summary>
+    [JsonProperty("tyoe")]
+    public string Type { get; set; }
+
+    #endregion
+  }
 }

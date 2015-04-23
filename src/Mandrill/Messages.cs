@@ -7,6 +7,8 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using Mandrill.Models;
+
 namespace Mandrill
 {
     using System;
@@ -355,8 +357,8 @@ namespace Mandrill
             var message = new EmailMessage
                               {
                                   to = recipients,
-                                  from_name = from.name,
-                                  from_email = from.email,
+                                  from_name = from.Name,
+                                  from_email = from.Email,
                                   subject = subject,
                                   html = content,
                                   auto_text = true,
@@ -396,8 +398,8 @@ namespace Mandrill
             var message = new EmailMessage
                               {
                                   to = recipients,
-                                  from_name = from.name,
-                                  from_email = from.email,
+                                  from_name = from.Name,
+                                  from_email = from.Email,
                                   subject = subject,
                               };
 

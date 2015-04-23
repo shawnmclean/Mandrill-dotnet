@@ -296,7 +296,7 @@ namespace Mandrill
         public RenderedTemplate Render(
             string templateName,
             IEnumerable<TemplateContent> templateContents,
-            IEnumerable<merge_var> mergeVars)
+            IEnumerable<MergeVar> mergeVars)
         {
             return this.RenderAsync(templateName, templateContents, mergeVars).Result;
         }
@@ -319,7 +319,7 @@ namespace Mandrill
         public Task<RenderedTemplate> RenderAsync(
             string templateName,
             IEnumerable<TemplateContent> templateContents,
-            IEnumerable<merge_var> mergeVars)
+            IEnumerable<MergeVar> mergeVars)
         {
             const string path = "/templates/render.json";
 

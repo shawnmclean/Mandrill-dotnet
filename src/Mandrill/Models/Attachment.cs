@@ -1,32 +1,32 @@
-﻿namespace Mandrill
+﻿using Newtonsoft.Json;
+
+namespace Mandrill.Models
 {
-    using Newtonsoft.Json;
+  /// <summary>
+  ///   Information about an individual attachment.
+  /// </summary>
+  public class Attachment
+  {
+    #region Public Properties
 
     /// <summary>
-    ///     Information about an individual attachment.
+    ///   Content of the attachment as a base64 encoded string.
     /// </summary>
-    public class Attachment
-    {
-        #region Public Properties
+    [JsonProperty("content")]
+    public string Content { get; set; }
 
-        /// <summary>
-        ///     Content of the attachment as a base64 encoded string.
-        /// </summary>
-        [JsonProperty("content")]
-        public string Content { get; set; }
+    /// <summary>
+    ///   File name of the attachment.
+    /// </summary>
+    [JsonProperty("name")]
+    public string Name { get; set; }
 
-        /// <summary>
-        ///     File name of the attachment.
-        /// </summary>
-        [JsonProperty("name")]
-        public string Name { get; set; }
+    /// <summary>
+    ///   MIME type of the attachment.
+    /// </summary>
+    [JsonProperty("type")]
+    public string Type { get; set; }
 
-        /// <summary>
-        ///     MIME type of the attachment.
-        /// </summary>
-        [JsonProperty("type")]
-        public string Type { get; set; }
-
-        #endregion
-    }
+    #endregion
+  }
 }

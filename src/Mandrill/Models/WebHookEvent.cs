@@ -19,6 +19,8 @@
    }
 */
 
+using Mandrill.Models;
+
 namespace Mandrill
 {
     using System;
@@ -200,7 +202,7 @@ namespace Mandrill
         /// <summary>
         ///     Gets or sets the attachments.
         /// </summary>
-        public Dictionary<string, email_attachment> Attachments { get; set; }
+        public Dictionary<string, EmailAttachment> Attachments { get; set; }
 
         /// <summary>
         ///     Gets or sets the bounce description.
@@ -259,7 +261,7 @@ namespace Mandrill
         /// <summary>
         ///     Gets or sets the images.
         /// </summary>
-        public Dictionary<string, image> Images { get; set; }
+        public Dictionary<string, Image> Images { get; set; }
 
         /// <summary>
         ///     Gets or sets the metadata.
