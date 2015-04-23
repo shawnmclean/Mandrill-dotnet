@@ -7,25 +7,29 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Mandrill
+using Newtonsoft.Json;
+
+namespace Mandrill.Models
 {
+  /// <summary>
+  ///   The template content.
+  /// </summary>
+  public class TemplateContent
+  {
+    #region Public Properties
+
     /// <summary>
-    ///     The template content.
+    ///   Gets or sets the content.
     /// </summary>
-    public class TemplateContent
-    {
-        #region Public Properties
+    [JsonProperty("content")]
+    public string content { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the content.
-        /// </summary>
-        public string content { get; set; }
+    /// <summary>
+    ///   Gets or sets the name.
+    /// </summary>
+    [JsonProperty("name")]
+    public string name { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the name.
-        /// </summary>
-        public string name { get; set; }
-
-        #endregion
-    }
+    #endregion
+  }
 }

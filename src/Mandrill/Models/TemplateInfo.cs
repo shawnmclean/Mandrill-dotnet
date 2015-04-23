@@ -106,13 +106,13 @@ namespace Mandrill.Models
         ///     marking the editable elements.
         /// </summary>
         [JsonProperty("code")]
-        public string code { get; set; }
+        public string Code { get; set; }
 
         /// <summary>
         ///     The name of the template.
         /// </summary>
         [JsonProperty("name")]
-        public string name { get; set; }
+        public string Name { get; set; }
 
         /// <summary>
         ///     The full HTML code of the template, with <c>mc:edit</c> attributes
@@ -120,7 +120,7 @@ namespace Mandrill.Models
         ///     it has been published.
         /// </summary>
         [JsonProperty("publish_code")]
-        public string publish_code { get; set; }
+        public string PublishCode { get; set; }
 
         /// <summary>
         ///     The same as the template name - kept as a separate field for
@@ -128,7 +128,7 @@ namespace Mandrill.Models
         /// </summary>
         /// <seealso cref="Name" />
         [JsonProperty("publish_name")]
-        public string publish_name { get; set; }
+        public string PublishName { get; set; }
 
         #endregion
     }

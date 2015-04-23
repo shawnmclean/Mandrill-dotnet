@@ -1,4 +1,6 @@
-﻿namespace Mandrill
+﻿using Mandrill.Models;
+
+namespace Mandrill
 {
     using System;
     using System.Collections.Generic;

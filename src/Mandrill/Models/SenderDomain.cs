@@ -7,50 +7,59 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using Newtonsoft.Json;
+
 namespace Mandrill.Models
 {
+  /// <summary>
+  ///   The sender domain.
+  /// </summary>
+  public class SenderDomain
+  {
+    #region Public Properties
+
     /// <summary>
-    ///     The sender domain.
+    ///   Gets or sets the created_at.
     /// </summary>
-    public class SenderDomain
-    {
-        #region Public Properties
+    [JsonProperty("created_at")]
+    public string CreatedAt { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the created_at.
-        /// </summary>
-        public string created_at { get; set; }
+    /// <summary>
+    ///   Gets or sets the dkim.
+    /// </summary>
+    [JsonProperty("dkim")]
+    public Dkim Dkim { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the dkim.
-        /// </summary>
-        public Dkim dkim { get; set; }
+    /// <summary>
+    ///   Gets or sets the domain.
+    /// </summary>
+    [JsonProperty("domain")]
+    public string Domain { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the domain.
-        /// </summary>
-        public string domain { get; set; }
+    /// <summary>
+    ///   Gets or sets the last_tested_at.
+    /// </summary>
+    [JsonProperty("last_tested_at")]
+    public string LastTestedAt { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the last_tested_at.
-        /// </summary>
-        public string last_tested_at { get; set; }
+    /// <summary>
+    ///   Gets or sets the spf.
+    /// </summary>
+    [JsonProperty("spf")]
+    public Spf Spf { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the spf.
-        /// </summary>
-        public Spf spf { get; set; }
+    /// <summary>
+    ///   Gets or sets a value indicating whether valid_signing.
+    /// </summary>
+    [JsonProperty("valid_signing")]
+    public bool ValidSigning { get; set; }
 
-        /// <summary>
-        ///     Gets or sets a value indicating whether valid_signing.
-        /// </summary>
-        public bool valid_signing { get; set; }
+    /// <summary>
+    ///   Gets or sets the verified_at.
+    /// </summary>
+    [JsonProperty("verified_at")]
+    public string VerifiedAt { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the verified_at.
-        /// </summary>
-        public string verified_at { get; set; }
-
-        #endregion
-    }
+    #endregion
+  }
 }

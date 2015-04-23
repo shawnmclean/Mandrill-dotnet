@@ -108,7 +108,7 @@ namespace Mandrill.Tests.IntegrationTests
 
             //Verify 2
             Assert.AreEqual(1, result.Count);
-            Assert.AreEqual(subjSKey, result[0].subject);
+            Assert.AreEqual(subjSKey, result[0].Subject);
         }
 
         [Test]

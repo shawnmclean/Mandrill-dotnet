@@ -7,64 +7,64 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using Mandrill.Models;
+using System;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
-namespace Mandrill
+namespace Mandrill.Models
 {
-    using System;
-
-    using Newtonsoft.Json;
-    using Newtonsoft.Json.Converters;
+  /// <summary>
+  ///   The smtp event.
+  /// </summary>
+  public class SmtpEvent
+  {
+    #region Public Properties
 
     /// <summary>
-    ///     The smtp event.
+    ///   Gets the time stamp.
     /// </summary>
-    public class SmtpEvent
+    public DateTime TimeStamp
     {
-        #region Public Properties
-
-        /// <summary>
-        ///     Gets the time stamp.
-        /// </summary>
-        public DateTime TimeStamp
-        {
-            get
-            {
-                return WebHookEvent.FromUnixTime(this.ts);
-            }
-        }
-
-        /// <summary>
-        ///     Gets or sets the destination_ip.
-        /// </summary>
-        public string destination_ip { get; set; }
-
-        /// <summary>
-        ///     Gets or sets the diag.
-        /// </summary>
-        public string diag { get; set; }
-
-        /// <summary>
-        ///     Gets or sets the size.
-        /// </summary>
-        public int size { get; set; }
-
-        /// <summary>
-        ///     Gets or sets the source_ip.
-        /// </summary>
-        public string source_ip { get; set; }
-
-        /// <summary>
-        ///     Gets or sets the ts.
-        /// </summary>
-        public int ts { get; set; }
-
-        /// <summary>
-        ///     Gets or sets the type.
-        /// </summary>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public SearchResultState type { get; set; }
-
-        #endregion
+      get { return WebHookEvent.FromUnixTime(Ts); }
     }
+
+    /// <summary>
+    ///   Gets or sets the destination_ip.
+    /// </summary>
+    [JsonProperty("destination_ip")]
+    public string DestinationIp { get; set; }
+
+    /// <summary>
+    ///   Gets or sets the diag.
+    /// </summary>
+    [JsonProperty("diag")]
+    public string Diag { get; set; }
+
+    /// <summary>
+    ///   Gets or sets the size.
+    /// </summary>
+    [JsonProperty("size")]
+    public int Size { get; set; }
+
+    /// <summary>
+    ///   Gets or sets the source_ip.
+    /// </summary>
+    [JsonProperty("source_ip")]
+    public string SourceIp { get; set; }
+
+    /// <summary>
+    ///   Gets or sets the ts.
+    /// </summary>
+    [JsonProperty("ts")]
+    public int Ts { get; set; }
+
+    /// <summary>
+    ///   Gets or sets the type.
+    /// </summary>
+    [JsonConverter(typeof (StringEnumConverter))]
+    [JsonProperty("type")]
+    public SearchResultState Type { get; set; }
+
+    #endregion
+  }
 }

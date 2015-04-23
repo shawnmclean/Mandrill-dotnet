@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Mandrill.Models;
 using NUnit.Framework;
 using System.Net;
 using System.Net.Security;
@@ -61,7 +62,7 @@ namespace Mandrill.Tests.IntegrationTests
 			var expected = "<span mc:edit=\"model1\"></span>";
 			
 			// Verify
-			Assert.AreEqual(expected, result.code);
+			Assert.AreEqual(expected, result.Code);
         }
 
         [Test]
@@ -128,8 +129,8 @@ namespace Mandrill.Tests.IntegrationTests
                 null);
 
             // Verify
-            Assert.AreEqual(modified, result.code);
-            Assert.AreEqual(original, result2.code);
+            Assert.AreEqual(modified, result.Code);
+            Assert.AreEqual(original, result2.Code);
         }
 
         [Test]
@@ -146,8 +147,8 @@ namespace Mandrill.Tests.IntegrationTests
             var result2 = api.DeleteTemplate(templateName);
 
             // Verify
-            Assert.AreEqual(code, result.code);
-            Assert.AreEqual(code, result2.code);
+            Assert.AreEqual(code, result.Code);
+            Assert.AreEqual(code, result2.Code);
         }
     }
 }
