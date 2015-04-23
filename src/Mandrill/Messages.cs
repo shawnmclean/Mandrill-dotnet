@@ -8,6 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using Mandrill.Models;
+using Mandrill.Models.Payloads;
 
 namespace Mandrill
 {
@@ -291,48 +292,6 @@ namespace Mandrill
             return this.SendMessageAsync(recipients, subject, from, templateName, templateContents, send_at, async).Result;
         }
 
-        /// <summary>
-        ///     The send message.
-        /// </summary>
-        /// <param name="message">
-        ///     The message.
-        /// </param>
-        /// <param name="send_at">
-        ///     The send_at.
-        /// </param>
-        /// <returns>
-        ///     The <see cref="List" />.
-        /// </returns>
-        public List<EmailResult> SendMessage(EmailMessage message, DateTime? send_at = null, bool async = false)
-        {
-            return this.SendMessageAsync(message, send_at, async).Result;
-        }
-
-        /// <summary>
-        ///     Send a new transactional message through Mandrill using a template
-        /// </summary>
-        /// <param name="message">
-        ///     The message.
-        /// </param>
-        /// <param name="templateName">
-        /// </param>
-        /// <param name="templateContents">
-        /// </param>
-        /// <param name="send_at">
-        ///     The send_at.
-        /// </param>
-        /// <returns>
-        ///     The <see cref="List" />.
-        /// </returns>
-        public List<EmailResult> SendMessage(
-            EmailMessage message,
-            string templateName,
-            IEnumerable<TemplateContent> templateContents,
-            DateTime? send_at = null,
-            bool async = false)
-        {
-            return SendMessageAsync(message, templateName, templateContents, send_at, async).Result;
-        }
 
         /// <summary>
         ///     Send a new transactional message through Mandrill.
@@ -364,7 +323,7 @@ namespace Mandrill
                                   AutoText = true,
                               };
 
-            return this.SendMessageAsync(message, send_at, async);
+            return this.SendMessage(message, send_at, async);
         }
 
         /// <summary>
@@ -403,88 +362,80 @@ namespace Mandrill
                                   Subject = subject,
                               };
 
-            return SendMessageAsync(message, templateName, templateContents, send_at, async);
+            return SendMessage(message, templateName, templateContents, send_at, async);
         }
 
-        /// <summary>
-        ///     Sends a new transactional message through Mandrill.
-        /// </summary>
-        /// <param name="message">
-        ///     The message.
-        /// </param>
-        /// <param name="send_at">
-        ///     The send_at.
-        /// </param>
-        /// <returns>
-        ///     The <see cref="Task" />.
-        /// </returns>
-        public Task<List<EmailResult>> SendMessageAsync(EmailMessage message, DateTime? send_at = null, bool async = false)
+      /// <summary>
+      ///     Sends a new transactional message through Mandrill.
+      /// </summary>
+      /// <param name="message">
+      ///     The message.
+      /// </param>
+      /// <param name="send_at">
+      ///     The send_at.
+      /// </param>
+      /// <returns>
+      ///     The <see cref="Task" />.
+      /// </returns>
+      public async Task<List<EmailResult>> SendMessage(EmailMessage message, DateTime? send_at = null,
+        bool async = false)
+      {
+        string path = "/messages/send.json";
+
+        var payload = new SendMessagePayload();
+        payload.Message = message;
+        payload.Async = async;
+        if (send_at != null)
         {
-            string path = "/messages/send.json";
-
-            dynamic payload = new ExpandoObject();
-            payload.message = message;
-            payload.async = async;
-            if (send_at != null)
-            {
-                payload.send_at = send_at.Value.ToString(Configuration.DATE_TIME_FORMAT_STRING);
-            }
-            
-
-            Task<IRestResponse> post = this.PostAsync(path, payload);
-
-            return post.ContinueWith(
-              p =>
-              {
-                return JSON.Parse<List<EmailResult>>(p.Result.Content);
-              },
-                TaskContinuationOptions.ExecuteSynchronously);
+          payload.SendAt = send_at.Value.ToString(Configuration.DATE_TIME_FORMAT_STRING);
         }
 
-        /// <summary>
-        ///     Send a new transactional message through Mandrill using a template
-        /// </summary>
-        /// <param name="message">
-        ///     The message.
-        /// </param>
-        /// <param name="templateName">
-        /// </param>
-        /// <param name="templateContents">
-        /// </param>
-        /// <param name="send_at">
-        ///     The send_at.
-        /// </param>
-        /// <returns>
-        ///     The <see cref="Task" />.
-        /// </returns>
-        public Task<List<EmailResult>> SendMessageAsync(
-            EmailMessage message,
-            string templateName,
-            IEnumerable<TemplateContent> templateContents,
-            DateTime? send_at = null,
-            bool async = false)
+        var resp = Post<List<EmailResult>>(path, payload);
+        return await resp;
+
+      }
+
+
+      /// <summary>
+      ///     Send a new transactional message through Mandrill using a template
+      /// </summary>
+      /// <param name="message">
+      ///     The message.
+      /// </param>
+      /// <param name="templateName">
+      /// </param>
+      /// <param name="templateContents">
+      /// </param>
+      /// <param name="send_at">
+      ///     The send_at.
+      /// </param>
+      /// <returns>
+      ///     The <see cref="Task" />.
+      /// </returns>
+      public async Task<List<EmailResult>> SendMessage(
+        EmailMessage message,
+        string templateName,
+        IEnumerable<TemplateContent> templateContents,
+        DateTime? send_at = null,
+        bool async = false)
+      {
+        string path = "/messages/send-template.json";
+
+        var payload = new SendMessagePayload();
+        payload.Message = message;
+        payload.TemplateName = templateName;
+        payload.TemplateContents = templateContents != null ? templateContents : Enumerable.Empty<TemplateContent>();
+        payload.Async = async;
+        if (send_at != null)
         {
-            string path = "/messages/send-template.json";
-
-            dynamic payload = new ExpandoObject();
-            payload.message = message;
-            payload.template_name = templateName;
-            payload.template_content = templateContents != null ? templateContents : Enumerable.Empty<TemplateContent>();
-            payload.async = async;
-            if (send_at != null)
-            {
-                payload.send_at = send_at.Value.ToString(Configuration.DATE_TIME_FORMAT_STRING);
-            }
-
-            Task<IRestResponse> post = this.PostAsync(path, payload);
-            return post.ContinueWith(
-              p =>
-              {
-                return JSON.Parse<List<EmailResult>>(p.Result.Content);
-              }, TaskContinuationOptions.ExecuteSynchronously);
+          payload.SendAt = send_at.Value.ToString(Configuration.DATE_TIME_FORMAT_STRING);
         }
 
-        /// <summary>
+        var resp = Post<List<EmailResult>>(path, payload);
+        return await resp;
+      }
+
+      /// <summary>
         ///     The send raw message.
         /// </summary>
         /// <param name="raw_message">

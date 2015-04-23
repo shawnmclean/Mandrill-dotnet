@@ -172,19 +172,6 @@ namespace Mandrill
             DateTime? send_at,
             bool async = false);
 
-        /// <summary>
-        ///     The send message.
-        /// </summary>
-        /// <param name="message">
-        ///     The message.
-        /// </param>
-        /// <param name="send_at">
-        ///     The send_at.
-        /// </param>
-        /// <returns>
-        ///     The <see cref="List{T}" />.
-        /// </returns>
-        List<EmailResult> SendMessage(EmailMessage message, DateTime? send_at, bool async = false);
 
         /// <summary>
         ///     Send a new transactional message through Mandrill using a template
@@ -202,7 +189,7 @@ namespace Mandrill
         /// <returns>
         ///     The <see cref="List{T}" />.
         /// </returns>
-        List<EmailResult> SendMessage(
+        Task<List<EmailResult>> SendMessage(
             EmailMessage message,
             string templateName,
             IEnumerable<TemplateContent> templateContents,
@@ -274,30 +261,8 @@ namespace Mandrill
         /// <returns>
         ///     The <see cref="Task" />.
         /// </returns>
-        Task<List<EmailResult>> SendMessageAsync(EmailMessage message, DateTime? send_at, bool async = false);
+        Task<List<EmailResult>> SendMessage(EmailMessage message, DateTime? send_at, bool async = false);
 
-        /// <summary>
-        ///     Send a new transactional message through Mandrill using a template
-        /// </summary>
-        /// <param name="message">
-        ///     The message.
-        /// </param>
-        /// <param name="templateName">
-        /// </param>
-        /// <param name="templateContents">
-        /// </param>
-        /// <param name="send_at">
-        ///     The send_at.
-        /// </param>
-        /// <returns>
-        ///     The <see cref="Task" />.
-        /// </returns>
-        Task<List<EmailResult>> SendMessageAsync(
-            EmailMessage message,
-            string templateName,
-            IEnumerable<TemplateContent> templateContents,
-            DateTime? send_at,
-            bool async = false);
 
         /// <summary>
         ///     The send raw message.

@@ -8,6 +8,10 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System;
+using System.Net.Http;
+using Flurl;
+using Flurl.Http;
+using Mandrill.Models.Payloads;
 
 namespace Mandrill
 {
@@ -31,6 +35,8 @@ namespace Mandrill
         /// </summary>
         private readonly RestClient _client;
 
+      private readonly string baseUrl;
+
         #endregion
 
         #region Constructors and Destructors
@@ -52,14 +58,15 @@ namespace Mandrill
 
             if (useHttps)
             {
+              baseUrl = Configuration.BASE_SECURE_URL;
                 this._client = new RestClient(Configuration.BASE_SECURE_URL);
             }
             else
             {
+              baseUrl = Configuration.BASE_URL;
                 this._client = new RestClient(Configuration.BASE_URL);
             }
 
-            this._client.AddHandler("application/json", new DynamicJsonDeserializer());
             this._client.Timeout = timeout;
         }
 
@@ -127,6 +134,7 @@ namespace Mandrill
 
             data.key = ApiKey;
 
+            request.RequestFormat = DataFormat.Json;
             request.AddBody(data);
             _client.ExecuteAsync(request, (response) =>
             {
@@ -165,7 +173,31 @@ namespace Mandrill
             return tcs.Task;
         }
 
-        /// <summary>
+      /// <summary>
+      /// Temporary Post Async that accepts new strongly typed PayloadBase
+      /// </summary>
+      /// <param name="path"></param>
+      /// <param name="data"></param>
+      /// <returns></returns>
+      public async Task<T> Post<T>(string path, PayloadBase data)
+      {
+        data.Key = ApiKey;
+        try
+        {
+          var result = await Configuration.BASE_URL.AppendPathSegment(path)
+            .PostJsonAsync(data).ReceiveJson<T>();
+
+          return result;
+        }
+        catch (FlurlHttpException fhException)
+        {
+          
+          throw new MandrillException(string.Format("Post failed {0} with status {1} and content '{2}'", path, fhException.Call.HttpStatus, fhException.Call.ErrorResponseBody));
+        }
+      }
+
+
+      /// <summary>
         ///     The post async.
         /// </summary>
         /// <param name="path">

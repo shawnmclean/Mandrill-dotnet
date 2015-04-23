@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -31,7 +32,7 @@ namespace Mandrill.Tests.IntegrationTests
         }
 
         [Test]
-        public void Message_Without_Template_Is_Sent()
+        public async Task Message_Without_Template_Is_Sent()
         {
             // Setup
             var apiKey = ConfigurationManager.AppSettings["APIKey"];
@@ -41,7 +42,7 @@ namespace Mandrill.Tests.IntegrationTests
             // Exercise
             var api = new MandrillApi(apiKey);
 
-            var result = api.SendMessage(new EmailMessage
+            var result = await api.SendMessage(new EmailMessage
             {
                 To =
                     new List<EmailAddress> { new EmailAddress { Email = toEmail, Name = "" } },
@@ -58,7 +59,7 @@ namespace Mandrill.Tests.IntegrationTests
         }
 
         [Test]
-        public void Template_Message_Is_Sent()
+        public async Task Template_Message_Is_Sent()
         {
             // Setup
             var apiKey = ConfigurationManager.AppSettings["APIKey"];
@@ -69,7 +70,7 @@ namespace Mandrill.Tests.IntegrationTests
             // Exercise
             var api = new MandrillApi(apiKey);
 
-            var result = api.SendMessage(new EmailMessage
+            var result = await api.SendMessage(new EmailMessage
                                              {
                                                  To =
                                                      new List<EmailAddress> { new EmailAddress { Email = toEmail, Name = "" } },
@@ -146,7 +147,7 @@ namespace Mandrill.Tests.IntegrationTests
         }
 
         [Test]
-        public void Message_With_Send_At_Is_Scheduled_For_Paid_Account()
+        public async Task Message_With_Send_At_Is_Scheduled_For_Paid_Account()
         {
             if(!_isPaidAccount)
                 Assert.Ignore("Not a paid account");
@@ -159,7 +160,7 @@ namespace Mandrill.Tests.IntegrationTests
             // Exercise
             var api = new MandrillApi(apiKey);
 
-            var result = api.SendMessage(new EmailMessage
+            var result = await api.SendMessage(new EmailMessage
             {
                 To =
                     new List<EmailAddress> { new EmailAddress { Email = toEmail, Name = "" } },
@@ -179,7 +180,7 @@ namespace Mandrill.Tests.IntegrationTests
         }
 
         [Test]
-        public void Scheduled_Message_Is_Rescheduled_For_Paid_Account()
+        public async Task Scheduled_Message_Is_Rescheduled_For_Paid_Account()
         {
             if (!_isPaidAccount)
                 Assert.Ignore("Not a paid account");
@@ -191,7 +192,7 @@ namespace Mandrill.Tests.IntegrationTests
             // Exercise
             var api = new MandrillApi(apiKey);
 
-            var messages = api.SendMessage(new EmailMessage
+            var messages = await api.SendMessage(new EmailMessage
                 {
                     To =
                         new List<EmailAddress> { new EmailAddress { Email = toEmail, Name = "" } },
@@ -213,7 +214,7 @@ namespace Mandrill.Tests.IntegrationTests
         }
 
         [Test]
-        public void Scheduled_Message_Is_Canceled_For_Paid_Account()
+        public async Task Scheduled_Message_Is_Canceled_For_Paid_Account()
         {
             if (!_isPaidAccount)
                 Assert.Ignore("Not a paid account");
@@ -225,7 +226,7 @@ namespace Mandrill.Tests.IntegrationTests
             // Exercise
             var api = new MandrillApi(apiKey);
 
-            var messages = api.SendMessage(new EmailMessage
+            var messages = await api.SendMessage(new EmailMessage
             {
                 To =
                     new List<EmailAddress> { new EmailAddress { Email = toEmail, Name = "" } },
@@ -248,9 +249,10 @@ namespace Mandrill.Tests.IntegrationTests
 
         }
 
+        //TODO: Refactor test.
         [Test]
-        [ExpectedException(ExpectedException = typeof(AggregateException))]
-        public void Timeout_At_Endpoint()
+        [ExpectedException(ExpectedException = typeof(MandrillException))]
+        public async Task Timeout_At_Endpoint()
         {
             // Setup
             var apiKey = ConfigurationManager.AppSettings["APIKey"];
@@ -260,7 +262,7 @@ namespace Mandrill.Tests.IntegrationTests
             // Exercise
             var api = new MandrillApi(apiKey, true, 5);
 
-            var result = api.SendMessage(new EmailMessage
+            var result = await api.SendMessage(new EmailMessage
             {
                 To =
                     new List<EmailAddress> { new EmailAddress { Email = toEmail, Name = "" } },
