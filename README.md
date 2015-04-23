@@ -76,6 +76,7 @@ Asychronous:
 .NET 4.5
 
 .NET 4 will not be supported. Code can be found on tag [.net-4.0](https://github.com/shawnmclean/Mandrill-dotnet/tree/net-4.0)
+The last NuGet version of .NET 4.0 is `1.3.1`
 
 ## Contributing
 
