@@ -91,7 +91,7 @@ namespace Mandrill.Models
     ///   The header type to use for the recipient, defaults to "to" if not provided
     ///   oneof(to, cc, bcc)
     /// </summary>
-    [JsonProperty("tyoe")]
+    [JsonProperty("type")]
     public string Type { get; set; }
 
     #endregion
