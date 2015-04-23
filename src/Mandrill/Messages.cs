@@ -116,7 +116,7 @@ namespace Mandrill
             string path = "/messages/info.json";
 
             dynamic payload = new ExpandoObject();
-            payload.id = info.id;
+            payload.id = info.Id;
 
             Task<IRestResponse> post = this.PostAsync(path, payload);
 
@@ -224,12 +224,12 @@ namespace Mandrill
             string path = "/messages/search.json";
 
             dynamic payload = new ExpandoObject();
-            payload.query = search.query;
-            payload.date_from = search.date_from;
-            payload.date_to = search.date_to;
-            payload.tags = search.tags;
-            payload.senders = search.senders;
-            payload.limit = search.limit;
+            payload.query = search.Query;
+            payload.date_from = search.DateFrom;
+            payload.date_to = search.DateTo;
+            payload.tags = search.Tags;
+            payload.senders = search.Senders;
+            payload.limit = search.Limit;
 
             Task<IRestResponse> post = this.PostAsync(path, payload);
 

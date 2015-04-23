@@ -7,45 +7,53 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Mandrill
+using Newtonsoft.Json;
+
+namespace Mandrill.Models
 {
+  /// <summary>
+  ///   The search.
+  /// </summary>
+  public class Search
+  {
+    #region Public Properties
+
     /// <summary>
-    ///     The search.
+    ///   Gets or sets the date_from.
     /// </summary>
-    public class Search
-    {
-        #region Public Properties
+    [JsonProperty("date_from")]
+    public string DateFrom { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the date_from.
-        /// </summary>
-        public string date_from { get; set; }
+    /// <summary>
+    ///   Gets or sets the date_to.
+    /// </summary>
+    [JsonProperty("date_to")]
+    public string DateTo { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the date_to.
-        /// </summary>
-        public string date_to { get; set; }
+    /// <summary>
+    ///   Gets or sets the limit.
+    /// </summary>
+    [JsonProperty("limit")]
+    public string Limit { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the limit.
-        /// </summary>
-        public string limit { get; set; }
+    /// <summary>
+    ///   Gets or sets the query.
+    /// </summary>
+    [JsonProperty("query")]
+    public string Query { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the query.
-        /// </summary>
-        public string query { get; set; }
+    /// <summary>
+    ///   Gets or sets the senders.
+    /// </summary>
+    [JsonProperty("senders")]
+    public string[] Senders { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the senders.
-        /// </summary>
-        public string[] senders { get; set; }
+    /// <summary>
+    ///   Gets or sets the tags.
+    /// </summary>
+    [JsonProperty("tags")]
+    public string[] Tags { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the tags.
-        /// </summary>
-        public string[] tags { get; set; }
-
-        #endregion
-    }
+    #endregion
+  }
 }

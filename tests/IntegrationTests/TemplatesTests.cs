@@ -44,7 +44,7 @@ namespace Mandrill.Tests.IntegrationTests
             string expected = "<span>Test</span>";
             
             // Verify
-            Assert.AreEqual(expected, result.html);
+            Assert.AreEqual(expected, result.Html);
         }
 
         [Test]

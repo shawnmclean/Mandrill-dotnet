@@ -100,8 +100,8 @@ namespace Mandrill.Tests.IntegrationTests
 
             var search = new Search
             {
-                query = String.Format(@"subject:{0}", subjSKey),
-                limit = "10"
+                Query = String.Format(@"subject:{0}", subjSKey),
+                Limit = "10"
             };
 
             var result = api.Search(search);

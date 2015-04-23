@@ -7,15 +7,14 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Mandrill
+using System.Collections.Generic;
+using System.Runtime.Serialization;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+
+namespace Mandrill.Models
 {
-    using System.Collections.Generic;
-    using System.Runtime.Serialization;
-
-    using Newtonsoft.Json;
-    using Newtonsoft.Json.Converters;
-
-    /// <summary>
+  /// <summary>
     ///     The search result state.
     /// </summary>
     public enum SearchResultState

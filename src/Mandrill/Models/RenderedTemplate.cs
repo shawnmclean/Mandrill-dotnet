@@ -7,20 +7,23 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using Newtonsoft.Json;
+
 namespace Mandrill.Models
 {
+  /// <summary>
+  ///   The rendered template.
+  /// </summary>
+  public class RenderedTemplate
+  {
+    #region Public Properties
+
     /// <summary>
-    ///     The rendered template.
+    ///   Gets or sets the html.
     /// </summary>
-    public class RenderedTemplate
-    {
-        #region Public Properties
+    [JsonProperty("html")]
+    public string Html { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the html.
-        /// </summary>
-        public string html { get; set; }
-
-        #endregion
-    }
+    #endregion
+  }
 }
