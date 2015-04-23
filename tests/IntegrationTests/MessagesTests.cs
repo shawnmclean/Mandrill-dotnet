@@ -249,28 +249,5 @@ namespace Mandrill.Tests.IntegrationTests
 
         }
 
-        //TODO: Refactor test.
-        [Test]
-        [ExpectedException(ExpectedException = typeof(MandrillException))]
-        public async Task Timeout_At_Endpoint()
-        {
-            // Setup
-            var apiKey = ConfigurationManager.AppSettings["APIKey"];
-            string toEmail = ConfigurationManager.AppSettings["ValidToEmail"];
-            string fromEmail = ConfigurationManager.AppSettings["FromEMail"];
-
-            // Exercise
-            var api = new MandrillApi(apiKey, true, 5);
-
-            var result = await api.SendMessage(new EmailMessage
-            {
-                To =
-                    new List<EmailAddress> { new EmailAddress { Email = toEmail, Name = "" } },
-                FromEmail = fromEmail,
-                Subject = "Mandrill Integration Test",
-                Html = "<strong>Example HTML</strong>",
-                Text = "Example text"
-            });
-        }
     }
 }

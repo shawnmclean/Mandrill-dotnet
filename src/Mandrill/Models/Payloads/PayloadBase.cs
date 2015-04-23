@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 
 namespace Mandrill.Models.Payloads
 {
-  public class PayloadBase
+  public abstract class PayloadBase
   {
     [JsonProperty("key", Order = 0)]
     public string Key { get; set; }
