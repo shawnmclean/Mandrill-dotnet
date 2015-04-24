@@ -29,7 +29,7 @@ namespace Mandrill.Tests.UnitTests
       httpClient.SimulateTimeout();
 
       var api = new MandrillApi("");
-      Assert.Throws<TimeoutException>(async () => await api.Post<object>("", new SendMessagePayload()));
+      Assert.Throws<TimeoutException>(async () => await api.Post<object>("", new SamplePayload()));
 
     }
 
@@ -46,7 +46,7 @@ namespace Mandrill.Tests.UnitTests
       httpClient.RespondWith(500, responseString);
 
       var api = new MandrillApi("");
-      var ex = Assert.Throws<MandrillException>(async () => await api.Post<object>("", new SendMessagePayload()));
+      var ex = Assert.Throws<MandrillException>(async () => await api.Post<object>("", new SamplePayload()));
       Assert.AreEqual(501, ex.Error.Code);
       Assert.AreEqual("m1", ex.Error.Message);
       Assert.AreEqual("n1", ex.Error.Name);
@@ -65,7 +65,7 @@ namespace Mandrill.Tests.UnitTests
       httpClient.RespondWith(200, responseString);
 
       var api = new MandrillApi("");
-      var response = await api.Post<SampleObject>("", new SendMessagePayload());
+      var response = await api.Post<SampleObject>("", new SamplePayload());
 
       Assert.AreEqual("Shawn", response.Name);
       Assert.AreEqual(1, response.Id);
@@ -75,6 +75,11 @@ namespace Mandrill.Tests.UnitTests
     {
       public string Name { get; set; }
       public int Id { get; set; }
+    }
+
+    private class SamplePayload : PayloadBase
+    {
+      
     }
 
   }

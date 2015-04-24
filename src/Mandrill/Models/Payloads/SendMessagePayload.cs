@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace Mandrill.Models.Payloads
 {
-  public class SendMessagePayload : PayloadBase
+  internal class SendMessagePayload : PayloadBase
   {
     [JsonProperty("message", Order = 1)]
     public EmailMessage Message { get; set; }

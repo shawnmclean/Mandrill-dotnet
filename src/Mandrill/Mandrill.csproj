@@ -76,6 +76,7 @@
     <Compile Include="Models\ErrorResponse.cs" />
     <Compile Include="Models\Payloads\GetContentPayload.cs" />
     <Compile Include="Models\Payloads\PayloadBase.cs" />
+    <Compile Include="Models\Payloads\RenderPayload.cs" />
     <Compile Include="Models\Payloads\SendMessagePayload.cs" />
     <Compile Include="Models\Recipient.cs" />
     <Compile Include="Models\RejectInfo.cs" />

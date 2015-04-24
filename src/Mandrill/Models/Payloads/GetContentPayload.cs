@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace Mandrill.Models.Payloads
 {
-  public class GetContentPayload : PayloadBase
+  internal class GetContentPayload : PayloadBase
   {
     [JsonProperty("id", Order = 1)]
     public string Id { get; set; }

@@ -491,25 +491,7 @@ namespace Mandrill
         /// </returns>
         Task<List<TemplateInfo>> ListTemplatesAsync(string label = "");
 
-        /// <summary>
-        ///     The render.
-        /// </summary>
-        /// <param name="templateName">
-        ///     The template name.
-        /// </param>
-        /// <param name="templateContents">
-        ///     The template contents.
-        /// </param>
-        /// <param name="mergeVars">
-        ///     The merge vars.
-        /// </param>
-        /// <returns>
-        ///     The <see cref="RenderedTemplate" />.
-        /// </returns>
-        RenderedTemplate Render(
-            string templateName,
-            IEnumerable<TemplateContent> templateContents,
-            IEnumerable<MergeVar> mergeVars);
+
 
         /// <summary>
         ///     The render async.
@@ -526,7 +508,7 @@ namespace Mandrill
         /// <returns>
         ///     The <see cref="Task" />.
         /// </returns>
-        Task<RenderedTemplate> RenderAsync(
+        Task<RenderedTemplate> Render(
             string templateName,
             IEnumerable<TemplateContent> templateContents,
             IEnumerable<MergeVar> mergeVars);
