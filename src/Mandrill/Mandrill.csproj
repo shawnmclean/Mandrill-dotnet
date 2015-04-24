@@ -74,7 +74,9 @@
     <Compile Include="Models\EmailMessage.cs" />
     <Compile Include="Models\EmailResult.cs" />
     <Compile Include="Models\ErrorResponse.cs" />
+    <Compile Include="Models\MessageInfo.cs" />
     <Compile Include="Models\Payloads\GetContentPayload.cs" />
+    <Compile Include="Models\Payloads\InfoPayload.cs" />
     <Compile Include="Models\Payloads\PayloadBase.cs" />
     <Compile Include="Models\Payloads\RenderPayload.cs" />
     <Compile Include="Models\Payloads\SendMessagePayload.cs" />

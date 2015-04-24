@@ -33,26 +33,17 @@ namespace Mandrill
         /// </returns>
         Task<Content> Content(string id);
 
-        /// <summary>
-        ///     Send a new search instruction through Mandrill.
-        /// </summary>
-        /// <param name="info">
-        /// </param>
-        /// <returns>
-        ///     The <see cref="SearchResult" />.
-        /// </returns>
-        SearchResult Info(Info info);
 
         /// <summary>
-        ///     Send a new info instruction through Mandrill.
+        ///     Get the information for a single recently sent message.
         /// </summary>
-        /// <param name="info">
-        ///     The info.
+        /// <param name="id">
+        ///     The id.
         /// </param>
         /// <returns>
         ///     The <see cref="Task" />.
         /// </returns>
-        Task<SearchResult> InfoAsync(Info info);
+        Task<SearchResult> Info(string id);
 
         /// <summary>
         ///     The list scheduled messages.

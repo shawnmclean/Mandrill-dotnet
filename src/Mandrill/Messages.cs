@@ -71,39 +71,23 @@ namespace Mandrill
     }
 
     /// <summary>
-    ///   Send a new search instruction through Mandrill.
+    ///   Get the information for a single recently sent message
     /// </summary>
-    /// <param name="info">
-    /// </param>
-    /// <returns>
-    ///   The <see cref="SearchResult" />.
-    /// </returns>
-    public SearchResult Info(Info info)
-    {
-      return InfoAsync(info).Result;
-    }
-
-    /// <summary>
-    ///   Send a new info instruction through Mandrill.
-    /// </summary>
-    /// <param name="info">
-    ///   The info.
+    /// <param name="id">
+    ///   The id.
     /// </param>
     /// <returns>
     ///   The <see cref="Task" />.
     /// </returns>
-    public Task<SearchResult> InfoAsync(Info info)
+    public async Task<SearchResult> Info(string id)
     {
       string path = "/messages/info.json";
 
-      dynamic payload = new ExpandoObject();
-      payload.id = info.Id;
+      var payload = new InfoPayload {Id = id};
 
-      Task<IRestResponse> post = PostAsync(path, payload);
+      var result = await Post<SearchResult>(path, payload);
 
-      return post.ContinueWith(
-        p => { return JSON.Parse<SearchResult>(p.Result.Content); },
-        TaskContinuationOptions.ExecuteSynchronously);
+      return result;
     }
 
     /// <summary>
