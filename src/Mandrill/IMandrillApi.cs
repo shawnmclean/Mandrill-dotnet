@@ -20,17 +20,6 @@ namespace Mandrill
         /// </returns>
         ScheduledEmailResult CancelScheduledMessage(string id);
 
-        /// <summary>
-        ///     Get the full content of a recently sent message.
-        /// </summary>
-        /// <param name="id">
-        ///     Unique id of the message to get -- passed as the "_id" field in
-        ///     webhooks, send calls, or search calls.
-        /// </param>
-        /// <returns>
-        ///     The <see cref="MandrillApi.Content" />
-        /// </returns>
-        Content Content(string id);
 
         /// <summary>
         ///     Get the full content of a recently sent message.
@@ -42,7 +31,7 @@ namespace Mandrill
         /// <returns>
         ///     The <see cref="MandrillApi.Content" />
         /// </returns>
-        Task<Content> ContentAsync(string id);
+        Task<Content> Content(string id);
 
         /// <summary>
         ///     Send a new search instruction through Mandrill.

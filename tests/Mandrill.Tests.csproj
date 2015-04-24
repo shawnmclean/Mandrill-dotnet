@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IntegrationTests\MessagesTests.cs" />
+    <Compile Include="IntegrationTests\Messages\ContentTests.cs" />
     <Compile Include="IntegrationTests\RejectsTests.cs" />
     <Compile Include="IntegrationTests\SendersTests.cs" />
     <Compile Include="IntegrationTests\SubaccountTests.cs" />
