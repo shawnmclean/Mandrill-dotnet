@@ -1,19 +1,19 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace Mandrill.Models.Payloads
+namespace Mandrill.Models.Requests
 {
-  internal class SendMessagePayload : PayloadBase
+  public class SendMessageTemplateRequest : RequestBase
   {
-    [JsonProperty("message", Order = 1)]
+    [JsonProperty("message")]
     public EmailMessage Message { get; set; }
-    [JsonProperty("template_name", Order = 1)]
+    [JsonProperty("template_name")]
     public string TemplateName { get; set; }
-    [JsonProperty("template_content", Order = 1)]
+    [JsonProperty("template_content")]
     public IEnumerable<TemplateContent> TemplateContents { get; set; }
-    [JsonProperty("async", Order = 1)]
+    [JsonProperty("async")]
     public bool Async { get; set; }
-    [JsonProperty("send_at", Order = 1)]
+    [JsonProperty("send_at")]
     public string SendAt { get; set; }
   }
 }

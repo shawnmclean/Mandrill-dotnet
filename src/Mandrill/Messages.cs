@@ -13,8 +13,9 @@ using System.Dynamic;
 using System.Linq;
 using System.Threading.Tasks;
 using Mandrill.Models;
-using Mandrill.Models.Payloads;
+using Mandrill.Models.Requests;
 using RestSharp;
+using Content = Mandrill.Models.Content;
 
 namespace Mandrill
 {
@@ -52,40 +53,32 @@ namespace Mandrill
     /// <summary>
     ///   Get the full content of a recently sent message.
     /// </summary>
-    /// <param name="id">
-    ///   Unique id of the message to get -- passed as the "_id" field in
-    ///   webhooks, send calls, or search calls.
+    /// <param name="request">
+    ///  The content.
     /// </param>
     /// <returns>
-    ///   The <see cref="Content" />
+    ///   The <see cref="GetContent" />
     /// </returns>
-    public async Task<Content> Content(string id)
+    public async Task<Content> GetContent(ContentRequest request)
     {
       string path = "/messages/content.json";
-
-      var payload = new GetContentPayload {Id = id};
-
-      var response = await Post<Content>(path, payload);
+      
+      var response = await Post<Content>(path, request);
 
       return response;
     }
 
+
     /// <summary>
-    ///   Get the information for a single recently sent message
+    /// Get the information for a single recently sent message.
     /// </summary>
-    /// <param name="id">
-    ///   The id.
-    /// </param>
-    /// <returns>
-    ///   The <see cref="Task" />.
-    /// </returns>
-    public async Task<MessageInfo> Info(string id)
+    /// <param name="request">The request.</param>
+    /// <returns>The <see cref="Task" />.</returns>
+    public async Task<MessageInfo> GetInfo(InfoRequest request)
     {
       string path = "/messages/info.json";
-
-      var payload = new InfoPayload {Id = id};
-
-      var result = await Post<MessageInfo>(path, payload);
+      
+      var result = await Post<MessageInfo>(path, request);
 
       return result;
     }
@@ -171,7 +164,7 @@ namespace Mandrill
     /// <returns>
     ///   The <see cref="Task" />.
     /// </returns>
-    public async Task<List<SearchResult>> Search(Search search)
+    public async Task<List<SearchResult>> Search(SearchRequest search)
     {
       string path = "/messages/search.json";
       
@@ -325,7 +318,7 @@ namespace Mandrill
     {
       string path = "/messages/send.json";
 
-      var payload = new SendMessagePayload();
+      var payload = new SendMessageTemplateRequest();
       payload.Message = message;
       payload.Async = async;
       if (send_at != null)
@@ -363,7 +356,7 @@ namespace Mandrill
     {
       string path = "/messages/send-template.json";
 
-      var payload = new SendMessagePayload();
+      var payload = new SendMessageTemplateRequest();
       payload.Message = message;
       payload.TemplateName = templateName;
       payload.TemplateContents = templateContents != null ? templateContents : Enumerable.Empty<TemplateContent>();

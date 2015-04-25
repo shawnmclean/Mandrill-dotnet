@@ -12,7 +12,7 @@ using System.Dynamic;
 using System.Linq;
 using System.Threading.Tasks;
 using Mandrill.Models;
-using Mandrill.Models.Payloads;
+using Mandrill.Models.Requests;
 using RestSharp;
 
 namespace Mandrill
@@ -262,7 +262,7 @@ namespace Mandrill
     {
       const string path = "/templates/render.json";
 
-      var payload = new RenderPayload();
+      var payload = new RenderRequest();
 
       payload.TemplateName = templateName;
       payload.TemplateContents = templateContents;

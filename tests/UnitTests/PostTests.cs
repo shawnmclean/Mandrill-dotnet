@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Flurl.Http.Testing;
-using Mandrill.Models.Payloads;
+using Mandrill.Models.Requests;
 using NUnit.Framework;
 
 namespace Mandrill.Tests.UnitTests
@@ -77,7 +77,7 @@ namespace Mandrill.Tests.UnitTests
       public int Id { get; set; }
     }
 
-    private class SamplePayload : PayloadBase
+    private class SamplePayload : RequestBase
     {
       
     }

@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 using Flurl;
 using Flurl.Http;
 using Mandrill.Models;
-using Mandrill.Models.Payloads;
+using Mandrill.Models.Requests;
 using RestSharp;
 
 namespace Mandrill
@@ -166,7 +166,7 @@ namespace Mandrill
     /// <param name="path">the path to post to</param>
     /// <param name="data">the payload to send in request body as json</param>
     /// <returns></returns>
-    public async Task<T> Post<T>(string path, PayloadBase data)
+    public async Task<T> Post<T>(string path, RequestBase data)
     {
       data.Key = ApiKey;
       try

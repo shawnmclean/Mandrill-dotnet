@@ -1,4 +1,4 @@
-using Mandrill.Models.Payloads;
+using Mandrill.Models.Requests;
 
 namespace Mandrill
 {
@@ -26,26 +26,25 @@ namespace Mandrill
         /// <summary>
         ///     Get the full content of a recently sent message.
         /// </summary>
-        /// <param name="id">
-        ///     Unique id of the message to get -- passed as the "_id" field in
-        ///     webhooks, send calls, or search calls.
+        /// <param name="request">
+        ///    The request
         /// </param>
         /// <returns>
-        ///     The <see cref="MandrillApi.Content" />
+        ///     The <see cref="MandrillApi.GetContent" />
         /// </returns>
-        Task<Content> Content(string id);
+        Task<Content> GetContent(ContentRequest request);
 
 
         /// <summary>
         ///     Get the information for a single recently sent message.
         /// </summary>
-        /// <param name="id">
-        ///     The id.
+        /// <param name="request">
+        ///     The request.
         /// </param>
         /// <returns>
         ///     The <see cref="Task" />.
         /// </returns>
-        Task<MessageInfo> Info(string id);
+        Task<MessageInfo> GetInfo(InfoRequest request);
 
         /// <summary>
         ///     The list scheduled messages.
@@ -89,7 +88,7 @@ namespace Mandrill
         /// <returns>
         ///     The <see cref="Task" />.
         /// </returns>
-        Task<List<SearchResult>> Search(Search search);
+        Task<List<SearchResult>> Search(SearchRequest search);
 
         /// <summary>
         ///     Send a new transactional message through Mandrill.

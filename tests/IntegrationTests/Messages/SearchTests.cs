@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Mandrill.Models;
-using Mandrill.Models.Payloads;
+using Mandrill.Models.Requests;
 using NUnit.Framework;
 
 namespace Mandrill.Tests.IntegrationTests.Messages
@@ -24,7 +24,7 @@ namespace Mandrill.Tests.IntegrationTests.Messages
       var api = new MandrillApi(apiKey);
 
 
-      var search = new Search {
+      var search = new SearchRequest {
         Query = String.Format(@"subject:{0}", subjSKey),
         Limit = "10"
       };
