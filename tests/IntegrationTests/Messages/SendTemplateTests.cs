@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Mandrill.Models;
+using Mandrill.Models.Requests;
 using NUnit.Framework;
 
 namespace Mandrill.Tests.IntegrationTests.Messages
@@ -23,17 +24,22 @@ namespace Mandrill.Tests.IntegrationTests.Messages
       // Exercise
       var api = new MandrillApi(apiKey);
 
-      List<EmailResult> result = await api.SendMessage(new EmailMessage {
-        To =
-          new List<EmailAddress> { new EmailAddress { Email = toEmail, Name = "" } },
-        FromEmail = fromEmail,
-        Subject = "Mandrill Integration Test",
-      }, templateExample,
-        new List<TemplateContent>
+      var result = await api.SendMessageTemplate(new SendMessageTemplateRequest
+      {
+        Message = new EmailMessage
+        {
+          To =
+            new List<EmailAddress> {new EmailAddress {Email = toEmail, Name = ""}},
+          FromEmail = fromEmail,
+          Subject = "Mandrill Integration Test",
+        },
+        TemplateName = templateExample,
+        TemplateContents = new List<TemplateContent>
         {
           new TemplateContent {Name = "model1", Content = "Content1"},
           new TemplateContent {Name = "model2", Content = "Content2"}
-        });
+        }
+      });
 
       // Verify
       Assert.AreEqual(1, result.Count);

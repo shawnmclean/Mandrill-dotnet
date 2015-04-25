@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace Mandrill.Models.Requests
@@ -14,6 +15,6 @@ namespace Mandrill.Models.Requests
     [JsonProperty("async")]
     public bool Async { get; set; }
     [JsonProperty("send_at")]
-    public string SendAt { get; set; }
+    public DateTime? SendAt { get; set; }
   }
 }

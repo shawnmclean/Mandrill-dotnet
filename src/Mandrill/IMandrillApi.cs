@@ -115,57 +115,13 @@ namespace Mandrill
             DateTime? send_at,
             bool async = false);
 
-        /// <summary>
-        ///     Send a new transactional message through Mandrill using a template
-        /// </summary>
-        /// <param name="recipients">
-        /// </param>
-        /// <param name="subject">
-        /// </param>
-        /// <param name="from">
-        /// </param>
-        /// <param name="templateName">
-        /// </param>
-        /// <param name="templateContents">
-        /// </param>
-        /// <param name="send_at">
-        ///     The send_at.
-        /// </param>
-        /// <returns>
-        ///     The <see cref="List{T}" />.
-        /// </returns>
-        List<EmailResult> SendMessage(
-            IEnumerable<EmailAddress> recipients,
-            string subject,
-            EmailAddress from,
-            string templateName,
-            IEnumerable<TemplateContent> templateContents,
-            DateTime? send_at,
-            bool async = false);
-
 
         /// <summary>
-        ///     Send a new transactional message through Mandrill using a template
+        /// Send a new transactional message through Mandrill using a template
         /// </summary>
-        /// <param name="message">
-        ///     The message.
-        /// </param>
-        /// <param name="templateName">
-        /// </param>
-        /// <param name="templateContents">
-        /// </param>
-        /// <param name="send_at">
-        ///     The send_at.
-        /// </param>
-        /// <returns>
-        ///     The <see cref="List{T}" />.
-        /// </returns>
-        Task<List<EmailResult>> SendMessage(
-            EmailMessage message,
-            string templateName,
-            IEnumerable<TemplateContent> templateContents,
-            DateTime? send_at,
-            bool async = false);
+        /// <param name="request">The request.</param>
+        /// <returns>The <see cref="List{T}" />.</returns>
+        Task<List<EmailResult>> SendMessageTemplate(SendMessageTemplateRequest request);
 
         /// <summary>
         ///     Send a new transactional message through Mandrill.
@@ -192,33 +148,6 @@ namespace Mandrill
             DateTime? send_at,
             bool async = false);
 
-        /// <summary>
-        ///     Send a new transactional message through Mandrill using a template
-        /// </summary>
-        /// <param name="recipients">
-        /// </param>
-        /// <param name="subject">
-        /// </param>
-        /// <param name="from">
-        /// </param>
-        /// <param name="templateName">
-        /// </param>
-        /// <param name="templateContents">
-        /// </param>
-        /// <param name="send_at">
-        ///     The send_at.
-        /// </param>
-        /// <returns>
-        ///     The <see cref="Task" />.
-        /// </returns>
-        Task<List<EmailResult>> SendMessageAsync(
-            IEnumerable<EmailAddress> recipients,
-            string subject,
-            EmailAddress from,
-            string templateName,
-            IEnumerable<TemplateContent> templateContents,
-            DateTime? send_at,
-            bool async = false);
 
         /// <summary>
         ///     Sends a new transactional message through Mandrill.
