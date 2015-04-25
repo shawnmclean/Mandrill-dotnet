@@ -79,13 +79,13 @@ namespace Mandrill
     /// <returns>
     ///   The <see cref="Task" />.
     /// </returns>
-    public async Task<SearchResult> Info(string id)
+    public async Task<MessageInfo> Info(string id)
     {
       string path = "/messages/info.json";
 
       var payload = new InfoPayload {Id = id};
 
-      var result = await Post<SearchResult>(path, payload);
+      var result = await Post<MessageInfo>(path, payload);
 
       return result;
     }

@@ -43,7 +43,7 @@ namespace Mandrill
         /// <returns>
         ///     The <see cref="Task" />.
         /// </returns>
-        Task<SearchResult> Info(string id);
+        Task<MessageInfo> Info(string id);
 
         /// <summary>
         ///     The list scheduled messages.
