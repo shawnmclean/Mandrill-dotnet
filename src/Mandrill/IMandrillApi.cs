@@ -1,3 +1,5 @@
+using Mandrill.Models.Payloads;
+
 namespace Mandrill
 {
     using System;
@@ -82,22 +84,12 @@ namespace Mandrill
         ///     Send a new search instruction through Mandrill.
         /// </summary>
         /// <param name="search">
-        /// </param>
-        /// <returns>
-        ///     The <see cref="List{T}" />.
-        /// </returns>
-        List<SearchResult> Search(Search search);
-
-        /// <summary>
-        ///     Send a new search instruction through Mandrill.
-        /// </summary>
-        /// <param name="search">
         ///     The search.
         /// </param>
         /// <returns>
         ///     The <see cref="Task" />.
         /// </returns>
-        Task<List<SearchResult>> SearchAsync(Search search);
+        Task<List<SearchResult>> Search(Search search);
 
         /// <summary>
         ///     Send a new transactional message through Mandrill.

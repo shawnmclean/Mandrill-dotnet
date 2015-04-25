@@ -166,41 +166,19 @@ namespace Mandrill
     ///   Send a new search instruction through Mandrill.
     /// </summary>
     /// <param name="search">
-    /// </param>
-    /// <returns>
-    ///   The <see cref="List" />.
-    /// </returns>
-    public List<SearchResult> Search(Search search)
-    {
-      return SearchAsync(search).Result;
-    }
-
-    /// <summary>
-    ///   Send a new search instruction through Mandrill.
-    /// </summary>
-    /// <param name="search">
     ///   The search.
     /// </param>
     /// <returns>
     ///   The <see cref="Task" />.
     /// </returns>
-    public Task<List<SearchResult>> SearchAsync(Search search)
+    public async Task<List<SearchResult>> Search(Search search)
     {
       string path = "/messages/search.json";
+      
+      var response = await Post<List<SearchResult>>(path, search);
 
-      dynamic payload = new ExpandoObject();
-      payload.query = search.Query;
-      payload.date_from = search.DateFrom;
-      payload.date_to = search.DateTo;
-      payload.tags = search.Tags;
-      payload.senders = search.Senders;
-      payload.limit = search.Limit;
+      return response;
 
-      Task<IRestResponse> post = PostAsync(path, payload);
-
-      return post.ContinueWith(
-        p => { return JSON.Parse<List<SearchResult>>(p.Result.Content); },
-        TaskContinuationOptions.ExecuteSynchronously);
     }
 
     /// <summary>
