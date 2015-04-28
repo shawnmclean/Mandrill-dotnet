@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Mandrill.Models;
+using Mandrill.Models.Requests;
 using NUnit.Framework;
 
 namespace Mandrill.Tests.IntegrationTests.Messages
@@ -25,7 +26,7 @@ namespace Mandrill.Tests.IntegrationTests.Messages
       // Exercise
       var api = new MandrillApi(apiKey);
 
-      var response = await api.Content(sentEmailId);
+      var response = await api.GetContent(new ContentRequest{Id = sentEmailId});
 
       Assert.AreEqual(sentEmailSubject, response.Subject);
       Assert.AreEqual(sentEmailText, response.Text);

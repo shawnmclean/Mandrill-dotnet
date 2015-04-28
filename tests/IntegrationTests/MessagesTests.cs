@@ -32,33 +32,6 @@ namespace Mandrill.Tests.IntegrationTests
     }
 
     [Test]
-    [Ignore("Need a unique existing email")]
-    public void Can_Search_Message()
-    {
-      // Setup
-      string apiKey = ConfigurationManager.AppSettings["APIKey"];
-      string toEmail = ConfigurationManager.AppSettings["ValidToEmail"];
-      string fromEmail = ConfigurationManager.AppSettings["FromEMail"];
-      string subjSKey = ConfigurationManager.AppSettings["UniqueExistingEmailSubject"];
-
-      // Exercise
-      var api = new MandrillApi(apiKey);
-
-
-      var search = new Search
-      {
-        Query = String.Format(@"subject:{0}", subjSKey),
-        Limit = "10"
-      };
-
-      List<SearchResult> result = api.Search(search);
-
-      //Verify 2
-      Assert.AreEqual(1, result.Count);
-      Assert.AreEqual(subjSKey, result[0].Subject);
-    }
-
-    [Test]
     public async Task Message_With_Send_At_Is_Scheduled_For_Paid_Account()
     {
       if (!_isPaidAccount)
@@ -91,32 +64,7 @@ namespace Mandrill.Tests.IntegrationTests
       api.CancelScheduledMessage(result.First().Id);
     }
 
-    [Test]
-    public async Task Message_Without_Template_Is_Sent()
-    {
-      // Setup
-      string apiKey = ConfigurationManager.AppSettings["APIKey"];
-      string toEmail = ConfigurationManager.AppSettings["ValidToEmail"];
-      string fromEmail = ConfigurationManager.AppSettings["FromEMail"];
 
-      // Exercise
-      var api = new MandrillApi(apiKey);
-
-      List<EmailResult> result = await api.SendMessage(new EmailMessage
-      {
-        To =
-          new List<EmailAddress> {new EmailAddress {Email = toEmail, Name = ""}},
-        FromEmail = fromEmail,
-        Subject = "Mandrill Integration Test",
-        Html = "<strong>Example HTML</strong>",
-        Text = "Example text"
-      });
-
-      // Verify
-      Assert.AreEqual(1, result.Count);
-      Assert.AreEqual(toEmail, result.First().Email);
-      Assert.AreEqual(EmailResultStatus.Sent, result.First().Status);
-    }
 
     [Test]
     public void Raw_Message_Is_Sent()
@@ -221,35 +169,6 @@ namespace Mandrill.Tests.IntegrationTests
       api.CancelScheduledMessage(rescheduled.Id);
     }
 
-    [Test]
-    public async Task Template_Message_Is_Sent()
-    {
-      // Setup
-      string apiKey = ConfigurationManager.AppSettings["APIKey"];
-      string toEmail = ConfigurationManager.AppSettings["ValidToEmail"];
-      string fromEmail = ConfigurationManager.AppSettings["FromEMail"];
-      string templateExample = ConfigurationManager.AppSettings["TemplateExample"];
 
-      // Exercise
-      var api = new MandrillApi(apiKey);
-
-      List<EmailResult> result = await api.SendMessage(new EmailMessage
-      {
-        To =
-          new List<EmailAddress> {new EmailAddress {Email = toEmail, Name = ""}},
-        FromEmail = fromEmail,
-        Subject = "Mandrill Integration Test",
-      }, templateExample,
-        new List<TemplateContent>
-        {
-          new TemplateContent {Name = "model1", Content = "Content1"},
-          new TemplateContent {Name = "model2", Content = "Content2"}
-        });
-
-      // Verify
-      Assert.AreEqual(1, result.Count);
-      Assert.AreEqual(toEmail, result.First().Email);
-      Assert.AreEqual(EmailResultStatus.Sent, result.First().Status);
-    }
   }
 }

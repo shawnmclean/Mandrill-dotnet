@@ -13,8 +13,9 @@ using System.Dynamic;
 using System.Linq;
 using System.Threading.Tasks;
 using Mandrill.Models;
-using Mandrill.Models.Payloads;
+using Mandrill.Models.Requests;
 using RestSharp;
+using Content = Mandrill.Models.Content;
 
 namespace Mandrill
 {
@@ -52,40 +53,32 @@ namespace Mandrill
     /// <summary>
     ///   Get the full content of a recently sent message.
     /// </summary>
-    /// <param name="id">
-    ///   Unique id of the message to get -- passed as the "_id" field in
-    ///   webhooks, send calls, or search calls.
+    /// <param name="request">
+    ///  The content.
     /// </param>
     /// <returns>
-    ///   The <see cref="Content" />
+    ///   The <see cref="GetContent" />
     /// </returns>
-    public async Task<Content> Content(string id)
+    public async Task<Content> GetContent(ContentRequest request)
     {
       string path = "/messages/content.json";
-
-      var payload = new GetContentPayload {Id = id};
-
-      var response = await Post<Content>(path, payload);
+      
+      var response = await Post<Content>(path, request);
 
       return response;
     }
 
+
     /// <summary>
-    ///   Get the information for a single recently sent message
+    /// Get the information for a single recently sent message.
     /// </summary>
-    /// <param name="id">
-    ///   The id.
-    /// </param>
-    /// <returns>
-    ///   The <see cref="Task" />.
-    /// </returns>
-    public async Task<SearchResult> Info(string id)
+    /// <param name="request">The request.</param>
+    /// <returns>The <see cref="Task" />.</returns>
+    public async Task<MessageInfo> GetInfo(InfoRequest request)
     {
       string path = "/messages/info.json";
-
-      var payload = new InfoPayload {Id = id};
-
-      var result = await Post<SearchResult>(path, payload);
+      
+      var result = await Post<MessageInfo>(path, request);
 
       return result;
     }
@@ -166,41 +159,19 @@ namespace Mandrill
     ///   Send a new search instruction through Mandrill.
     /// </summary>
     /// <param name="search">
-    /// </param>
-    /// <returns>
-    ///   The <see cref="List" />.
-    /// </returns>
-    public List<SearchResult> Search(Search search)
-    {
-      return SearchAsync(search).Result;
-    }
-
-    /// <summary>
-    ///   Send a new search instruction through Mandrill.
-    /// </summary>
-    /// <param name="search">
     ///   The search.
     /// </param>
     /// <returns>
     ///   The <see cref="Task" />.
     /// </returns>
-    public Task<List<SearchResult>> SearchAsync(Search search)
+    public async Task<List<SearchResult>> Search(SearchRequest search)
     {
       string path = "/messages/search.json";
+      
+      var response = await Post<List<SearchResult>>(path, search);
 
-      dynamic payload = new ExpandoObject();
-      payload.query = search.Query;
-      payload.date_from = search.DateFrom;
-      payload.date_to = search.DateTo;
-      payload.tags = search.Tags;
-      payload.senders = search.Senders;
-      payload.limit = search.Limit;
+      return response;
 
-      Task<IRestResponse> post = PostAsync(path, payload);
-
-      return post.ContinueWith(
-        p => { return JSON.Parse<List<SearchResult>>(p.Result.Content); },
-        TaskContinuationOptions.ExecuteSynchronously);
     }
 
     /// <summary>
@@ -224,37 +195,6 @@ namespace Mandrill
       string content, EmailAddress from, DateTime? send_at = null, bool async = false)
     {
       return SendMessageAsync(recipients, subject, content, from, send_at, async).Result;
-    }
-
-    /// <summary>
-    ///   Send a new transactional message through Mandrill using a template
-    /// </summary>
-    /// <param name="recipients">
-    /// </param>
-    /// <param name="subject">
-    /// </param>
-    /// <param name="from">
-    /// </param>
-    /// <param name="templateName">
-    /// </param>
-    /// <param name="templateContents">
-    /// </param>
-    /// <param name="send_at">
-    ///   The send_at.
-    /// </param>
-    /// <returns>
-    ///   The <see cref="List" />.
-    /// </returns>
-    public List<EmailResult> SendMessage(
-      IEnumerable<EmailAddress> recipients,
-      string subject,
-      EmailAddress from,
-      string templateName,
-      IEnumerable<TemplateContent> templateContents,
-      DateTime? send_at = null,
-      bool async = false)
-    {
-      return SendMessageAsync(recipients, subject, from, templateName, templateContents, send_at, async).Result;
     }
 
 
@@ -291,44 +231,6 @@ namespace Mandrill
       return SendMessage(message, send_at, async);
     }
 
-    /// <summary>
-    ///   Send a new transactional message through Mandrill using a template
-    /// </summary>
-    /// <param name="recipients">
-    /// </param>
-    /// <param name="subject">
-    /// </param>
-    /// <param name="from">
-    /// </param>
-    /// <param name="templateName">
-    /// </param>
-    /// <param name="templateContents">
-    /// </param>
-    /// <param name="send_at">
-    ///   The send_at.
-    /// </param>
-    /// <returns>
-    ///   The <see cref="Task" />.
-    /// </returns>
-    public Task<List<EmailResult>> SendMessageAsync(
-      IEnumerable<EmailAddress> recipients,
-      string subject,
-      EmailAddress from,
-      string templateName,
-      IEnumerable<TemplateContent> templateContents,
-      DateTime? send_at = null,
-      bool async = false)
-    {
-      var message = new EmailMessage
-      {
-        To = recipients,
-        FromName = from.Name,
-        FromEmail = from.Email,
-        Subject = subject,
-      };
-
-      return SendMessage(message, templateName, templateContents, send_at, async);
-    }
 
     /// <summary>
     ///   Sends a new transactional message through Mandrill.
@@ -347,12 +249,12 @@ namespace Mandrill
     {
       string path = "/messages/send.json";
 
-      var payload = new SendMessagePayload();
+      var payload = new SendMessageTemplateRequest();
       payload.Message = message;
       payload.Async = async;
       if (send_at != null)
       {
-        payload.SendAt = send_at.Value.ToString(Configuration.DATE_TIME_FORMAT_STRING);
+        //payload.SendAt = send_at.Value.ToString(Configuration.DATE_TIME_FORMAT_STRING);
       }
 
       Task<List<EmailResult>> resp = Post<List<EmailResult>>(path, payload);
@@ -376,27 +278,22 @@ namespace Mandrill
     /// <returns>
     ///   The <see cref="Task" />.
     /// </returns>
-    public async Task<List<EmailResult>> SendMessage(
-      EmailMessage message,
-      string templateName,
-      IEnumerable<TemplateContent> templateContents,
-      DateTime? send_at = null,
-      bool async = false)
+    public async Task<List<EmailResult>> SendMessageTemplate(SendMessageTemplateRequest request)
     {
       string path = "/messages/send-template.json";
 
-      var payload = new SendMessagePayload();
-      payload.Message = message;
-      payload.TemplateName = templateName;
-      payload.TemplateContents = templateContents != null ? templateContents : Enumerable.Empty<TemplateContent>();
-      payload.Async = async;
-      if (send_at != null)
-      {
-        payload.SendAt = send_at.Value.ToString(Configuration.DATE_TIME_FORMAT_STRING);
-      }
+      //var payload = new SendMessageTemplateRequest();
+      //payload.Message = message;
+      //payload.TemplateName = templateName;
+      //payload.TemplateContents = templateContents != null ? templateContents : Enumerable.Empty<TemplateContent>();
+      //payload.Async = async;
+      //if (send_at != null)
+      //{
+      //  payload.SendAt = send_at.Value.ToString(Configuration.DATE_TIME_FORMAT_STRING);
+      //}
 
-      Task<List<EmailResult>> resp = Post<List<EmailResult>>(path, payload);
-      return await resp;
+      var resp = await Post<List<EmailResult>>(path, request);
+      return resp;
     }
 
     /// <summary>

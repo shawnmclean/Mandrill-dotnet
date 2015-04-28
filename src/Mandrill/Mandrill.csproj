@@ -68,23 +68,22 @@
     <Compile Include="Models\Attachment.cs" />
     <Compile Include="Models\Content.cs" />
     <Compile Include="Models\Dkim.cs" />
-    <Compile Include="Models\Info.cs" />
+    <Compile Include="Models\MessageInfo.cs" />
     <Compile Include="Models\EmailAddress.cs" />
     <Compile Include="MandrillApi.cs" />
     <Compile Include="Models\EmailMessage.cs" />
     <Compile Include="Models\EmailResult.cs" />
     <Compile Include="Models\ErrorResponse.cs" />
-    <Compile Include="Models\MessageInfo.cs" />
-    <Compile Include="Models\Payloads\GetContentPayload.cs" />
-    <Compile Include="Models\Payloads\InfoPayload.cs" />
-    <Compile Include="Models\Payloads\PayloadBase.cs" />
-    <Compile Include="Models\Payloads\RenderPayload.cs" />
-    <Compile Include="Models\Payloads\SendMessagePayload.cs" />
+    <Compile Include="Models\Requests\ContentRequest.cs" />
+    <Compile Include="Models\Requests\InfoRequest.cs" />
+    <Compile Include="Models\Requests\RequestBase.cs" />
+    <Compile Include="Models\Requests\RenderRequest.cs" />
+    <Compile Include="Models\Requests\SendMessageTemplateRequest.cs" />
     <Compile Include="Models\Recipient.cs" />
     <Compile Include="Models\RejectInfo.cs" />
     <Compile Include="Models\RenderedTemplate.cs" />
     <Compile Include="Models\ScheduledEmailResult.cs" />
-    <Compile Include="Models\Search.cs" />
+    <Compile Include="Models\Requests\SearchRequest.cs" />
     <Compile Include="Models\SearchResult.cs" />
     <Compile Include="Models\Sender.cs" />
     <Compile Include="Models\SenderDomain.cs" />
@@ -110,6 +109,9 @@
   <ItemGroup>
     <None Include="Mandrill.nuspec" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\Responses\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />

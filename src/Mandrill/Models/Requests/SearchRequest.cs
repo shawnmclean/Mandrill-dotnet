@@ -9,12 +9,12 @@
 
 using Newtonsoft.Json;
 
-namespace Mandrill.Models
+namespace Mandrill.Models.Requests
 {
   /// <summary>
   ///   The search.
   /// </summary>
-  public class Search
+  public class SearchRequest : RequestBase
   {
     #region Public Properties
 

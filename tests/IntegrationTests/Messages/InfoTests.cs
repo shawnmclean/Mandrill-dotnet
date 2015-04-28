@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Mandrill.Models.Requests;
 using NUnit.Framework;
 
 namespace Mandrill.Tests.IntegrationTests.Messages
@@ -12,21 +13,21 @@ namespace Mandrill.Tests.IntegrationTests.Messages
   public class InfoTests
   {
     [Test]
-    public async Task Should_Send_New_Info_Instruction()
+    public async Task Should_Get_Information_Of_A_Sent_Email()
     {
       // Setup
       string apiKey = ConfigurationManager.AppSettings["APIKey"];
       string sentEmailId = ConfigurationManager.AppSettings["SentEmailId"];
       string sentEmailSubject = ConfigurationManager.AppSettings["SentEmailSubject"];
-      string sentEmailText = ConfigurationManager.AppSettings["SentEmailText"];
+      string sentEmailRecipient = ConfigurationManager.AppSettings["SentEmailRecipient"];
 
       // Exercise
       var api = new MandrillApi(apiKey);
 
-      var response = await api.Info(sentEmailId);
+      var response = await api.GetInfo(new InfoRequest{Id = sentEmailId});
 
       Assert.AreEqual(sentEmailSubject, response.Subject);
-      //Assert.AreEqual(sentEmailText, response.Text);
+      Assert.AreEqual(sentEmailRecipient, response.Email);
     }
   }
 }

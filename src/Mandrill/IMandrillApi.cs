@@ -1,3 +1,5 @@
+using Mandrill.Models.Requests;
+
 namespace Mandrill
 {
     using System;
@@ -24,26 +26,25 @@ namespace Mandrill
         /// <summary>
         ///     Get the full content of a recently sent message.
         /// </summary>
-        /// <param name="id">
-        ///     Unique id of the message to get -- passed as the "_id" field in
-        ///     webhooks, send calls, or search calls.
+        /// <param name="request">
+        ///    The request
         /// </param>
         /// <returns>
-        ///     The <see cref="MandrillApi.Content" />
+        ///     The <see cref="MandrillApi.GetContent" />
         /// </returns>
-        Task<Content> Content(string id);
+        Task<Content> GetContent(ContentRequest request);
 
 
         /// <summary>
         ///     Get the information for a single recently sent message.
         /// </summary>
-        /// <param name="id">
-        ///     The id.
+        /// <param name="request">
+        ///     The request.
         /// </param>
         /// <returns>
         ///     The <see cref="Task" />.
         /// </returns>
-        Task<SearchResult> Info(string id);
+        Task<MessageInfo> GetInfo(InfoRequest request);
 
         /// <summary>
         ///     The list scheduled messages.
@@ -82,22 +83,12 @@ namespace Mandrill
         ///     Send a new search instruction through Mandrill.
         /// </summary>
         /// <param name="search">
-        /// </param>
-        /// <returns>
-        ///     The <see cref="List{T}" />.
-        /// </returns>
-        List<SearchResult> Search(Search search);
-
-        /// <summary>
-        ///     Send a new search instruction through Mandrill.
-        /// </summary>
-        /// <param name="search">
         ///     The search.
         /// </param>
         /// <returns>
         ///     The <see cref="Task" />.
         /// </returns>
-        Task<List<SearchResult>> SearchAsync(Search search);
+        Task<List<SearchResult>> Search(SearchRequest search);
 
         /// <summary>
         ///     Send a new transactional message through Mandrill.
@@ -124,57 +115,13 @@ namespace Mandrill
             DateTime? send_at,
             bool async = false);
 
-        /// <summary>
-        ///     Send a new transactional message through Mandrill using a template
-        /// </summary>
-        /// <param name="recipients">
-        /// </param>
-        /// <param name="subject">
-        /// </param>
-        /// <param name="from">
-        /// </param>
-        /// <param name="templateName">
-        /// </param>
-        /// <param name="templateContents">
-        /// </param>
-        /// <param name="send_at">
-        ///     The send_at.
-        /// </param>
-        /// <returns>
-        ///     The <see cref="List{T}" />.
-        /// </returns>
-        List<EmailResult> SendMessage(
-            IEnumerable<EmailAddress> recipients,
-            string subject,
-            EmailAddress from,
-            string templateName,
-            IEnumerable<TemplateContent> templateContents,
-            DateTime? send_at,
-            bool async = false);
-
 
         /// <summary>
-        ///     Send a new transactional message through Mandrill using a template
+        /// Send a new transactional message through Mandrill using a template
         /// </summary>
-        /// <param name="message">
-        ///     The message.
-        /// </param>
-        /// <param name="templateName">
-        /// </param>
-        /// <param name="templateContents">
-        /// </param>
-        /// <param name="send_at">
-        ///     The send_at.
-        /// </param>
-        /// <returns>
-        ///     The <see cref="List{T}" />.
-        /// </returns>
-        Task<List<EmailResult>> SendMessage(
-            EmailMessage message,
-            string templateName,
-            IEnumerable<TemplateContent> templateContents,
-            DateTime? send_at,
-            bool async = false);
+        /// <param name="request">The request.</param>
+        /// <returns>The <see cref="List{T}" />.</returns>
+        Task<List<EmailResult>> SendMessageTemplate(SendMessageTemplateRequest request);
 
         /// <summary>
         ///     Send a new transactional message through Mandrill.
@@ -201,33 +148,6 @@ namespace Mandrill
             DateTime? send_at,
             bool async = false);
 
-        /// <summary>
-        ///     Send a new transactional message through Mandrill using a template
-        /// </summary>
-        /// <param name="recipients">
-        /// </param>
-        /// <param name="subject">
-        /// </param>
-        /// <param name="from">
-        /// </param>
-        /// <param name="templateName">
-        /// </param>
-        /// <param name="templateContents">
-        /// </param>
-        /// <param name="send_at">
-        ///     The send_at.
-        /// </param>
-        /// <returns>
-        ///     The <see cref="Task" />.
-        /// </returns>
-        Task<List<EmailResult>> SendMessageAsync(
-            IEnumerable<EmailAddress> recipients,
-            string subject,
-            EmailAddress from,
-            string templateName,
-            IEnumerable<TemplateContent> templateContents,
-            DateTime? send_at,
-            bool async = false);
 
         /// <summary>
         ///     Sends a new transactional message through Mandrill.
