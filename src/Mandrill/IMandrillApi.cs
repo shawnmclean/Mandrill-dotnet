@@ -634,25 +634,8 @@ namespace Mandrill
         /// <returns>
         ///     The <see cref="string" />.
         /// </returns>
-        string Ping();
+        Task<string> Ping();
 
-        /// <summary>
-        ///     Validate an API key and respond to a ping
-        /// </summary>
-        /// <returns>
-        ///     The <see cref="Task" />.
-        /// </returns>
-        Task<string> PingAsync();
-
-        /// <summary>
-        ///     The user info.
-        /// </summary>
-        /// <returns>
-        ///     The <see cref="MandrillApi.UserInfo" />.
-        /// </returns>
-        /// <exception cref="Exception">
-        /// </exception>
-        UserInfo UserInfo();
 
         /// <summary>
         ///     Return the information about the API-connected user
@@ -661,7 +644,7 @@ namespace Mandrill
         ///     The <see cref="Task" />.
         /// </returns>
         /// <see cref="https://mandrillapp.com/api/docs/users.html#method=info" />
-        Task<UserInfo> UserInfoAsync();
+        Task<UserInfo> UserInfo();
 
         /// <summary>
         ///     The add reject.

@@ -5,7 +5,7 @@ namespace Mandrill.Models.Requests
   /// <summary>
   /// Base Payload class for all request going to Mandrill Servers
   /// </summary>
-  public abstract class RequestBase
+  public class RequestBase
   {
     /// <summary>
     /// The API Key property.
