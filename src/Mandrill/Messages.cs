@@ -175,64 +175,6 @@ namespace Mandrill
     }
 
     /// <summary>
-    ///   Send a new transactional message through Mandrill.
-    /// </summary>
-    /// <param name="recipients">
-    /// </param>
-    /// <param name="subject">
-    /// </param>
-    /// <param name="content">
-    /// </param>
-    /// <param name="from">
-    /// </param>
-    /// <param name="send_at">
-    ///   The send_at.
-    /// </param>
-    /// <returns>
-    ///   The <see cref="List" />.
-    /// </returns>
-    public List<EmailResult> SendMessage(IEnumerable<EmailAddress> recipients, string subject,
-      string content, EmailAddress from, DateTime? send_at = null, bool async = false)
-    {
-      return SendMessageAsync(recipients, subject, content, from, send_at, async).Result;
-    }
-
-
-    /// <summary>
-    ///   Send a new transactional message through Mandrill.
-    /// </summary>
-    /// <param name="recipients">
-    /// </param>
-    /// <param name="subject">
-    /// </param>
-    /// <param name="content">
-    /// </param>
-    /// <param name="from">
-    /// </param>
-    /// <param name="send_at">
-    ///   The send_at.
-    /// </param>
-    /// <returns>
-    ///   The <see cref="Task" />.
-    /// </returns>
-    public Task<List<EmailResult>> SendMessageAsync(IEnumerable<EmailAddress> recipients, string subject,
-      string content, EmailAddress from, DateTime? send_at = null, bool async = false)
-    {
-      var message = new EmailMessage
-      {
-        To = recipients,
-        FromName = from.Name,
-        FromEmail = from.Email,
-        Subject = subject,
-        Html = content,
-        AutoText = true,
-      };
-
-      return SendMessage(message, send_at, async);
-    }
-
-
-    /// <summary>
     ///   Sends a new transactional message through Mandrill.
     /// </summary>
     /// <param name="message">
@@ -244,21 +186,12 @@ namespace Mandrill
     /// <returns>
     ///   The <see cref="Task" />.
     /// </returns>
-    public async Task<List<EmailResult>> SendMessage(EmailMessage message, DateTime? send_at = null,
-      bool async = false)
+    public async Task<List<EmailResult>> SendMessage(SendMessageRequest request)
     {
       string path = "/messages/send.json";
 
-      var payload = new SendMessageTemplateRequest();
-      payload.Message = message;
-      payload.Async = async;
-      if (send_at != null)
-      {
-        //payload.SendAt = send_at.Value.ToString(Configuration.DATE_TIME_FORMAT_STRING);
-      }
-
-      Task<List<EmailResult>> resp = Post<List<EmailResult>>(path, payload);
-      return await resp;
+      var resp = await Post<List<EmailResult>>(path, request);
+      return resp;
     }
 
 
