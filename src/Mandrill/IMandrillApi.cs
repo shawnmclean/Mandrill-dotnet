@@ -165,32 +165,12 @@ namespace Mandrill
 
 
         /// <summary>
-        ///     The send raw message.
+        /// Sends the raw message.
         /// </summary>
-        /// <param name="raw_message">
-        ///     The raw_message.
-        /// </param>
-        /// <param name="send_at">
-        ///     The send_at.
-        /// </param>
-        /// <returns>
-        ///     The <see cref="List{T}" />.
-        /// </returns>
-        List<EmailResult> SendRawMessage(EmailMessage raw_message, DateTime? send_at, bool async = false);
+        /// <param name="request">The request.</param>
+        /// <returns>Task&lt;List&lt;EmailResult&gt;&gt;.</returns>
+        Task<List<EmailResult>> SendRawMessage(SendRawMessageRequest request);
 
-        /// <summary>
-        ///     Send a new raw transactional message through Mandrill using a template
-        /// </summary>
-        /// <param name="message">
-        ///     The message.
-        /// </param>
-        /// <param name="send_at">
-        ///     The send_at.
-        /// </param>
-        /// <returns>
-        ///     The <see cref="Task" />.
-        /// </returns>
-        Task<List<EmailResult>> SendRawMessageAsync(EmailMessage message, DateTime? send_at, bool async = false);
 
         /// <summary>
         ///     The Api Key for the project received from the MandrillApp website

@@ -66,6 +66,7 @@
     <Compile Include="IntegrationTests\Messages\ContentTests.cs" />
     <Compile Include="IntegrationTests\Messages\InfoTests.cs" />
     <Compile Include="IntegrationTests\Messages\SearchTests.cs" />
+    <Compile Include="IntegrationTests\Messages\SendRawTests.cs" />
     <Compile Include="IntegrationTests\Messages\SendTemplateTests.cs" />
     <Compile Include="IntegrationTests\Messages\SendTests.cs" />
     <Compile Include="IntegrationTests\RejectsTests.cs" />

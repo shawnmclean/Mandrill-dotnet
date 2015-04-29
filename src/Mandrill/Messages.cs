@@ -298,43 +298,12 @@ namespace Mandrill
     /// <returns>
     ///   The <see cref="List" />.
     /// </returns>
-    public List<EmailResult> SendRawMessage(EmailMessage raw_message, DateTime? send_at = null, bool async = false)
-    {
-      return SendRawMessageAsync(raw_message, send_at, async).Result;
-    }
-
-    /// <summary>
-    ///   Send a new raw message through Mandrill.
-    /// </summary>
-    /// <param name="message">
-    ///   The message.
-    /// </param>
-    /// <param name="send_at">
-    ///   The send_at.
-    /// </param>
-    /// <returns>
-    ///   The <see cref="Task" />.
-    /// </returns>
-    public Task<List<EmailResult>> SendRawMessageAsync(EmailMessage message, DateTime? send_at = null,
-      bool async = false)
-    {
+    public async Task<List<EmailResult>> SendRawMessage(SendRawMessageRequest request) {
       string path = "/messages/send-raw.json";
 
-      dynamic payload = new ExpandoObject();
-      payload.raw_message = message.RawMessage;
-      payload.from_email = message.FromEmail;
-      payload.from_name = message.FromName;
-      payload.async = async;
-      if (send_at != null)
-      {
-        payload.send_at = send_at.Value.ToString(Configuration.DATE_TIME_FORMAT_STRING);
-      }
+      var response = await Post<List<EmailResult>>(path, request);
 
-      payload.to = message.RawTo;
-      Task<IRestResponse> post = PostAsync(path, payload);
-      return post.ContinueWith(
-        p => { return JSON.Parse<List<EmailResult>>(p.Result.Content); },
-        TaskContinuationOptions.ExecuteSynchronously);
+      return response;
     }
 
     #endregion

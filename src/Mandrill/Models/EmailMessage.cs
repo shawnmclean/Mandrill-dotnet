@@ -326,7 +326,7 @@ namespace Mandrill.Models
     ///   Gets or sets the subaccount.
     /// </summary>
     [JsonProperty("subaccount")]
-    public string Subaccount { get; set; }
+    public string SubAccount { get; set; }
 
     /// <summary>
     ///   Gets or sets the subject.

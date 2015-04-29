@@ -49,39 +49,7 @@ namespace Mandrill.Tests.IntegrationTests
 
 
 
-    [Test]
-    public void Raw_Message_Is_Sent()
-    {
-      // Setup
-      string apiKey = ConfigurationManager.AppSettings["APIKey"];
-      string toEmail = ConfigurationManager.AppSettings["ValidToEmail"];
-      string fromEmail = ConfigurationManager.AppSettings["FromEMail"];
 
-      // Exercise
-      var api = new MandrillApi(apiKey);
-
-      string message = "From: " + fromEmail + "\n" +
-                       "Subject: Mandrill Integration Test Raw\n" +
-                       "To: " + toEmail + "\n" +
-                       "MIME-Version: 1.0\n" +
-                       "Content-Type: text/html; charset=utf-8\n" +
-                       "Content-Transfer-Encoding: 7bit\n" +
-                       "\n" +
-                       "Test\n";
-      List<EmailResult> result = api.SendRawMessage(new EmailMessage
-      {
-        To =
-          new List<EmailAddress> {new EmailAddress {Email = toEmail, Name = ""}},
-        FromEmail = fromEmail,
-        FromName = "",
-        RawMessage = message,
-        RawTo = new List<string> {toEmail}
-      });
-      // Verify
-      Assert.AreEqual(1, result.Count);
-      Assert.AreEqual(toEmail, result.First().Email);
-      Assert.AreEqual(EmailResultStatus.Sent, result.First().Status);
-    }
 
     [Test]
     public async Task Scheduled_Message_Is_Canceled_For_Paid_Account()
