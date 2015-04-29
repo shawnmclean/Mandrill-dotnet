@@ -133,8 +133,14 @@ namespace Mandrill.Models
     [JsonProperty("type")]
     public string Type { get; set; }
 
+    /// <summary>
+    ///   True if the attachment is base64 encoded
+    /// </summary>
+    [JsonProperty("base64")]
+    public bool Base64 { get; set; }
+
     #endregion
-  }
+    }
 
   /// <summary>
   ///   The image.
