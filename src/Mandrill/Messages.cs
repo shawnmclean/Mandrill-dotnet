@@ -78,45 +78,23 @@ namespace Mandrill
       return result;
     }
 
-    /// <summary>
-    ///   The list scheduled messages.
-    /// </summary>
-    /// <returns>
-    ///   The <see cref="List" />.
-    /// </returns>
-    public List<ScheduledEmailResult> ListScheduledMessages()
-    {
-      string path = "/messages/list-scheduled.json";
-
-      dynamic payload = new ExpandoObject();
-      Task<IRestResponse> post = PostAsync(path, payload);
-      return
-        post.ContinueWith(
-          p => { return JSON.Parse<List<ScheduledEmailResult>>(p.Result.Content); },
-          TaskContinuationOptions.ExecuteSynchronously).Result;
-    }
 
     /// <summary>
     ///   The list scheduled messages.
     /// </summary>
-    /// <param name="to">
-    ///   The to.
+    /// <param name="request">
+    ///   The request.
     /// </param>
     /// <returns>
     ///   The <see cref="List" />.
     /// </returns>
-    public List<ScheduledEmailResult> ListScheduledMessages(string to)
+    public async Task<List<ScheduledEmailResult>> ListScheduledMessages(ListScheduledMessagesRequest request)
     {
       string path = "/messages/list-scheduled.json";
 
-      dynamic payload = new ExpandoObject();
-      payload.to = to;
+      var resp = await Post<List<ScheduledEmailResult>>(path, request);
 
-      Task<IRestResponse> post = PostAsync(path, payload);
-      return
-        post.ContinueWith(
-          p => { return JSON.Parse<List<ScheduledEmailResult>>(p.Result.Content); },
-          TaskContinuationOptions.ExecuteSynchronously).Result;
+      return resp;
     }
 
     /// <summary>

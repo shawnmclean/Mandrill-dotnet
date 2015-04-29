@@ -49,21 +49,13 @@ namespace Mandrill
         /// <summary>
         ///     The list scheduled messages.
         /// </summary>
-        /// <returns>
-        ///     The <see cref="List{T}" />.
-        /// </returns>
-        List<ScheduledEmailResult> ListScheduledMessages();
-
-        /// <summary>
-        ///     The list scheduled messages.
-        /// </summary>
-        /// <param name="to">
-        ///     The to.
+        /// <param name="request">
+        ///     The request.
         /// </param>
         /// <returns>
         ///     The <see cref="List{T}" />.
         /// </returns>
-        List<ScheduledEmailResult> ListScheduledMessages(string to);
+        Task<List<ScheduledEmailResult>> ListScheduledMessages(ListScheduledMessagesRequest request);
 
         /// <summary>
         ///     The reschedule message.

@@ -14,7 +14,7 @@ namespace Mandrill.Tests.IntegrationTests.Messages
   public class CancelScheduledMessageTests : IntegrationTestBase
   {
     [Test]
-    public async Task Should_Cancel_Message() {
+    public async Task Should_Schedule_Then_List_Scheduled_And_Cancel_Message() {
       if (!IsPaidAccount)
         Assert.Ignore("Not a paid account");
       // Setup
@@ -37,15 +37,15 @@ namespace Mandrill.Tests.IntegrationTests.Messages
         SendAt = DateTime.Now.AddMinutes(5)
       });
 
-      List<ScheduledEmailResult> scheduled = api.ListScheduledMessages(toEmail);
+      List<ScheduledEmailResult> scheduled = await api.ListScheduledMessages(new ListScheduledMessagesRequest{ToEmail = toEmail});
 
       //Verify that message was scheduled
       Assert.AreEqual(1, scheduled.Count(s => s.Id == result.First().Id));
 
       await api.CancelScheduledMessage(new CancelScheduledMessageRequest{ Id = result.First().Id});
-      scheduled = api.ListScheduledMessages(toEmail);
+      scheduled = await api.ListScheduledMessages(new ListScheduledMessagesRequest{ToEmail = toEmail});
 
-      //Verify that message was cancelled.
+      //Verify that message was canceled.
       Assert.AreEqual(0, scheduled.Count(s => s.Id == result.First().Id));
     }
   }
