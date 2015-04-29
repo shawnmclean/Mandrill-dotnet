@@ -29,24 +29,19 @@ namespace Mandrill
     /// <summary>
     ///   The cancel scheduled message.
     /// </summary>
-    /// <param name="id">
-    ///   The id.
+    /// <param name="request">
+    ///   The request.
     /// </param>
     /// <returns>
     ///   The <see cref="ScheduledEmailResult" />.
     /// </returns>
-    public ScheduledEmailResult CancelScheduledMessage(string id)
+    public async Task<ScheduledEmailResult> CancelScheduledMessage(CancelScheduledMessageRequest request)
     {
       string path = "/messages/cancel-scheduled.json";
 
-      dynamic payload = new ExpandoObject();
-      payload.id = id;
+      var resp = await Post<ScheduledEmailResult>(path, request);
 
-      Task<IRestResponse> post = PostAsync(path, payload);
-      return
-        post.ContinueWith(
-          p => { return JSON.Parse<ScheduledEmailResult>(p.Result.Content); },
-          TaskContinuationOptions.ExecuteSynchronously).Result;
+      return resp;
     }
 
 

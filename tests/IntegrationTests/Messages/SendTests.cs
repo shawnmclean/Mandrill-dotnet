@@ -75,7 +75,7 @@ namespace Mandrill.Tests.IntegrationTests.Messages
       Assert.AreEqual(EmailResultStatus.Scheduled, result.First().Status);
 
       //Tear down
-      api.CancelScheduledMessage(result.First().Id);
+      await api.CancelScheduledMessage(new CancelScheduledMessageRequest{Id = result.First().Id});
     }
   }
 }

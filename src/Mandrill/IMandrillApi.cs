@@ -14,13 +14,13 @@ namespace Mandrill
         /// <summary>
         ///     The cancel scheduled message.
         /// </summary>
-        /// <param name="id">
-        ///     The id.
+        /// <param name="request">
+        ///     The request.
         /// </param>
         /// <returns>
         ///     The <see cref="ScheduledEmailResult" />.
         /// </returns>
-        ScheduledEmailResult CancelScheduledMessage(string id);
+        Task<ScheduledEmailResult> CancelScheduledMessage(CancelScheduledMessageRequest request);
 
 
         /// <summary>
