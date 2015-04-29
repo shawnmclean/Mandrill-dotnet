@@ -61,6 +61,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IntegrationTests\IntegrationTestBase.cs" />
     <Compile Include="IntegrationTests\MessagesTests.cs" />
     <Compile Include="IntegrationTests\Messages\ContentTests.cs" />
     <Compile Include="IntegrationTests\Messages\InfoTests.cs" />

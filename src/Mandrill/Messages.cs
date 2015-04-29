@@ -282,16 +282,6 @@ namespace Mandrill
     {
       string path = "/messages/send-template.json";
 
-      //var payload = new SendMessageTemplateRequest();
-      //payload.Message = message;
-      //payload.TemplateName = templateName;
-      //payload.TemplateContents = templateContents != null ? templateContents : Enumerable.Empty<TemplateContent>();
-      //payload.Async = async;
-      //if (send_at != null)
-      //{
-      //  payload.SendAt = send_at.Value.ToString(Configuration.DATE_TIME_FORMAT_STRING);
-      //}
-
       var resp = await Post<List<EmailResult>>(path, request);
       return resp;
     }

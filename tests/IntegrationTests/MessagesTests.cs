@@ -12,29 +12,12 @@ using NUnit.Framework;
 namespace Mandrill.Tests.IntegrationTests
 {
   [TestFixture]
-  public class MessagesTests
+  public class MessagesTests : IntegrationTestBase
   {
-    private bool _isPaidAccount;
-
-    public static bool Validator(object sender, X509Certificate certificate, X509Chain chain,
-      SslPolicyErrors sslPolicyErrors)
-    {
-      return true;
-    }
-
-    [TestFixtureSetUp]
-    public void Init()
-    {
-      if (ConfigurationManager.AppSettings["IgnoreInvalidSSLCertificate"] == "True")
-        ServicePointManager.ServerCertificateValidationCallback = Validator;
-
-      _isPaidAccount = ConfigurationManager.AppSettings["IsPaidAccount"] == "True";
-    }
-
     [Test]
     public async Task Message_With_Send_At_Is_Scheduled_For_Paid_Account()
     {
-      if (!_isPaidAccount)
+      if (!IsPaidAccount)
         Assert.Ignore("Not a paid account");
 
       // Setup
@@ -103,7 +86,7 @@ namespace Mandrill.Tests.IntegrationTests
     [Test]
     public async Task Scheduled_Message_Is_Canceled_For_Paid_Account()
     {
-      if (!_isPaidAccount)
+      if (!IsPaidAccount)
         Assert.Ignore("Not a paid account");
       // Setup
       string apiKey = ConfigurationManager.AppSettings["APIKey"];
@@ -138,7 +121,7 @@ namespace Mandrill.Tests.IntegrationTests
     [Test]
     public async Task Scheduled_Message_Is_Rescheduled_For_Paid_Account()
     {
-      if (!_isPaidAccount)
+      if (!IsPaidAccount)
         Assert.Ignore("Not a paid account");
       // Setup
       string apiKey = ConfigurationManager.AppSettings["APIKey"];
