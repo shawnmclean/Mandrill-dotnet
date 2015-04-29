@@ -141,6 +141,19 @@ namespace Mandrill.Models
     [JsonProperty("ts")]
     public int Ts { get; set; }
 
+    /// <summary>
+    /// Gets or sets the open details.
+    /// </summary>
+    /// <value>The open details.</value>
+    [JsonProperty("opens_detail")]
+    public IEnumerable<OpenDetail> OpenDetails { get; set; }
+
+    /// <summary>
+    /// Gets or sets the click details.
+    /// </summary>
+    /// <value>The click details.</value>
+    [JsonProperty("clicks_detail")]
+    public IEnumerable<ClickDetail> ClickDetails { get; set; }
     #endregion
   }
 }
