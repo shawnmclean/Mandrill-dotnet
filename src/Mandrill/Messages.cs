@@ -109,23 +109,13 @@ namespace Mandrill
     /// <returns>
     ///   The <see cref="ScheduledEmailResult" />.
     /// </returns>
-    public ScheduledEmailResult RescheduleMessage(string id, DateTime? send_at)
+    public async Task<ScheduledEmailResult> RescheduleMessage(RescheduleMessageRequest request)
     {
       string path = "/messages/reschedule.json";
 
-      dynamic payload = new ExpandoObject();
-      payload.id = id;
+      var response = await Post<ScheduledEmailResult>(path, request);
 
-      if (send_at != null)
-      {
-        payload.send_at = send_at.Value.ToString(Configuration.DATE_TIME_FORMAT_STRING);
-      }
-
-      Task<IRestResponse> post = PostAsync(path, payload);
-      return
-        post.ContinueWith(
-          p => { return JSON.Parse<ScheduledEmailResult>(p.Result.Content); },
-          TaskContinuationOptions.ExecuteSynchronously).Result;
+      return response;
     }
 
     /// <summary>

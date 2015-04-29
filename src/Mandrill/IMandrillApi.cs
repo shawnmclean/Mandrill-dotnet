@@ -60,16 +60,13 @@ namespace Mandrill
         /// <summary>
         ///     The reschedule message.
         /// </summary>
-        /// <param name="id">
-        ///     The id.
-        /// </param>
-        /// <param name="send_at">
-        ///     The send_at.
+        /// <param name="request">
+        ///     The request.
         /// </param>
         /// <returns>
         ///     The <see cref="ScheduledEmailResult" />.
         /// </returns>
-        ScheduledEmailResult RescheduleMessage(string id, DateTime? send_at);
+        Task<ScheduledEmailResult> RescheduleMessage(RescheduleMessageRequest request);
 
         /// <summary>
         ///     Send a new search instruction through Mandrill.
