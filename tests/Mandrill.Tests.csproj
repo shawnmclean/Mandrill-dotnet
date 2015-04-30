@@ -72,7 +72,9 @@
     <Compile Include="IntegrationTests\Messages\SendTemplateTests.cs" />
     <Compile Include="IntegrationTests\Messages\SendTests.cs" />
     <Compile Include="IntegrationTests\RejectsTests.cs" />
-    <Compile Include="IntegrationTests\SendersTests.cs" />
+    <Compile Include="IntegrationTests\Senders\CheckSenderDomainTests.cs" />
+    <Compile Include="IntegrationTests\Senders\ListSendersTests.cs" />
+    <Compile Include="IntegrationTests\Senders\SenderDomains.cs" />
     <Compile Include="IntegrationTests\SubaccountTests.cs" />
     <Compile Include="IntegrationTests\TemplatesTests.cs" />
     <Compile Include="IntegrationTests\Users\InfoTests.cs" />
@@ -95,6 +97,7 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

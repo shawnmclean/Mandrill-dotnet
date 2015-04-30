@@ -81,6 +81,7 @@
     <Compile Include="Models\Requests\RequestBase.cs" />
     <Compile Include="Models\Requests\RenderRequest.cs" />
     <Compile Include="Models\Requests\RescheduleMessageRequest.cs" />
+    <Compile Include="Models\Requests\SenderCheckDomainRequest.cs" />
     <Compile Include="Models\Requests\SendMessageRequest.cs" />
     <Compile Include="Models\Requests\SendMessageTemplateRequest.cs" />
     <Compile Include="Models\Recipient.cs" />

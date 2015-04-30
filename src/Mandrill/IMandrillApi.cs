@@ -121,20 +121,11 @@ namespace Mandrill
         /// <summary>
         ///     The list senders.
         /// </summary>
-        /// <param name="domain">The domain.</param>
+        /// <param name="request">The request.</param>
         /// <returns>
         ///     a <see cref="SenderDomain" />
         /// </returns>
-        SenderDomain CheckSenderDomain(string domain);
-
-        /// <summary>
-        ///     The list senders async.
-        /// </summary>
-        /// <param name="domain">The domain.</param>
-        /// <returns>
-        ///     The <see cref="Task{SenderDomain}" />.
-        /// </returns>
-        Task<SenderDomain> CheckSenderDomainAsync(string domain);
+        Task<SenderDomain> CheckSenderDomain(SenderCheckDomainRequest request);
 
         /// <summary>
         ///     The list senders.
@@ -142,31 +133,15 @@ namespace Mandrill
         /// <returns>
         ///     The <see cref="List{T}" />.
         /// </returns>
-        List<Sender> ListSenders();
-
-        /// <summary>
-        ///     The list senders async.
-        /// </summary>
-        /// <returns>
-        ///     The <see cref="Task" />.
-        /// </returns>
-        Task<List<Sender>> ListSendersAsync();
-
+        Task<List<Sender>> ListSenders();
+      
         /// <summary>
         ///     The list senders.
         /// </summary>
         /// <returns>
         ///     The <see cref="List{T}" />.
         /// </returns>
-        List<SenderDomain> SenderDomains();
-
-        /// <summary>
-        ///     The list senders async.
-        /// </summary>
-        /// <returns>
-        ///     The <see cref="Task" />.
-        /// </returns>
-        Task<List<SenderDomain>> SenderDomainsAsync();
+        Task<List<SenderDomain>> SenderDomains();
 
         /// <summary>
         ///     Add a new template.
