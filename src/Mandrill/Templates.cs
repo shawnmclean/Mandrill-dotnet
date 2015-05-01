@@ -56,32 +56,17 @@ namespace Mandrill
     /// <summary>
     ///   The render async.
     /// </summary>
-    /// <param name="templateName">
-    ///   The template name.
-    /// </param>
-    /// <param name="templateContents">
-    ///   The template contents.
-    /// </param>
-    /// <param name="mergeVars">
-    ///   The merge vars.
+    /// <param name="request">
+    ///   The request.
     /// </param>
     /// <returns>
     ///   The <see cref="Task" />.
     /// </returns>
-    public Task<RenderedTemplate> Render(
-      string templateName,
-      IEnumerable<TemplateContent> templateContents,
-      IEnumerable<MergeVar> mergeVars)
+    public async Task<RenderedTemplate> Render(RenderTemplateRequest request)
     {
       const string path = "/templates/render.json";
-
-      var payload = new RenderRequest();
-
-      payload.TemplateName = templateName;
-      payload.TemplateContents = templateContents;
-      payload.MergeVars = mergeVars;
-
-      Task<RenderedTemplate> response = Post<RenderedTemplate>(path, payload);
+      
+      var response = await Post<RenderedTemplate>(path, request);
 
       return response;
     }

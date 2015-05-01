@@ -78,6 +78,8 @@
     <Compile Include="IntegrationTests\SubaccountTests.cs" />
     <Compile Include="IntegrationTests\TemplatesTests.cs" />
     <Compile Include="IntegrationTests\Templates\AddTemplateTests.cs" />
+    <Compile Include="IntegrationTests\Templates\ListTemplatesTests.cs" />
+    <Compile Include="IntegrationTests\Templates\RenderTemplateTests.cs" />
     <Compile Include="IntegrationTests\Templates\TemplateInfoTests.cs" />
     <Compile Include="IntegrationTests\Users\InfoTests.cs" />
     <Compile Include="IntegrationTests\Users\PingTests.cs" />

@@ -164,22 +164,13 @@ namespace Mandrill
     /// <summary>
     ///     The render async.
     /// </summary>
-    /// <param name="templateName">
-    ///     The template name.
-    /// </param>
-    /// <param name="templateContents">
-    ///     The template contents.
-    /// </param>
-    /// <param name="mergeVars">
-    ///     The merge vars.
+    /// <param name="request">
+    ///     The request.
     /// </param>
     /// <returns>
     ///     The <see cref="Task" />.
     /// </returns>
-    Task<RenderedTemplate> Render(
-        string templateName,
-        IEnumerable<TemplateContent> templateContents,
-        IEnumerable<MergeVar> mergeVars);
+    Task<RenderedTemplate> Render(RenderTemplateRequest request);
 
     /// <summary>
     ///     Update the code for an existing template.
