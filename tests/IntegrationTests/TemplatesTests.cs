@@ -27,38 +27,6 @@ namespace Mandrill.Tests.IntegrationTests
     }
 
     
-    [Test]
-    public void Can_Update_Template()
-    {
-      // Setup
-      string apiKey = ConfigurationManager.AppSettings["APIKey"];
-      string templateName = ConfigurationManager.AppSettings["TemplateExample"];
-      const string original = "<span mc:edit=\"model1\"></span>";
-      const string modified = "<span mc:edit=\"model2\"></span>";
-
-      // Exercise
-      var api = new MandrillApi(apiKey);
-      TemplateInfo result = api.UpdateTemplate(templateName,
-        "test@test.invalid",
-        "Test",
-        "Template test",
-        modified,
-        "*|model1|*",
-        true,
-        null);
-      TemplateInfo result2 = api.UpdateTemplate(templateName,
-        "test@test.invalid",
-        "Test",
-        "Template test",
-        original,
-        "*|model1|*",
-        true,
-        null);
-
-      // Verify
-      Assert.AreEqual(modified, result.Code);
-      Assert.AreEqual(original, result2.Code);
-    }
 
 
 

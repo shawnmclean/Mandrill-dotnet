@@ -81,6 +81,7 @@
     <Compile Include="IntegrationTests\Templates\ListTemplatesTests.cs" />
     <Compile Include="IntegrationTests\Templates\RenderTemplateTests.cs" />
     <Compile Include="IntegrationTests\Templates\TemplateInfoTests.cs" />
+    <Compile Include="IntegrationTests\Templates\UpdateTemplateTests.cs" />
     <Compile Include="IntegrationTests\Users\InfoTests.cs" />
     <Compile Include="IntegrationTests\Users\PingTests.cs" />
     <Compile Include="IntegrationTests\WebHookTests.cs" />
