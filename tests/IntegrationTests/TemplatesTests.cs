@@ -25,25 +25,7 @@ namespace Mandrill.Tests.IntegrationTests
         ServicePointManager.ServerCertificateValidationCallback = Validator;
     }
 
-
-
-    [Test]
-    public void Can_Return_Individial_Template()
-    {
-      // Setup
-      string apiKey = ConfigurationManager.AppSettings["APIKey"];
-      string templateName = ConfigurationManager.AppSettings["TemplateExample"];
-
-      // Exercise
-      var api = new MandrillApi(apiKey);
-      TemplateInfo result = api.TemplateInfo(templateName);
-
-      string expected = "<span mc:edit=\"model1\"></span>";
-
-      // Verify
-      Assert.AreEqual(expected, result.Code);
-    }
-
+    
     [Test]
     public void Can_Update_Template()
     {
