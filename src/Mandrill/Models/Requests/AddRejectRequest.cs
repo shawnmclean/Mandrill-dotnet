@@ -14,6 +14,11 @@ namespace Mandrill.Models.Requests
   /// </summary>
   public class AddRejectRequest : RequestBase
   {
+    public AddRejectRequest(string email)
+    {
+      Email = email;
+    }
+
     /// <summary>
     /// Gets or sets the email.
     /// </summary>
