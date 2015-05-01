@@ -74,6 +74,7 @@
     <Compile Include="Models\EmailMessage.cs" />
     <Compile Include="Models\EmailResult.cs" />
     <Compile Include="Models\ErrorResponse.cs" />
+    <Compile Include="Models\Requests\AddRejectRequest.cs" />
     <Compile Include="Models\Requests\AddTemplateRequest.cs" />
     <Compile Include="Models\Requests\CancelScheduledMessageRequest.cs" />
     <Compile Include="Models\Requests\ContentRequest.cs" />
