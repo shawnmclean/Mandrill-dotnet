@@ -146,134 +146,12 @@ namespace Mandrill
         /// <summary>
         ///     Add a new template.
         /// </summary>
-        /// <param name="name">
+        /// <param name="request">
         ///     The name for the new template - must be unique.
         /// </param>
-        /// <param name="fromEmail">
-        ///     A default sending address for emails sent using this template.
-        /// </param>
-        /// <param name="fromName">A default from name to be used.</param>
-        /// <param name="subject">A default subject line to be used.</param>
-        /// <param name="code">
-        ///     The HTML code for the template with <c>mc:edit</c> attributes for
-        ///     the editable elements.
-        /// </param>
-        /// <param name="text">
-        ///     A default text part to be used when sending with this template.
-        /// </param>
-        /// <param name="publish">
-        ///     Set to false to add a draft template without publishing.
-        /// </param>
-        /// <param name="labels">
-        ///     Array of up to 10 labels to use for filtering templates.
-        /// </param>
-        /// <returns>A <see cref="TemplateResponse" /> object.</returns>
-        TemplateInfo AddTemplate(
-            string name,
-            string fromEmail,
-            string fromName,
-            string subject,
-            string code,
-            string text,
-            bool publish,
-            IEnumerable<string> labels);
+        /// <returns>A <see cref="TemplateInfo" /> object.</returns>
+        Task<TemplateInfo> AddTemplate(AddTemplateRequest request);
 
-        /// <summary>
-        ///     Add a new template.
-        /// </summary>
-        /// <param name="name">
-        ///     The name for the new template - must be unique.
-        /// </param>
-        /// <param name="fromEmail">
-        ///     A default sending address for emails sent using this template.
-        /// </param>
-        /// <param name="fromName">A default from name to be used.</param>
-        /// <param name="subject">A default subject line to be used.</param>
-        /// <param name="code">
-        ///     The HTML code for the template with <c>mc:edit</c> attributes for
-        ///     the editable elements.
-        /// </param>
-        /// <param name="text">
-        ///     A default text part to be used when sending with this template.
-        /// </param>
-        /// <param name="publish">
-        ///     Set to false to add a draft template without publishing.
-        /// </param>
-        /// <returns>A <see cref="TemplateResponse" /> object.</returns>
-        TemplateInfo AddTemplate(
-            string name,
-            string fromEmail,
-            string fromName,
-            string subject,
-            string code,
-            string text,
-            bool publish);
-
-        /// <summary>
-        ///     Add a new template asynchronously.
-        /// </summary>
-        /// <param name="name">
-        ///     The name for the new template - must be unique.
-        /// </param>
-        /// <param name="fromEmail">
-        ///     A default sending address for emails sent using this template.
-        /// </param>
-        /// <param name="fromName">A default from name to be used.</param>
-        /// <param name="subject">A default subject line to be used.</param>
-        /// <param name="code">
-        ///     The HTML code for the template with <c>mc:edit</c> attributes for
-        ///     the editable elements.
-        /// </param>
-        /// <param name="text">
-        ///     A default text part to be used when sending with this template.
-        /// </param>
-        /// <param name="published">
-        ///     Set to false to add a draft template without publishing.
-        /// </param>
-        /// <returns>A <see cref="TemplateResponse" /> object.</returns>
-        Task<TemplateInfo> AddTemplateAsync(
-            string name,
-            string fromEmail,
-            string fromName,
-            string subject,
-            string code,
-            string text,
-            bool publish);
-
-        /// <summary>
-        ///     Add a new template asynchronously.
-        /// </summary>
-        /// <param name="name">
-        ///     The name for the new template - must be unique.
-        /// </param>
-        /// <param name="fromEmail">
-        ///     A default sending address for emails sent using this template.
-        /// </param>
-        /// <param name="fromName">A default from name to be used.</param>
-        /// <param name="subject">A default subject line to be used.</param>
-        /// <param name="code">
-        ///     The HTML code for the template with <c>mc:edit</c> attributes for
-        ///     the editable elements.
-        /// </param>
-        /// <param name="text">
-        ///     A default text part to be used when sending with this template.
-        /// </param>
-        /// <param name="published">
-        ///     Set to false to add a draft template without publishing.
-        /// </param>
-        /// <param name="labels">
-        ///     Array of up to 10 labels to use for filtering templates.
-        /// </param>
-        /// <returns>A <see cref="TemplateResponse" /> object.</returns>
-        Task<TemplateInfo> AddTemplateAsync(
-            string name,
-            string fromEmail,
-            string fromName,
-            string subject,
-            string code,
-            string text,
-            bool publish,
-            IEnumerable<string> labels);
 
         /// <summary>
         ///     The list templates.
@@ -393,29 +271,17 @@ namespace Mandrill
             bool? publish,
             IEnumerable<string> labels);
 
-        /// <summary>
-        ///     Delete a template.
-        /// </summary>
-        /// <param name="name">
-        ///     The template name.
-        /// </param>
-        /// <returns>
-        ///     The <see cref="TemplateInfo"/> object of the template that was deleted
-        /// </returns>
-        TemplateInfo DeleteTemplate(
-            string name);
 
         /// <summary>
         ///     Delete a template, asynchronously.
         /// </summary>
-        /// <param name="name">
+        /// <param name="request">
         ///     The template name.
         /// </param>
         /// <returns>
         ///     The <see cref="TemplateInfo"/> object of the template that was deleted
         /// </returns>
-        Task<TemplateInfo> DeleteTemplateAsync(
-            string name);
+        Task<TemplateInfo> DeleteTemplate(DeleteTemplateRequest request);
 
         /// <summary>
         ///     Add a new subaccount.

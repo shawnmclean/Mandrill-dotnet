@@ -25,23 +25,7 @@ namespace Mandrill.Tests.IntegrationTests
         ServicePointManager.ServerCertificateValidationCallback = Validator;
     }
 
-    [Test]
-    public void Can_Create_And_Delete_Template()
-    {
-      // Setup
-      string apiKey = ConfigurationManager.AppSettings["APIKey"];
-      string templateName = ConfigurationManager.AppSettings["TemplateExample"] + "_temp";
-      const string code = "Foobar";
 
-      // Exercise
-      var api = new MandrillApi(apiKey);
-      TemplateInfo result = api.AddTemplate(templateName, "test@test.invalid", "Test", "Template test", code, code, true);
-      TemplateInfo result2 = api.DeleteTemplate(templateName);
-
-      // Verify
-      Assert.AreEqual(code, result.Code);
-      Assert.AreEqual(code, result2.Code);
-    }
 
     [Test]
     public void Can_Return_Individial_Template()
