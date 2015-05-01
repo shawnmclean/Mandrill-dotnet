@@ -2,7 +2,7 @@
 
 namespace Mandrill.Models.Requests
 {
-  public class InfoRequest : RequestBase
+  public class MessageInfoRequest : RequestBase
   {
     [JsonProperty("id")]
     public string Id { get; set; }

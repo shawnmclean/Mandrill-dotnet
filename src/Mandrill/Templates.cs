@@ -40,38 +40,18 @@ namespace Mandrill
       return resp;
     }
     /// <summary>
-    ///   The list templates.
+    ///   Return a list of all the templates available to this user
     /// </summary>
     /// <returns>
     ///   The <see cref="List" />.
     /// </returns>
-    public List<TemplateInfo> ListTemplates(string label = "")
-    {
-      return ListTemplatesAsync(label).Result;
-    }
-
-    /// <summary>
-    ///   The list templates async.
-    /// </summary>
-    /// <param name="label">
-    ///   The optional label to filter the templates
-    /// </param>
-    /// <returns>
-    ///   The <see cref="Task" />.
-    /// </returns>
-    public Task<List<TemplateInfo>> ListTemplatesAsync(string label = "")
-    {
+    public async Task<List<TemplateInfo>> ListTemplates(ListTemplatesRequest request) {
       const string path = "/templates/list.json";
 
-      dynamic payload = new ExpandoObject();
-      payload.label = label;
+      var resp = await Post<List<TemplateInfo>>(path, request);
 
-      Task<IRestResponse> post = PostAsync(path, payload);
-      return post.ContinueWith(
-        p => JSON.Parse<List<TemplateInfo>>(p.Result.Content),
-        TaskContinuationOptions.ExecuteSynchronously);
+      return resp;
     }
-
 
     /// <summary>
     ///   The render async.

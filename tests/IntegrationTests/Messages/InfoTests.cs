@@ -24,7 +24,7 @@ namespace Mandrill.Tests.IntegrationTests.Messages
       // Exercise
       var api = new MandrillApi(apiKey);
 
-      var response = await api.GetInfo(new InfoRequest{Id = sentEmailId});
+      var response = await api.GetInfo(new MessageInfoRequest{Id = sentEmailId});
 
       Assert.AreEqual(sentEmailSubject, response.Subject);
       Assert.AreEqual(sentEmailRecipient, response.Email);

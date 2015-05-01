@@ -44,7 +44,7 @@ namespace Mandrill
     /// <returns>
     ///     The <see cref="Task" />.
     /// </returns>
-    Task<MessageInfo> GetInfo(InfoRequest request);
+    Task<MessageInfo> GetInfo(MessageInfoRequest request);
 
     /// <summary>
     ///     The list scheduled messages.
@@ -159,17 +159,7 @@ namespace Mandrill
     /// <returns>
     ///     The <see cref="List{T}" />.
     /// </returns>
-    List<TemplateInfo> ListTemplates(string label = "");
-
-    /// <summary>
-    ///     The list templates async.
-    /// </summary>
-    /// <returns>
-    ///     The <see cref="Task" />.
-    /// </returns>
-    Task<List<TemplateInfo>> ListTemplatesAsync(string label = "");
-
-
+    Task<List<TemplateInfo>> ListTemplates(ListTemplatesRequest request);
 
     /// <summary>
     ///     The render async.

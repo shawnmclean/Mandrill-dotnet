@@ -69,7 +69,7 @@ namespace Mandrill
     /// </summary>
     /// <param name="request">The request.</param>
     /// <returns>The <see cref="Task" />.</returns>
-    public async Task<MessageInfo> GetInfo(InfoRequest request)
+    public async Task<MessageInfo> GetInfo(MessageInfoRequest request)
     {
       string path = "/messages/info.json";
       
