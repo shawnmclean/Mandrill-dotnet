@@ -152,33 +152,17 @@ namespace Mandrill
     }
 
     /// <summary>
-    ///     Given the ID of an existing subaccount, return the data about it
-    ///     <see cref="https://mandrillapp.com/api/docs/subaccounts.JSON.html#method=info">Mandrill API Documentation</see>
-    /// </summary>
-    /// <param name="id">The unique identifier of the subaccount to query</param>
-    /// <returns>the information about the subaccount</returns>
-    public SubaccountInfo SubaccountInfo(string id) {
-      try {
-        return this.SubaccountInfoAsync(id).Result;
-      } catch (AggregateException aex) {
-        //catch and throw the inner exception
-        throw aex.Flatten().InnerException;
-      }
-    }
-
-    /// <summary>
     ///     Given the ID of an existing subaccount, asynchronously return the data about it
     ///     <see cref="https://mandrillapp.com/api/docs/subaccounts.JSON.html#method=info">Mandrill API Documentation</see>
     /// </summary>
-    /// <param name="id">The unique identifier of the subaccount to query</param>
+    /// <param name="request">The request</param>
     /// <returns>the information about the subaccount</returns>
-    public Task<SubaccountInfo> SubaccountInfoAsync(string id) {
+    public async Task<SubaccountInfo> SubaccountInfo(SubAccountInfoRequest request) {
       const string path = "/subaccounts/info.json";
 
-      dynamic payload = new ExpandoObject();
-      payload.id = id;
+      var response = await Post<SubaccountInfo>(path, request);
 
-      return this.PostAsync<SubaccountInfo>(path, payload);
+      return response;
     }
 
     /// <summary>

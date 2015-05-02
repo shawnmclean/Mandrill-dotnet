@@ -96,6 +96,7 @@
     <Compile Include="Models\RejectInfo.cs" />
     <Compile Include="Models\RenderedTemplate.cs" />
     <Compile Include="Models\Requests\SendRawMessageRequest.cs" />
+    <Compile Include="Models\Requests\SubAccountInfoRequest.cs" />
     <Compile Include="Models\Requests\TemplateInfoRequest.cs" />
     <Compile Include="Models\Requests\UpdateTemplateRequest.cs" />
     <Compile Include="Models\ScheduledEmailResult.cs" />

@@ -280,20 +280,12 @@ namespace Mandrill
     Task<SubaccountInfo> ResumeSubaccountAsync(string id);
 
     /// <summary>
-    ///     Given the ID of an existing subaccount, return the data about it
-    ///     <see cref="https://mandrillapp.com/api/docs/subaccounts.JSON.html#method=info">Mandrill API Documentation</see>
-    /// </summary>
-    /// <param name="id">The unique identifier of the subaccount to query</param>
-    /// <returns>the information about the subaccount</returns>
-    SubaccountInfo SubaccountInfo(string id);
-
-    /// <summary>
     ///     Given the ID of an existing subaccount, asynchronously return the data about it
     ///     <see cref="https://mandrillapp.com/api/docs/subaccounts.JSON.html#method=info">Mandrill API Documentation</see>
     /// </summary>
-    /// <param name="id">The unique identifier of the subaccount to query</param>
+    /// <param name="request">The request</param>
     /// <returns>the information about the subaccount</returns>
-    Task<SubaccountInfo> SubaccountInfoAsync(string id);
+    Task<SubaccountInfo> SubaccountInfo(SubAccountInfoRequest request);
 
     /// <summary>
     ///     Update an existing subaccount
