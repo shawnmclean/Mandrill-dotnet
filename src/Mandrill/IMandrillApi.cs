@@ -350,28 +350,12 @@ namespace Mandrill
     Task<RejectAddResult> AddReject(AddRejectRequest request);
 
     /// <summary>
-    ///     The delete reject.
+    /// The delete reject.
     /// </summary>
-    /// <param name="email">
-    ///     The email.
-    /// </param>
-    /// <returns>
-    ///     The <see cref="RejectDeleteResult" />.
-    /// </returns>
-    /// <exception cref="Exception">
-    /// </exception>
-    RejectDeleteResult DeleteReject(string email);
-
-    /// <summary>
-    ///     The delete reject async.
-    /// </summary>
-    /// <param name="email">
-    ///     The email.
-    /// </param>
-    /// <returns>
-    ///     The <see cref="Task" />.
-    /// </returns>
-    Task<RejectDeleteResult> DeleteRejectAsync(string email);
+    /// <param name="request">The request.</param>
+    /// <returns>The <see cref="RejectDeleteResult" />.</returns>
+    /// <exception cref="Exception"></exception>
+    Task<RejectDeleteResult> DeleteReject(DeleteRejectRequest request);
 
     /// <summary>
     /// </summary>

@@ -42,30 +42,18 @@ namespace Mandrill
     /// <summary>
     /// The delete reject.
     /// </summary>
-    /// <param name="email">The email.</param>
+    /// <param name="request">The request.</param>
     /// <returns>The <see cref="RejectDeleteResult" />.</returns>
     /// <exception cref="Exception"></exception>
-    public RejectDeleteResult DeleteReject(string email) {
-      try {
-        return this.DeleteRejectAsync(email).Result;
-      } catch (AggregateException aex) {
-        // catch and throw the inner exception
-        throw aex.Flatten().InnerException;
-      }
+    public async Task<RejectDeleteResult> DeleteReject(DeleteRejectRequest request) {
+
+      var path = "/rejects/delete.json";
+
+      var response = await Post<RejectDeleteResult>(path, request);
+
+      return response;
     }
 
-    /// <summary>
-    /// The delete reject async.
-    /// </summary>
-    /// <param name="email">The email.</param>
-    /// <returns>The <see cref="Task" />.</returns>
-    public Task<RejectDeleteResult> DeleteRejectAsync(string email) {
-      string path = "/rejects/delete.json";
-
-      dynamic param = new ExpandoObject();
-      param.email = email;
-      return this.PostAsync<RejectDeleteResult>(path, param);
-    }
 
     /// <summary>
     /// Lists the rejects.

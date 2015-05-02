@@ -78,6 +78,7 @@
     <Compile Include="Models\Requests\AddTemplateRequest.cs" />
     <Compile Include="Models\Requests\CancelScheduledMessageRequest.cs" />
     <Compile Include="Models\Requests\ContentRequest.cs" />
+    <Compile Include="Models\Requests\DeleteRejectRequest.cs" />
     <Compile Include="Models\Requests\DeleteTemplateRequest.cs" />
     <Compile Include="Models\Requests\MessageInfoRequest.cs" />
     <Compile Include="Models\Requests\ListScheduledMessagesRequest.cs" />

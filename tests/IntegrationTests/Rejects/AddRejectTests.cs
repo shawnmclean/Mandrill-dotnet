@@ -23,7 +23,8 @@ namespace Mandrill.Tests.IntegrationTests.Rejects
 
       //Verify
       var actual = await api.AddReject(new AddRejectRequest(reject));
-      Assert.AreEqual(reject, actual.Email);
+      Assert.That(actual.Added, Is.True);
+      Assert.That(actual.Email, Is.EqualTo(reject));
     }
   }
 }
