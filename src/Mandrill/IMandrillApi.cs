@@ -207,19 +207,9 @@ namespace Mandrill
     ///     Add a new subaccount.
     ///     <see cref="https://mandrillapp.com/api/docs/subaccounts.JSON.html#method=add">Mandrill API Documentation</see>
     /// </summary>
-    /// <param name="subaccount">The subaccount to add</param>
-    /// <param name="notes">Optional extra text to associate with the subaccount</param>
+    /// <param name="request">The subaccount request</param>
     /// <returns>the information saved about the new subaccount</returns>
-    SubaccountInfo AddSubaccount(SubaccountInfo subaccount, string notes = "");
-
-    /// <summary>
-    ///     Asynchronously add a new subaccount.
-    ///     <see cref="https://mandrillapp.com/api/docs/subaccounts.JSON.html#method=add">Mandrill API Documentation</see>
-    /// </summary>
-    /// <param name="subaccount">The subaccount to add</param>
-    /// <param name="notes">Optional extra text to associate with the subaccount</param>
-    /// <returns>the information saved about the new subaccount</returns>
-    Task<SubaccountInfo> AddSubaccountAsync(SubaccountInfo subaccount, string notes);
+    Task<SubaccountInfo> AddSubaccount(AddSubAccountRequest request);
 
     /// <summary>
     ///     Delete an existing subaccount. Any email related to the subaccount will be saved, but stats will be removed and any

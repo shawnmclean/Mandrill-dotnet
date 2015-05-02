@@ -77,6 +77,7 @@
     <Compile Include="IntegrationTests\Senders\CheckSenderDomainTests.cs" />
     <Compile Include="IntegrationTests\Senders\ListSendersTests.cs" />
     <Compile Include="IntegrationTests\Senders\SenderDomains.cs" />
+    <Compile Include="IntegrationTests\SubAccounts\AddSubAccountTests.cs" />
     <Compile Include="IntegrationTests\SubaccountTests.cs" />
     <Compile Include="IntegrationTests\TemplatesTests.cs" />
     <Compile Include="IntegrationTests\Templates\AddTemplateTests.cs" />
@@ -107,6 +108,7 @@
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
