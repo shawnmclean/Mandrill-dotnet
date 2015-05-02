@@ -71,9 +71,9 @@
     <Compile Include="IntegrationTests\Messages\SendRawTests.cs" />
     <Compile Include="IntegrationTests\Messages\SendTemplateTests.cs" />
     <Compile Include="IntegrationTests\Messages\SendTests.cs" />
-    <Compile Include="IntegrationTests\RejectsTests.cs" />
     <Compile Include="IntegrationTests\Rejects\AddRejectTests.cs" />
     <Compile Include="IntegrationTests\Rejects\DeleteRejectTests.cs" />
+    <Compile Include="IntegrationTests\Rejects\ListRejectsTests.cs" />
     <Compile Include="IntegrationTests\Senders\CheckSenderDomainTests.cs" />
     <Compile Include="IntegrationTests\Senders\ListSendersTests.cs" />
     <Compile Include="IntegrationTests\Senders\SenderDomains.cs" />

@@ -358,23 +358,10 @@ namespace Mandrill
     Task<RejectDeleteResult> DeleteReject(DeleteRejectRequest request);
 
     /// <summary>
+    /// Lists the rejects.
     /// </summary>
-    /// <param name="email">
-    ///     email address to limit the results
-    /// </param>
-    /// <returns>
-    ///     The <see cref="List{T}" />.
-    /// </returns>
-    List<RejectInfo> ListRejects(string email = "");
-
-    /// <summary>
-    /// </summary>
-    /// <param name="email">
-    ///     email address to limit the results
-    /// </param>
-    /// <returns>
-    ///     The <see cref="Task" />.
-    /// </returns>
-    Task<List<RejectInfo>> ListRejectsAsync(string email = "");
+    /// <param name="request">The request</param>
+    /// <returns>The <see cref="List" />.</returns>
+    Task<List<RejectInfo>> ListRejects(ListRejectsRequest request);
   }
 }

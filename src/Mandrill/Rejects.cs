@@ -58,29 +58,17 @@ namespace Mandrill
     /// <summary>
     /// Lists the rejects.
     /// </summary>
-    /// <param name="email">email address to limit the results</param>
+    /// <param name="request">The request</param>
     /// <returns>The <see cref="List" />.</returns>
-    public List<RejectInfo> ListRejects(string email = "") {
-      try {
-        return this.ListRejectsAsync(email).Result;
-      } catch (AggregateException aex) {
-        // catch and throw the inner exception
-        throw aex.Flatten().InnerException;
-      }
-    }
-
-    /// <summary>
-    /// Lists the rejects asynchronous.
-    /// </summary>
-    /// <param name="email">email address to limit the results</param>
-    /// <returns>The <see cref="Task" />.</returns>
-    public Task<List<RejectInfo>> ListRejectsAsync(string email = "") {
+    public async Task<List<RejectInfo>> ListRejects(ListRejectsRequest request) {
       string path = "/rejects/list.json";
 
-      dynamic param = new ExpandoObject();
-      param.email = email;
-      return this.PostAsync<List<RejectInfo>>(path, param);
+      var response = await Post<List<RejectInfo>>(path, request);
+
+      return response;
     }
+
+
 
     #endregion
   }
