@@ -7,15 +7,10 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.Collections.Generic;
-using System.Dynamic;
-using System.Linq;
 using System.Threading.Tasks;
 using Mandrill.Models;
 using Mandrill.Requests.Messages;
-using RestSharp;
-using Content = Mandrill.Models.Content;
 
 namespace Mandrill
 {
@@ -39,7 +34,7 @@ namespace Mandrill
     {
       string path = "/messages/cancel-scheduled.json";
 
-      var resp = await Post<ScheduledEmailResult>(path, request);
+      ScheduledEmailResult resp = await Post<ScheduledEmailResult>(path, request);
 
       return resp;
     }
@@ -49,7 +44,7 @@ namespace Mandrill
     ///   Get the full content of a recently sent message.
     /// </summary>
     /// <param name="request">
-    ///  The content.
+    ///   The content.
     /// </param>
     /// <returns>
     ///   The <see cref="GetContent" />
@@ -57,23 +52,23 @@ namespace Mandrill
     public async Task<Content> GetContent(ContentRequest request)
     {
       string path = "/messages/content.json";
-      
-      var response = await Post<Content>(path, request);
+
+      Content response = await Post<Content>(path, request);
 
       return response;
     }
 
 
     /// <summary>
-    /// Get the information for a single recently sent message.
+    ///   Get the information for a single recently sent message.
     /// </summary>
     /// <param name="request">The request.</param>
     /// <returns>The <see cref="Task" />.</returns>
     public async Task<MessageInfo> GetInfo(MessageInfoRequest request)
     {
       string path = "/messages/info.json";
-      
-      var result = await Post<MessageInfo>(path, request);
+
+      MessageInfo result = await Post<MessageInfo>(path, request);
 
       return result;
     }
@@ -92,7 +87,7 @@ namespace Mandrill
     {
       string path = "/messages/list-scheduled.json";
 
-      var resp = await Post<List<ScheduledEmailResult>>(path, request);
+      List<ScheduledEmailResult> resp = await Post<List<ScheduledEmailResult>>(path, request);
 
       return resp;
     }
@@ -113,7 +108,7 @@ namespace Mandrill
     {
       string path = "/messages/reschedule.json";
 
-      var response = await Post<ScheduledEmailResult>(path, request);
+      ScheduledEmailResult response = await Post<ScheduledEmailResult>(path, request);
 
       return response;
     }
@@ -130,11 +125,10 @@ namespace Mandrill
     public async Task<List<SearchResult>> Search(SearchRequest search)
     {
       string path = "/messages/search.json";
-      
-      var response = await Post<List<SearchResult>>(path, search);
+
+      List<SearchResult> response = await Post<List<SearchResult>>(path, search);
 
       return response;
-
     }
 
     /// <summary>
@@ -153,7 +147,7 @@ namespace Mandrill
     {
       string path = "/messages/send.json";
 
-      var resp = await Post<List<EmailResult>>(path, request);
+      List<EmailResult> resp = await Post<List<EmailResult>>(path, request);
       return resp;
     }
 
@@ -178,7 +172,7 @@ namespace Mandrill
     {
       string path = "/messages/send-template.json";
 
-      var resp = await Post<List<EmailResult>>(path, request);
+      List<EmailResult> resp = await Post<List<EmailResult>>(path, request);
       return resp;
     }
 
@@ -194,10 +188,11 @@ namespace Mandrill
     /// <returns>
     ///   The <see cref="List" />.
     /// </returns>
-    public async Task<List<EmailResult>> SendRawMessage(SendRawMessageRequest request) {
+    public async Task<List<EmailResult>> SendRawMessage(SendRawMessageRequest request)
+    {
       string path = "/messages/send-raw.json";
 
-      var response = await Post<List<EmailResult>>(path, request);
+      List<EmailResult> response = await Post<List<EmailResult>>(path, request);
 
       return response;
     }

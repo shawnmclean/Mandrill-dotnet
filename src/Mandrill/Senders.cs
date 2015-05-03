@@ -11,7 +11,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Mandrill.Models;
 using Mandrill.Requests;
-using Mandrill.Requests.Messages;
 using Mandrill.Requests.Senders;
 
 namespace Mandrill
@@ -34,7 +33,7 @@ namespace Mandrill
     {
       string path = "/senders/check-domain.json";
 
-      var response = await Post<SenderDomain>(path, request);
+      SenderDomain response = await Post<SenderDomain>(path, request);
 
       return response;
     }
@@ -49,7 +48,7 @@ namespace Mandrill
     {
       const string path = "/senders/list.json";
 
-      var response = await Post<List<Sender>>(path, new RequestBase());
+      List<Sender> response = await Post<List<Sender>>(path, new RequestBase());
 
       return response;
     }
@@ -65,7 +64,7 @@ namespace Mandrill
     {
       const string path = "/senders/domains.json";
 
-      var response = await Post<List<SenderDomain>>(path, new RequestBase());
+      List<SenderDomain> response = await Post<List<SenderDomain>>(path, new RequestBase());
 
       return response;
     }

@@ -140,7 +140,7 @@ namespace Mandrill.Models
     public bool Base64 { get; set; }
 
     #endregion
-    }
+  }
 
   /// <summary>
   ///   The image.

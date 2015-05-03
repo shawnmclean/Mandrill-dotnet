@@ -8,12 +8,9 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
-using System.Dynamic;
-using System.Linq;
 using System.Threading.Tasks;
 using Mandrill.Models;
 using Mandrill.Requests.Templates;
-using RestSharp;
 
 namespace Mandrill
 {
@@ -33,22 +30,24 @@ namespace Mandrill
     /// <returns>A <see cref="TemplateInfo" /> object.</returns>
     public async Task<TemplateInfo> AddTemplate(AddTemplateRequest request)
     {
-      var path = "/templates/add.json";
+      string path = "/templates/add.json";
 
-      var resp = await Post<TemplateInfo>(path, request);
+      TemplateInfo resp = await Post<TemplateInfo>(path, request);
 
       return resp;
     }
+
     /// <summary>
     ///   Return a list of all the templates available to this user
     /// </summary>
     /// <returns>
     ///   The <see cref="List" />.
     /// </returns>
-    public async Task<List<TemplateInfo>> ListTemplates(ListTemplatesRequest request) {
+    public async Task<List<TemplateInfo>> ListTemplates(ListTemplatesRequest request)
+    {
       const string path = "/templates/list.json";
 
-      var resp = await Post<List<TemplateInfo>>(path, request);
+      List<TemplateInfo> resp = await Post<List<TemplateInfo>>(path, request);
 
       return resp;
     }
@@ -65,8 +64,8 @@ namespace Mandrill
     public async Task<RenderedTemplate> Render(RenderTemplateRequest request)
     {
       const string path = "/templates/render.json";
-      
-      var response = await Post<RenderedTemplate>(path, request);
+
+      RenderedTemplate response = await Post<RenderedTemplate>(path, request);
 
       return response;
     }
@@ -87,7 +86,7 @@ namespace Mandrill
     {
       const string path = "/templates/update.json";
 
-      var response = await Post<TemplateInfo>(path, request);
+      TemplateInfo response = await Post<TemplateInfo>(path, request);
 
       return response;
     }
@@ -105,7 +104,7 @@ namespace Mandrill
     {
       const string path = "/templates/delete.json";
 
-      var response = await Post<TemplateInfo>(path, request);
+      TemplateInfo response = await Post<TemplateInfo>(path, request);
 
       return response;
     }
@@ -119,10 +118,11 @@ namespace Mandrill
     /// <returns>
     ///   A <see cref="TemplateInfo" /> object.
     /// </returns>
-    public async Task<TemplateInfo> TemplateInfo(TemplateInfoRequest request) {
+    public async Task<TemplateInfo> TemplateInfo(TemplateInfoRequest request)
+    {
       const string path = "/templates/info.json";
 
-      var response = await Post<TemplateInfo>(path, request);
+      TemplateInfo response = await Post<TemplateInfo>(path, request);
 
       return response;
     }

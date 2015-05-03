@@ -8,14 +8,11 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System;
-using System.Dynamic;
-using System.Net;
 using System.Threading.Tasks;
 using Flurl;
 using Flurl.Http;
 using Mandrill.Models;
 using Mandrill.Requests;
-using RestSharp;
 
 namespace Mandrill
 {
@@ -25,7 +22,7 @@ namespace Mandrill
   public partial class MandrillApi
   {
     #region Fields
-    
+
     private readonly string baseUrl;
 
     #endregion
@@ -55,7 +52,6 @@ namespace Mandrill
       {
         baseUrl = Configuration.BASE_URL;
       }
-
     }
 
     #endregion
@@ -70,7 +66,6 @@ namespace Mandrill
     #endregion
 
     #region Public Methods and Operators
-
 
     /// <summary>
     ///   Execute post to path
@@ -87,7 +82,9 @@ namespace Mandrill
           .PostJsonAsync(data).ReceiveJson<T>();
 
         return result;
-      } catch (FlurlHttpTimeoutException ex) {
+      }
+      catch (FlurlHttpTimeoutException ex)
+      {
         throw new TimeoutException(string.Format("Post timed out to {0}", path));
       }
       catch (FlurlHttpException ex)
@@ -97,6 +94,7 @@ namespace Mandrill
           ex.Call.HttpStatus, ex.Call.RequestBody));
       }
     }
+
     #endregion
   }
 }
