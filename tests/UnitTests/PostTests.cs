@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Flurl.Http.Testing;
-using Mandrill.Models.Requests;
+using Mandrill.Requests;
 using NUnit.Framework;
 
 namespace Mandrill.Tests.UnitTests

@@ -1,16 +1,9 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
-
-namespace Mandrill.Models.Requests
+namespace Mandrill.Requests.Rejects
 {
   /// <summary>
-  /// Class DeleteRejectRequest.
+  ///   Class DeleteRejectRequest.
   /// </summary>
   public class DeleteRejectRequest : RequestBase
   {
@@ -20,13 +13,14 @@ namespace Mandrill.Models.Requests
     }
 
     /// <summary>
-    /// Gets or sets the email.
+    ///   Gets or sets the email.
     /// </summary>
     /// <value>The email.</value>
     [JsonProperty("email")]
     public string Email { get; set; }
+
     /// <summary>
-    /// Gets or sets the subaccount.
+    ///   Gets or sets the subaccount.
     /// </summary>
     /// <value>The subaccount.</value>
     [JsonProperty("subaccount")]

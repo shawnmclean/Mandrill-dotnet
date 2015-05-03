@@ -1,14 +1,18 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace Mandrill.Models.Requests
+/// <summary>
+/// The Requests namespace.
+/// </summary>
+
+namespace Mandrill.Requests.Templates
 {
   /// <summary>
-  ///   Class UpdateTemplateRequest.
+  ///   Class AddTemplateRequest.
   /// </summary>
-  public class UpdateTemplateRequest : RequestBase
+  public class AddTemplateRequest : RequestBase
   {
-    public UpdateTemplateRequest(string name)
+    public AddTemplateRequest(string name)
     {
       Name = name;
     }
@@ -35,11 +39,11 @@ namespace Mandrill.Models.Requests
     public string FromName { get; set; }
 
     /// <summary>
-    ///   Gets or sets the subject.
+    ///   Gets or sets the template_content.
     /// </summary>
-    /// <value>The subject.</value>
-    [JsonProperty("subject")]
-    public string Subject { get; set; }
+    /// <value>The template_content.</value>
+    [JsonProperty("template_content")]
+    public string TemplateContent { get; set; }
 
     /// <summary>
     ///   Gets or sets the code.
@@ -56,7 +60,7 @@ namespace Mandrill.Models.Requests
     public string Text { get; set; }
 
     /// <summary>
-    ///   Gets or sets a value indicating whether this <see cref="UpdateTemplateRequest" /> is publish.
+    ///   Gets or sets a value indicating whether this <see cref="AddTemplateRequest" /> is publish.
     /// </summary>
     /// <value><c>true</c> if publish; otherwise, <c>false</c>.</value>
     [JsonProperty("publish")]

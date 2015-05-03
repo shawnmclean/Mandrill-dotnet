@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
+using Mandrill.Models;
 using Newtonsoft.Json;
 
 /// <summary>
 /// The Requests namespace.
 /// </summary>
 
-namespace Mandrill.Models.Requests
+namespace Mandrill.Requests.Templates
 {
   /// <summary>
   ///   Class RenderTemplateRequest.

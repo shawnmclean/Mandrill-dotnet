@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 using Flurl;
 using Flurl.Http;
 using Mandrill.Models;
-using Mandrill.Models.Requests;
+using Mandrill.Requests;
 using RestSharp;
 
 namespace Mandrill

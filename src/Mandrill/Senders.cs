@@ -10,7 +10,9 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Mandrill.Models;
-using Mandrill.Models.Requests;
+using Mandrill.Requests;
+using Mandrill.Requests.Messages;
+using Mandrill.Requests.Senders;
 
 namespace Mandrill
 {

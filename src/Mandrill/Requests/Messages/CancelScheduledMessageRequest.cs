@@ -1,8 +1,8 @@
 ﻿using Newtonsoft.Json;
 
-namespace Mandrill.Models.Requests
+namespace Mandrill.Requests.Messages
 {
-  public class MessageInfoRequest : RequestBase
+  public class CancelScheduledMessageRequest : RequestBase
   {
     [JsonProperty("id")]
     public string Id { get; set; }

@@ -8,7 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using Mandrill.Models;
-using Mandrill.Models.Requests;
+using Mandrill.Requests.Rejects;
 
 namespace Mandrill
 {

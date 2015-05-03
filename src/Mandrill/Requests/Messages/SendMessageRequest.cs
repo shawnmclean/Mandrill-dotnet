@@ -1,7 +1,8 @@
 ﻿using System;
+using Mandrill.Models;
 using Newtonsoft.Json;
 
-namespace Mandrill.Models.Requests
+namespace Mandrill.Requests.Messages
 {
   /// <summary>
   ///   Class SendMessageRequest.

@@ -13,7 +13,7 @@ using System.Dynamic;
 using System.Linq;
 using System.Threading.Tasks;
 using Mandrill.Models;
-using Mandrill.Models.Requests;
+using Mandrill.Requests.Messages;
 using RestSharp;
 using Content = Mandrill.Models.Content;
 

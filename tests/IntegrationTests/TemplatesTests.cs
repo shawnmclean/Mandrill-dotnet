@@ -5,7 +5,6 @@ using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using Mandrill.Models;
-using Mandrill.Models.Requests;
 using NUnit.Framework;
 
 namespace Mandrill.Tests.IntegrationTests

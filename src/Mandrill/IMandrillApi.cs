@@ -1,4 +1,8 @@
-using Mandrill.Models.Requests;
+using Mandrill.Requests.Messages;
+using Mandrill.Requests.Rejects;
+using Mandrill.Requests.Senders;
+using Mandrill.Requests.SubAccounts;
+using Mandrill.Requests.Templates;
 
 namespace Mandrill
 {

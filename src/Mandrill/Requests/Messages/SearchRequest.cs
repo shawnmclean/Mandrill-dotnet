@@ -9,7 +9,7 @@
 
 using Newtonsoft.Json;
 
-namespace Mandrill.Models.Requests
+namespace Mandrill.Requests.Messages
 {
   /// <summary>
   ///   The search.

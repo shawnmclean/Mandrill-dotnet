@@ -1,5 +1,5 @@
 ﻿using Mandrill.Models;
-using Mandrill.Models.Requests;
+using Mandrill.Requests.SubAccounts;
 
 namespace Mandrill
 {

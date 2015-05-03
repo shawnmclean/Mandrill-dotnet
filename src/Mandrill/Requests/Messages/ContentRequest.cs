@@ -1,12 +1,12 @@
 ﻿using Newtonsoft.Json;
 
-namespace Mandrill.Models.Requests
+namespace Mandrill.Requests.Messages
 {
   public class ContentRequest : RequestBase
   {
     /// <summary>
-    ///  Unique id of the message to get -- passed as the "_id" field in
-    ///     webhooks, send calls, or search calls.
+    ///   Unique id of the message to get -- passed as the "_id" field in
+    ///   webhooks, send calls, or search calls.
     /// </summary>
     [JsonProperty("id")]
     public string Id { get; set; }

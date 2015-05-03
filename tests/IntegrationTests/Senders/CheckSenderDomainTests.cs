@@ -4,7 +4,8 @@ using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Mandrill.Models.Requests;
+using Mandrill.Requests.Messages;
+using Mandrill.Requests.Senders;
 using NUnit.Framework;
 
 namespace Mandrill.Tests.IntegrationTests.Senders

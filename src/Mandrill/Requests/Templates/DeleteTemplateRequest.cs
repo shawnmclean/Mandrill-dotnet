@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Mandrill.Models.Requests
+namespace Mandrill.Requests.Templates
 {
   public class DeleteTemplateRequest : RequestBase
   {
@@ -11,6 +11,5 @@ namespace Mandrill.Models.Requests
 
     [JsonProperty("name")]
     public string Name { get; set; }
-     
   }
 }

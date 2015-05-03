@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Mandrill.Models;
-using Mandrill.Models.Requests;
+using Mandrill.Requests.Templates;
 using NUnit.Framework;
 
 namespace Mandrill.Tests.IntegrationTests.Templates

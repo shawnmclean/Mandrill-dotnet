@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Mandrill.Models;
-using Mandrill.Models.Requests;
+using Mandrill.Requests.Messages;
 using NUnit.Framework;
 
 namespace Mandrill.Tests.IntegrationTests.Messages

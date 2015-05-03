@@ -1,14 +1,14 @@
 ﻿using Newtonsoft.Json;
 
-namespace Mandrill.Models.Requests
+namespace Mandrill.Requests
 {
   /// <summary>
-  /// Base Payload class for all request going to Mandrill Servers
+  ///   Base Payload class for all request going to Mandrill Servers
   /// </summary>
   public class RequestBase
   {
     /// <summary>
-    /// The API Key property.
+    ///   The API Key property.
     /// </summary>
     [JsonProperty("key")]
     public string Key { get; set; }

@@ -1,70 +1,69 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
-/// <summary>
-/// The Requests namespace.
-/// </summary>
-namespace Mandrill.Models.Requests
+namespace Mandrill.Requests.Templates
 {
   /// <summary>
-  /// Class AddTemplateRequest.
+  ///   Class UpdateTemplateRequest.
   /// </summary>
-  public class AddTemplateRequest : RequestBase
+  public class UpdateTemplateRequest : RequestBase
   {
-    public AddTemplateRequest(string name)
+    public UpdateTemplateRequest(string name)
     {
       Name = name;
     }
 
     /// <summary>
-    /// Gets or sets the name.
+    ///   Gets or sets the name.
     /// </summary>
     /// <value>The name.</value>
     [JsonProperty("name")]
     public string Name { get; set; }
+
     /// <summary>
-    /// Gets or sets the from_email.
+    ///   Gets or sets the from_email.
     /// </summary>
     /// <value>The from_email.</value>
     [JsonProperty("from_email")]
     public string FromEmail { get; set; }
+
     /// <summary>
-    /// Gets or sets the from_name.
+    ///   Gets or sets the from_name.
     /// </summary>
     /// <value>The from_name.</value>
     [JsonProperty("from_name")]
     public string FromName { get; set; }
+
     /// <summary>
-    /// Gets or sets the template_content.
+    ///   Gets or sets the subject.
     /// </summary>
-    /// <value>The template_content.</value>
-    [JsonProperty("template_content")]
-    public string TemplateContent { get; set; }
+    /// <value>The subject.</value>
+    [JsonProperty("subject")]
+    public string Subject { get; set; }
+
     /// <summary>
-    /// Gets or sets the code.
+    ///   Gets or sets the code.
     /// </summary>
     /// <value>The code.</value>
     [JsonProperty("code")]
     public string Code { get; set; }
+
     /// <summary>
-    /// Gets or sets the text.
+    ///   Gets or sets the text.
     /// </summary>
     /// <value>The text.</value>
     [JsonProperty("text")]
     public string Text { get; set; }
+
     /// <summary>
-    /// Gets or sets a value indicating whether this <see cref="AddTemplateRequest"/> is publish.
+    ///   Gets or sets a value indicating whether this <see cref="UpdateTemplateRequest" /> is publish.
     /// </summary>
     /// <value><c>true</c> if publish; otherwise, <c>false</c>.</value>
     [JsonProperty("publish")]
     public bool Publish { get; set; }
+
     /// <summary>
-    /// Gets or sets the labels.
+    ///   Gets or sets the labels.
     /// </summary>
     /// <value>The labels.</value>
     [JsonProperty("labels")]

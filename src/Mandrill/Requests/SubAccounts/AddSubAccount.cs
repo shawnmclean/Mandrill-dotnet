@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
-namespace Mandrill.Models.Requests
+namespace Mandrill.Requests.SubAccounts
 {
   /// <summary>
-  /// Class AddSubAccountRequest.
+  ///   Class AddSubAccountRequest.
   /// </summary>
   public class AddSubAccountRequest : RequestBase
   {
@@ -18,25 +13,28 @@ namespace Mandrill.Models.Requests
     }
 
     /// <summary>
-    /// Gets or sets the identifier.
+    ///   Gets or sets the identifier.
     /// </summary>
     /// <value>The identifier.</value>
     [JsonProperty("id")]
     public string Id { get; set; }
+
     /// <summary>
-    /// Gets or sets the name.
+    ///   Gets or sets the name.
     /// </summary>
     /// <value>The name.</value>
     [JsonProperty("name")]
     public string Name { get; set; }
+
     /// <summary>
-    /// Gets or sets the notes.
+    ///   Gets or sets the notes.
     /// </summary>
     /// <value>The notes.</value>
     [JsonProperty("notes")]
     public string Notes { get; set; }
+
     /// <summary>
-    /// Gets or sets the custom_quota.
+    ///   Gets or sets the custom_quota.
     /// </summary>
     /// <value>The custom_quota.</value>
     [JsonProperty("custom_quota")]
