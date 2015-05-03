@@ -8,9 +8,9 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using Newtonsoft.Json;
-using RestSharp;
 
 namespace Mandrill.Models
 {
@@ -103,7 +103,7 @@ namespace Mandrill.Models
     ///   The values.
     /// </summary>
     [JsonProperty("values")]
-    public JsonObject Values { get; set; }
+    public dynamic Values { get; set; }
 
     #endregion
   }
@@ -236,7 +236,7 @@ namespace Mandrill.Models
     ///   Gets the headers.
     /// </summary>
     [JsonProperty("headers")]
-    public JsonObject Headers { get; private set; }
+    public dynamic Headers { get; private set; }
 
     /// <summary>
     ///   Gets or sets the html.
@@ -278,7 +278,7 @@ namespace Mandrill.Models
     ///   Gets the metadata.
     /// </summary>
     [JsonProperty("metadata")]
-    public JsonObject Metadata { get; private set; }
+    public dynamic Metadata { get; private set; }
 
     /// <summary>
     ///   Gets or sets whether or not to expose all recipients in to "To" header for each email.
@@ -431,7 +431,7 @@ namespace Mandrill.Models
     {
       if (Headers == null)
       {
-        Headers = new JsonObject();
+        Headers = new ExpandoObject();
       }
 
       Headers[name] = value;
@@ -450,7 +450,7 @@ namespace Mandrill.Models
     {
       if (Metadata == null)
       {
-        Metadata = new JsonObject();
+        Metadata = new ExpandoObject();
       }
 
       Metadata[key] = value;

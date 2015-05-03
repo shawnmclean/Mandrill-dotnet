@@ -7,52 +7,60 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace Mandrill.Requests.Messages
 {
   /// <summary>
-  ///   The search.
+  ///   Search Request.
   /// </summary>
   public class SearchRequest : RequestBase
   {
     #region Public Properties
 
     /// <summary>
-    ///   Gets or sets the date_from.
+    ///   Start date.
     /// </summary>
     [JsonProperty("date_from")]
-    public string DateFrom { get; set; }
+    public DateTime? DateFrom { get; set; }
 
     /// <summary>
-    ///   Gets or sets the date_to.
+    ///   End date.
     /// </summary>
     [JsonProperty("date_to")]
-    public string DateTo { get; set; }
+    public DateTime? DateTo { get; set; }
 
     /// <summary>
-    ///   Gets or sets the limit.
+    ///   The maximum number of results to return, defaults to 100, 1000 is the maximum.
     /// </summary>
     [JsonProperty("limit")]
-    public string Limit { get; set; }
+    public int? Limit { get; set; }
 
     /// <summary>
-    ///   Gets or sets the query.
+    ///   Search terms to find matching messages
     /// </summary>
     [JsonProperty("query")]
     public string Query { get; set; }
 
     /// <summary>
-    ///   Gets or sets the senders.
+    ///   An array of sender addresses to narrow the search to, will return messages sent by ANY of the senders.
     /// </summary>
     [JsonProperty("senders")]
-    public string[] Senders { get; set; }
+    public IEnumerable<string> Senders { get; set; }
 
     /// <summary>
-    ///   Gets or sets the tags.
+    ///   An array of tag names to narrow the search to, will return messages that contain ANY of the tags.
     /// </summary>
     [JsonProperty("tags")]
-    public string[] Tags { get; set; }
+    public IEnumerable<string> Tags { get; set; }
+
+    /// <summary>
+    /// An array of API keys to narrow the search to, will return messages sent by ANY of the keys.
+    /// </summary>
+    [JsonProperty("api_keys")]
+    public IEnumerable<string> ApiKeys { get; set; }
 
     #endregion
   }

@@ -114,19 +114,18 @@ namespace Mandrill
     }
 
     /// <summary>
-    ///   Send a new search instruction through Mandrill.
+    /// Search recently sent messages and optionally narrow by date range, tags, senders, and API keys. If no date range is specified,
+    /// results within the last 7 days are returned. This method may be called up to 20 times per minute. If you need the data more often,
+    /// you can use /messages/info.json to get the information for a single message, or webhooks to push activity to your own application for querying.
+    /// <see cref="https://mandrillapp.com/api/docs/messages.JSON.html#method=search">Mandrill API Documentation</see>
     /// </summary>
-    /// <param name="search">
-    ///   The search.
-    /// </param>
-    /// <returns>
-    ///   The <see cref="Task" />.
-    /// </returns>
-    public async Task<List<SearchResult>> Search(SearchRequest search)
+    /// <param name="request">The request.</param>
+    /// <returns>The <see cref="EmailResult"/>.</returns>
+    public async Task<List<SearchResult>> Search(SearchRequest request)
     {
-      string path = "/messages/search.json";
+      const string path = "/messages/search.json";
 
-      List<SearchResult> response = await Post<List<SearchResult>>(path, search);
+      var response = await Post<List<SearchResult>>(path, request);
 
       return response;
     }
