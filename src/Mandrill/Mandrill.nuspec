@@ -11,10 +11,13 @@
         <owners>$author$</owners>
 	      <summary>Mandrill .Net is a quick and easy wrapper for getting started with the Mandrill API.</summary>
         <description>$description$</description>
-        <copyright>Copyright 2014</copyright>
+        <copyright>Copyright 2015</copyright>
         <tags>Mandrill, MailChimp</tags>
 	    <releaseNotes>
-		    Removed sign assembly and dependency on RestSharpSigned.
+        * Updated to .NET 4.5
+		    * Consolidated Async and Sync methods into one method call that returns a Task.
+        * Removed dependency on RestSharp
+        * Now uses Flurl internally.
 	    </releaseNotes>
     </metadata>
 </package>
