@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Mandrill.Models;
 using Mandrill.Requests.Rejects;
+using Mandrill.Utilities;
 using NUnit.Framework;
 
 namespace Mandrill.Tests.IntegrationTests.Rejects

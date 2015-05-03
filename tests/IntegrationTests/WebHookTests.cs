@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Mandrill.Models;
+using Mandrill.Utilities;
 using NUnit.Framework;
 
 namespace Mandrill.Tests.IntegrationTests

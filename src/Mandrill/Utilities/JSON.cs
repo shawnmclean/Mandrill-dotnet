@@ -11,7 +11,7 @@ using System.Diagnostics;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace Mandrill
+namespace Mandrill.Utilities
 {
   /// <summary>
   ///   The json.

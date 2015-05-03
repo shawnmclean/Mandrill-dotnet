@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Flurl.Http.Testing;
 using Mandrill.Requests;
+using Mandrill.Utilities;
 using NUnit.Framework;
 
 namespace Mandrill.Tests.UnitTests

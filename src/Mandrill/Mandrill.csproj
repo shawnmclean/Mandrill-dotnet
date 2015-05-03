@@ -124,7 +124,6 @@
     <Compile Include="Templates.cs" />
     <Compile Include="Urls.cs" />
     <Compile Include="Users.cs" />
-    <Compile Include="Utilities\DynamicJsonDeserializer.cs" />
     <Compile Include="Utilities\JSON.cs" />
     <Compile Include="Utilities\MandrillException.cs" />
   </ItemGroup>

@@ -10,7 +10,7 @@
 using System;
 using Mandrill.Models;
 
-namespace Mandrill
+namespace Mandrill.Utilities
 {
   /// <summary>
   ///   General Exception that is thrown by the Mandrill Api

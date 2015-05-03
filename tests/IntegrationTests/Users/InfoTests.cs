@@ -1,6 +1,7 @@
 ﻿using System.Configuration;
 using System.Threading.Tasks;
 using Mandrill.Models;
+using Mandrill.Utilities;
 using NUnit.Framework;
 
 namespace Mandrill.Tests.IntegrationTests.Users

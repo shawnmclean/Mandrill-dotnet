@@ -13,6 +13,7 @@ using Flurl;
 using Flurl.Http;
 using Mandrill.Models;
 using Mandrill.Requests;
+using Mandrill.Utilities;
 
 namespace Mandrill
 {
