@@ -62,31 +62,15 @@ namespace Mandrill
     ///     until the subaccount is resumed.
     ///     <see cref="https://mandrillapp.com/api/docs/subaccounts.JSON.html#method=pause">Mandrill API Documentation</see>
     /// </summary>
-    /// <param name="id">The unique identifier of the subaccount to pause</param>
+    /// <param name="request">The request</param>
     /// <returns>the information for the paused subaccount</returns>
-    public SubaccountInfo PauseSubaccount(string id) {
-      try {
-        return this.PauseSubaccountAsync(id).Result;
-      } catch (AggregateException aex) {
-        //catch and throw the inner exception
-        throw aex.Flatten().InnerException;
-      }
-    }
+    public async Task<SubaccountInfo> PauseSubaccount(PauseSubAccountRequest request) {
 
-    /// <summary>
-    ///     Asynchronously pause a subaccount's sending. Any future emails delivered to this subaccount will be queued for a
-    ///     maximum of 3 days until the subaccount is resumed.
-    ///     <see cref="https://mandrillapp.com/api/docs/subaccounts.JSON.html#method=pause">Mandrill API Documentation</see>
-    /// </summary>
-    /// <param name="id">The unique identifier of the subaccount to pause</param>
-    /// <returns>the information for the paused subaccount</returns>
-    public Task<SubaccountInfo> PauseSubaccountAsync(string id) {
       const string path = "/subaccounts/pause.json";
 
-      dynamic payload = new ExpandoObject();
-      payload.id = id;
+      var resp = await Post<SubaccountInfo>(path, request);
 
-      return this.PostAsync<SubaccountInfo>(path, payload);
+      return resp;
     }
 
     /// <summary>

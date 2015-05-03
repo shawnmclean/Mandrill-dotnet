@@ -35,27 +35,6 @@ namespace Mandrill.Tests.IntegrationTests
         //}
 
         //[Test]
-        //public void Pause_Subaccount_Returns_Subaccount()
-        //{
-        //    // Setup
-        //    var apiKey = ConfigurationManager.AppSettings["APIKey"];
-
-        //    var subaccount = new SubaccountInfo { Id = Guid.NewGuid().ToString(), CustomQuota = 10, Name = "subaccount1" };
-
-        //    // Exercise
-        //    var api = new MandrillApi(apiKey);
-
-        //    var result = api.AddSubaccount(subaccount);
-
-        //    var paused = api.PauseSubaccount(subaccount.Id);
-
-        //    // Verify
-        //    Assert.IsNotNull(paused);
-        //    Assert.AreEqual(paused.Id, subaccount.Id);
-        //    Assert.AreEqual(paused.Status, "paused");
-        //}
-
-        //[Test]
         //public void Resume_Subaccount_Returns_Subaccount()
         //{
         //    // Setup
@@ -76,28 +55,5 @@ namespace Mandrill.Tests.IntegrationTests
         //    Assert.AreEqual(resumed.Status, "active");
         //}
 
-        //[Test]
-        //public void Update_Subaccount_Returns_Updated_Subaccount()
-        //{
-        //    // Setup
-        //    var apiKey = ConfigurationManager.AppSettings["APIKey"];
-
-        //    var subaccount = new SubaccountInfo { Id = Guid.NewGuid().ToString(), CustomQuota = 10, Name = "subaccount1" };
-
-        //    // Exercise
-        //    var api = new MandrillApi(apiKey);
-
-        //    var result = api.AddSubaccount(subaccount);
-
-        //    var newName = result.Name + "2";
-        //    result.Name = newName;
-
-        //    var updated = api.UpdateSubaccount(result);
-
-        //    // Verify
-        //    Assert.IsNotNull(updated);
-        //    Assert.AreEqual(updated.Id, subaccount.Id);
-        //    Assert.AreEqual(updated.Name, newName);
-        //}
     }
 }

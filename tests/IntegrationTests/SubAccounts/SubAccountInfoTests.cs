@@ -31,6 +31,9 @@ namespace Mandrill.Tests.IntegrationTests.SubAccounts
       // Verify
       Assert.IsNotNull(infoSubaccount);
       Assert.AreEqual(infoSubaccount.Id, subaccount.Id);
+
+      // Cleanup
+      await api.DeleteSubaccount(new DeleteSubAccountRequest(subaccount.Id));
     }
   }
 }

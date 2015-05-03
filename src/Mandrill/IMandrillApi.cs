@@ -237,19 +237,10 @@ namespace Mandrill
     ///     until the subaccount is resumed.
     ///     <see cref="https://mandrillapp.com/api/docs/subaccounts.JSON.html#method=pause">Mandrill API Documentation</see>
     /// </summary>
-    /// <param name="id">The unique identifier of the subaccount to pause</param>
+    /// <param name="request">The request</param>
     /// <returns>the information for the paused subaccount</returns>
-    SubaccountInfo PauseSubaccount(string id);
-
-    /// <summary>
-    ///     Asynchronously pause a subaccount's sending. Any future emails delivered to this subaccount will be queued for a
-    ///     maximum of 3 days until the subaccount is resumed.
-    ///     <see cref="https://mandrillapp.com/api/docs/subaccounts.JSON.html#method=pause">Mandrill API Documentation</see>
-    /// </summary>
-    /// <param name="id">The unique identifier of the subaccount to pause</param>
-    /// <returns>the information for the paused subaccount</returns>
-    Task<SubaccountInfo> PauseSubaccountAsync(string id);
-
+    Task<SubaccountInfo> PauseSubaccount(PauseSubAccountRequest request);
+    
     /// <summary>
     ///     Resume a paused subaccount's sending
     ///     <see cref="https://mandrillapp.com/api/docs/subaccounts.JSON.html#method=resume">Mandrill API Documentation</see>
