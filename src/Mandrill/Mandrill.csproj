@@ -75,8 +75,9 @@
     <Compile Include="Models\EmailResult.cs" />
     <Compile Include="Models\ErrorResponse.cs" />
     <Compile Include="Requests\Rejects\AddRejectRequest.cs" />
-    <Compile Include="Requests\SubAccounts\AddSubAccount.cs" />
+    <Compile Include="Requests\SubAccounts\AddSubAccountRequest.cs" />
     <Compile Include="Requests\SubAccounts\PauseSubAccountRequest.cs" />
+    <Compile Include="Requests\SubAccounts\ResumeSubAccountRequest.cs" />
     <Compile Include="Requests\Templates\AddTemplateRequest.cs" />
     <Compile Include="Requests\Messages\CancelScheduledMessageRequest.cs" />
     <Compile Include="Requests\Messages\ContentRequest.cs" />

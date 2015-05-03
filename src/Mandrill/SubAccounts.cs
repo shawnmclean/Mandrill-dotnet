@@ -77,30 +77,14 @@ namespace Mandrill
     ///     Resume a paused subaccount's sending
     ///     <see cref="https://mandrillapp.com/api/docs/subaccounts.JSON.html#method=resume">Mandrill API Documentation</see>
     /// </summary>
-    /// <param name="id">The unique identifier of the subaccount to resume</param>
+    /// <param name="request">The request</param>
     /// <returns>the information for the resumed subaccount</returns>
-    public SubaccountInfo ResumeSubaccount(string id) {
-      try {
-        return this.ResumeSubaccountAsync(id).Result;
-      } catch (AggregateException aex) {
-        //catch and throw the inner exception
-        throw aex.Flatten().InnerException;
-      }
-    }
-
-    /// <summary>
-    ///     Asynchronously resume a paused subaccount's sending
-    ///     <see cref="https://mandrillapp.com/api/docs/subaccounts.JSON.html#method=resume">Mandrill API Documentation</see>
-    /// </summary>
-    /// <param name="id">The unique identifier of the subaccount to resume</param>
-    /// <returns>the information for the resumed subaccount</returns>
-    public Task<SubaccountInfo> ResumeSubaccountAsync(string id) {
+    public async Task<SubaccountInfo> ResumeSubaccount(ResumeSubAccountRequest request) {
       const string path = "/subaccounts/resume.json";
 
-      dynamic payload = new ExpandoObject();
-      payload.id = id;
+      var response = await Post<SubaccountInfo>(path, request);
 
-      return this.PostAsync<SubaccountInfo>(path, payload);
+      return response;
     }
 
     /// <summary>

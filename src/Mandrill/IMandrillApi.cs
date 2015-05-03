@@ -240,22 +240,14 @@ namespace Mandrill
     /// <param name="request">The request</param>
     /// <returns>the information for the paused subaccount</returns>
     Task<SubaccountInfo> PauseSubaccount(PauseSubAccountRequest request);
-    
+
     /// <summary>
     ///     Resume a paused subaccount's sending
     ///     <see cref="https://mandrillapp.com/api/docs/subaccounts.JSON.html#method=resume">Mandrill API Documentation</see>
     /// </summary>
-    /// <param name="id">The unique identifier of the subaccount to resume</param>
+    /// <param name="request">The request</param>
     /// <returns>the information for the resumed subaccount</returns>
-    SubaccountInfo ResumeSubaccount(string id);
-
-    /// <summary>
-    ///     Asynchronously resume a paused subaccount's sending
-    ///     <see cref="https://mandrillapp.com/api/docs/subaccounts.JSON.html#method=resume">Mandrill API Documentation</see>
-    /// </summary>
-    /// <param name="id">The unique identifier of the subaccount to resume</param>
-    /// <returns>the information for the resumed subaccount</returns>
-    Task<SubaccountInfo> ResumeSubaccountAsync(string id);
+    Task<SubaccountInfo> ResumeSubaccount(ResumeSubAccountRequest request);
 
     /// <summary>
     ///     Given the ID of an existing subaccount, asynchronously return the data about it

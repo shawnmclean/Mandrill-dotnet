@@ -34,26 +34,7 @@ namespace Mandrill.Tests.IntegrationTests
         //    Assert.AreEqual(infoSubaccount.Id, subaccount.Id);
         //}
 
-        //[Test]
-        //public void Resume_Subaccount_Returns_Subaccount()
-        //{
-        //    // Setup
-        //    var apiKey = ConfigurationManager.AppSettings["APIKey"];
 
-        //    var subaccount = new SubaccountInfo { Id = Guid.NewGuid().ToString(), CustomQuota = 10, Name = "subaccount1" };
-
-        //    // Exercise
-        //    var api = new MandrillApi(apiKey);
-
-        //    var result = api.AddSubaccount(subaccount);
-
-        //    var resumed = api.ResumeSubaccount(subaccount.Id);
-
-        //    // Verify
-        //    Assert.IsNotNull(resumed);
-        //    Assert.AreEqual(resumed.Id, subaccount.Id);
-        //    Assert.AreEqual(resumed.Status, "active");
-        //}
 
     }
 }
