@@ -32,32 +32,16 @@ namespace Mandrill
     ///     future sending calls to this subaccount will fail.
     ///     <see cref="https://mandrillapp.com/api/docs/subaccounts.JSON.html#method=delete">Mandrill API Documentation</see>
     /// </summary>
-    /// <param name="id">The unique identifier of the subaccount to delete</param>
+    /// <param name="request">The request.</param>
     /// <returns>the information for the deleted subaccount</returns>
-    public SubaccountInfo DeleteSubaccount(string id) {
-      try {
-        return this.DeleteSubaccountAsync(id).Result;
-      } catch (AggregateException aex) {
-        //catch and throw the inner exception
-        throw aex.Flatten().InnerException;
-      }
-    }
-
-    /// <summary>
-    ///     Asynchronously delete an existing subaccount. Any email related to the subaccount will be saved, but stats will be
-    ///     removed and any future sending calls to this subaccount will fail.
-    ///     <see cref="https://mandrillapp.com/api/docs/subaccounts.JSON.html#method=delete">Mandrill API Documentation</see>
-    /// </summary>
-    /// <param name="id">The unique identifier of the subaccount to delete</param>
-    /// <returns>the information for the deleted subaccount</returns>
-    public Task<SubaccountInfo> DeleteSubaccountAsync(string id) {
+    public async Task<SubaccountInfo> DeleteSubaccount(DeleteSubAccountRequest request) {
       const string path = "/subaccounts/delete.json";
 
-      dynamic payload = new ExpandoObject();
-      payload.id = id;
+      var resp = await Post<SubaccountInfo>(path, request);
 
-      return this.PostAsync<SubaccountInfo>(path, payload);
+      return resp;
     }
+
 
     /// <summary>
     ///     Get the list of subaccounts defined for the account, optionally filtered by a prefix.

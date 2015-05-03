@@ -216,18 +216,9 @@ namespace Mandrill
     ///     future sending calls to this subaccount will fail.
     ///     <see cref="https://mandrillapp.com/api/docs/subaccounts.JSON.html#method=delete">Mandrill API Documentation</see>
     /// </summary>
-    /// <param name="id">The unique identifier of the subaccount to delete</param>
+    /// <param name="request">The request.</param>
     /// <returns>the information for the deleted subaccount</returns>
-    SubaccountInfo DeleteSubaccount(string id);
-
-    /// <summary>
-    ///     Asynchronously delete an existing subaccount. Any email related to the subaccount will be saved, but stats will be
-    ///     removed and any future sending calls to this subaccount will fail.
-    ///     <see cref="https://mandrillapp.com/api/docs/subaccounts.JSON.html#method=delete">Mandrill API Documentation</see>
-    /// </summary>
-    /// <param name="id">The unique identifier of the subaccount to delete</param>
-    /// <returns>the information for the deleted subaccount</returns>
-    Task<SubaccountInfo> DeleteSubaccountAsync(string id);
+    Task<SubaccountInfo> DeleteSubaccount(DeleteSubAccountRequest request);
 
     /// <summary>
     ///     Get the list of subaccounts defined for the account, optionally filtered by a prefix.

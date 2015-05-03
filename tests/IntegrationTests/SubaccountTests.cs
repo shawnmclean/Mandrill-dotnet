@@ -30,46 +30,7 @@ namespace Mandrill.Tests.IntegrationTests
         //    Assert.IsNotNull(result.Find(s => s.Id == addedSubaccount.Id));
         //}
 
-        //[Test]
-        //public void Delete_Subaccount_Returns_Deleted_Subaccount()
-        //{
-        //    // Setup
-        //    var apiKey = ConfigurationManager.AppSettings["APIKey"];
 
-        //    var subaccount = new SubaccountInfo { Id = Guid.NewGuid().ToString(), CustomQuota = 10, Name = "subaccount1" };
-            
-        //    // Exercise
-        //    var api = new MandrillApi(apiKey);
-
-        //    var result = api.AddSubaccount(subaccount);
-
-        //    var deletedSubaccount = api.DeleteSubaccount(result.Id);
-
-        //    // Verify
-        //    Assert.IsNotNull(deletedSubaccount);
-        //    Assert.AreEqual(deletedSubaccount.Id, subaccount.Id);
-        //}
-
-        //[Test]
-        //public void Delete_Subaccount_Is_No_Longer_Listed()
-        //{
-        //    // Setup
-        //    var apiKey = ConfigurationManager.AppSettings["APIKey"];
-
-        //    var subaccount = new SubaccountInfo { Id = Guid.NewGuid().ToString(), CustomQuota = 10, Name = "subaccount1" };
-
-        //    // Exercise
-        //    var api = new MandrillApi(apiKey);
-
-        //    var result = api.AddSubaccount(subaccount);
-
-        //    var deletedSubaccount = api.DeleteSubaccount(result.Id);
-
-        //    var list = api.ListSubaccounts();
-
-        //    // Verify
-        //    Assert.IsNull(list.Find(s => s.Id == deletedSubaccount.Id));
-        //}
 
         //[Test]
         //public void Subaccount_Info_Returns_Subaccount()
