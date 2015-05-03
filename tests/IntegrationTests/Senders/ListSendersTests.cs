@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using Mandrill.Models;
 using NUnit.Framework;
 
 namespace Mandrill.Tests.IntegrationTests.Senders
@@ -12,15 +10,16 @@ namespace Mandrill.Tests.IntegrationTests.Senders
   public class ListSendersTests : IntegrationTestBase
   {
     [Test]
-    public async Task Should_Return_Senders() {
+    public async Task Should_Return_Senders()
+    {
       // Setup
-      var apiKey = ConfigurationManager.AppSettings["APIKey"];
+      string apiKey = ConfigurationManager.AppSettings["APIKey"];
 
       // Exercise
       var api = new MandrillApi(apiKey);
 
       // Verify
-      var senders = await api.ListSenders();
+      List<Sender> senders = await api.ListSenders();
 
       Assert.IsNotNull(senders);
     }

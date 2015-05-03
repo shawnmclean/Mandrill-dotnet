@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Text;
+﻿using System.Configuration;
 using System.Threading.Tasks;
 using Mandrill.Models;
 using Mandrill.Requests.Templates;
@@ -14,7 +10,8 @@ namespace Mandrill.Tests.IntegrationTests.Templates
   public class UpdateTemplateTests : IntegrationTestBase
   {
     [Test]
-    public async Task Can_Update_Template() {
+    public async Task Can_Update_Template()
+    {
       // Setup
       string apiKey = ConfigurationManager.AppSettings["APIKey"];
       string templateName = ConfigurationManager.AppSettings["TemplateExample"];
@@ -29,7 +26,8 @@ namespace Mandrill.Tests.IntegrationTests.Templates
           Code = modified
         });
       TemplateInfo result2 = await api.UpdateTemplate(
-        new UpdateTemplateRequest(templateName) {
+        new UpdateTemplateRequest(templateName)
+        {
           Code = original
         });
 
@@ -37,6 +35,5 @@ namespace Mandrill.Tests.IntegrationTests.Templates
       Assert.AreEqual(modified, result.Code);
       Assert.AreEqual(original, result2.Code);
     }
-
   }
 }

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Mandrill.Models;
 using Mandrill.Requests.Messages;
@@ -26,10 +25,12 @@ namespace Mandrill.Tests.IntegrationTests.Messages
       // Exercise
       var api = new MandrillApi(apiKey);
 
-      var result = await api.SendMessage(new SendMessageRequest {
-        Message = new EmailMessage {
+      List<EmailResult> result = await api.SendMessage(new SendMessageRequest
+      {
+        Message = new EmailMessage
+        {
           To =
-            new List<EmailAddress> { new EmailAddress { Email = toEmail, Name = "" } },
+            new List<EmailAddress> {new EmailAddress {Email = toEmail, Name = ""}},
           FromEmail = fromEmail,
           Subject = "Mandrill Integration Test",
           Html = "<strong>Example HTML</strong>",
@@ -38,7 +39,8 @@ namespace Mandrill.Tests.IntegrationTests.Messages
         SendAt = DateTime.Now.AddMinutes(5)
       });
 
-      var rescheduleResponse = await api.RescheduleMessage(new RescheduleMessageRequest(result.First().Id, DateTime.Now.AddMinutes(10)));
+      ScheduledEmailResult rescheduleResponse =
+        await api.RescheduleMessage(new RescheduleMessageRequest(result.First().Id, DateTime.Now.AddMinutes(10)));
 
       Assert.AreEqual(result.First().Id, rescheduleResponse.Id);
     }

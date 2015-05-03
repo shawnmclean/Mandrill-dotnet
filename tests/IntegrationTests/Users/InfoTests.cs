@@ -1,35 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Text;
+﻿using System.Configuration;
 using System.Threading.Tasks;
+using Mandrill.Models;
 using NUnit.Framework;
 
 namespace Mandrill.Tests.IntegrationTests.Users
 {
   [TestFixture]
-  public  class InfoTests : IntegrationTestBase
+  public class InfoTests : IntegrationTestBase
   {
     [Test]
     public async Task Should_Return_Info()
     {
       // Setup
-      var apiKey = ConfigurationManager.AppSettings["APIKey"];
-      var username = ConfigurationManager.AppSettings["Username"];
+      string apiKey = ConfigurationManager.AppSettings["APIKey"];
+      string username = ConfigurationManager.AppSettings["Username"];
 
       // Exercise
       var api = new MandrillApi(apiKey);
-      var result = await api.UserInfo();
-      
+      UserInfo result = await api.UserInfo();
+
       // Verify
       Assert.AreEqual(username, result.Username);
     }
 
     [Test]
-    public async Task Should_Throw_Exception_On_Invalid_ApiKey() {
+    public async Task Should_Throw_Exception_On_Invalid_ApiKey()
+    {
       // Setup
-      var apiKey = " ";
+      string apiKey = " ";
 
       // Exercise
       var api = new MandrillApi(apiKey);

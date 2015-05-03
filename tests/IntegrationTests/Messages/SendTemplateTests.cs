@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Mandrill.Models;
 using Mandrill.Requests.Messages;
@@ -14,7 +13,8 @@ namespace Mandrill.Tests.IntegrationTests.Messages
   public class SendTemplateTests : IntegrationTestBase
   {
     [Test]
-    public async Task Should_Send_Email_Message_With_Template() {
+    public async Task Should_Send_Email_Message_With_Template()
+    {
       // Setup
       string apiKey = ConfigurationManager.AppSettings["APIKey"];
       string toEmail = ConfigurationManager.AppSettings["ValidToEmail"];
@@ -24,7 +24,7 @@ namespace Mandrill.Tests.IntegrationTests.Messages
       // Exercise
       var api = new MandrillApi(apiKey);
 
-      var result = await api.SendMessageTemplate(new SendMessageTemplateRequest
+      List<EmailResult> result = await api.SendMessageTemplate(new SendMessageTemplateRequest
       {
         Message = new EmailMessage
         {
@@ -48,7 +48,8 @@ namespace Mandrill.Tests.IntegrationTests.Messages
     }
 
     [Test]
-    public async Task Should_Send_Email_Message_With_Template_With_Send_At() {
+    public async Task Should_Send_Email_Message_With_Template_With_Send_At()
+    {
       if (!IsPaidAccount)
         Assert.Ignore("Not a paid account");
 
@@ -61,10 +62,12 @@ namespace Mandrill.Tests.IntegrationTests.Messages
       // Exercise
       var api = new MandrillApi(apiKey);
 
-      var result = await api.SendMessageTemplate(new SendMessageTemplateRequest {
-        Message = new EmailMessage {
+      List<EmailResult> result = await api.SendMessageTemplate(new SendMessageTemplateRequest
+      {
+        Message = new EmailMessage
+        {
           To =
-            new List<EmailAddress> { new EmailAddress { Email = toEmail, Name = "" } },
+            new List<EmailAddress> {new EmailAddress {Email = toEmail, Name = ""}},
           FromEmail = fromEmail,
           Subject = "Mandrill Scheduled Integration Test",
         },

@@ -5,13 +5,13 @@ using NUnit.Framework;
 
 namespace Mandrill.Tests.IntegrationTests
 {
-	[TestFixture()]
-	public class WebHookTests
-	{
-		[Test()]
-		public void Event_DeSerialize ()
-		{
-			string events_json = @"
+  [TestFixture]
+  public class WebHookTests
+  {
+    [Test]
+    public void Event_DeSerialize()
+    {
+      string events_json = @"
 [{
 ""event"":""send"",
 ""ts"":1355340679,
@@ -46,53 +46,53 @@ namespace Mandrill.Tests.IntegrationTests
  ""subaccount"":""validSubAccount""}
 }]";
 
-			var eventTimeDate = new DateTime (2012, 12, 12, 19, 31, 19);
-			var numberOfEvents = 2;
+      var eventTimeDate = new DateTime(2012, 12, 12, 19, 31, 19);
+      int numberOfEvents = 2;
 
-			// Be sure we have two JSON object
-			var zot = JSON.Parse<List<object>> (events_json);
-			Assert.AreEqual (numberOfEvents, zot.Count);
+      // Be sure we have two JSON object
+      var zot = JSON.Parse<List<object>>(events_json);
+      Assert.AreEqual(numberOfEvents, zot.Count);
 
-			// Try parsing out WebHook events
-			var events = JSON.Parse<List<WebHookEvent>> (events_json);
-			Assert.AreEqual (numberOfEvents, events.Count);
-			var e = events [0];
+      // Try parsing out WebHook events
+      var events = JSON.Parse<List<WebHookEvent>>(events_json);
+      Assert.AreEqual(numberOfEvents, events.Count);
+      WebHookEvent e = events[0];
 
-			Assert.AreEqual (WebHookEventType.Send, e.Event);
-			Assert.AreEqual (eventTimeDate, e.TimeStamp);
+      Assert.AreEqual(WebHookEventType.Send, e.Event);
+      Assert.AreEqual(eventTimeDate, e.TimeStamp);
 
-			var message = e.Msg;
+      WebHookMessage message = e.Msg;
 
-			Assert.AreEqual("validSubAccount", message.SubAccount);
-			Assert.AreEqual("validTemplate", message.Template);
-			Assert.AreEqual(WebHookMessageState.Sent, message.State);
-			Assert.AreEqual (eventTimeDate, message.TimeStamp);
-			Assert.AreEqual ("Important Stuff", message.Subject);
-			Assert.AreEqual ("ValidFrom@From.com", message.Sender);
-			Assert.AreEqual ("ValidToOne@Valid.com", message.Email);
-			Assert.AreEqual ("fc8071b3575e44228d5dd7059349ba10", message.Id);
+      Assert.AreEqual("validSubAccount", message.SubAccount);
+      Assert.AreEqual("validTemplate", message.Template);
+      Assert.AreEqual(WebHookMessageState.Sent, message.State);
+      Assert.AreEqual(eventTimeDate, message.TimeStamp);
+      Assert.AreEqual("Important Stuff", message.Subject);
+      Assert.AreEqual("ValidFrom@From.com", message.Sender);
+      Assert.AreEqual("ValidToOne@Valid.com", message.Email);
+      Assert.AreEqual("fc8071b3575e44228d5dd7059349ba10", message.Id);
 
-			Assert.AreEqual(3, message.Tags.Count);
-			Assert.AreEqual("tag1", message.Tags[0]);
-			Assert.AreEqual("tag2", message.Tags[1]);
-			Assert.AreEqual("tag3", message.Tags[2]);
+      Assert.AreEqual(3, message.Tags.Count);
+      Assert.AreEqual("tag1", message.Tags[0]);
+      Assert.AreEqual("tag2", message.Tags[1]);
+      Assert.AreEqual("tag3", message.Tags[2]);
 
-			Assert.AreEqual(2, message.Metadata.Count);
-			Assert.AreEqual("key1", message.Metadata[0].Key);
-			Assert.AreEqual("val1", message.Metadata[0].Value);
-			Assert.AreEqual("key2", message.Metadata[1].Key);
-			Assert.AreEqual("val2", message.Metadata[1].Value);
+      Assert.AreEqual(2, message.Metadata.Count);
+      Assert.AreEqual("key1", message.Metadata[0].Key);
+      Assert.AreEqual("val1", message.Metadata[0].Value);
+      Assert.AreEqual("key2", message.Metadata[1].Key);
+      Assert.AreEqual("val2", message.Metadata[1].Value);
 
-			Assert.AreEqual (2,message.Opens.Count);
-			Assert.AreEqual (eventTimeDate, message.Opens[0].TimeStamp);
-			Assert.AreEqual (1,message.Clicks.Count);
-			Assert.AreEqual ("http://www.GitHub.com",message.Clicks[0].Url);
-		}
+      Assert.AreEqual(2, message.Opens.Count);
+      Assert.AreEqual(eventTimeDate, message.Opens[0].TimeStamp);
+      Assert.AreEqual(1, message.Clicks.Count);
+      Assert.AreEqual("http://www.GitHub.com", message.Clicks[0].Url);
+    }
 
-        [Test]
-        public void Soft_Bounce_Deserialize()
-        {
-            string events_json = @"[{
+    [Test]
+    public void Soft_Bounce_Deserialize()
+    {
+      string events_json = @"[{
     ""event"": ""soft_bounce"",
     ""msg"": {
       ""ts"": 1365109999,
@@ -113,9 +113,9 @@ namespace Mandrill.Tests.IntegrationTests
       ""diag"": ""smtp;552 5.2.2 Over Quota""
     }
   }]";
-            var events = JSON.Parse<List<WebHookEvent>>(events_json);
-            Assert.AreEqual(1, events.Count);
-            Assert.AreEqual(WebHookMessageState.Soft_bounced, events[0].Msg.State);
-        }
-	}
+      var events = JSON.Parse<List<WebHookEvent>>(events_json);
+      Assert.AreEqual(1, events.Count);
+      Assert.AreEqual(WebHookMessageState.Soft_bounced, events[0].Msg.State);
+    }
+  }
 }

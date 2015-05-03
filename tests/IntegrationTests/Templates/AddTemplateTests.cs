@@ -10,7 +10,8 @@ namespace Mandrill.Tests.IntegrationTests.Templates
   public class AddTemplateTests : IntegrationTestBase
   {
     [Test]
-    public async Task Should_Create_And_Delete_Template() {
+    public async Task Should_Create_And_Delete_Template()
+    {
       // Setup
       string apiKey = ConfigurationManager.AppSettings["APIKey"];
       string templateName = ConfigurationManager.AppSettings["TemplateExample"] + "_temp";

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Mandrill.Models;
 using Mandrill.Requests.SubAccounts;
@@ -14,18 +12,24 @@ namespace Mandrill.Tests.IntegrationTests.SubAccounts
   public class ListSubAccountTests : IntegrationTestBase
   {
     [Test]
-    public async Task Should_Return_List_Of_Sub_Accounts() {
+    public async Task Should_Return_List_Of_Sub_Accounts()
+    {
       // Setup
-      var apiKey = ConfigurationManager.AppSettings["APIKey"];
+      string apiKey = ConfigurationManager.AppSettings["APIKey"];
 
-      var request = new AddSubAccountRequest(Guid.NewGuid().ToString()) { CustomQuota = 10, Name = "subaccount1", Notes = "notes" };
+      var request = new AddSubAccountRequest(Guid.NewGuid().ToString())
+      {
+        CustomQuota = 10,
+        Name = "subaccount1",
+        Notes = "notes"
+      };
 
       // Exercise
       var api = new MandrillApi(apiKey);
 
-      var addedSubaccount = await api.AddSubaccount(request);
+      SubaccountInfo addedSubaccount = await api.AddSubaccount(request);
 
-      var result = await api.ListSubaccounts(new ListSubAccountsRequest());
+      List<SubaccountInfo> result = await api.ListSubaccounts(new ListSubAccountsRequest());
 
       // Verify
       Assert.IsNotNull(result);

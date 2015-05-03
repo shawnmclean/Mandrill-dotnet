@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Mandrill.Models;
 using Mandrill.Requests.Messages;
@@ -13,9 +11,9 @@ namespace Mandrill.Tests.IntegrationTests.Messages
   [TestFixture]
   public class SendRawTests : IntegrationTestBase
   {
-
     [Test]
-    public async Task Should_Send_Raw_Message() {
+    public async Task Should_Send_Raw_Message()
+    {
       // Setup
       string apiKey = ConfigurationManager.AppSettings["APIKey"];
       string toEmail = ConfigurationManager.AppSettings["ValidToEmail"];
@@ -32,7 +30,7 @@ namespace Mandrill.Tests.IntegrationTests.Messages
                        "Content-Transfer-Encoding: 7bit\n" +
                        "\n" +
                        "Test\n";
-      var result = await api.SendRawMessage(new SendRawMessageRequest
+      List<EmailResult> result = await api.SendRawMessage(new SendRawMessageRequest
       {
         ToEmails = new List<string> {toEmail},
         FromEmail = fromEmail,

@@ -62,7 +62,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IntegrationTests\IntegrationTestBase.cs" />
-    <Compile Include="IntegrationTests\MessagesTests.cs" />
     <Compile Include="IntegrationTests\Messages\CancelScheduledMessageTests.cs" />
     <Compile Include="IntegrationTests\Messages\ContentTests.cs" />
     <Compile Include="IntegrationTests\Messages\InfoTests.cs" />
@@ -84,8 +83,6 @@
     <Compile Include="IntegrationTests\SubAccounts\ResumeSubAccountTests.cs" />
     <Compile Include="IntegrationTests\SubAccounts\SubAccountInfoTests.cs" />
     <Compile Include="IntegrationTests\SubAccounts\UpdateSubAccountTests.cs" />
-    <Compile Include="IntegrationTests\SubaccountTests.cs" />
-    <Compile Include="IntegrationTests\TemplatesTests.cs" />
     <Compile Include="IntegrationTests\Templates\AddTemplateTests.cs" />
     <Compile Include="IntegrationTests\Templates\ListTemplatesTests.cs" />
     <Compile Include="IntegrationTests\Templates\RenderTemplateTests.cs" />

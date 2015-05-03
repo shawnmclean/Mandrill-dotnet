@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Mandrill.Models;
 using Mandrill.Requests.Messages;
@@ -24,12 +22,13 @@ namespace Mandrill.Tests.IntegrationTests.Messages
       var api = new MandrillApi(apiKey);
 
 
-      var search = new SearchRequest {
+      var search = new SearchRequest
+      {
         Query = String.Format(@"subject:{0}", subjSKey),
         Limit = "10"
       };
 
-     var result = await api.Search(search);
+      List<SearchResult> result = await api.Search(search);
 
       //Verify 2
       Assert.AreEqual(1, result.Count);

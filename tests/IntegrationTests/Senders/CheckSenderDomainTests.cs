@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Text;
+﻿using System.Configuration;
 using System.Threading.Tasks;
-using Mandrill.Requests.Messages;
+using Mandrill.Models;
 using Mandrill.Requests.Senders;
 using NUnit.Framework;
 
@@ -14,15 +10,16 @@ namespace Mandrill.Tests.IntegrationTests.Senders
   public class CheckSenderDomainTests : IntegrationTestBase
   {
     [Test]
-    public async Task Should_Return_Sender_Domain() {
+    public async Task Should_Return_Sender_Domain()
+    {
       // Setup
-      var apiKey = ConfigurationManager.AppSettings["APIKey"];
+      string apiKey = ConfigurationManager.AppSettings["APIKey"];
 
       // Exercise
       var api = new MandrillApi(apiKey);
 
       // Verify
-      var domain = await api.CheckSenderDomain(new SenderCheckDomainRequest("example.com"));
+      SenderDomain domain = await api.CheckSenderDomain(new SenderCheckDomainRequest("example.com"));
       Assert.IsNotNull(domain);
     }
   }

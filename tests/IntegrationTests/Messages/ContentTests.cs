@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading;
+﻿using System.Configuration;
 using System.Threading.Tasks;
 using Mandrill.Models;
 using Mandrill.Requests.Messages;
@@ -26,7 +21,7 @@ namespace Mandrill.Tests.IntegrationTests.Messages
       // Exercise
       var api = new MandrillApi(apiKey);
 
-      var response = await api.GetContent(new ContentRequest{Id = sentEmailId});
+      Content response = await api.GetContent(new ContentRequest {Id = sentEmailId});
 
       Assert.AreEqual(sentEmailSubject, response.Subject);
       Assert.AreEqual(sentEmailText, response.Text);

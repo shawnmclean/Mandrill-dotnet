@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Mandrill.Models;
 using Mandrill.Requests.Templates;
@@ -14,7 +11,8 @@ namespace Mandrill.Tests.IntegrationTests.Templates
   public class ListTemplatesTests : IntegrationTestBase
   {
     [Test]
-    public async Task Should_Return_Correct_Count() {
+    public async Task Should_Return_Correct_Count()
+    {
       // Setup
       string apiKey = ConfigurationManager.AppSettings["APIKey"];
       int templateCount = int.Parse(ConfigurationManager.AppSettings["TemplateCount"]);
@@ -30,7 +28,8 @@ namespace Mandrill.Tests.IntegrationTests.Templates
     }
 
     [Test]
-    public async Task Should_Return_Correct_Count_When_Searching_By_Label() {
+    public async Task Should_Return_Correct_Count_When_Searching_By_Label()
+    {
       // Setup
       string apiKey = ConfigurationManager.AppSettings["APIKey"];
       int templateCount = int.Parse(ConfigurationManager.AppSettings["TemplateCountWithLabel"]);
@@ -38,7 +37,7 @@ namespace Mandrill.Tests.IntegrationTests.Templates
 
       // Exercise
       var api = new MandrillApi(apiKey);
-      List<TemplateInfo> result = await api.ListTemplates(new ListTemplatesRequest{Label = label});
+      List<TemplateInfo> result = await api.ListTemplates(new ListTemplatesRequest {Label = label});
 
       int expected = templateCount;
 
