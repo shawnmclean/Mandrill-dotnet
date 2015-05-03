@@ -10,25 +10,7 @@ namespace Mandrill.Tests.IntegrationTests
     {
 
 
-        //[Test]
-        //public void List_Subaccounts_Contains_Added_Subaccount()
-        //{
-        //    // Setup
-        //    var apiKey = ConfigurationManager.AppSettings["APIKey"];
 
-        //    var subaccount = new SubaccountInfo { Id = Guid.NewGuid().ToString(), CustomQuota = 10, Name = "subaccount1" };
-            
-        //    // Exercise
-        //    var api = new MandrillApi(apiKey);
-        //    var addedSubaccount = api.AddSubaccount(subaccount);
-
-        //    var result = api.ListSubaccounts();
-            
-        //    // Verify
-        //    Assert.IsNotNull(result);
-        //    Assert.IsNotEmpty(result);
-        //    Assert.IsNotNull(result.Find(s => s.Id == addedSubaccount.Id));
-        //}
 
 
 

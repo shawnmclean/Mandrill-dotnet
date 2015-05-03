@@ -83,6 +83,7 @@
     <Compile Include="Models\Requests\DeleteSubAccountRequest.cs" />
     <Compile Include="Models\Requests\DeleteTemplateRequest.cs" />
     <Compile Include="Models\Requests\ListRejectsRequest.cs" />
+    <Compile Include="Models\Requests\ListSubAccountsRequest.cs" />
     <Compile Include="Models\Requests\MessageInfoRequest.cs" />
     <Compile Include="Models\Requests\ListScheduledMessagesRequest.cs" />
     <Compile Include="Models\Requests\ListTemplatesRequest.cs" />

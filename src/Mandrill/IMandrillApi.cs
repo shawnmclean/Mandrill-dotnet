@@ -224,17 +224,9 @@ namespace Mandrill
     ///     Get the list of subaccounts defined for the account, optionally filtered by a prefix.
     ///     <see cref="https://mandrillapp.com/api/docs/subaccounts.JSON.html#method=list">Mandrill API Documentation</see>
     /// </summary>
-    /// <param name="q">An optional prefix to filter the subaccounts' ids and names</param>
+    /// <param name="request">The request.</param>
     /// <returns>the subaccounts for the account, up to a maximum of 1,000</returns>
-    List<SubaccountInfo> ListSubaccounts(string q = "");
-
-    /// <summary>
-    ///     Asynchronously get the list of subaccounts defined for the account, optionally filtered by a prefix.
-    ///     <see cref="https://mandrillapp.com/api/docs/subaccounts.JSON.html#method=list">Mandrill API Documentation</see>
-    /// </summary>
-    /// <param name="q">An optional prefix to filter the subaccounts' ids and names.</param>
-    /// <returns>the subaccounts for the account, up to a maximum of 1,000</returns>
-    Task<List<SubaccountInfo>> ListSubaccountsAsync(string q = "");
+    Task<List<SubaccountInfo>> ListSubaccounts(ListSubAccountsRequest request);
 
     /// <summary>
     ///     Pause a subaccount's sending. Any future emails delivered to this subaccount will be queued for a maximum of 3 days

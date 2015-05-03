@@ -47,30 +47,14 @@ namespace Mandrill
     ///     Get the list of subaccounts defined for the account, optionally filtered by a prefix.
     ///     <see cref="https://mandrillapp.com/api/docs/subaccounts.JSON.html#method=list">Mandrill API Documentation</see>
     /// </summary>
-    /// <param name="q">An optional prefix to filter the subaccounts' ids and names</param>
+    /// <param name="request">The request.</param>
     /// <returns>the subaccounts for the account, up to a maximum of 1,000</returns>
-    public List<SubaccountInfo> ListSubaccounts(string q = "") {
-      try {
-        return this.ListSubaccountsAsync(q).Result;
-      } catch (AggregateException aex) {
-        //catch and throw the inner exception
-        throw aex.Flatten().InnerException;
-      }
-    }
-
-    /// <summary>
-    ///     Asynchronously get the list of subaccounts defined for the account, optionally filtered by a prefix.
-    ///     <see cref="https://mandrillapp.com/api/docs/subaccounts.JSON.html#method=list">Mandrill API Documentation</see>
-    /// </summary>
-    /// <param name="q">An optional prefix to filter the subaccounts' ids and names.</param>
-    /// <returns>the subaccounts for the account, up to a maximum of 1,000</returns>
-    public Task<List<SubaccountInfo>> ListSubaccountsAsync(string q = "") {
+    public async Task<List<SubaccountInfo>> ListSubaccounts(ListSubAccountsRequest request) {
       const string path = "/subaccounts/list.json";
 
-      dynamic payload = new ExpandoObject();
-      payload.q = q;
+      var resp = await Post<List<SubaccountInfo>>(path, request);
 
-      return this.PostAsync<List<SubaccountInfo>>(path, payload);
+      return resp;
     }
 
     /// <summary>
