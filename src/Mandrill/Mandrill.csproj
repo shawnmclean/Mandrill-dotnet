@@ -100,6 +100,7 @@
     <Compile Include="Models\Requests\SendRawMessageRequest.cs" />
     <Compile Include="Models\Requests\SubAccountInfoRequest.cs" />
     <Compile Include="Models\Requests\TemplateInfoRequest.cs" />
+    <Compile Include="Models\Requests\UpdateSubAccountRequest.cs" />
     <Compile Include="Models\Requests\UpdateTemplateRequest.cs" />
     <Compile Include="Models\ScheduledEmailResult.cs" />
     <Compile Include="Models\Requests\SearchRequest.cs" />

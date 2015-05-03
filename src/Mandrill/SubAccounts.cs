@@ -137,35 +137,14 @@ namespace Mandrill
     ///     Update an existing subaccount
     ///     <see cref="https://mandrillapp.com/api/docs/subaccounts.JSON.html#method=update">Mandrill API Documentation</see>
     /// </summary>
-    /// <param name="subaccount">The subaccount to update</param>
-    /// <param name="notes">Optional extra text to associate with the subaccount</param>
+    /// <param name="request">The request</param>
     /// <returns>the information for the updated subaccount</returns>
-    public SubaccountInfo UpdateSubaccount(SubaccountInfo subaccount, string notes = "") {
-      try {
-        return this.UpdateSubaccountAsync(subaccount, notes).Result;
-      } catch (AggregateException aex) {
-        //catch and throw the inner exception
-        throw aex.Flatten().InnerException;
-      }
-    }
-
-    /// <summary>
-    ///     Asynchronously update an existing subaccount
-    ///     <see cref="https://mandrillapp.com/api/docs/subaccounts.JSON.html#method=update">Mandrill API Documentation</see>
-    /// </summary>
-    /// <param name="subaccount">The subaccount to update</param>
-    /// <param name="notes">Optional extra text to associate with the subaccount</param>
-    /// <returns>the information for the updated subaccount</returns>
-    public Task<SubaccountInfo> UpdateSubaccountAsync(SubaccountInfo subaccount, string notes = "") {
+    public async Task<SubaccountInfo> UpdateSubaccount(UpdateSubAccountRequest request) {
       const string path = "/subaccounts/update.json";
 
-      dynamic payload = new ExpandoObject();
-      payload.id = subaccount.Id;
-      payload.name = subaccount.Name;
-      payload.notes = notes;
-      payload.custom_quota = subaccount.CustomQuota;
+      var response = await Post<SubaccountInfo>(path, request);
 
-      return this.PostAsync<SubaccountInfo>(path, payload);
+      return response;
     }
 
     #endregion

@@ -8,11 +8,11 @@ using Newtonsoft.Json;
 namespace Mandrill.Models.Requests
 {
   /// <summary>
-  /// Class AddSubAccountRequest.
+  /// Class UpdateSubAccountRequest.
   /// </summary>
-  public class AddSubAccountRequest : RequestBase
+  public class UpdateSubAccountRequest : RequestBase
   {
-    public AddSubAccountRequest(string id)
+    public UpdateSubAccountRequest(string id)
     {
       Id = id;
     }

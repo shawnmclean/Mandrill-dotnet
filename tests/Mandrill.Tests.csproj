@@ -81,6 +81,7 @@
     <Compile Include="IntegrationTests\SubAccounts\DeleteSubAccountTests.cs" />
     <Compile Include="IntegrationTests\SubAccounts\ListSubAccountTests.cs" />
     <Compile Include="IntegrationTests\SubAccounts\SubAccountInfoTests.cs" />
+    <Compile Include="IntegrationTests\SubAccounts\UpdateSubAccountTests.cs" />
     <Compile Include="IntegrationTests\SubaccountTests.cs" />
     <Compile Include="IntegrationTests\TemplatesTests.cs" />
     <Compile Include="IntegrationTests\Templates\AddTemplateTests.cs" />

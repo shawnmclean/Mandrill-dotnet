@@ -274,19 +274,9 @@ namespace Mandrill
     ///     Update an existing subaccount
     ///     <see cref="https://mandrillapp.com/api/docs/subaccounts.JSON.html#method=update">Mandrill API Documentation</see>
     /// </summary>
-    /// <param name="subaccount">The subaccount to update</param>
-    /// <param name="notes">Optional extra text to associate with the subaccount</param>
+    /// <param name="request">The request</param>
     /// <returns>the information for the updated subaccount</returns>
-    SubaccountInfo UpdateSubaccount(SubaccountInfo subaccount, string notes = "");
-
-    /// <summary>
-    ///     Asynchronously update an existing subaccount
-    ///     <see cref="https://mandrillapp.com/api/docs/subaccounts.JSON.html#method=update">Mandrill API Documentation</see>
-    /// </summary>
-    /// <param name="subaccount">The subaccount to update</param>
-    /// <param name="notes">Optional extra text to associate with the subaccount</param>
-    /// <returns>the information for the updated subaccount</returns>
-    Task<SubaccountInfo> UpdateSubaccountAsync(SubaccountInfo subaccount, string notes = "");
+    Task<SubaccountInfo> UpdateSubaccount(UpdateSubAccountRequest request);
 
     /// <summary>
     ///     Validate an API key and respond to a ping
