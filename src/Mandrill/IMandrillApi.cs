@@ -115,13 +115,6 @@ namespace Mandrill
     /// </summary>
     string ApiKey { get; }
 
-    IWebProxy Proxy { get; set; }
-
-    /// <summary>
-    ///     UserAgent to use for requests.
-    /// </summary>
-    string UserAgent { get; set; }
-
     /// <summary>
     ///     The list senders.
     /// </summary>
