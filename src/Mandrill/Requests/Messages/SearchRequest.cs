@@ -41,7 +41,7 @@ namespace Mandrill.Requests.Messages
     /// <summary>
     ///   Search terms to find matching messages
     /// </summary>
-    [JsonProperty("query")]
+    [JsonProperty("query", NullValueHandling = NullValueHandling.Ignore)]
     public string Query { get; set; }
 
     /// <summary>
