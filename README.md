@@ -3,7 +3,7 @@
 [![Build Status](http://img.shields.io/teamcity/codebetter/bt1136.svg?style=flat-square)](http://teamcity.codebetter.com/project.html?projectId=project415&guest=1)
 [![Code Coverage](http://img.shields.io/teamcity/coverage/bt1136.svg?style=flat-square)](http://teamcity.codebetter.com/project.html?projectId=project415&guest=1)
 
-# Mandrill Dot Net 
+# Mandrill Dot Net
 
 ## NuGet
 
@@ -15,8 +15,7 @@ To utilize the mono build, download and compile the project. The mono version wi
 
 ## Description
 
-Mandrill Dot Net is a library that wraps the [Mandrill](http://mandrill.com/) mail API to easily get started in sending mail. It contains methods that
-accept just the minimal amount of strongly typed parameters required to start sending out emails. All API calls have their Async counterparts.
+Mandrill Dot Net is a library that wraps the [Mandrill](http://mandrill.com/) mail API to easily get started in sending mail. It contains methods that accepts requests that matches the structure of the Mandrill API docs. Required properties are accepted in the Request's constructor.
 
 ## Usage
 
@@ -25,64 +24,29 @@ Unzip the file files and reference the following file in your .net project:
 
 	Mandrill.dll
 
-#### Sample Source:
-
-Synchronous:
+#### Example Usage:
 
     MandrillApi api = new MandrillApi("xxxxx-xxxx-xxxx-xxxx");
-    UserInfo info = api.UserInfo();
+    UserInfo info = await api.UserInfo();
     Console.WriteLine(info.reputation);
 
-Asychronous:
+All endpoints are covered by integration tests and can be used as a reference.
 
-    MandrillApi api = new MandrillApi("xxxxx-xxxx-xxxx-xxxx");
-    var task= api.UserInfoAsync();
-
-    task.ContinueWith(data =>
-    {
-        var userInfo = data.Result;
-        Console.WriteLine(userInfo.reputation);
-    });
-
-#### Api methods Covered
-
- 1. Users
-   1. Info
-   2. Ping
- 2. Messages
-   1. Send
-   2. Send-Template
-   3. Search
-   4. Info
-   5. Send-Raw
-   6. List-Scheduled
-   7. Cancel-Scheduled
-   8. Reschedule
-   9. Content
- 3. Rejects
-   1. List
-   2. Delete
- 4. Templates
-   1. List
-   2. Render
-   3. Add
-   4. Update
-	 5. Info
- 5. Senders
-   1. List
-	
 ## Necessary prerequisites
 
-.NET 4.5
+### .NET 4.5
 
-.NET 4 will not be supported. Code can be found on tag [.net-4.0](https://github.com/shawnmclean/Mandrill-dotnet/tree/net-4.0)
-The last NuGet version of .NET 4.0 is `1.3.1`
+All method calls are using `async` and `await` and returns a task.
+
+###.NET 4
+
+Support for .NET 4 has be dropped. The last build for .NET 4 is the NuGet version `1.3.1`. The code can be found on tag [.net-4.0](https://github.com/shawnmclean/Mandrill-dotnet/tree/net-4.0).
 
 ## Contributing
 
 #### Building the source
 
-For running tests, ensure to rename `AppSettings.example.config` to `AppSettings.config` and 
+For running tests, ensure to rename `AppSettings.example.config` to `AppSettings.config` and
 set your own Api Key in the test project. Tests can be executed from rake: `rake test` or from any nunit test runner
 tool.
 
@@ -98,10 +62,3 @@ match the `TemplateLabel` (default `test`).
   4. [Moacyr Rodrigues Pereira](https://github.com/moacyr)
   5. [Stephen Jazdzewski](https://github.com/jazd)
   6. [Jacob Rillema](https://github.com/rillemjg)
-
-## Change Log
-
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/shawnmclean/mandrill-dotnet/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-

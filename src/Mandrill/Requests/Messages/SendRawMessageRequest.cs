@@ -9,6 +9,11 @@ namespace Mandrill.Requests.Messages
   /// </summary>
   public class SendRawMessageRequest : RequestBase
   {
+    public SendRawMessageRequest(string rawMessage)
+    {
+      RawMessage = rawMessage;
+    }
+
     /// <summary>
     ///   Gets or sets the raw message.
     /// </summary>

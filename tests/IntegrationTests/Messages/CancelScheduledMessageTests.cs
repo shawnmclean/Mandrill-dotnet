@@ -25,9 +25,7 @@ namespace Mandrill.Tests.IntegrationTests.Messages
       // Exercise
       var api = new MandrillApi(apiKey);
 
-      List<EmailResult> result = await api.SendMessage(new SendMessageRequest
-      {
-        Message = new EmailMessage
+      List<EmailResult> result = await api.SendMessage(new SendMessageRequest(new EmailMessage
         {
           To =
             new List<EmailAddress> {new EmailAddress {Email = toEmail, Name = ""}},
@@ -35,7 +33,7 @@ namespace Mandrill.Tests.IntegrationTests.Messages
           Subject = "Mandrill Integration Test",
           Html = "<strong>Example HTML</strong>",
           Text = "Example text"
-        },
+        }){
         SendAt = DateTime.Now.AddMinutes(5)
       });
 
@@ -45,7 +43,7 @@ namespace Mandrill.Tests.IntegrationTests.Messages
       //Verify that message was scheduled
       Assert.AreEqual(1, scheduled.Count(s => s.Id == result.First().Id));
 
-      await api.CancelScheduledMessage(new CancelScheduledMessageRequest {Id = result.First().Id});
+      await api.CancelScheduledMessage(new CancelScheduledMessageRequest(result.First().Id));
       scheduled = await api.ListScheduledMessages(new ListScheduledMessagesRequest {ToEmail = toEmail});
 
       //Verify that message was canceled.

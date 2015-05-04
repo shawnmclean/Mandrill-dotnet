@@ -30,12 +30,11 @@ namespace Mandrill.Tests.IntegrationTests.Messages
                        "Content-Transfer-Encoding: 7bit\n" +
                        "\n" +
                        "Test\n";
-      List<EmailResult> result = await api.SendRawMessage(new SendRawMessageRequest
+      List<EmailResult> result = await api.SendRawMessage(new SendRawMessageRequest(message)
       {
         ToEmails = new List<string> {toEmail},
         FromEmail = fromEmail,
-        FromName = "",
-        RawMessage = message,
+        FromName = ""
       });
       // Verify
       Assert.AreEqual(1, result.Count);

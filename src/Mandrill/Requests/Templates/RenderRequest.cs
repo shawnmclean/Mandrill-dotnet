@@ -2,7 +2,7 @@
 using Mandrill.Models;
 using Newtonsoft.Json;
 
-namespace Mandrill.Requests.Messages
+namespace Mandrill.Requests.Templates
 {
   public class RenderRequest : RequestBase
   {

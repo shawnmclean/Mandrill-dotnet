@@ -7,6 +7,13 @@ namespace Mandrill.Requests.Messages
 {
   public class SendMessageTemplateRequest : RequestBase
   {
+    public SendMessageTemplateRequest(EmailMessage message, string templateName, IEnumerable<TemplateContent> templateContents)
+    {
+      Message = message;
+      TemplateName = templateName;
+      TemplateContents = templateContents;
+    }
+
     [JsonProperty("message")]
     public EmailMessage Message { get; set; }
 

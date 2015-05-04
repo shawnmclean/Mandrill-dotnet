@@ -26,9 +26,7 @@ namespace Mandrill.Tests.IntegrationTests.Messages
       // Exercise
       var api = new MandrillApi(apiKey);
 
-      List<EmailResult> result = await api.SendMessage(new SendMessageRequest
-      {
-        Message = new EmailMessage
+      List<EmailResult> result = await api.SendMessage(new SendMessageRequest(new EmailMessage
         {
           To =
             new List<EmailAddress> {new EmailAddress {Email = toEmail, Name = ""}},
@@ -36,7 +34,7 @@ namespace Mandrill.Tests.IntegrationTests.Messages
           Subject = "Mandrill Integration Test",
           Html = "<strong>Scheduled Email</strong>",
           Text = "Example text"
-        },
+        }){
         SendAt = DateTime.Now.AddMinutes(5)
       });
 
@@ -46,7 +44,7 @@ namespace Mandrill.Tests.IntegrationTests.Messages
       Assert.AreEqual(EmailResultStatus.Scheduled, result.First().Status);
 
       //Tear down
-      await api.CancelScheduledMessage(new CancelScheduledMessageRequest {Id = result.First().Id});
+      await api.CancelScheduledMessage(new CancelScheduledMessageRequest(result.First().Id));
     }
 
     [Test]
@@ -60,9 +58,7 @@ namespace Mandrill.Tests.IntegrationTests.Messages
       // Exercise
       var api = new MandrillApi(apiKey);
 
-      List<EmailResult> result = await api.SendMessage(new SendMessageRequest
-      {
-        Message = new EmailMessage
+      List<EmailResult> result = await api.SendMessage(new SendMessageRequest(new EmailMessage
         {
           To =
             new List<EmailAddress> {new EmailAddress {Email = toEmail, Name = ""}},
@@ -70,8 +66,7 @@ namespace Mandrill.Tests.IntegrationTests.Messages
           Subject = "Mandrill Integration Test",
           Html = "<strong>Example HTML</strong>",
           Text = "Example text"
-        }
-      });
+        }));
 
       // Verify
       Assert.AreEqual(1, result.Count);

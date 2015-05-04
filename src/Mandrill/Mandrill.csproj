@@ -87,7 +87,7 @@
     <Compile Include="Requests\Templates\ListTemplatesRequest.cs" />
     <Compile Include="Requests\Templates\RenderTemplateRequest.cs" />
     <Compile Include="Requests\RequestBase.cs" />
-    <Compile Include="Requests\Messages\RenderRequest.cs" />
+    <Compile Include="Requests\Templates\RenderRequest.cs" />
     <Compile Include="Requests\Messages\RescheduleMessageRequest.cs" />
     <Compile Include="Requests\Senders\SenderCheckDomainRequest.cs" />
     <Compile Include="Requests\Messages\SendMessageRequest.cs" />

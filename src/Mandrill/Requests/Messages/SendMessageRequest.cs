@@ -9,6 +9,11 @@ namespace Mandrill.Requests.Messages
   /// </summary>
   public class SendMessageRequest : RequestBase
   {
+    public SendMessageRequest(EmailMessage message)
+    {
+      Message = message;
+    }
+
     /// <summary>
     ///   Gets or sets the message.
     /// </summary>

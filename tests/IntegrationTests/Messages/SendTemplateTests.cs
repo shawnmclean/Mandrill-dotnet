@@ -25,21 +25,19 @@ namespace Mandrill.Tests.IntegrationTests.Messages
       var api = new MandrillApi(apiKey);
 
       List<EmailResult> result = await api.SendMessageTemplate(new SendMessageTemplateRequest
-      {
-        Message = new EmailMessage
+      (new EmailMessage
         {
           To =
             new List<EmailAddress> {new EmailAddress {Email = toEmail, Name = ""}},
           FromEmail = fromEmail,
           Subject = "Mandrill Integration Test",
         },
-        TemplateName = templateExample,
-        TemplateContents = new List<TemplateContent>
+        templateExample,
+        new List<TemplateContent>
         {
           new TemplateContent {Name = "model1", Content = "Content1"},
           new TemplateContent {Name = "model2", Content = "Content2"}
-        }
-      });
+        }));
 
       // Verify
       Assert.AreEqual(1, result.Count);
@@ -62,21 +60,19 @@ namespace Mandrill.Tests.IntegrationTests.Messages
       // Exercise
       var api = new MandrillApi(apiKey);
 
-      List<EmailResult> result = await api.SendMessageTemplate(new SendMessageTemplateRequest
-      {
-        Message = new EmailMessage
+      List<EmailResult> result = await api.SendMessageTemplate(new SendMessageTemplateRequest(new EmailMessage
         {
           To =
             new List<EmailAddress> {new EmailAddress {Email = toEmail, Name = ""}},
           FromEmail = fromEmail,
           Subject = "Mandrill Scheduled Integration Test",
         },
-        TemplateName = templateExample,
-        TemplateContents = new List<TemplateContent>
+        templateExample,
+        new List<TemplateContent>
         {
           new TemplateContent {Name = "model1", Content = "Content1"},
           new TemplateContent {Name = "model2", Content = "Content2"}
-        },
+        }){
         SendAt = DateTime.Now.AddMinutes(5)
       });
 
