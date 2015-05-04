@@ -24,7 +24,7 @@ namespace Mandrill.Tests.IntegrationTests.Messages
 
       var search = new SearchRequest
       {
-        Query = String.Format(@"subject:{0}", subjSKey)
+        Query = String.Format(@"subject:{0}", subjSKey),
       };
 
       List<SearchResult> result = await api.Search(search);
