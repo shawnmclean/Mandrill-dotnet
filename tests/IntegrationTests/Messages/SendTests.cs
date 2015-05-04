@@ -73,5 +73,32 @@ namespace Mandrill.Tests.IntegrationTests.Messages
       Assert.AreEqual(toEmail, result.First().Email);
       Assert.AreEqual(EmailResultStatus.Sent, result.First().Status);
     }
+
+    [Test]
+    public async Task Should_Send_Email_Message_With_Headers() {
+      // Setup
+      string apiKey = ConfigurationManager.AppSettings["APIKey"];
+      string toEmail = ConfigurationManager.AppSettings["ValidToEmail"];
+      string fromEmail = ConfigurationManager.AppSettings["FromEMail"];
+
+      // Exercise
+      var api = new MandrillApi(apiKey);
+
+      var sendMessageRequest = new SendMessageRequest(new EmailMessage {
+        To =
+          new List<EmailAddress> { new EmailAddress { Email = toEmail, Name = "" } },
+        FromEmail = fromEmail,
+        Subject = "Mandrill Integration Test",
+        Html = "<strong>Example HTML</strong>",
+        Text = "Example text",
+      });
+      sendMessageRequest.Message.AddHeader("Reply-To", fromEmail);
+      List<EmailResult> result = await api.SendMessage(sendMessageRequest);
+
+      // Verify
+      Assert.AreEqual(1, result.Count);
+      Assert.AreEqual(toEmail, result.First().Email);
+      Assert.AreEqual(EmailResultStatus.Sent, result.First().Status);
+    }
   }
 }

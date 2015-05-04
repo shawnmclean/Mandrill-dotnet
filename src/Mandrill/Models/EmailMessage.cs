@@ -236,7 +236,7 @@ namespace Mandrill.Models
     ///   Gets the headers.
     /// </summary>
     [JsonProperty("headers")]
-    public dynamic Headers { get; private set; }
+    public Dictionary<string, string> Headers { get; private set; }
 
     /// <summary>
     ///   Gets or sets the html.
@@ -278,7 +278,7 @@ namespace Mandrill.Models
     ///   Gets the metadata.
     /// </summary>
     [JsonProperty("metadata")]
-    public dynamic Metadata { get; private set; }
+    public Dictionary<string, string> Metadata { get; private set; }
 
     /// <summary>
     ///   Gets or sets whether or not to expose all recipients in to "To" header for each email.
@@ -431,7 +431,7 @@ namespace Mandrill.Models
     {
       if (Headers == null)
       {
-        Headers = new ExpandoObject();
+        Headers = new Dictionary<string, string>();
       }
 
       Headers[name] = value;
@@ -450,7 +450,7 @@ namespace Mandrill.Models
     {
       if (Metadata == null)
       {
-        Metadata = new ExpandoObject();
+        Metadata = new Dictionary<string, string>();
       }
 
       Metadata[key] = value;
