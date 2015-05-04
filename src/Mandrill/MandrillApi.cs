@@ -92,7 +92,7 @@ namespace Mandrill
       {
         var response = ex.GetResponseJson<ErrorResponse>();
         throw new MandrillException(response, string.Format("Post failed {0} with status {1} and content '{2}'", path,
-          ex.Call.HttpStatus, ex.Call.RequestBody));
+          ex.Call.HttpStatus, ex.GetResponseString()));
       }
     }
 
