@@ -19,12 +19,9 @@ Mandrill Dot Net is a library that wraps the [Mandrill](http://mandrill.com/) ma
 
 ## Usage
 
-Go to the [downloads page](https://github.com/shawnmclean/Mandrill-dotnet/downloads) and download the latest version or utilize the NuGet package.
-Unzip the file files and reference the following file in your .net project:
+Reference the `Mandrill.dll` library in your project or download from NuGet.
 
-	Mandrill.dll
-
-#### Example Usage:
+#### Example
 
     MandrillApi api = new MandrillApi("xxxxx-xxxx-xxxx-xxxx");
     UserInfo info = await api.UserInfo();
