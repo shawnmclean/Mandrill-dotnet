@@ -41,7 +41,7 @@ namespace Mandrill.Models
     ///   The content.
     /// </summary>
     [JsonProperty("content")]
-    public string Content { get; set; }
+      public dynamic Content { get; set; }
 
     /// <summary>
     ///   The name.
@@ -468,7 +468,7 @@ namespace Mandrill.Models
     /// <param name="content">
     ///   The content.
     /// </param>
-    public void AddRecipientVariable(string recipient, string name, string content)
+    public void AddRecipientVariable(string recipient, string name, dynamic content)
     {
       if (MergeVars == null)
       {
@@ -486,7 +486,6 @@ namespace Mandrill.Models
 
       entry.Vars.Add(mv);
     }
-
     #endregion
   }
 }
