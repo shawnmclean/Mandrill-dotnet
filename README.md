@@ -37,7 +37,7 @@ All endpoints are covered by integration tests and can be used as a reference.
 
 ### .NET Core 5
 
-Support for NetCore5 can be supported easily by replacing dependency on Flurl or when Flurl upgrades to Core.
+NetCore5 can be supported easily by replacing dependency on Flurl or when Flurl upgrades to Core.
 
 ### .NET 4.5
 
