@@ -240,6 +240,11 @@ namespace Mandrill.Models
     [JsonProperty("from_name")]
     public string FromName { get; set; }
 
+	/// <summary>
+	/// Gets or sets the headers.
+	/// </summary>
+	public Dictionary<string, dynamic> Headers { get; set; }
+
     /// <summary>
     ///   Gets or sets the html.
     /// </summary>
