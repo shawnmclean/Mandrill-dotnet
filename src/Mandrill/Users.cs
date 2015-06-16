@@ -26,11 +26,12 @@ namespace Mandrill
     /// <returns>
     ///   The <see cref="string" />.
     /// </returns>
+    /// <see cref="https://mandrillapp.com/api/docs/users.JSON.html#method=ping"/>
     public async Task<string> Ping()
     {
-      string path = "/users/ping.json";
+      var path = "/users/ping.json";
 
-      string response = await Post<string>(path, new RequestBase());
+      var response = await Post<string>(path, new RequestBase());
 
       return response;
     }
@@ -39,14 +40,14 @@ namespace Mandrill
     ///   Return the information about the API-connected user
     /// </summary>
     /// <returns>
-    ///   The <see cref="Task" />.
+    ///   The <see cref="UserInfo" />.
     /// </returns>
     /// <see cref="https://mandrillapp.com/api/docs/users.html#method=info" />
     public Task<UserInfo> UserInfo()
     {
-      string path = "/users/info.json";
+      var path = "/users/info.json";
 
-      Task<UserInfo> response = Post<UserInfo>(path, new RequestBase());
+      var response = Post<UserInfo>(path, new RequestBase());
 
       return response;
     }
