@@ -1,9 +1,10 @@
+# Mandrill Dot Net
+
 [![NuGet](http://img.shields.io/nuget/v/Mandrill.svg?style=flat-square)](https://www.nuget.org/packages/Mandrill/)
 [![Downloads](http://img.shields.io/nuget/dt/Mandrill.svg?style=flat-square)](https://www.nuget.org/packages/Mandrill/)
 [![Build Status](http://img.shields.io/teamcity/codebetter/bt1136.svg?style=flat-square)](http://teamcity.codebetter.com/project.html?projectId=project415&guest=1)
 [![Code Coverage](http://img.shields.io/teamcity/coverage/bt1136.svg?style=flat-square)](http://teamcity.codebetter.com/project.html?projectId=project415&guest=1)
 
-# Mandrill Dot Net
 
 ## NuGet
 
@@ -11,7 +12,6 @@ Visual Studio users can install this directly into their .NET projects by execut
 
     PM> Install-Package Mandrill
 
-To utilize the mono build, download and compile the project. The mono version will be up on NuGet soon.
 
 ## Description
 
@@ -20,6 +20,10 @@ Mandrill Dot Net is a library that wraps the [Mandrill](http://mandrill.com/) ma
 ## Usage
 
 Reference the `Mandrill.dll` library in your project or download from NuGet.
+
+#### Api Docs
+
+[https://mandrillapp.com/api/docs/](https://mandrillapp.com/api/docs/)
 
 #### Example
 
@@ -31,13 +35,18 @@ All endpoints are covered by integration tests and can be used as a reference.
 
 ## Necessary prerequisites
 
+### .NET Core 5
+
+Support for NetCore5 can be supported easily by replacing dependency on Flurl or when Flurl upgrades to Core.
+
 ### .NET 4.5
 
-All method calls are using `async` and `await` and returns a task.
+This wrapper uses [Flurl.Http](http://tmenier.github.io/Flurl/), which uses .NET 4.5.
 
 ###.NET 4
 
 Support for .NET 4 has be dropped. The last build for .NET 4 is the NuGet version `1.3.1`. The code can be found on tag [.net-4.0](https://github.com/shawnmclean/Mandrill-dotnet/tree/net-4.0).
+Async and Sync methods were merged into using the async pattern as suggested as [best practice](http://blogs.msdn.com/b/pfxteam/archive/2012/04/13/10293638.aspx) by the parallel programming team at microsoft. 
 
 ## Contributing
 
