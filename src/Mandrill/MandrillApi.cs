@@ -80,7 +80,7 @@ namespace Mandrill
       try
       {
         T result = await baseUrl.AppendPathSegment(path)
-          .PostJsonAsync(data).ReceiveJson<T>();
+          .PostJsonAsync(data).ReceiveJson<T>().ConfigureAwait(false);
 
         return result;
       }

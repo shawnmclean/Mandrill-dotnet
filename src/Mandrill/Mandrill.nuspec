@@ -14,10 +14,7 @@
         <copyright>Copyright 2015</copyright>
         <tags>Mandrill, MailChimp</tags>
 	    <releaseNotes>
-        * Updated to .NET 4.5
-		    * Consolidated Async and Sync methods into one method call that returns a Task.
-        * Removed dependency on RestSharp
-        * Now uses Flurl internally.
-	    </releaseNotes>
+        * Added ConfigureAwait(false) to Core Http Call.
+      </releaseNotes>
     </metadata>
 </package>
