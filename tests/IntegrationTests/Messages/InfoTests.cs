@@ -10,6 +10,7 @@ namespace Mandrill.Tests.IntegrationTests.Messages
   public class InfoTests
   {
     [Test]
+    [Ignore("Message may expire from mandrill servers")]
     public async Task Should_Get_Information_Of_A_Sent_Email()
     {
       // Setup
