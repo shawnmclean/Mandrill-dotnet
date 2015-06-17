@@ -407,7 +407,7 @@ namespace Mandrill.Models
     /// <param name="content">
     ///   The content.
     /// </param>
-    public void AddGlobalVariable(string name, string content)
+    public void AddGlobalVariable(string name, dynamic content)
     {
       if (GlobalMergeVars == null)
       {
