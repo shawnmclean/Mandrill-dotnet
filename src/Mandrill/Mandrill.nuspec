@@ -1,23 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
-    <metadata>
-        <id>$id$</id>
-        <version>$version$</version>
-        <title>Mandrill</title>
-        <authors>$author$</authors>
-        <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
-        <projectUrl>https://github.com/shawnmclean/Mandrill-dotnet</projectUrl>
-        <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <owners>$author$</owners>
-	      <summary>Mandrill .Net is a quick and easy wrapper for getting started with the Mandrill API.</summary>
-        <description>$description$</description>
-        <copyright>Copyright 2015</copyright>
-        <tags>Mandrill, MailChimp</tags>
-	    <releaseNotes>
-        * Updated to .NET 4.5
-		    * Consolidated Async and Sync methods into one method call that returns a Task.
-        * Removed dependency on RestSharp
-        * Now uses Flurl internally.
-	    </releaseNotes>
-    </metadata>
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>Mandrill</title>
+    <authors>$author$</authors>
+    <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
+    <projectUrl>https://github.com/shawnmclean/Mandrill-dotnet</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/shawnmclean/Mandrill-dotnet/master/docs/icons/32x32.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <owners>$author$</owners>
+    <summary>Mandrill .Net is a quick and easy wrapper for getting started with the Mandrill API.</summary>
+    <description>$description$</description>
+    <copyright>Copyright 2015</copyright>
+    <tags>Mandrill, MailChimp</tags>
+    <releaseNotes>
+      * Added ConfigureAwait(false) to Core Http Call.
+    </releaseNotes>
+  </metadata>
 </package>

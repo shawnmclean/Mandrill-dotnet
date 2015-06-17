@@ -10,6 +10,7 @@ namespace Mandrill.Tests.IntegrationTests.Messages
   public class ContentTests
   {
     [Test]
+    [Ignore("Message may expire from mandrill servers")]
     public async Task Should_Get_Content_Of_A_Sent_Email()
     {
       // Setup
