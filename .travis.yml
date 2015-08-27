@@ -1,4 +1,2 @@
 language: csharp
 solution: Mandrill.sln
-install:
-  - nuget restore Mandrill.sln
