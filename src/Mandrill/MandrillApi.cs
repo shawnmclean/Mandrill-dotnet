@@ -8,12 +8,12 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System;
-using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using Mandrill.Models;
 using Mandrill.Requests;
 using Mandrill.Utilities;
+using System.Net.Http;
+using System.Text;
 using Newtonsoft.Json;
 
 namespace Mandrill
@@ -23,6 +23,13 @@ namespace Mandrill
   /// </summary>
   public partial class MandrillApi
   {
+    #region Fields
+
+    private readonly string baseUrl;
+    private HttpClient _httpClient;
+
+    #endregion
+
     #region Constructors and Destructors
 
     /// <summary>
@@ -57,14 +64,7 @@ namespace Mandrill
     /// <summary>
     ///   The Api Key for the project received from the MandrillApp website
     /// </summary>
-    public string ApiKey { get; }
-
-    #endregion
-
-    #region Fields
-
-    private readonly string baseUrl;
-    private HttpClient _httpClient;
+    public string ApiKey { get; private set; }
 
     #endregion
 
@@ -94,21 +94,15 @@ namespace Mandrill
         {
           client.BaseAddress = new Uri(baseUrl);
 
-          var response =
-            await
-              client.PostAsync(path,
-                new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json"))
-                .ConfigureAwait(false);
+          var response = await client.PostAsync(path, new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json")).ConfigureAwait(false);
 
           if (response.IsSuccessStatusCode)
           {
             return JsonConvert.DeserializeObject<T>(await response.Content.ReadAsStringAsync().ConfigureAwait(false));
           }
           var error =
-            JsonConvert.DeserializeObject<ErrorResponse>(
-              await response.Content.ReadAsStringAsync().ConfigureAwait(false));
-          throw new MandrillException(error,
-            string.Format("Post failed {0} with status {1} and content '{2}'", path, response.StatusCode, data));
+            JsonConvert.DeserializeObject<ErrorResponse>(await response.Content.ReadAsStringAsync().ConfigureAwait(false));
+          throw new MandrillException(error, string.Format("Post failed {0} with status {1} and content '{2}'", path, response.StatusCode, data));
         }
       }
       catch (TimeoutException)
