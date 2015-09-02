@@ -87,6 +87,7 @@ namespace Mandrill
 
     /// <summary>
     ///   Send a new transactional message through Mandrill using a template
+    ///   <see cref="https://mandrillapp.com/api/docs/messages.JSON.html#method=send-template">Mandrill API Documentation</see>
     /// </summary>
     /// <param name="request">The request.</param>
     /// <returns>The <see cref="List{T}" />.</returns>

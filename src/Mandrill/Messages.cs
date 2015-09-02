@@ -152,21 +152,11 @@ namespace Mandrill
 
 
     /// <summary>
-    ///   Send a new transactional message through Mandrill using a template
+    ///   Send a new transactional message through Mandrill using a template.
+    ///   <see cref="https://mandrillapp.com/api/docs/messages.JSON.html#method=send-template">Mandrill API Documentation</see>
     /// </summary>
-    /// <param name="message">
-    ///   The message.
-    /// </param>
-    /// <param name="templateName">
-    /// </param>
-    /// <param name="templateContents">
-    /// </param>
-    /// <param name="send_at">
-    ///   The send_at.
-    /// </param>
-    /// <returns>
-    ///   The <see cref="Task" />.
-    /// </returns>
+    /// <param name="request">The request.</param>
+    /// <returns>The <see cref="List{T}" />.</returns>
     public async Task<List<EmailResult>> SendMessageTemplate(SendMessageTemplateRequest request)
     {
       string path = "messages/send-template.json";
