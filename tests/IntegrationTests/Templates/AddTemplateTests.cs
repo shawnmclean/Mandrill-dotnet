@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
 using System.Threading.Tasks;
 using Mandrill.Models;
 using Mandrill.Requests.Templates;
@@ -14,7 +15,7 @@ namespace Mandrill.Tests.IntegrationTests.Templates
     {
       // Setup
       string apiKey = ConfigurationManager.AppSettings["APIKey"];
-      string templateName = ConfigurationManager.AppSettings["TemplateExample"] + "_temp";
+      string templateName = Guid.NewGuid().ToString();
       const string code = "Foobar";
 
       // Exercise

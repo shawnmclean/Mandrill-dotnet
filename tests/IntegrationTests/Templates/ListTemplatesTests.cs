@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
+using System.Linq;
 using System.Threading.Tasks;
 using Mandrill.Models;
 using Mandrill.Requests.Templates;
@@ -15,16 +17,27 @@ namespace Mandrill.Tests.IntegrationTests.Templates
     {
       // Setup
       string apiKey = ConfigurationManager.AppSettings["APIKey"];
-      int templateCount = int.Parse(ConfigurationManager.AppSettings["TemplateCount"]);
+      string templateName = Guid.NewGuid().ToString();
+      const string code = "Foobar";
 
       // Exercise
       var api = new MandrillApi(apiKey);
+      await api.AddTemplate(new AddTemplateRequest(templateName)
+      {
+        FromName = "test@test.invalid",
+        Code = code,
+        Text = code,
+        Publish = true
+      });
+
+
       List<TemplateInfo> result = await api.ListTemplates(new ListTemplatesRequest());
 
-      int expected = templateCount;
+      Assert.True(result.Any(r => r.Name == templateName));
 
-      // Verify
-      Assert.AreEqual(expected, result.Count);
+      // Cleanup
+      await api.DeleteTemplate(new DeleteTemplateRequest(templateName));
+      
     }
 
     [Test]
