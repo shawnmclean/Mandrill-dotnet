@@ -15,7 +15,7 @@
     <copyright>Copyright 2015</copyright>
     <tags>Mandrill, MailChimp</tags>
     <releaseNotes>
-      Removed dependency on flurl.
+      Send Message Template now supports 'ip_pool'.
     </releaseNotes>
   </metadata>
 </package>
