@@ -15,7 +15,7 @@
     <copyright>Copyright 2015</copyright>
     <tags>Mandrill, MailChimp</tags>
     <releaseNotes>
-      * Added ConfigureAwait(false) to Core Http Call.
+      Removed dependency on flurl.
     </releaseNotes>
   </metadata>
 </package>
