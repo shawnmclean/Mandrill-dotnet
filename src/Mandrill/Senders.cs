@@ -31,7 +31,7 @@ namespace Mandrill
     /// </returns>
     public async Task<SenderDomain> CheckSenderDomain(SenderCheckDomainRequest request)
     {
-      string path = "/senders/check-domain.json";
+      string path = "senders/check-domain.json";
 
       SenderDomain response = await Post<SenderDomain>(path, request);
 
@@ -46,7 +46,7 @@ namespace Mandrill
     /// </returns>
     public async Task<List<Sender>> ListSenders()
     {
-      const string path = "/senders/list.json";
+      const string path = "senders/list.json";
 
       List<Sender> response = await Post<List<Sender>>(path, new RequestBase());
 
@@ -62,7 +62,7 @@ namespace Mandrill
     /// </returns>
     public async Task<List<SenderDomain>> SenderDomains()
     {
-      const string path = "/senders/domains.json";
+      const string path = "senders/domains.json";
 
       List<SenderDomain> response = await Post<List<SenderDomain>>(path, new RequestBase());
 

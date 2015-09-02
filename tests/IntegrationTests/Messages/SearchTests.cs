@@ -12,6 +12,7 @@ namespace Mandrill.Tests.IntegrationTests.Messages
   public class SearchTests
   {
     [Test]
+    [Ignore("Message may expire from mandrill servers")]
     public async Task Should_Return_Messages_Matching_Search_Criteria()
     {
       // Setup

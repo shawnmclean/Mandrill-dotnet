@@ -29,7 +29,7 @@ namespace Mandrill
     /// <see cref="https://mandrillapp.com/api/docs/users.JSON.html#method=ping"/>
     public async Task<string> Ping()
     {
-      var path = "/users/ping.json";
+      var path = "users/ping.json";
 
       var response = await Post<string>(path, new RequestBase());
 
@@ -45,7 +45,7 @@ namespace Mandrill
     /// <see cref="https://mandrillapp.com/api/docs/users.html#method=info" />
     public Task<UserInfo> UserInfo()
     {
-      var path = "/users/info.json";
+      var path = "users/info.json";
 
       var response = Post<UserInfo>(path, new RequestBase());
 

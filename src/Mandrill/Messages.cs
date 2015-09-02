@@ -32,7 +32,7 @@ namespace Mandrill
     /// </returns>
     public async Task<ScheduledEmailResult> CancelScheduledMessage(CancelScheduledMessageRequest request)
     {
-      string path = "/messages/cancel-scheduled.json";
+      string path = "messages/cancel-scheduled.json";
 
       ScheduledEmailResult resp = await Post<ScheduledEmailResult>(path, request);
 
@@ -51,7 +51,7 @@ namespace Mandrill
     /// </returns>
     public async Task<Content> GetContent(ContentRequest request)
     {
-      string path = "/messages/content.json";
+      string path = "messages/content.json";
 
       Content response = await Post<Content>(path, request);
 
@@ -66,7 +66,7 @@ namespace Mandrill
     /// <returns>The <see cref="Task" />.</returns>
     public async Task<MessageInfo> GetInfo(MessageInfoRequest request)
     {
-      string path = "/messages/info.json";
+      string path = "messages/info.json";
 
       MessageInfo result = await Post<MessageInfo>(path, request);
 
@@ -85,7 +85,7 @@ namespace Mandrill
     /// </returns>
     public async Task<List<ScheduledEmailResult>> ListScheduledMessages(ListScheduledMessagesRequest request)
     {
-      string path = "/messages/list-scheduled.json";
+      string path = "messages/list-scheduled.json";
 
       List<ScheduledEmailResult> resp = await Post<List<ScheduledEmailResult>>(path, request);
 
@@ -106,7 +106,7 @@ namespace Mandrill
     /// </returns>
     public async Task<ScheduledEmailResult> RescheduleMessage(RescheduleMessageRequest request)
     {
-      string path = "/messages/reschedule.json";
+      string path = "messages/reschedule.json";
 
       ScheduledEmailResult response = await Post<ScheduledEmailResult>(path, request);
 
@@ -123,7 +123,7 @@ namespace Mandrill
     /// <returns>The <see cref="EmailResult"/>.</returns>
     public async Task<List<SearchResult>> Search(SearchRequest request)
     {
-      const string path = "/messages/search.json";
+      const string path = "messages/search.json";
 
       var response = await Post<List<SearchResult>>(path, request);
 
@@ -144,7 +144,7 @@ namespace Mandrill
     /// </returns>
     public async Task<List<EmailResult>> SendMessage(SendMessageRequest request)
     {
-      string path = "/messages/send.json";
+      string path = "messages/send.json";
 
       List<EmailResult> resp = await Post<List<EmailResult>>(path, request);
       return resp;
@@ -169,7 +169,7 @@ namespace Mandrill
     /// </returns>
     public async Task<List<EmailResult>> SendMessageTemplate(SendMessageTemplateRequest request)
     {
-      string path = "/messages/send-template.json";
+      string path = "messages/send-template.json";
 
       List<EmailResult> resp = await Post<List<EmailResult>>(path, request);
       return resp;
@@ -189,7 +189,7 @@ namespace Mandrill
     /// </returns>
     public async Task<List<EmailResult>> SendRawMessage(SendRawMessageRequest request)
     {
-      string path = "/messages/send-raw.json";
+      string path = "messages/send-raw.json";
 
       List<EmailResult> response = await Post<List<EmailResult>>(path, request);
 

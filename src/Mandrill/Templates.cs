@@ -30,7 +30,7 @@ namespace Mandrill
     /// <returns>A <see cref="TemplateInfo" /> object.</returns>
     public async Task<TemplateInfo> AddTemplate(AddTemplateRequest request)
     {
-      string path = "/templates/add.json";
+      string path = "templates/add.json";
 
       TemplateInfo resp = await Post<TemplateInfo>(path, request);
 
@@ -45,7 +45,7 @@ namespace Mandrill
     /// </returns>
     public async Task<List<TemplateInfo>> ListTemplates(ListTemplatesRequest request)
     {
-      const string path = "/templates/list.json";
+      const string path = "templates/list.json";
 
       List<TemplateInfo> resp = await Post<List<TemplateInfo>>(path, request);
 
@@ -63,7 +63,7 @@ namespace Mandrill
     /// </returns>
     public async Task<RenderedTemplate> Render(RenderTemplateRequest request)
     {
-      const string path = "/templates/render.json";
+      const string path = "templates/render.json";
 
       RenderedTemplate response = await Post<RenderedTemplate>(path, request);
 
@@ -84,7 +84,7 @@ namespace Mandrill
     /// </returns>
     public async Task<TemplateInfo> UpdateTemplate(UpdateTemplateRequest request)
     {
-      const string path = "/templates/update.json";
+      const string path = "templates/update.json";
 
       TemplateInfo response = await Post<TemplateInfo>(path, request);
 
@@ -102,7 +102,7 @@ namespace Mandrill
     /// </returns>
     public async Task<TemplateInfo> DeleteTemplate(DeleteTemplateRequest request)
     {
-      const string path = "/templates/delete.json";
+      const string path = "templates/delete.json";
 
       TemplateInfo response = await Post<TemplateInfo>(path, request);
 
@@ -120,7 +120,7 @@ namespace Mandrill
     /// </returns>
     public async Task<TemplateInfo> TemplateInfo(TemplateInfoRequest request)
     {
-      const string path = "/templates/info.json";
+      const string path = "templates/info.json";
 
       TemplateInfo response = await Post<TemplateInfo>(path, request);
 

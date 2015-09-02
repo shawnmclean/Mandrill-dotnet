@@ -29,7 +29,7 @@ namespace Mandrill
     /// <returns>Task&lt;RejectAddResult&gt;.</returns>
     public async Task<RejectAddResult> AddReject(AddRejectRequest request)
     {
-      string path = "/rejects/add.json";
+      string path = "rejects/add.json";
 
       RejectAddResult response = await Post<RejectAddResult>(path, request);
 
@@ -45,7 +45,7 @@ namespace Mandrill
     /// <exception cref="Exception"></exception>
     public async Task<RejectDeleteResult> DeleteReject(DeleteRejectRequest request)
     {
-      string path = "/rejects/delete.json";
+      string path = "rejects/delete.json";
 
       RejectDeleteResult response = await Post<RejectDeleteResult>(path, request);
 
@@ -60,7 +60,7 @@ namespace Mandrill
     /// <returns>The <see cref="List" />.</returns>
     public async Task<List<RejectInfo>> ListRejects(ListRejectsRequest request)
     {
-      string path = "/rejects/list.json";
+      string path = "rejects/list.json";
 
       List<RejectInfo> response = await Post<List<RejectInfo>>(path, request);
 

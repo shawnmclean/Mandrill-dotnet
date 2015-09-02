@@ -17,7 +17,7 @@ namespace Mandrill
     /// <returns>the information saved about the new subaccount</returns>
     public async Task<SubaccountInfo> AddSubaccount(AddSubAccountRequest request)
     {
-      const string path = "/subaccounts/add.json";
+      const string path = "subaccounts/add.json";
 
       SubaccountInfo resp = await Post<SubaccountInfo>(path, request);
 
@@ -34,7 +34,7 @@ namespace Mandrill
     /// <returns>the information for the deleted subaccount</returns>
     public async Task<SubaccountInfo> DeleteSubaccount(DeleteSubAccountRequest request)
     {
-      const string path = "/subaccounts/delete.json";
+      const string path = "subaccounts/delete.json";
 
       SubaccountInfo resp = await Post<SubaccountInfo>(path, request);
 
@@ -50,7 +50,7 @@ namespace Mandrill
     /// <returns>the subaccounts for the account, up to a maximum of 1,000</returns>
     public async Task<List<SubaccountInfo>> ListSubaccounts(ListSubAccountsRequest request)
     {
-      const string path = "/subaccounts/list.json";
+      const string path = "subaccounts/list.json";
 
       List<SubaccountInfo> resp = await Post<List<SubaccountInfo>>(path, request);
 
@@ -66,7 +66,7 @@ namespace Mandrill
     /// <returns>the information for the paused subaccount</returns>
     public async Task<SubaccountInfo> PauseSubaccount(PauseSubAccountRequest request)
     {
-      const string path = "/subaccounts/pause.json";
+      const string path = "subaccounts/pause.json";
 
       SubaccountInfo resp = await Post<SubaccountInfo>(path, request);
 
@@ -81,7 +81,7 @@ namespace Mandrill
     /// <returns>the information for the resumed subaccount</returns>
     public async Task<SubaccountInfo> ResumeSubaccount(ResumeSubAccountRequest request)
     {
-      const string path = "/subaccounts/resume.json";
+      const string path = "subaccounts/resume.json";
 
       SubaccountInfo response = await Post<SubaccountInfo>(path, request);
 
@@ -96,7 +96,7 @@ namespace Mandrill
     /// <returns>the information about the subaccount</returns>
     public async Task<SubaccountInfo> SubaccountInfo(SubAccountInfoRequest request)
     {
-      const string path = "/subaccounts/info.json";
+      const string path = "subaccounts/info.json";
 
       SubaccountInfo response = await Post<SubaccountInfo>(path, request);
 
@@ -111,7 +111,7 @@ namespace Mandrill
     /// <returns>the information for the updated subaccount</returns>
     public async Task<SubaccountInfo> UpdateSubaccount(UpdateSubAccountRequest request)
     {
-      const string path = "/subaccounts/update.json";
+      const string path = "subaccounts/update.json";
 
       SubaccountInfo response = await Post<SubaccountInfo>(path, request);
 
