@@ -37,11 +37,11 @@ All endpoints are covered by integration tests and can be used as a reference.
 
 ### .NET Core 5
 
-NetCore5 can be supported easily by replacing dependency on Flurl or when Flurl upgrades to Core.
+Currently looking into this or accepting help.
 
 ### .NET 4.5
 
-This wrapper uses [Flurl.Http](http://tmenier.github.io/Flurl/), which uses .NET 4.5.
+This wrapper uses async and await, hence the dependency on .NET 4.5.
 
 ###.NET 4
 
