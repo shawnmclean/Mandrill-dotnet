@@ -7,12 +7,13 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Configuration;
 namespace Mandrill
 {
   /// <summary>
   ///   The configuration.
   /// </summary>
-  internal static class Configuration
+  public static class Configuration
   {
     #region Static Fields
 
