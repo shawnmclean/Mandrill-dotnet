@@ -15,7 +15,8 @@
     <copyright>Copyright 2015</copyright>
     <tags>Mandrill, MailChimp</tags>
     <releaseNotes>
-      Send Message Template now supports 'ip_pool'.
+      Change configuration static class to Public to allow customization of onfig values (e.g. Changing URL)
+      Can be used to change the API url to use the static URL of Mandrill, which is required in case it is being used behind a firewall.
     </releaseNotes>
   </metadata>
 </package>
