@@ -3,9 +3,9 @@
   "description": "Mandrill .Net is a quick and easy wrapper for getting started with the Mandrill API.",
   "authors": [ "Shawn Mclean", "https://github.com/shawnmclean/Mandrill-dotnet/graphs/contributors" ],
   "copyright": "Copyright Shawn Mclean ©  2014",
-  "licenseUrl": "https://github.com/shawnmclean/Mandrill-dotnet/blob/master/LICENSE.txt",
+  "licenseUrl": "http://www.apache.org/licenses/LICENSE-2.0",
   "projectUrl": "https://github.com/shawnmclean/Mandrill-dotnet",
-  "tags": [ "Mandrill" ],
+  "tags": [ "Mandrill", "MailChimp" ],
   "dependencies": {
     "Newtonsoft.Json": "6.0.6"
   },
