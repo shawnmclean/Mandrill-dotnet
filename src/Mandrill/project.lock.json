@@ -3073,7 +3073,8 @@
       "Newtonsoft.Json >= 6.0.6"
     ],
     ".NETFramework,Version=v4.5": [
-      "fx/System.Net.Http >= 4.0.0"
+      "fx/System.Net.Http >= 4.0.0",
+      "fx/System.Runtime.Serialization >= 4.0.0"
     ],
     "DNX,Version=v4.5.2": [
       "fx/System.Net.Http >= 4.0.0",
