@@ -2,6 +2,17 @@
   "locked": false,
   "version": 2,
   "targets": {
+    ".NETFramework,Version=v4.5": {
+      "Newtonsoft.Json/6.0.6": {
+        "type": "package",
+        "compile": {
+          "lib/net45/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Newtonsoft.Json.dll": {}
+        }
+      }
+    },
     "DNX,Version=v4.5.2": {
       "Newtonsoft.Json/6.0.6": {
         "type": "package",
@@ -544,6 +555,28 @@
         },
         "runtime": {
           "lib/DNXCore50/System.Threading.Tasks.dll": {}
+        }
+      }
+    },
+    ".NETFramework,Version=v4.5/win7-x86": {
+      "Newtonsoft.Json/6.0.6": {
+        "type": "package",
+        "compile": {
+          "lib/net45/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Newtonsoft.Json.dll": {}
+        }
+      }
+    },
+    ".NETFramework,Version=v4.5/win7-x64": {
+      "Newtonsoft.Json/6.0.6": {
+        "type": "package",
+        "compile": {
+          "lib/net45/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Newtonsoft.Json.dll": {}
         }
       }
     },
@@ -3038,6 +3071,9 @@
   "projectFileDependencyGroups": {
     "": [
       "Newtonsoft.Json >= 6.0.6"
+    ],
+    ".NETFramework,Version=v4.5": [
+      "fx/System.Net.Http >= 4.0.0"
     ],
     "DNX,Version=v4.5.2": [
       "fx/System.Net.Http >= 4.0.0",
