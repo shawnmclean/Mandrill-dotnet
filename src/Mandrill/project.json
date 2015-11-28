@@ -10,6 +10,12 @@
     "Newtonsoft.Json": "6.0.6"
   },
   "frameworks": {
+    "dnx452": {
+      "frameworkAssemblies": {
+        "System.Net.Http": "4.0.0.0",
+        "System.Runtime.Serialization":  "4.0.0.0"
+      }
+    },
     "dnxcore50": {
       "dependencies": {
         "Microsoft.CSharp": "4.0.0",
