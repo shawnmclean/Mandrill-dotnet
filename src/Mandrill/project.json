@@ -1,0 +1,38 @@
+{
+  "title": "Mandrill",
+  "description": "Mandrill .Net is a quick and easy wrapper for getting started with the Mandrill API.",
+  "authors": [ "Shawn Mclean", "https://github.com/shawnmclean/Mandrill-dotnet/graphs/contributors" ],
+  "copyright": "Copyright Shawn Mclean ©  2014",
+  "licenseUrl": "http://www.apache.org/licenses/LICENSE-2.0",
+  "projectUrl": "https://github.com/shawnmclean/Mandrill-dotnet",
+  "tags": [ "Mandrill", "MailChimp" ],
+  "dependencies": {
+    "Newtonsoft.Json": "6.0.6"
+  },
+  "frameworks": {
+    "net45": {
+      "frameworkAssemblies": {
+        "System.Net.Http": "4.0.0.0",
+        "System.Runtime.Serialization": "4.0.0.0"
+      }
+    },
+    "dnx452": {
+      "frameworkAssemblies": {
+        "System.Net.Http": "4.0.0.0",
+        "System.Runtime.Serialization": "4.0.0.0"
+      }
+    },
+    "dnxcore50": {
+      "dependencies": {
+        "Microsoft.CSharp": "4.0.0",
+        "System.Reflection": "4.0.0.0",
+        "System.Collections": "4.0.0.0",
+        "System.Linq": "4.0.0.0",
+        "System.Net.Http": "4.0.0",
+        "System.Dynamic.Runtime": "4.0.0",
+        "System.Runtime.Serialization.Primitives": "4.0.0",
+        "System.Diagnostics.TraceSource": "4.0.0-beta-23516"
+      }
+    }
+  }
+}

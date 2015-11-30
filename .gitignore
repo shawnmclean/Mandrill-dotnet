@@ -33,3 +33,4 @@ rakefile.config.rb
 /tests/Settings.cs
 /tests/AppSettings.config
 test-results
+.vs/

@@ -25,6 +25,7 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
+using System.Reflection;
 
 namespace Mandrill.Models
 {
@@ -363,7 +364,7 @@ namespace Mandrill.Models
       /// </returns>
       public override bool CanConvert(Type objectType)
       {
-        return typeof (WebHookMetadata).IsAssignableFrom(objectType);
+        return typeof (WebHookMetadata).GetTypeInfo().IsAssignableFrom(objectType.GetTypeInfo());
       }
 
       /// <summary>
