@@ -58,6 +58,13 @@ namespace Mandrill.Requests.Templates
     /// <value>The text.</value>
     [JsonProperty("text")]
     public string Text { get; set; }
+    
+    /// <summary>
+    ///   Gets or sets the subject.
+    /// </summary>
+    /// <value>The subject.</value>
+    [JsonProperty("subject")]
+    public string Subject { get; set; }
 
     /// <summary>
     ///   Gets or sets a value indicating whether this <see cref="AddTemplateRequest" /> is publish.
