@@ -16,6 +16,9 @@ namespace Mandrill.Tests.IntegrationTests
 [{
 ""event"":""send"",
 ""ts"":1355340679,
+""url"": ""http://clicked.me"",
+""ip"": ""127.0.0.1"",
+""user_agent"": ""outlook"",
 ""msg"":{
  ""ts"":1355340679,
  ""subject"":""Important Stuff"",
@@ -59,10 +62,15 @@ namespace Mandrill.Tests.IntegrationTests
       Assert.AreEqual(numberOfEvents, events.Count);
       WebHookEvent e = events[0];
 
+      Assert.AreEqual("http://clicked.me", e.Url);
+      Assert.AreEqual("127.0.0.1", e.IP);
+      Assert.AreEqual("outlook", e.UserAgent);
+
       Assert.AreEqual(WebHookEventType.Send, e.Event);
       Assert.AreEqual(eventTimeDate, e.TimeStamp);
 
       WebHookMessage message = e.Msg;
+      
 
       Assert.AreEqual("validSubAccount", message.SubAccount);
       Assert.AreEqual("validTemplate", message.Template);
