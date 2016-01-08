@@ -15,8 +15,8 @@
     <copyright>Copyright 2015</copyright>
     <tags>Mandrill, MailChimp</tags>
     <releaseNotes>
-      Change configuration static class to Public to allow customization of onfig values (e.g. Changing URL)
-      Can be used to change the API url to use the static URL of Mandrill, which is required in case it is being used behind a firewall.
+      Added missing `url` property in WebHookEvent
+      Added missing `subject` property on AddTemplateRequest
     </releaseNotes>
   </metadata>
 </package>

@@ -162,6 +162,12 @@ namespace Mandrill.Models
       get { return FromUnixTime(TS); }
     }
 
+    /// <summary>
+    /// for click events only, the url clicked for the event
+    /// </summary>
+    [JsonProperty("url")]
+    public string Url { get; set; }
+
     #endregion
 
     #region Public Methods and Operators
