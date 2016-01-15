@@ -138,7 +138,7 @@ namespace Mandrill
     /// </returns>
     public async Task<List<TemplateTimeSeries>> TemplateTimeSeries(TemplateTimeSeriesRequest request)
     {
-      const string path = "/templates/time-series.json";
+      const string path = "templates/time-series.json";
 
       List<TemplateTimeSeries> response = await Post<List<TemplateTimeSeries>>(path, request);
 

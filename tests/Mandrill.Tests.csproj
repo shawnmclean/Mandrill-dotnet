@@ -80,6 +80,7 @@
     <Compile Include="IntegrationTests\Templates\ListTemplatesTests.cs" />
     <Compile Include="IntegrationTests\Templates\RenderTemplateTests.cs" />
     <Compile Include="IntegrationTests\Templates\TemplateInfoTests.cs" />
+    <Compile Include="IntegrationTests\Templates\TemplateTimeSeriesTests.cs" />
     <Compile Include="IntegrationTests\Templates\UpdateTemplateTests.cs" />
     <Compile Include="IntegrationTests\Users\InfoTests.cs" />
     <Compile Include="IntegrationTests\Users\PingTests.cs" />
@@ -97,6 +98,7 @@
     <None Include="App.config" />
     <None Include="AppSettings.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
     <None Include="packages.config">
       <SubType>Designer</SubType>
