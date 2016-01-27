@@ -64,6 +64,7 @@
     <Compile Include="Models\EmailMessage.cs" />
     <Compile Include="Models\EmailResult.cs" />
     <Compile Include="Models\ErrorResponse.cs" />
+    <Compile Include="Models\TemplateTimeSeries.cs" />
     <Compile Include="Requests\Rejects\AddRejectRequest.cs" />
     <Compile Include="Requests\SubAccounts\AddSubAccountRequest.cs" />
     <Compile Include="Requests\SubAccounts\PauseSubAccountRequest.cs" />
@@ -92,6 +93,7 @@
     <Compile Include="Requests\SubAccounts\SubAccountInfoRequest.cs" />
     <Compile Include="Requests\Templates\TemplateInfoRequest.cs" />
     <Compile Include="Requests\SubAccounts\UpdateSubAccountRequest.cs" />
+    <Compile Include="Requests\Templates\TemplateTimeSeriesRequests.cs" />
     <Compile Include="Requests\Templates\UpdateTemplateRequest.cs" />
     <Compile Include="Models\ScheduledEmailResult.cs" />
     <Compile Include="Requests\Messages\SearchRequest.cs" />

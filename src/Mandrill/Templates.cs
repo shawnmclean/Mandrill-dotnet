@@ -127,6 +127,24 @@ namespace Mandrill
       return response;
     }
 
+    /// <summary>
+    ///   Return the recent history (hourly stats for the last 30 days) for a template.
+    /// </summary>
+    /// <param name="request">
+    ///   The request.
+    /// </param>
+    /// <returns>
+    ///   A list of <see cref="TemplateTimeSeries"/> for the template.
+    /// </returns>
+    public async Task<List<TemplateTimeSeries>> TemplateTimeSeries(TemplateTimeSeriesRequest request)
+    {
+      const string path = "templates/time-series.json";
+
+      List<TemplateTimeSeries> response = await Post<List<TemplateTimeSeries>>(path, request);
+
+      return response;
+    }
+
     #endregion
   }
 }
