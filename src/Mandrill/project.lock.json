@@ -13,17 +13,6 @@
         }
       }
     },
-    "DNX,Version=v4.5.2": {
-      "Newtonsoft.Json/8.0.2": {
-        "type": "package",
-        "compile": {
-          "lib/net45/Newtonsoft.Json.dll": {}
-        },
-        "runtime": {
-          "lib/net45/Newtonsoft.Json.dll": {}
-        }
-      }
-    },
     "DNXCore,Version=v5.0": {
       "Microsoft.CSharp/4.0.0": {
         "type": "package",
@@ -570,28 +559,6 @@
       }
     },
     ".NETFramework,Version=v4.5/win7-x64": {
-      "Newtonsoft.Json/8.0.2": {
-        "type": "package",
-        "compile": {
-          "lib/net45/Newtonsoft.Json.dll": {}
-        },
-        "runtime": {
-          "lib/net45/Newtonsoft.Json.dll": {}
-        }
-      }
-    },
-    "DNX,Version=v4.5.2/win7-x86": {
-      "Newtonsoft.Json/8.0.2": {
-        "type": "package",
-        "compile": {
-          "lib/net45/Newtonsoft.Json.dll": {}
-        },
-        "runtime": {
-          "lib/net45/Newtonsoft.Json.dll": {}
-        }
-      }
-    },
-    "DNX,Version=v4.5.2/win7-x64": {
       "Newtonsoft.Json/8.0.2": {
         "type": "package",
         "compile": {
@@ -3071,10 +3038,6 @@
       "Newtonsoft.Json >= 8.0.2"
     ],
     ".NETFramework,Version=v4.5": [
-      "fx/System.Net.Http >= 4.0.0",
-      "fx/System.Runtime.Serialization >= 4.0.0"
-    ],
-    "DNX,Version=v4.5.2": [
       "fx/System.Net.Http >= 4.0.0",
       "fx/System.Runtime.Serialization >= 4.0.0"
     ],
