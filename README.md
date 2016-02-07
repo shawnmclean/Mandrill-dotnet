@@ -35,9 +35,9 @@ All endpoints are covered by integration tests and can be used as a reference.
 
 ## Necessary prerequisites
 
-### .NET Core 5
+### DNX
 
-Currently looking into this or accepting help.
+Alpha version available.
 
 ### .NET 4.5
 

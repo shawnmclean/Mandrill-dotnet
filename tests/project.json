@@ -5,12 +5,13 @@
   "tags": [ "" ],
   "projectUrl": "",
   "licenseUrl": "",
+  "testRunner": "nunit",
+  "commands": {
+    "test": "nunit"
+  },
   "frameworks": {
     "net451": {
-      "dependencies": {
-      },
       "frameworkAssemblies": {
-        "System.configuration": "4.0.0.0"
       }
     },
     "dnxcore50": {
@@ -18,13 +19,15 @@
         "Microsoft.CSharp": "4.0.0",
         "System.Collections": "4.0.0.0",
         "System.Linq": "4.0.0.0",
-        "System.Dynamic.Runtime": "4.0.0"
+        "System.Dynamic.Runtime": "4.0.0",
+        "System.Configuration.Abstractions": "2.0.2.26"
+         
       }
     }
   },
   "dependencies": {
     "Mandrill": "1.0.0-*",
-    "NUnit": "3.0.1",
-    "NUnit.Runners": "3.0.1"
+    "Nunit": "3.0.1",
+    "NUnitLite": "3.0.1"
   }
 }

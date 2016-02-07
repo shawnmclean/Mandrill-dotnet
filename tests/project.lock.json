@@ -23,6 +23,15 @@
           "lib/net45/Newtonsoft.Json.dll": {}
         }
       },
+      "Nunit/3.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/net45/nunit.framework.dll": {}
+        },
+        "runtime": {
+          "lib/net45/nunit.framework.dll": {}
+        }
+      },
       "NUnit/3.0.1": {
         "type": "package",
         "compile": {
@@ -32,13 +41,16 @@
           "lib/net45/nunit.framework.dll": {}
         }
       },
-      "NUnit.Console/3.0.1": {
-        "type": "package"
-      },
-      "NUnit.Runners/3.0.1": {
+      "NUnitLite/3.0.1": {
         "type": "package",
         "dependencies": {
-          "NUnit.Console": "[3.0.1]"
+          "NUnit": "[3.0.1]"
+        },
+        "compile": {
+          "lib/net45/nunitlite.dll": {}
+        },
+        "runtime": {
+          "lib/net45/nunitlite.dll": {}
         }
       }
     },
@@ -107,6 +119,15 @@
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
+      "Nunit/3.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/dotnet/nunit.framework.dll": {}
+        },
+        "runtime": {
+          "lib/dotnet/nunit.framework.dll": {}
+        }
+      },
       "NUnit/3.0.1": {
         "type": "package",
         "compile": {
@@ -116,13 +137,16 @@
           "lib/dotnet/nunit.framework.dll": {}
         }
       },
-      "NUnit.Console/3.0.1": {
-        "type": "package"
-      },
-      "NUnit.Runners/3.0.1": {
+      "NUnitLite/3.0.1": {
         "type": "package",
         "dependencies": {
-          "NUnit.Console": "[3.0.1]"
+          "NUnit": "[3.0.1]"
+        },
+        "compile": {
+          "lib/dotnet/nunitlite.dll": {}
+        },
+        "runtime": {
+          "lib/dotnet/nunitlite.dll": {}
         }
       },
       "System.Collections/4.0.0": {
@@ -175,6 +199,9 @@
         "runtime": {
           "lib/dotnet/System.ComponentModel.EventBasedAsync.dll": {}
         }
+      },
+      "System.Configuration.Abstractions/2.0.2.26": {
+        "type": "package"
       },
       "System.Diagnostics.Debug/4.0.10": {
         "type": "package",
@@ -633,6 +660,15 @@
           "lib/net45/Newtonsoft.Json.dll": {}
         }
       },
+      "Nunit/3.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/net45/nunit.framework.dll": {}
+        },
+        "runtime": {
+          "lib/net45/nunit.framework.dll": {}
+        }
+      },
       "NUnit/3.0.1": {
         "type": "package",
         "compile": {
@@ -642,13 +678,16 @@
           "lib/net45/nunit.framework.dll": {}
         }
       },
-      "NUnit.Console/3.0.1": {
-        "type": "package"
-      },
-      "NUnit.Runners/3.0.1": {
+      "NUnitLite/3.0.1": {
         "type": "package",
         "dependencies": {
-          "NUnit.Console": "[3.0.1]"
+          "NUnit": "[3.0.1]"
+        },
+        "compile": {
+          "lib/net45/nunitlite.dll": {}
+        },
+        "runtime": {
+          "lib/net45/nunitlite.dll": {}
         }
       }
     },
@@ -673,6 +712,15 @@
           "lib/net45/Newtonsoft.Json.dll": {}
         }
       },
+      "Nunit/3.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/net45/nunit.framework.dll": {}
+        },
+        "runtime": {
+          "lib/net45/nunit.framework.dll": {}
+        }
+      },
       "NUnit/3.0.1": {
         "type": "package",
         "compile": {
@@ -682,13 +730,16 @@
           "lib/net45/nunit.framework.dll": {}
         }
       },
-      "NUnit.Console/3.0.1": {
-        "type": "package"
-      },
-      "NUnit.Runners/3.0.1": {
+      "NUnitLite/3.0.1": {
         "type": "package",
         "dependencies": {
-          "NUnit.Console": "[3.0.1]"
+          "NUnit": "[3.0.1]"
+        },
+        "compile": {
+          "lib/net45/nunitlite.dll": {}
+        },
+        "runtime": {
+          "lib/net45/nunitlite.dll": {}
         }
       }
     },
@@ -757,6 +808,15 @@
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
+      "Nunit/3.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/dotnet/nunit.framework.dll": {}
+        },
+        "runtime": {
+          "lib/dotnet/nunit.framework.dll": {}
+        }
+      },
       "NUnit/3.0.1": {
         "type": "package",
         "compile": {
@@ -766,13 +826,16 @@
           "lib/dotnet/nunit.framework.dll": {}
         }
       },
-      "NUnit.Console/3.0.1": {
-        "type": "package"
-      },
-      "NUnit.Runners/3.0.1": {
+      "NUnitLite/3.0.1": {
         "type": "package",
         "dependencies": {
-          "NUnit.Console": "[3.0.1]"
+          "NUnit": "[3.0.1]"
+        },
+        "compile": {
+          "lib/dotnet/nunitlite.dll": {}
+        },
+        "runtime": {
+          "lib/dotnet/nunitlite.dll": {}
         }
       },
       "runtime.win7.System.Diagnostics.TraceSource/4.0.0-beta-23516": {
@@ -843,6 +906,9 @@
         "runtime": {
           "lib/dotnet/System.ComponentModel.EventBasedAsync.dll": {}
         }
+      },
+      "System.Configuration.Abstractions/2.0.2.26": {
+        "type": "package"
       },
       "System.Diagnostics.Debug/4.0.10": {
         "type": "package",
@@ -1351,6 +1417,15 @@
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
+      "Nunit/3.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/dotnet/nunit.framework.dll": {}
+        },
+        "runtime": {
+          "lib/dotnet/nunit.framework.dll": {}
+        }
+      },
       "NUnit/3.0.1": {
         "type": "package",
         "compile": {
@@ -1360,13 +1435,16 @@
           "lib/dotnet/nunit.framework.dll": {}
         }
       },
-      "NUnit.Console/3.0.1": {
-        "type": "package"
-      },
-      "NUnit.Runners/3.0.1": {
+      "NUnitLite/3.0.1": {
         "type": "package",
         "dependencies": {
-          "NUnit.Console": "[3.0.1]"
+          "NUnit": "[3.0.1]"
+        },
+        "compile": {
+          "lib/dotnet/nunitlite.dll": {}
+        },
+        "runtime": {
+          "lib/dotnet/nunitlite.dll": {}
         }
       },
       "runtime.win7.System.Diagnostics.TraceSource/4.0.0-beta-23516": {
@@ -1437,6 +1515,9 @@
         "runtime": {
           "lib/dotnet/System.ComponentModel.EventBasedAsync.dll": {}
         }
+      },
+      "System.Configuration.Abstractions/2.0.2.26": {
+        "type": "package"
       },
       "System.Diagnostics.Debug/4.0.10": {
         "type": "package",
@@ -1981,6 +2062,28 @@
         "tools/install.ps1"
       ]
     },
+    "Nunit/3.0.1": {
+      "type": "package",
+      "sha512": "Fhz2Flnzlb+HjVxTK+W3dNAb9FUIbGxUp/G6jTTL487lBxInaDOWigNGzWbj1Ipjb87ix77heBCzrsVhk8+X8w==",
+      "files": [
+        "CHANGES.txt",
+        "lib/dotnet/nunit.framework.dll",
+        "lib/dotnet/nunit.framework.xml",
+        "lib/net20/nunit.framework.dll",
+        "lib/net20/nunit.framework.xml",
+        "lib/net40/nunit.framework.dll",
+        "lib/net40/nunit.framework.xml",
+        "lib/net45/nunit.framework.dll",
+        "lib/net45/nunit.framework.xml",
+        "lib/portable-net45+win8+wp8+wpa81+Xamarin.Mac+MonoAndroid10+MonoTouch10+Xamarin.iOS10/nunit.framework.dll",
+        "lib/portable-net45+win8+wp8+wpa81+Xamarin.Mac+MonoAndroid10+MonoTouch10+Xamarin.iOS10/nunit.framework.xml",
+        "LICENSE.txt",
+        "NOTICES.txt",
+        "Nunit.3.0.1.nupkg",
+        "Nunit.3.0.1.nupkg.sha512",
+        "Nunit.nuspec"
+      ]
+    },
     "NUnit/3.0.1": {
       "type": "package",
       "sha512": "Fhz2Flnzlb+HjVxTK+W3dNAb9FUIbGxUp/G6jTTL487lBxInaDOWigNGzWbj1Ipjb87ix77heBCzrsVhk8+X8w==",
@@ -2003,43 +2106,24 @@
         "Nunit.nuspec"
       ]
     },
-    "NUnit.Console/3.0.1": {
+    "NUnitLite/3.0.1": {
       "type": "package",
-      "sha512": "6KBToQCNM2kdLb56iHHlStECA0JVAyX/dsjsVtYEjyIKhwceEZZxSZnfYWNfKucrbsP2qQFhSc+W4anBeppH9A==",
+      "sha512": "+zJ/WEom+1EB1X4bcyj3yVVsRMOyu+dfhQd7of/iHojPqBJH+QWbSgRbfluRXoQBRQQrTXxaqEF7JkM70OFCOA==",
       "files": [
         "CHANGES.txt",
+        "content/Program.cs",
+        "content/Program.vb",
+        "lib/dotnet/nunitlite.dll",
+        "lib/net20/nunitlite.dll",
+        "lib/net40/nunitlite.dll",
+        "lib/net45/nunitlite.dll",
+        "lib/portable-net45+win8+wp8+wpa81+Xamarin.Mac/nunitlite.dll",
         "LICENSE.txt",
         "NOTICES.txt",
-        "NUnit.Console.3.0.1.nupkg",
-        "NUnit.Console.3.0.1.nupkg.sha512",
-        "NUnit.Console.nuspec",
-        "tools/addins/nunit.core.dll",
-        "tools/addins/nunit.core.interfaces.dll",
-        "tools/addins/nunit.v2.driver.dll",
-        "tools/addins/nunit-project-loader.dll",
-        "tools/addins/nunit-v2-result-writer.dll",
-        "tools/addins/vs-project-loader.dll",
-        "tools/Mono.Cecil.dll",
-        "tools/nunit.engine.addin.xml",
-        "tools/nunit.engine.addins",
-        "tools/nunit.engine.api.dll",
-        "tools/nunit.engine.api.xml",
-        "tools/nunit.engine.dll",
-        "tools/nunit3-console.exe",
-        "tools/nunit3-console.exe.config",
-        "tools/nunit-agent.exe",
-        "tools/nunit-agent.exe.config",
-        "tools/nunit-agent-x86.exe",
-        "tools/nunit-agent-x86.exe.config"
-      ]
-    },
-    "NUnit.Runners/3.0.1": {
-      "type": "package",
-      "sha512": "tawjVQBs1ijjreRlttYPVn2OICltUG7glxmpzW4UqI/ntneHaSLO6Ltyzd3b3xq8WMcGUdLyBUngPMNpeI0ZQg==",
-      "files": [
-        "NUnit.Runners.3.0.1.nupkg",
-        "NUnit.Runners.3.0.1.nupkg.sha512",
-        "NUnit.Runners.nuspec"
+        "NUnitLite.3.0.1.nupkg",
+        "NUnitLite.3.0.1.nupkg.sha512",
+        "NUnitLite.nuspec",
+        "tools/install.ps1"
       ]
     },
     "runtime.win7.System.Diagnostics.TraceSource/4.0.0-beta-23516": {
@@ -2215,6 +2299,19 @@
         "System.ComponentModel.EventBasedAsync.4.0.10.nupkg",
         "System.ComponentModel.EventBasedAsync.4.0.10.nupkg.sha512",
         "System.ComponentModel.EventBasedAsync.nuspec"
+      ]
+    },
+    "System.Configuration.Abstractions/2.0.2.26": {
+      "type": "package",
+      "sha512": "LA8vw0Sxv1+g6t4TSGUJClDd6/CUOFf1cnUFxcD6Uq7oT+J4eu5Yw46ZbPg7a/PnM4N5oHiltJ4WLTnM7G9lxA==",
+      "files": [
+        "lib/net40/System.Configuration.Abstractions.dll",
+        "lib/net40/System.Configuration.Abstractions.pdb",
+        "lib/net45/System.Configuration.Abstractions.dll",
+        "lib/net45/System.Configuration.Abstractions.pdb",
+        "System.Configuration.Abstractions.2.0.2.26.nupkg",
+        "System.Configuration.Abstractions.2.0.2.26.nupkg.sha512",
+        "System.Configuration.Abstractions.nuspec"
       ]
     },
     "System.Diagnostics.Debug/4.0.10": {
@@ -3281,17 +3378,16 @@
   "projectFileDependencyGroups": {
     "": [
       "Mandrill >= 1.0.0-*",
-      "NUnit >= 3.0.1",
-      "NUnit.Runners >= 3.0.1"
+      "Nunit >= 3.0.1",
+      "NUnitLite >= 3.0.1"
     ],
-    ".NETFramework,Version=v4.5.1": [
-      "fx/System.configuration >= 4.0.0"
-    ],
+    ".NETFramework,Version=v4.5.1": [],
     "DNXCore,Version=v5.0": [
       "Microsoft.CSharp >= 4.0.0",
       "System.Collections >= 4.0.0",
       "System.Linq >= 4.0.0",
-      "System.Dynamic.Runtime >= 4.0.0"
+      "System.Dynamic.Runtime >= 4.0.0",
+      "System.Configuration.Abstractions >= 2.0.2.26"
     ]
   }
 }
