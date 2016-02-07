@@ -1,0 +1,9 @@
+language: csharp
+solution: Mandrill-dnx.sln
+sudo: required
+dist: trusty
+mono:
+  - 4.0.5
+before_install:
+  - dnvm install latest -runtime coreclr -alias default
+  - dnvm install default -runtime mono -alias default
