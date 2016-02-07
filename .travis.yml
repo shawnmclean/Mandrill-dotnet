@@ -7,4 +7,6 @@ install:
  - dnvm upgrade
  - dnu restore
 script:
+ - cd ./src/Mandrill
  - dnu build
+ - dnu pack

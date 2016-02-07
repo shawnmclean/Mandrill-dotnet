@@ -1,0 +1,30 @@
+{
+  "version": "1.0.0-*",
+  "description": "Mandrill.Tests Class Library",
+  "authors": [ "smclean" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
+  "frameworks": {
+    "net451": {
+      "dependencies": {
+      },
+      "frameworkAssemblies": {
+        "System.configuration": "4.0.0.0"
+      }
+    },
+    "dnxcore50": {
+      "dependencies": {
+        "Microsoft.CSharp": "4.0.0",
+        "System.Collections": "4.0.0.0",
+        "System.Linq": "4.0.0.0",
+        "System.Dynamic.Runtime": "4.0.0"
+      }
+    }
+  },
+  "dependencies": {
+    "Mandrill": "1.0.0-*",
+    "NUnit": "3.0.1",
+    "NUnit.Runners": "3.0.1"
+  }
+}
