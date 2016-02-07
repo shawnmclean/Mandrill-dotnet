@@ -15,8 +15,7 @@
     <copyright>Copyright 2015</copyright>
     <tags>Mandrill, MailChimp</tags>
     <releaseNotes>
-      Added missing `url` property in WebHookEvent
-      Added missing `subject` property on AddTemplateRequest
+      Adding support for DNX
     </releaseNotes>
   </metadata>
 </package>
