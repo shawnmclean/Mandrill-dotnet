@@ -29,7 +29,7 @@ Reference the `Mandrill.dll` library in your project or download from NuGet.
 
     MandrillApi api = new MandrillApi("xxxxx-xxxx-xxxx-xxxx");
     UserInfo info = await api.UserInfo();
-    Console.WriteLine(info.reputation);
+    Console.WriteLine(info.Reputation);
 
 All endpoints are covered by integration tests and can be used as a reference.
 
