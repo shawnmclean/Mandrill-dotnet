@@ -15,6 +15,18 @@ namespace Mandrill.Requests.Messages
     /// </summary>
     /// <param name="message">The other information on the message to send - same as /messages/send, but without the html content.</param>
     /// <param name="templateName">The immutable name or slug of a template that exists in the user's account. For backwards-compatibility, the template name may also be used but the immutable slug is preferred.</param>
+    public SendMessageTemplateRequest(EmailMessage message, string templateName)
+    {
+      Message = message;
+      TemplateName = templateName;
+      TemplateContents = new TemplateContent[] {};
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="message">The other information on the message to send - same as /messages/send, but without the html content.</param>
+    /// <param name="templateName">The immutable name or slug of a template that exists in the user's account. For backwards-compatibility, the template name may also be used but the immutable slug is preferred.</param>
     /// <param name="templateContents">An array of template content to send.</param>
     public SendMessageTemplateRequest(EmailMessage message, string templateName, IEnumerable<TemplateContent> templateContents)
     {

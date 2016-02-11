@@ -81,5 +81,33 @@ namespace Mandrill.Tests.IntegrationTests.Messages
       Assert.AreEqual(toEmail, result.First().Email);
       Assert.AreEqual(EmailResultStatus.Sent, result.First().Status);
     }
+
+    [Test]
+    public async Task Should_Not_Require_Template_Content()
+    {
+      // Setup
+      string apiKey = ConfigurationManager.AppSettings["APIKey"];
+      string toEmail = ConfigurationManager.AppSettings["ValidToEmail"];
+      string fromEmail = ConfigurationManager.AppSettings["FromEMail"];
+      string templateExample = ConfigurationManager.AppSettings["TemplateExample"];
+
+      // Exercise
+      var api = new MandrillApi(apiKey);
+
+      List<EmailResult> result = await api.SendMessageTemplate(new SendMessageTemplateRequest
+      (new EmailMessage
+        {
+          To =
+            new List<EmailAddress> {new EmailAddress {Email = toEmail, Name = ""}},
+          FromEmail = fromEmail,
+          Subject = "Mandrill Integration Test",
+        },
+        templateExample));
+
+      // Verify
+      Assert.AreEqual(1, result.Count);
+      Assert.AreEqual(toEmail, result.First().Email);
+      Assert.AreEqual(EmailResultStatus.Sent, result.First().Status);
+    }
   }
 }
