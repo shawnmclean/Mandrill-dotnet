@@ -84,6 +84,18 @@ namespace Mandrill.Tests.UnitTests
       Assert.AreEqual("s1", ex.Error.Status);
     }
 
+    [Test]
+    public async Task Should_Throw_Mandrill_Exception_When_Serialization_Error()
+    {
+      string responseString = @"<html></html>";
+
+      var api = new MandrillApi("");
+      RespondWith(api, HttpStatusCode.OK, responseString);
+
+      var ex = Assert.Throws<MandrillException>(async () => await api.Post<object>("", new SamplePayload()));
+      var content = await ex.HttpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+      Assert.AreEqual(responseString, content);
+    }
     // TODO: Figure out how to Simulate a timeout using HttpClient
     //[Test]
     //public async Task Should_Throw_TimeOut_Exception_When_Timing_Out()

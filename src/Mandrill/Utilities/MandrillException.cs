@@ -8,7 +8,10 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System;
+using System.Net;
+using System.Net.Http;
 using Mandrill.Models;
+using Mandrill.Requests;
 
 namespace Mandrill.Utilities
 {
@@ -65,7 +68,7 @@ namespace Mandrill.Utilities
       : base(message, innerException)
     {
     }
-
+    
     #endregion
 
     #region Public Properties
@@ -75,6 +78,16 @@ namespace Mandrill.Utilities
     /// </summary>
     public ErrorResponse Error { get; private set; }
 
+
+    /// <summary>
+    ///   Gets the response message if any
+    /// </summary>
+    public HttpResponseMessage HttpResponseMessage { get; set; }
+
+    /// <summary>
+    ///   Gets the mandrill request used.
+    /// </summary>
+    public RequestBase MandrillRequest { get; set; }
     #endregion
   }
 }

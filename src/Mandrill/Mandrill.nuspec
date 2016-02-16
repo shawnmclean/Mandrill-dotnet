@@ -15,7 +15,8 @@
     <copyright>Copyright 2015</copyright>
     <tags>Mandrill, MailChimp</tags>
     <releaseNotes>
-      Adding support for DNX
+      MandrillException updated with response coming from API.
+      Throws MandrillException on deserialization errors.
     </releaseNotes>
   </metadata>
 </package>

@@ -94,15 +94,35 @@ namespace Mandrill
         {
           client.BaseAddress = new Uri(baseUrl);
 
-          var response = await client.PostAsync(path, new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json")).ConfigureAwait(false);
-
-          if (response.IsSuccessStatusCode)
+          var response =
+            await
+              client.PostAsync(path,
+                new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json"))
+                .ConfigureAwait(false);
+          var content = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+          try
           {
-            return JsonConvert.DeserializeObject<T>(await response.Content.ReadAsStringAsync().ConfigureAwait(false));
+            if (response.IsSuccessStatusCode)
+            {
+              return JsonConvert.DeserializeObject<T>(content);
+            }
+
+            var error = JsonConvert.DeserializeObject<ErrorResponse>(content);
+
+            throw new MandrillException(error, string.Format("Post failed: {0}", path))
+            {
+              HttpResponseMessage = response,
+              MandrillRequest = data
+            };
           }
-          var error =
-            JsonConvert.DeserializeObject<ErrorResponse>(await response.Content.ReadAsStringAsync().ConfigureAwait(false));
-          throw new MandrillException(error, string.Format("Post failed {0} with status {1} and content '{2}'", path, response.StatusCode, data));
+          catch (JsonException)
+          {
+            throw new MandrillException(string.Format("Serialization Error to Post: {0}", path))
+            {
+              HttpResponseMessage = response,
+              MandrillRequest = data
+            };
+          }
         }
       }
       catch (TimeoutException)
