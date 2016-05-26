@@ -40,10 +40,9 @@ namespace Mandrill
     /// </param>
     /// <param name="useHttps">
     /// </param>
-    /// <param name="timeout">
-    ///   Timeout in milliseconds to use for requests.
+    /// <param name="useStatic">
     /// </param>
-    public MandrillApi(string apiKey, bool useHttps = true)
+    public MandrillApi(string apiKey, bool useHttps = true, bool useStatic = false)
     {
       ApiKey = apiKey;
 
