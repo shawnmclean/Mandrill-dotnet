@@ -47,14 +47,25 @@ namespace Mandrill
     {
       ApiKey = apiKey;
 
-      if (useHttps)
+      if (useHttps && useStatic)
+      {
+        baseUrl = Configuration.BASE_STATIC_SECURE_URL;
+      }
+      else if (useHttps && !useStatic)
       {
         baseUrl = Configuration.BASE_SECURE_URL;
+      }
+      else if (!useHttps && useStatic)
+      {
+        baseUrl = Configuration.BASE_STATIC_URL;
       }
       else
       {
         baseUrl = Configuration.BASE_URL;
       }
+      
+      // Store URL value to be used in public BaseURL property
+      BaseUrl = baseUrl;
     }
 
     #endregion
@@ -66,6 +77,11 @@ namespace Mandrill
     /// </summary>
     public string ApiKey { get; private set; }
 
+    ///<Summary>
+    /// The base URL value being used for call, useful for client logging purposes
+    ///</Summary>
+    public string BaseUrl { get; set; }
+    
     #endregion
 
     #region Public Methods and Operators
