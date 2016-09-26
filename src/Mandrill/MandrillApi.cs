@@ -8,6 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System;
+using System.Net;
 using System.Threading.Tasks;
 using Mandrill.Models;
 using Mandrill.Requests;
@@ -109,43 +110,84 @@ namespace Mandrill
         {
           client.BaseAddress = new Uri(baseUrl);
 
-          var response =
-            await
-              client.PostAsync(path,
-                new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json"))
-                .ConfigureAwait(false);
-          var content = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+          string requestContent;
           try
           {
-            if (response.IsSuccessStatusCode)
-            {
-              return JsonConvert.DeserializeObject<T>(content);
-            }
-
-            var error = JsonConvert.DeserializeObject<ErrorResponse>(content);
-
-            throw new MandrillException(error, string.Format("Post failed: {0}", path))
-            {
-              HttpResponseMessage = response,
-              MandrillRequest = data
-            };
+            requestContent = JsonConvert.SerializeObject(data);
           }
-          catch (JsonException)
+          catch (JsonException ex)
           {
-            throw new MandrillException(string.Format("Serialization Error to Post: {0}", path))
+            throw new MandrillRequestException("Failed to serialize request data.", ex);
+          }
+
+          var response =
+              await
+              client.PostAsync(
+                  path,
+                  new StringContent(requestContent, Encoding.UTF8, "application/json"))
+                  .ConfigureAwait(false);
+
+          var responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+
+          try
+          {
+            return ParseResponseContent<T>(path, data, responseContent, response);
+          }
+          catch (JsonException ex)
+          {
+            throw new MandrillResponseException(string.Format("Serialization Error to Post: {0}", path), ex)
             {
               HttpResponseMessage = response,
-              MandrillRequest = data
+              MandrillRequest = data,
             };
           }
         }
       }
-      catch (TimeoutException)
+      catch (TimeoutException ex)
       {
-        throw new TimeoutException(string.Format("Post timed out to {0}", path));
+        throw new TimeoutException(string.Format("Post timed out to {0}", path), ex);
       }
     }
+    #endregion
 
+    #region Private Methods and Operators
+    private static T ParseResponseContent<T>(string path, RequestBase data, string content, HttpResponseMessage response)
+    {
+      if (response.StatusCode == HttpStatusCode.OK)
+      {
+        try
+        {
+          return JsonConvert.DeserializeObject<T>(content);
+        }
+        catch (JsonException ex)
+        {
+          throw new MandrillResponseException(string.Format("Failed to deserialize result data: {0}.", path), ex)
+          {
+            HttpResponseMessage = response,
+            MandrillRequest = data
+          };
+        }
+      }
+
+      try
+      {
+        var error = JsonConvert.DeserializeObject<ErrorResponse>(content);
+
+        throw new MandrillResponseException(error, string.Format("Post failed: {0}", path))
+        {
+          HttpResponseMessage = response,
+          MandrillRequest = data
+        };
+      }
+      catch (JsonException ex)
+      {
+        throw new MandrillResponseException(string.Format("Failed to deserialize error data: {0}.", path), ex)
+        {
+          HttpResponseMessage = response,
+          MandrillRequest = data
+        };
+      }
+    }
     #endregion
   }
 }
