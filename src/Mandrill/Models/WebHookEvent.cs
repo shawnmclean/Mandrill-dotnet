@@ -435,7 +435,7 @@ namespace Mandrill.Models
         if (value == null) return;
 
         //generate JSON for WebHookMetadata
-        var webHookMetadata = value as WebHookMetadata;
+        var webHookMetadata = value as List<WebHookMetadata>;
 
         if (webHookMetadata == null)
         {
@@ -445,12 +445,12 @@ namespace Mandrill.Models
 
         writer.WriteStartObject();
 
-        writer.WritePropertyName("Key");
-        serializer.Serialize(writer, webHookMetadata.Key);
-
-        writer.WritePropertyName("Value");
-        serializer.Serialize(writer, webHookMetadata.Value);
-
+        foreach (var metadata in webHookMetadata)
+        {
+          writer.WritePropertyName(metadata.Key);
+          serializer.Serialize(writer, metadata.Value);  
+        }
+        
         writer.WriteEndObject();
       }
 
