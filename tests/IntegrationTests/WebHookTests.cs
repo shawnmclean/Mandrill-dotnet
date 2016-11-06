@@ -126,5 +126,49 @@ namespace Mandrill.Tests.IntegrationTests
       Assert.AreEqual(1, events.Count);
       Assert.AreEqual(WebHookMessageState.Soft_bounced, events[0].Msg.State);
     }
+
+    [Test]
+    public void Event_Serialize()
+    {
+      var webhook = 
+        new WebHookEvent
+        {
+          Event = WebHookEventType.Click,
+          IP = "127.0.0.1",
+          TS = 1355340679,
+          Url = "http://clicked.me",
+          UserAgent = "outlook",
+          Msg = new WebHookMessage
+          {
+            TS = 1355340679,
+            Subject = "Important Stuff",
+            Email = "ValidToOne@Valid.com",
+            Tags = new List<string> { "tag1", "tag2", "tag3" },
+            Metadata = new List<WebHookMetadata>
+            {
+              new WebHookMetadata { Key = "key1", Value = "val1" },
+              new WebHookMetadata { Key = "key2", Value = "val2" }
+            },
+            Opens = new List<WebHookOpen>
+            {
+                new WebHookOpen { TS = 1355340679 },
+                new WebHookOpen { TS = 1355340679 }
+            },
+            State = WebHookMessageState.Sent,
+            Clicks = new List<WebHookClick>
+            {
+                new WebHookClick { TS = 1355773922, Url = @"http:\\www.GitHub.com"}
+            },
+            Id = "fc8071b3575e44228d5dd7059349ba10",
+            Sender = "ValidFrom@From.com",
+            Template = "ValidTemplate",
+            SubAccount = "validSubAccount"
+          }
+        };
+
+      var output = JSON.Serialize(webhook);
+      var clone = JSON.Parse<WebHookEvent>(output);
+      Assert.That(webhook.Msg.Metadata.Count == clone.Msg.Metadata.Count);
+    }
   }
 }
