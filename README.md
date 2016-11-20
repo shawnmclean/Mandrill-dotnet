@@ -1,10 +1,7 @@
 # Mandrill Dot Net
 
 [![NuGet](http://img.shields.io/nuget/v/Mandrill.svg?style=flat-square)](https://www.nuget.org/packages/Mandrill/)
-[![Downloads](http://img.shields.io/nuget/dt/Mandrill.svg?style=flat-square)](https://www.nuget.org/packages/Mandrill/)
-[![Build Status](http://img.shields.io/teamcity/codebetter/bt1136.svg?style=flat-square)](http://teamcity.codebetter.com/project.html?projectId=project415&guest=1)
-[![Code Coverage](http://img.shields.io/teamcity/coverage/bt1136.svg?style=flat-square)](http://teamcity.codebetter.com/project.html?projectId=project415&guest=1)
-
+[![Build Status](https://img.shields.io/appveyor/ci/shawnmclean/mandrill-dotnet.svg?style=flat-square)](https://ci.appveyor.com/project/shawnmclean/mandrill-dotnet)
 
 ## NuGet
 
@@ -35,9 +32,9 @@ All endpoints are covered by integration tests and can be used as a reference.
 
 ## Necessary prerequisites
 
-### DNX
+### Net Core
 
-Alpha version available.
+Coming soon
 
 ### .NET 4.5
 
