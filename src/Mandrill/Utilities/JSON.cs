@@ -81,7 +81,7 @@ namespace Mandrill.Utilities
       }
       catch (JsonReaderException)
       {
-        Trace.TraceWarning("Unable to parse JSON - {0}", json);
+        Debug.WriteLine("Unable to parse JSON - {0}", json);
         return new T();
       }
     }
