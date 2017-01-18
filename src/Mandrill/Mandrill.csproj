@@ -117,6 +117,8 @@
     <Compile Include="Users.cs" />
     <Compile Include="Utilities\JSON.cs" />
     <Compile Include="Utilities\MandrillException.cs" />
+    <Compile Include="Utilities\MandrillSerializeRequestException.cs" />
+    <Compile Include="Utilities\MandrillDeserializeResponseException.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Mandrill.nuspec" />

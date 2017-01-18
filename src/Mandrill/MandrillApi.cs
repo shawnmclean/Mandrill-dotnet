@@ -10,11 +10,14 @@
 using System;
 using System.Net;
 using System.Threading.Tasks;
+
 using Mandrill.Models;
 using Mandrill.Requests;
 using Mandrill.Utilities;
+
 using System.Net.Http;
 using System.Text;
+
 using Newtonsoft.Json;
 
 namespace Mandrill
@@ -27,6 +30,7 @@ namespace Mandrill
     #region Fields
 
     private readonly string baseUrl;
+
     private HttpClient _httpClient;
 
     #endregion
@@ -63,7 +67,7 @@ namespace Mandrill
       {
         baseUrl = Configuration.BASE_URL;
       }
-      
+
       // Store URL value to be used in public BaseURL property
       BaseUrl = baseUrl;
     }
@@ -81,7 +85,7 @@ namespace Mandrill
     /// The base URL value being used for call, useful for client logging purposes
     ///</Summary>
     public string BaseUrl { get; set; }
-    
+
     #endregion
 
     #region Public Methods and Operators
@@ -117,7 +121,7 @@ namespace Mandrill
           }
           catch (JsonException ex)
           {
-            throw new MandrillRequestException("Failed to serialize request data.", ex);
+            throw new MandrillSerializeRequestException("Failed to serialize request data.", ex);
           }
 
           var response =
@@ -129,18 +133,7 @@ namespace Mandrill
 
           var responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
-          try
-          {
-            return ParseResponseContent<T>(path, data, responseContent, response);
-          }
-          catch (JsonException ex)
-          {
-            throw new MandrillResponseException(string.Format("Serialization Error to Post: {0}", path), ex)
-            {
-              HttpResponseMessage = response,
-              MandrillRequest = data,
-            };
-          }
+          return ParseResponseContent<T>(path, data, responseContent, response);
         }
       }
       catch (TimeoutException ex)
@@ -161,10 +154,11 @@ namespace Mandrill
         }
         catch (JsonException ex)
         {
-          throw new MandrillResponseException(string.Format("Failed to deserialize result data: {0}.", path), ex)
+          throw new MandrillDeserializeResponseException(string.Format("Failed to deserialize content received from path: {0}.", path), ex)
           {
             HttpResponseMessage = response,
-            MandrillRequest = data
+            MandrillRequest = data,
+            Content = content
           };
         }
       }
@@ -173,7 +167,7 @@ namespace Mandrill
       {
         var error = JsonConvert.DeserializeObject<ErrorResponse>(content);
 
-        throw new MandrillResponseException(error, string.Format("Post failed: {0}", path))
+        throw new MandrillException(error, string.Format("Post failed: {0}", path))
         {
           HttpResponseMessage = response,
           MandrillRequest = data
@@ -181,10 +175,11 @@ namespace Mandrill
       }
       catch (JsonException ex)
       {
-        throw new MandrillResponseException(string.Format("Failed to deserialize error data: {0}.", path), ex)
+        throw new MandrillDeserializeResponseException(string.Format("Failed to deserialize error content received from path: {0}.", path), ex)
         {
           HttpResponseMessage = response,
-          MandrillRequest = data
+          MandrillRequest = data,
+          Content = content
         };
       }
     }
