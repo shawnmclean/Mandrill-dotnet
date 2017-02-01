@@ -13,6 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		global.json = global.json
 		LICENSE.txt = LICENSE.txt
 		README.md = README.md
+		UpdateVersion.ps1 = UpdateVersion.ps1
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mandrill", "src\Mandrill\Mandrill.csproj", "{0563EE3C-A65E-4D55-9302-7663C0FE77F7}"

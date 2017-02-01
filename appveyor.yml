@@ -16,11 +16,12 @@ init:
   - ps: $Env:LABEL = "CI" + $Env:APPVEYOR_BUILD_NUMBER.PadLeft(5, "0")
 before_build:
   - appveyor-retry dotnet restore -v Minimal
+  - ps: IF $Env.APPVEYOR_REPO_TAG {.\UpdateVersion.ps1 %LABEL%}
 build_script:
   - dotnet --info
   - dotnet build -c %CONFIGURATION% --no-dependencies --version-suffix %LABEL%
 after_build:
-  - dotnet pack "src/Mandrill/Mandrill.csproj" -c %CONFIGURATION% --no-build --version-suffix %LABEL% -o artifacts
+  - ps: IF $Env.APPVEYOR_REPO_TAG {dotnet pack "src/Mandrill/Mandrill.csproj" -c %CONFIGURATION% --no-build --version-suffix %LABEL% -o artifacts}
 artifacts:
   - path: artifacts\**\*.*
 
