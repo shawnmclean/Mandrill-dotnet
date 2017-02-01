@@ -22,6 +22,7 @@ build_script:
   - dotnet build -c %CONFIGURATION% --no-dependencies --version-suffix %LABEL%
 after_build:
   - ps: IF ($Env.APPVEYOR_REPO_TAG) {dotnet pack "src/Mandrill/Mandrill.csproj" -c %CONFIGURATION% --no-build --version-suffix %LABEL% -o artifacts}
+test: off
 artifacts:
   - path: artifacts\**\*.*
 
