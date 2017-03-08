@@ -1,144 +1,17 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0563EE3C-A65E-4D55-9302-7663C0FE77F7}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Mandrill</RootNamespace>
-    <AssemblyName>Mandrill</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
-    <RestorePackages>true</RestorePackages>
-    <TargetFrameworkProfile />
+    <TargetFramework>netcoreapp1.1</TargetFramework>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\Mandrill.XML</DocumentationFile>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\Mandrill.XML</DocumentationFile>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Newtonsoft.Json.6.0.6\lib\net40\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>9.0.2-beta1</Version>
+    </PackageReference>
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Configuration.cs" />
-    <Compile Include="IMandrillApi.cs" />
-    <Compile Include="Messages.cs" />
-    <Compile Include="Models\Attachment.cs" />
-    <Compile Include="Models\Content.cs" />
-    <Compile Include="Models\Dkim.cs" />
-    <Compile Include="Models\MessageInfo.cs" />
-    <Compile Include="Models\EmailAddress.cs" />
-    <Compile Include="MandrillApi.cs" />
-    <Compile Include="Models\EmailMessage.cs" />
-    <Compile Include="Models\EmailResult.cs" />
-    <Compile Include="Models\ErrorResponse.cs" />
-    <Compile Include="Models\TemplateTimeSeries.cs" />
-    <Compile Include="Requests\Rejects\AddRejectRequest.cs" />
-    <Compile Include="Requests\SubAccounts\AddSubAccountRequest.cs" />
-    <Compile Include="Requests\SubAccounts\PauseSubAccountRequest.cs" />
-    <Compile Include="Requests\SubAccounts\ResumeSubAccountRequest.cs" />
-    <Compile Include="Requests\Templates\AddTemplateRequest.cs" />
-    <Compile Include="Requests\Messages\CancelScheduledMessageRequest.cs" />
-    <Compile Include="Requests\Messages\ContentRequest.cs" />
-    <Compile Include="Requests\Rejects\DeleteRejectRequest.cs" />
-    <Compile Include="Requests\SubAccounts\DeleteSubAccountRequest.cs" />
-    <Compile Include="Requests\Templates\DeleteTemplateRequest.cs" />
-    <Compile Include="Requests\Rejects\ListRejectsRequest.cs" />
-    <Compile Include="Requests\SubAccounts\ListSubAccountsRequest.cs" />
-    <Compile Include="Requests\Messages\MessageInfoRequest.cs" />
-    <Compile Include="Requests\Messages\ListScheduledMessagesRequest.cs" />
-    <Compile Include="Requests\Templates\ListTemplatesRequest.cs" />
-    <Compile Include="Requests\Templates\RenderTemplateRequest.cs" />
-    <Compile Include="Requests\RequestBase.cs" />
-    <Compile Include="Requests\Messages\RescheduleMessageRequest.cs" />
-    <Compile Include="Requests\Senders\SenderCheckDomainRequest.cs" />
-    <Compile Include="Requests\Messages\SendMessageRequest.cs" />
-    <Compile Include="Requests\Messages\SendMessageTemplateRequest.cs" />
-    <Compile Include="Models\Recipient.cs" />
-    <Compile Include="Models\RejectInfo.cs" />
-    <Compile Include="Models\RenderedTemplate.cs" />
-    <Compile Include="Requests\Messages\SendRawMessageRequest.cs" />
-    <Compile Include="Requests\SubAccounts\SubAccountInfoRequest.cs" />
-    <Compile Include="Requests\Templates\TemplateInfoRequest.cs" />
-    <Compile Include="Requests\SubAccounts\UpdateSubAccountRequest.cs" />
-    <Compile Include="Requests\Templates\TemplateTimeSeriesRequests.cs" />
-    <Compile Include="Requests\Templates\UpdateTemplateRequest.cs" />
-    <Compile Include="Models\ScheduledEmailResult.cs" />
-    <Compile Include="Requests\Messages\SearchRequest.cs" />
-    <Compile Include="Models\SearchResult.cs" />
-    <Compile Include="Models\Sender.cs" />
-    <Compile Include="Models\SenderDomain.cs" />
-    <Compile Include="Models\SmtpEvent.cs" />
-    <Compile Include="Models\Spf.cs" />
-    <Compile Include="Models\SubaccountInfo.cs" />
-    <Compile Include="Models\TemplateInfo.cs" />
-    <Compile Include="Models\UserInfo.cs" />
-    <Compile Include="Models\WebHookEvent.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Models\TemplateContent.cs" />
-    <Compile Include="Rejects.cs" />
-    <Compile Include="Senders.cs" />
-    <Compile Include="Subaccounts.cs" />
-    <Compile Include="Tags.cs" />
-    <Compile Include="Templates.cs" />
-    <Compile Include="Urls.cs" />
-    <Compile Include="Users.cs" />
-    <Compile Include="Utilities\JSON.cs" />
-    <Compile Include="Utilities\MandrillException.cs" />
-    <Compile Include="Utilities\MandrillSerializeRequestException.cs" />
-    <Compile Include="Utilities\MandrillDeserializeResponseException.cs" />
-  </ItemGroup>
+
   <ItemGroup>
     <None Include="Mandrill.nuspec" />
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Requests\Users\" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
-  <Target Name="AfterBuild">
-    <Exec Command="$(BuildCommand)" ContinueOnError="false" />
-  </Target>
+
 </Project>

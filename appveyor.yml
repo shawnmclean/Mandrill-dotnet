@@ -1,0 +1,38 @@
+os: Visual Studio 2017 RC
+environment:
+  CLI_VERSION: 1.0.0-rc4-004734
+install:
+  # .NET Core SDK binaries
+  - ps: $url = "https://dotnetcli.blob.core.windows.net/dotnet/Sdk/rel-1.0.0/dotnet-dev-win-x64.latest.zip"
+  - ps: $env:DOTNET_INSTALL_DIR = "$pwd\.dotnetsdk"
+  - ps: mkdir $env:DOTNET_INSTALL_DIR -Force | Out-Null
+  - ps: $tempFile = [System.IO.Path]::GetTempFileName()
+  - ps: (New-Object System.Net.WebClient).DownloadFile($url, $tempFile)
+  - ps: Add-Type -AssemblyName System.IO.Compression.FileSystem; [System.IO.Compression.ZipFile]::ExtractToDirectory($tempFile, $env:DOTNET_INSTALL_DIR)
+  - ps: $env:Path = "$env:DOTNET_INSTALL_DIR;$env:Path"
+platform: Any CPU
+configuration: Release
+init:
+  - ps: >- 
+      if ($env:APPVEYOR_REPO_TAG -eq "true")
+      {
+          Update-AppveyorBuild -Version "$($env:APPVEYOR_REPO_TAG_NAME.TrimStart("v"))"
+      }
+      else
+      {
+          Update-AppveyorBuild -Version "dev-$($env:APPVEYOR_REPO_COMMIT.Substring(0, 7))"
+      }
+  - ps: $Env:LABEL = "CI" + $Env:APPVEYOR_BUILD_NUMBER.PadLeft(5, "0")
+before_build:
+  - appveyor-retry dotnet restore -v Minimal
+  - ps: .\UpdateVersion.ps1 $env:APPVEYOR_BUILD_VERSION
+build_script:
+  - dotnet --info
+  - dotnet build -c %CONFIGURATION% --no-dependencies --version-suffix %LABEL%
+after_build:
+  - ps: dotnet pack "src/Mandrill/Mandrill.csproj" -c %CONFIGURATION% --no-build --version-suffix $env:APPVEYOR_BUILD_VERSION -o artifacts
+test: off
+artifacts:
+  - path: artifacts\**\*.*
+
+  
