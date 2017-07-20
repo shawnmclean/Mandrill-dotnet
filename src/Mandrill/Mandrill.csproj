@@ -2,6 +2,18 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp1.1</TargetFramework>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Authors>Shawn Mclean</Authors>
+    <PackageLicenseUrl>http://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/shawnmclean/Mandrill-dotnet</PackageProjectUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/shawnmclean/Mandrill-dotnet/master/docs/icons/32x32.png</PackageIconUrl>
+    <RepositoryUrl>https://github.com/shawnmclean/Mandrill-dotnet</RepositoryUrl>
+    <PackageReleaseNotes>Ported Mandrill to .Net Core</PackageReleaseNotes>
+    <PackageTags>Mandrill, MailChimp</PackageTags>
+    <Description>Mandrill .Net is a quick and easy wrapper for getting started with the Mandrill API.</Description>
+    <Product>Mandrill.net</Product>
+    <Copyright>2017</Copyright>
+    <Version>3.0.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
