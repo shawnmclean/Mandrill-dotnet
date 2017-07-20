@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.25928.0
+VisualStudioVersion = 15.0.26430.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{ACA85DEE-F68F-45DD-9435-14755FFBFDC9}"
 EndProject
@@ -16,19 +16,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		UpdateVersion.ps1 = UpdateVersion.ps1
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mandrill", "src\Mandrill\Mandrill.csproj", "{0563EE3C-A65E-4D55-9302-7663C0FE77F7}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{96D95B6A-9FB1-40B3-949B-0B9D1D6BF429}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.Config = .nuget\NuGet.Config
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{67E7C3E4-5527-4D1F-B29B-75736E0411DE}"
 	ProjectSection(SolutionItems) = preProject
 		scripts\TokenizeConfiguration.ps1 = scripts\TokenizeConfiguration.ps1
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mandrill", "src\Mandrill\Mandrill.csproj", "{F906713E-71C4-41A9-9F4B-EE1EB9F33AEF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,15 +29,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0563EE3C-A65E-4D55-9302-7663C0FE77F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0563EE3C-A65E-4D55-9302-7663C0FE77F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0563EE3C-A65E-4D55-9302-7663C0FE77F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0563EE3C-A65E-4D55-9302-7663C0FE77F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F906713E-71C4-41A9-9F4B-EE1EB9F33AEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F906713E-71C4-41A9-9F4B-EE1EB9F33AEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F906713E-71C4-41A9-9F4B-EE1EB9F33AEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F906713E-71C4-41A9-9F4B-EE1EB9F33AEF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{0563EE3C-A65E-4D55-9302-7663C0FE77F7} = {ACA85DEE-F68F-45DD-9435-14755FFBFDC9}
+		{F906713E-71C4-41A9-9F4B-EE1EB9F33AEF} = {ACA85DEE-F68F-45DD-9435-14755FFBFDC9}
 	EndGlobalSection
 EndGlobal
