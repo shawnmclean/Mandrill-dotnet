@@ -7,3 +7,5 @@ build:
   project: Mandrill.sln
 test_script:
   - dotnet test ./tests/Mandrill.Tests/Mandrill.Tests.csproj
+artifacts:
+  - path: ./src/Mandrill/bin/Release/**/*.*
