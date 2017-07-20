@@ -1,6 +1,8 @@
 image: Visual Studio 2017
 platform: Any CPU
 configuration: Release
+environment:
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
 before_build:
   - ps: .\UpdateVersion.ps1 -version $env:APPVEYOR_BUILD_VERSION 
   - dotnet restore
