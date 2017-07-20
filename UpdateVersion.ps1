@@ -5,10 +5,10 @@ $files = Get-ChildItem . *.csproj  -Recurse | Select-Object -ExpandProperty Full
 
 $files | ForEach-Object{
   $xml = [xml](Get-Content $_)
-  if($xml.Project.PropertyGroup.VersionPrefix){
+  if($xml.Project.PropertyGroup.Version){
     Write-Host "Patching $_"
     # Check to be sure this value actually is present before we try to change it. 
-    $xml.Project.PropertyGroup.VersionPrefix = $version
+    $xml.Project.PropertyGroup.Version = $version
     # Only need to save if change was made. 
     $xml.Save($_)
     Write-Host "Updated $_ to version $version"
