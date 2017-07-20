@@ -3,6 +3,8 @@ platform: Any CPU
 configuration: Release
 init:
   - ps: $Env:LABEL = "CI" + $Env:APPVEYOR_BUILD_NUMBER.PadLeft(5, "0")
+before_build:
+  - dotnet restore
 build:
   project: Mandrill.sln
   publish_nuget: true
