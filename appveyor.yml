@@ -2,7 +2,7 @@ image: Visual Studio 2017
 platform: Any CPU
 configuration: Release
 before_build:
-  - ./UpdateVersion.ps1 -version $env:APPVEYOR_BUILD_VERSION 
+  - ps: .\UpdateVersion.ps1 -version $env:APPVEYOR_BUILD_VERSION 
   - dotnet restore
 build:
   project: Mandrill.sln
