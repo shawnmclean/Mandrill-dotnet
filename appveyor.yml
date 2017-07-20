@@ -11,6 +11,5 @@ build:
   publish_nuget_symbols: true
   include_nuget_references: true
 
-test:
-  assemblies:
-    - '**\*.Tests.dll'
+test_script:
+  - dotnet test
