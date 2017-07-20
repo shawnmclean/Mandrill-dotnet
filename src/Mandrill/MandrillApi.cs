@@ -121,7 +121,7 @@ namespace Mandrill
           }
           catch (JsonException ex)
           {
-            throw new MandrillSerializeRequestException("Failed to serialize request data.", ex);
+            throw new MandrillSerializationException("Failed to serialize request data.", ex);
           }
 
           var response =
@@ -154,7 +154,7 @@ namespace Mandrill
         }
         catch (JsonException ex)
         {
-          throw new MandrillDeserializeResponseException(string.Format("Failed to deserialize content received from path: {0}.", path), ex)
+          throw new MandrillSerializationException(string.Format("Failed to deserialize content received from path: {0}.", path), ex)
           {
             HttpResponseMessage = response,
             MandrillRequest = data,
@@ -175,7 +175,7 @@ namespace Mandrill
       }
       catch (JsonException ex)
       {
-        throw new MandrillDeserializeResponseException(string.Format("Failed to deserialize error content received from path: {0}.", path), ex)
+        throw new MandrillSerializationException(string.Format("Failed to deserialize error content received from path: {0}.", path), ex)
         {
           HttpResponseMessage = response,
           MandrillRequest = data,

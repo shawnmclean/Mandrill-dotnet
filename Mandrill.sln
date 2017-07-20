@@ -21,7 +21,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{67E7
 		scripts\TokenizeConfiguration.ps1 = scripts\TokenizeConfiguration.ps1
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mandrill", "src\Mandrill\Mandrill.csproj", "{F906713E-71C4-41A9-9F4B-EE1EB9F33AEF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mandrill", "src\Mandrill\Mandrill.csproj", "{F906713E-71C4-41A9-9F4B-EE1EB9F33AEF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mandrill.Tests", "tests\Mandrill.Tests\Mandrill.Tests.csproj", "{FAEAD1E5-40DE-4A7B-8ADB-2ACE6384F92D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,11 +35,16 @@ Global
 		{F906713E-71C4-41A9-9F4B-EE1EB9F33AEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F906713E-71C4-41A9-9F4B-EE1EB9F33AEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F906713E-71C4-41A9-9F4B-EE1EB9F33AEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAEAD1E5-40DE-4A7B-8ADB-2ACE6384F92D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAEAD1E5-40DE-4A7B-8ADB-2ACE6384F92D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAEAD1E5-40DE-4A7B-8ADB-2ACE6384F92D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAEAD1E5-40DE-4A7B-8ADB-2ACE6384F92D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{F906713E-71C4-41A9-9F4B-EE1EB9F33AEF} = {ACA85DEE-F68F-45DD-9435-14755FFBFDC9}
+		{FAEAD1E5-40DE-4A7B-8ADB-2ACE6384F92D} = {EF2B1A8B-ED3A-45DB-AA2D-432CB44049B0}
 	EndGlobalSection
 EndGlobal
