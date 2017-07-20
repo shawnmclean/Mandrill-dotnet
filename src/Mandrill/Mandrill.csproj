@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netcoreapp1.1</TargetFramework>
+    <TargetFramework>netstandard1.1</TargetFramework>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Authors>Shawn Mclean</Authors>
     <PackageLicenseUrl>http://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
