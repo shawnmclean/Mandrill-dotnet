@@ -1,8 +1,6 @@
 image: Visual Studio 2017
 platform: Any CPU
 configuration: Release
-init:
-  - ps: $Env:LABEL = "CI" + $Env:APPVEYOR_BUILD_NUMBER.PadLeft(5, "0")
 before_build:
   - dotnet restore
 build:
@@ -12,4 +10,4 @@ build:
   include_nuget_references: true
 
 test_script:
-  - dotnet test
+  - dotnet test ./tests/Mandrill.Tests/Mandrill.Tests.csproj
