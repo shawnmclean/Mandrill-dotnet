@@ -32,9 +32,9 @@ All endpoints are covered by integration tests and can be used as a reference.
 
 ## Necessary prerequisites
 
-### Net Core
+### Net Core / NetStandard
 
-Coming soon
+Mandrill.net now supports these platforms.
 
 ### .NET 4.5
 
@@ -43,19 +43,14 @@ This wrapper uses async and await, hence the dependency on .NET 4.5.
 ###.NET 4
 
 Support for .NET 4 has be dropped. The last build for .NET 4 is the NuGet version `1.3.1`. The code can be found on tag [.net-4.0](https://github.com/shawnmclean/Mandrill-dotnet/tree/net-4.0).
-Async and Sync methods were merged into using the async pattern as suggested as [best practice](http://blogs.msdn.com/b/pfxteam/archive/2012/04/13/10293638.aspx) by the parallel programming team at microsoft. 
+Async and Sync methods were merged into using the async pattern as suggested as [best practice](http://blogs.msdn.com/b/pfxteam/archive/2012/04/13/10293638.aspx) by the parallel programming team at microsoft.
 
 ## Contributing
 
 #### Building the source
 
-For running tests, ensure to rename `AppSettings.example.config` to `AppSettings.config` and
-set your own Api Key in the test project. Tests can be executed from rake: `rake test` or from any nunit test runner
-tool.
+Integration Tests are currently being re-written in xunit with the new .net core support.
 
-You will also need to create a test template in your Mandrill account. The template's html content must be set to ```<span mc:edit="model1"></span>```.
-The template's name must match the `TemplateExample` setting in the `AppSettings.config`; `Test` by default. In addition, the template's label must
-match the `TemplateLabel` (default `test`).
 
 #### Contributors
 
