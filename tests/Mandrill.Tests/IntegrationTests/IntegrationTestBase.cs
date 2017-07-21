@@ -1,32 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Net;
-using System.Net.Security;
+﻿using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
-using NUnit.Framework;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 
 namespace Mandrill.Tests.IntegrationTests
 {
   public abstract class IntegrationTestBase
   {
+    public readonly TestSettings Settings;
     protected bool IsPaidAccount;
 
+    protected IntegrationTestBase()
+    {
+      var config = new ConfigurationBuilder()
+        .AddJsonFile("test-settings.json")
+        .AddEnvironmentVariables()
+        .Build();
+
+      var section = config.GetSection("TestSettings");
+      Settings = new TestSettings();
+      new ConfigureFromConfigurationOptions<TestSettings>(section).Configure(Settings);
+    }
+
     public static bool Validator(object sender, X509Certificate certificate, X509Chain chain,
-      SslPolicyErrors sslPolicyErrors) {
+      SslPolicyErrors sslPolicyErrors)
+    {
       return true;
     }
-
-    [TestFixtureSetUp]
-    public void Init() {
-      if (ConfigurationManager.AppSettings["IgnoreInvalidSSLCertificate"] == "True")
-        ServicePointManager.ServerCertificateValidationCallback = Validator;
-
-      IsPaidAccount = ConfigurationManager.AppSettings["IsPaidAccount"] == "True";
-    }
-
   }
 }

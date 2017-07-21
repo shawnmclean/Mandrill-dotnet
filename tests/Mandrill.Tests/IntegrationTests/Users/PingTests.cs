@@ -1,41 +1,39 @@
-﻿using System.Configuration;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Mandrill.Utilities;
-using NUnit.Framework;
+using Xunit;
 
 namespace Mandrill.Tests.IntegrationTests.Users
 {
-  [TestFixture]
   public class PingTests : IntegrationTestBase
   {
-    [Test]
+    [Fact]
     public async Task Should_Return_Pong_On_Valid_ApiKey()
     {
       // Setup
-      string apiKey = ConfigurationManager.AppSettings["APIKey"];
+      var apiKey = Settings.ApiKey;
 
       // Exercise
       var api = new MandrillApi(apiKey);
-      string result = await api.Ping();
+      var result = await api.Ping();
 
-      string expected = "PONG!";
+      var expected = "PONG!";
 
       // Verify
-      Assert.AreEqual(expected, result);
+      Assert.Equal(expected, result);
     }
 
-    [Test]
+    [Fact]
     public async Task Should_Throw_Exception_On_Invalid_ApiKey()
     {
       // Setup
-      string apiKey = " ";
+      var apiKey = " ";
 
       // Exercise
       var api = new MandrillApi(apiKey);
 
       // Verify
-      var ex = Assert.Throws<MandrillException>(async () => await api.Ping());
-      Assert.That(ex.Error.Name, Is.EqualTo("Invalid_Key"));
+      var ex = await Assert.ThrowsAsync<MandrillException>(async () => await api.Ping());
+      Assert.Equal(ex.Error.Name, "Invalid_Key");
     }
   }
 }
