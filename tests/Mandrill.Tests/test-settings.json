@@ -1,5 +1,6 @@
 {
   "TestSettings": {
-    "ApiKey": ""
+    "ApiKey": "",
+    "Username": ""
   } 
 }

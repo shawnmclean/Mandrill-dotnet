@@ -1,41 +1,37 @@
-﻿using System.Configuration;
-using System.Threading.Tasks;
-using Mandrill.Models;
+﻿using System.Threading.Tasks;
 using Mandrill.Utilities;
-using NUnit.Framework;
+using Xunit;
 
 namespace Mandrill.Tests.IntegrationTests.Users
 {
-  [TestFixture]
   public class InfoTests : IntegrationTestBase
   {
-    [Test]
+    [Fact]
     public async Task Should_Return_Info()
     {
       // Setup
-      string apiKey = ConfigurationManager.AppSettings["APIKey"];
-      string username = ConfigurationManager.AppSettings["Username"];
+      var apiKey = Settings.ApiKey;
 
       // Exercise
       var api = new MandrillApi(apiKey);
-      UserInfo result = await api.UserInfo();
+      var result = await api.UserInfo();
 
       // Verify
-      Assert.AreEqual(username, result.Username);
+      Assert.Equal(Settings.Username, result.Username);
     }
 
-    [Test]
+    [Fact]
     public async Task Should_Throw_Exception_On_Invalid_ApiKey()
     {
       // Setup
-      string apiKey = " ";
+      var apiKey = " ";
 
       // Exercise
       var api = new MandrillApi(apiKey);
 
       // Verify
-      var ex = Assert.Throws<MandrillException>(async () => await api.UserInfo());
-      Assert.That(ex.Error.Name, Is.EqualTo("Invalid_Key"));
+      var ex = await Assert.ThrowsAsync<MandrillException>(async () => await api.UserInfo());
+      Assert.Equal(ex.Error.Name, "Invalid_Key");
     }
   }
 }
