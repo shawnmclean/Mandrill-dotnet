@@ -11,7 +11,7 @@ namespace Mandrill.Tests.UnitTests
     [Fact]
     public void Event_DeSerialize()
     {
-      string events_json = @"
+      var events_json = @"
 [{
 ""event"":""send"",
 ""ts"":1355340679,
@@ -50,7 +50,7 @@ namespace Mandrill.Tests.UnitTests
 }]";
 
       var eventTimeDate = new DateTime(2012, 12, 12, 19, 31, 19);
-      int numberOfEvents = 2;
+      var numberOfEvents = 2;
 
       // Be sure we have two JSON object
       var zot = JSON.Parse<List<object>>(events_json);
@@ -59,7 +59,7 @@ namespace Mandrill.Tests.UnitTests
       // Try parsing out WebHook events
       var events = JSON.Parse<List<WebHookEvent>>(events_json);
       Assert.Equal(numberOfEvents, events.Count);
-      WebHookEvent e = events[0];
+      var e = events[0];
 
       Assert.Equal("http://clicked.me", e.Url);
       Assert.Equal("127.0.0.1", e.IP);
@@ -68,8 +68,8 @@ namespace Mandrill.Tests.UnitTests
       Assert.Equal(WebHookEventType.Send, e.Event);
       Assert.Equal(eventTimeDate, e.TimeStamp);
 
-      WebHookMessage message = e.Msg;
-      
+      var message = e.Msg;
+
 
       Assert.Equal("validSubAccount", message.SubAccount);
       Assert.Equal("validTemplate", message.Template);
@@ -98,9 +98,53 @@ namespace Mandrill.Tests.UnitTests
     }
 
     [Fact]
+    public void Event_Serialize()
+    {
+      var webhook =
+        new WebHookEvent
+        {
+          Event = WebHookEventType.Click,
+          IP = "127.0.0.1",
+          TS = 1355340679,
+          Url = "http://clicked.me",
+          UserAgent = "outlook",
+          Msg = new WebHookMessage
+          {
+            TS = 1355340679,
+            Subject = "Important Stuff",
+            Email = "ValidToOne@Valid.com",
+            Tags = new List<string> {"tag1", "tag2", "tag3"},
+            Metadata = new List<WebHookMetadata>
+            {
+              new WebHookMetadata {Key = "key1", Value = "val1"},
+              new WebHookMetadata {Key = "key2", Value = "val2"}
+            },
+            Opens = new List<WebHookOpen>
+            {
+              new WebHookOpen {TS = 1355340679},
+              new WebHookOpen {TS = 1355340679}
+            },
+            State = WebHookMessageState.Sent,
+            Clicks = new List<WebHookClick>
+            {
+              new WebHookClick {TS = 1355773922, Url = @"http:\\www.GitHub.com"}
+            },
+            Id = "fc8071b3575e44228d5dd7059349ba10",
+            Sender = "ValidFrom@From.com",
+            Template = "ValidTemplate",
+            SubAccount = "validSubAccount"
+          }
+        };
+
+      var output = JSON.Serialize(webhook);
+      var clone = JSON.Parse<WebHookEvent>(output);
+      Assert.True(webhook.Msg.Metadata.Count == clone.Msg.Metadata.Count);
+    }
+
+    [Fact]
     public void Soft_Bounce_Deserialize()
     {
-      string events_json = @"[{
+      var events_json = @"[{
     ""event"": ""soft_bounce"",
     ""msg"": {
       ""ts"": 1365109999,
@@ -124,50 +168,6 @@ namespace Mandrill.Tests.UnitTests
       var events = JSON.Parse<List<WebHookEvent>>(events_json);
       Assert.Equal(1, events.Count);
       Assert.Equal(WebHookMessageState.Soft_bounced, events[0].Msg.State);
-    }
-
-    [Fact]
-    public void Event_Serialize()
-    {
-      var webhook = 
-        new WebHookEvent
-        {
-          Event = WebHookEventType.Click,
-          IP = "127.0.0.1",
-          TS = 1355340679,
-          Url = "http://clicked.me",
-          UserAgent = "outlook",
-          Msg = new WebHookMessage
-          {
-            TS = 1355340679,
-            Subject = "Important Stuff",
-            Email = "ValidToOne@Valid.com",
-            Tags = new List<string> { "tag1", "tag2", "tag3" },
-            Metadata = new List<WebHookMetadata>
-            {
-              new WebHookMetadata { Key = "key1", Value = "val1" },
-              new WebHookMetadata { Key = "key2", Value = "val2" }
-            },
-            Opens = new List<WebHookOpen>
-            {
-                new WebHookOpen { TS = 1355340679 },
-                new WebHookOpen { TS = 1355340679 }
-            },
-            State = WebHookMessageState.Sent,
-            Clicks = new List<WebHookClick>
-            {
-                new WebHookClick { TS = 1355773922, Url = @"http:\\www.GitHub.com"}
-            },
-            Id = "fc8071b3575e44228d5dd7059349ba10",
-            Sender = "ValidFrom@From.com",
-            Template = "ValidTemplate",
-            SubAccount = "validSubAccount"
-          }
-        };
-
-      var output = JSON.Serialize(webhook);
-      var clone = JSON.Parse<WebHookEvent>(output);
-      Assert.True(webhook.Msg.Metadata.Count == clone.Msg.Metadata.Count);
     }
   }
 }
