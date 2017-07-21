@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="MandrillApi.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   Core class for using the MandrillApp Api
@@ -22,7 +22,7 @@ namespace Mandrill
   /// <summary>
   ///   Core class for using the MandrillApp Api
   /// </summary>
-  public partial class MandrillApi
+  public partial class MandrillApi : IDisposable
   {
     #region Constructors and Destructors
 
@@ -52,7 +52,10 @@ namespace Mandrill
       // Store URL value to be used in public BaseURL property
       BaseUrl = baseUrl;
 
-      _httpClient = new HttpClient();
+      _httpClient = new HttpClient
+      {
+          BaseAddress = new Uri(BaseUrl)
+      };
     }
 
     #endregion
@@ -118,7 +121,7 @@ namespace Mandrill
     /// <Summary>
     ///   The base URL value being used for call, useful for client logging purposes
     /// </Summary>
-    public string BaseUrl { get; set; }
+    public string BaseUrl { get; }
 
     #endregion
 
@@ -144,9 +147,6 @@ namespace Mandrill
       data.Key = ApiKey;
       try
       {
-        using (var client = _httpClient)
-        {
-          client.BaseAddress = new Uri(baseUrl);
 
           string requestContent;
           try
@@ -160,7 +160,7 @@ namespace Mandrill
 
           var response =
             await
-              client.PostAsync(
+              _httpClient.PostAsync(
                   path,
                   new StringContent(requestContent, Encoding.UTF8, "application/json"))
                 .ConfigureAwait(false);
@@ -169,13 +169,17 @@ namespace Mandrill
 
           return ParseResponseContent<T>(path, data, responseContent, response);
         }
-      }
       catch (TimeoutException ex)
       {
         throw new TimeoutException(string.Format("Post timed out to {0}", path), ex);
       }
     }
 
-    #endregion
+    public void Dispose()
+    {
+        ((IDisposable)_httpClient).Dispose();
+    }
+
+        #endregion
   }
 }

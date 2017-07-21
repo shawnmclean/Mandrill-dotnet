@@ -28,7 +28,11 @@ namespace Mandrill.Tests.UnitTests
       var responseMessage = new HttpResponseMessage(statusCode);
       responseMessage.Content = new FakeHttpContent(content);
       var messageHandler = new FakeHttpMessageHandler(responseMessage);
-      api.SetHttpClient(new HttpClient(messageHandler));
+      var httpClient = new HttpClient(messageHandler)
+      {
+          BaseAddress = new Uri(Configuration.BASE_SECURE_URL)
+      };
+      api.SetHttpClient(httpClient);
     }
 
     private HttpClient httpClient;
@@ -77,6 +81,19 @@ namespace Mandrill.Tests.UnitTests
       Assert.Equal("m1", ex.Error.Message);
       Assert.Equal("n1", ex.Error.Name);
       Assert.Equal("s1", ex.Error.Status);
+    }
+
+    [Fact]
+    public async Task Should_Allow_Multiple_Requests_With_Single_HttpClient()
+    {
+        string responseString = @"{
+	    ""Name"": ""Shawn"",
+	    ""Id"": 1
+        }";
+        var api = new MandrillApi("");
+        RespondWith(api, HttpStatusCode.OK, responseString);
+        await api.Post<SampleObject>("", new SamplePayload());
+        await api.Post<SampleObject>("", new SamplePayload());
     }
 
     [Fact]
