@@ -1,12 +1,12 @@
-﻿using Mandrill.Requests;
-using Mandrill.Utilities;
-using System;
+﻿using System;
 using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Mandrill.Requests;
+using Mandrill.Utilities;
 using Xunit;
 
 namespace Mandrill.Tests.UnitTests
@@ -19,7 +19,9 @@ namespace Mandrill.Tests.UnitTests
       var messageHandler = new FakeHttpMessageHandler(responseMessage);
       httpClient = new HttpClient(messageHandler);
     }
-    public void Dispose() {
+
+    public void Dispose()
+    {
       httpClient?.Dispose();
     }
 
@@ -30,12 +32,12 @@ namespace Mandrill.Tests.UnitTests
       var messageHandler = new FakeHttpMessageHandler(responseMessage);
       var httpClient = new HttpClient(messageHandler)
       {
-          BaseAddress = new Uri(Configuration.BASE_SECURE_URL)
+        BaseAddress = new Uri(Configuration.BASE_SECURE_URL)
       };
       api.SetHttpClient(httpClient);
     }
 
-    private HttpClient httpClient;
+    private readonly HttpClient httpClient;
 
     private class SampleObject
     {
@@ -47,26 +49,94 @@ namespace Mandrill.Tests.UnitTests
     {
     }
 
+    public class FakeHttpMessageHandler : HttpMessageHandler
+    {
+      private readonly HttpResponseMessage response;
+
+      public FakeHttpMessageHandler(HttpResponseMessage response)
+      {
+        this.response = response;
+      }
+
+      protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request,
+        CancellationToken cancellationToken)
+      {
+        var responseTask = new TaskCompletionSource<HttpResponseMessage>();
+        responseTask.SetResult(response);
+
+        return responseTask.Task;
+      }
+    }
+
+    public class FakeHttpContent : HttpContent
+    {
+      public FakeHttpContent(string content)
+      {
+        Content = content;
+      }
+
+      public string Content { get; set; }
+
+      protected override async Task SerializeToStreamAsync(Stream stream, TransportContext context)
+      {
+        var byteArray = Encoding.ASCII.GetBytes(Content);
+        await stream.WriteAsync(byteArray, 0, Content.Length).ConfigureAwait(false);
+      }
+
+      protected override bool TryComputeLength(out long length)
+      {
+        length = Content.Length;
+        return true;
+      }
+    }
+
+    [Fact]
+    public async Task Should_Allow_Multiple_Requests_With_Single_HttpClient()
+    {
+      var responseString = @"{
+	    ""Name"": ""Shawn"",
+	    ""Id"": 1
+        }";
+      var api = new MandrillApi("");
+      RespondWith(api, HttpStatusCode.OK, responseString);
+      await api.Post<SampleObject>("", new SamplePayload());
+      await api.Post<SampleObject>("", new SamplePayload());
+    }
+
     [Fact]
     public async Task Should_Serialize_Response_When_Json_Content_Is_Recieved()
     {
-      string responseString = @"{
+      var responseString = @"{
 	      ""Name"": ""Shawn"",
 	      ""Id"": 1
       }";
       var api = new MandrillApi("");
       RespondWith(api, HttpStatusCode.OK, responseString);
 
-      SampleObject response = await api.Post<SampleObject>("", new SamplePayload());
+      var response = await api.Post<SampleObject>("", new SamplePayload());
 
       Assert.Equal("Shawn", response.Name);
       Assert.Equal(1, response.Id);
     }
 
     [Fact]
+    public async Task Should_Throw_Mandrill_Exception_When_Serialization_Error()
+    {
+      var responseString = @"<html></html>";
+
+      var api = new MandrillApi("");
+      RespondWith(api, HttpStatusCode.OK, responseString);
+
+      var ex = await Assert.ThrowsAsync<MandrillSerializationException>(async () =>
+        await api.Post<object>("", new SamplePayload()));
+      var content = await ex.HttpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+      Assert.Equal(responseString, content);
+    }
+
+    [Fact]
     public async Task Should_Throw_Mandrill_Exception_When_Server_Error()
     {
-      string responseString = @"{
+      var responseString = @"{
 	      ""code"": ""501"",
 	      ""message"": ""m1"",
 	      ""name"": ""n1"",
@@ -82,71 +152,5 @@ namespace Mandrill.Tests.UnitTests
       Assert.Equal("n1", ex.Error.Name);
       Assert.Equal("s1", ex.Error.Status);
     }
-
-    [Fact]
-    public async Task Should_Allow_Multiple_Requests_With_Single_HttpClient()
-    {
-        string responseString = @"{
-	    ""Name"": ""Shawn"",
-	    ""Id"": 1
-        }";
-        var api = new MandrillApi("");
-        RespondWith(api, HttpStatusCode.OK, responseString);
-        await api.Post<SampleObject>("", new SamplePayload());
-        await api.Post<SampleObject>("", new SamplePayload());
-    }
-
-    [Fact]
-    public async Task Should_Throw_Mandrill_Exception_When_Serialization_Error()
-    {
-      string responseString = @"<html></html>";
-
-      var api = new MandrillApi("");
-      RespondWith(api, HttpStatusCode.OK, responseString);
-
-      var ex = await Assert.ThrowsAsync<MandrillSerializationException>(async () => await api.Post<object>("", new SamplePayload()));
-      var content = await ex.HttpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
-      Assert.Equal(responseString, content);
-    }
-    public class FakeHttpMessageHandler : HttpMessageHandler
-    {
-      private HttpResponseMessage response;
-
-      public FakeHttpMessageHandler(HttpResponseMessage response)
-      {
-        this.response = response;
-      }
-
-      protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
-      {
-        var responseTask = new TaskCompletionSource<HttpResponseMessage>();
-        responseTask.SetResult(response);
-
-        return responseTask.Task;
-      }
-    }
-
-    public class FakeHttpContent : HttpContent
-    {
-      public string Content { get; set; }
-
-      public FakeHttpContent(string content)
-      {
-        Content = content;
-      }
-
-      protected override async Task SerializeToStreamAsync(Stream stream, TransportContext context)
-      {
-        byte[] byteArray = Encoding.ASCII.GetBytes(Content);
-        await stream.WriteAsync(byteArray, 0, Content.Length).ConfigureAwait(false);
-      }
-
-      protected override bool TryComputeLength(out long length)
-      {
-        length = Content.Length;
-        return true;
-      }
-    }
-
   }
 }
