@@ -22,7 +22,7 @@ namespace Mandrill
   /// <summary>
   ///   Core class for using the MandrillApp Api
   /// </summary>
-  public partial class MandrillApi
+  public partial class MandrillApi : IDisposable
   {
     #region Constructors and Destructors
 
@@ -175,6 +175,11 @@ namespace Mandrill
       }
     }
 
-    #endregion
+    public void Dispose()
+    {
+        ((IDisposable)_httpClient).Dispose();
+    }
+
+        #endregion
   }
 }
