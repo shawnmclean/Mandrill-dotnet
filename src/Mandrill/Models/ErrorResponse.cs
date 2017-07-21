@@ -21,25 +21,21 @@ namespace Mandrill.Models
     /// <summary>
     ///   The code.
     /// </summary>
-    [JsonProperty("code")]
     public int Code { get; set; }
 
     /// <summary>
     ///   The message.
     /// </summary>
-    [JsonProperty("message")]
     public string Message { get; set; }
 
     /// <summary>
     ///   The name.
     /// </summary>
-    [JsonProperty("name")]
     public string Name { get; set; }
 
     /// <summary>
     ///   The status.
     /// </summary>
-    [JsonProperty("status")]
     public string Status { get; set; }
 
     #endregion

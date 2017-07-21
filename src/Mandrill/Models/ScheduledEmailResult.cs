@@ -22,13 +22,11 @@ namespace Mandrill.Models
     /// <summary>
     ///   Gets or sets the created at.
     /// </summary>
-    [JsonProperty("created_at")]
     public DateTime CreatedAt { get; set; }
 
     /// <summary>
     ///   Gets or sets the from email.
     /// </summary>
-    [JsonProperty("from_email")]
     public string FromEmail { get; set; }
 
     /// <summary>
@@ -40,13 +38,11 @@ namespace Mandrill.Models
     /// <summary>
     ///   Gets or sets the send at.
     /// </summary>
-    [JsonProperty("send_at")]
     public DateTime SendAt { get; set; }
 
     /// <summary>
     ///   Gets or sets the subject.
     /// </summary>
-    [JsonProperty("subject")]
     public string Subject { get; set; }
 
     /// <summary>

@@ -27,28 +27,24 @@ namespace Mandrill.Models
     ///   Gets or sets the sender.
     /// </summary>
     /// <value>The sender.</value>
-    [JsonProperty("sender")]
     public string Sender { get; set; }
 
     /// <summary>
     ///   Gets or sets the template.
     /// </summary>
     /// <value>The template.</value>
-    [JsonProperty("template")]
     public string Template { get; set; }
 
     /// <summary>
     ///   Gets or sets the subject.
     /// </summary>
     /// <value>The subject.</value>
-    [JsonProperty("subject")]
     public string Subject { get; set; }
 
     /// <summary>
     ///   Gets or sets the email.
     /// </summary>
     /// <value>The email.</value>
-    [JsonProperty("email")]
     public string Email { get; set; }
 
     /// <summary>
@@ -62,14 +58,12 @@ namespace Mandrill.Models
     ///   Gets or sets the opens.
     /// </summary>
     /// <value>The opens.</value>
-    [JsonProperty("opens")]
     public string Opens { get; set; }
 
     /// <summary>
     ///   Gets or sets the clicks.
     /// </summary>
     /// <value>The clicks.</value>
-    [JsonProperty("clicks")]
     public string Clicks { get; set; }
 
     /// <summary>
@@ -83,7 +77,6 @@ namespace Mandrill.Models
     ///   Gets or sets the state.
     /// </summary>
     /// <value>The state.</value>
-    [JsonProperty("state")]
     [JsonConverter(typeof (StringEnumConverter))]
     public SearchResultState State { get; set; }
 
@@ -91,7 +84,6 @@ namespace Mandrill.Models
     ///   Gets or sets the meta data.
     /// </summary>
     /// <value>The meta data.</value>
-    [JsonProperty("metadata")]
     public MessageInfoMetaData MetaData { get; set; }
   }
 
@@ -104,14 +96,12 @@ namespace Mandrill.Models
     ///   Gets or sets the user identifier.
     /// </summary>
     /// <value>The user identifier.</value>
-    [JsonProperty("user_id")]
     public string UserId { get; set; }
 
     /// <summary>
     ///   Gets or sets the website.
     /// </summary>
     /// <value>The website.</value>
-    [JsonProperty("website")]
     public string Website { get; set; }
   }
 
@@ -131,14 +121,12 @@ namespace Mandrill.Models
     ///   Gets or sets the ip.
     /// </summary>
     /// <value>The ip.</value>
-    [JsonProperty("ip")]
     public string Ip { get; set; }
 
     /// <summary>
     ///   Gets or sets the location.
     /// </summary>
     /// <value>The location.</value>
-    [JsonProperty("location")]
     public string Location { get; set; }
 
     /// <summary>
@@ -158,7 +146,6 @@ namespace Mandrill.Models
     ///   Gets or sets the URL.
     /// </summary>
     /// <value>The URL.</value>
-    [JsonProperty("url")]
     public string Url { get; set; }
   }
 }
