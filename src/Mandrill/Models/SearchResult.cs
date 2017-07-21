@@ -139,7 +139,7 @@ namespace Mandrill.Models
     ///   Gets or sets the ts.
     /// </summary>
     [JsonProperty("ts")]
-    public int Ts { get; set; }
+    public long Ts { get; set; }
 
     /// <summary>
     ///   Gets or sets the open details.
