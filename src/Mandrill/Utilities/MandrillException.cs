@@ -36,7 +36,7 @@ namespace Mandrill.Utilities
     ///   The message.
     /// </param>
     public MandrillException(string message)
-      : base(message)
+      : base(message, new Exception(message))
     {
     }
 
@@ -50,7 +50,7 @@ namespace Mandrill.Utilities
     ///   The message.
     /// </param>
     public MandrillException(ErrorResponse error, string message)
-      : base(message)
+      : base(message, new Exception(error.Message))
     {
       Error = error;
     }
