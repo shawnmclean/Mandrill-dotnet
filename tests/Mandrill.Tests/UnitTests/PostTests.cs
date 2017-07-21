@@ -28,7 +28,11 @@ namespace Mandrill.Tests.UnitTests
       var responseMessage = new HttpResponseMessage(statusCode);
       responseMessage.Content = new FakeHttpContent(content);
       var messageHandler = new FakeHttpMessageHandler(responseMessage);
-      api.SetHttpClient(new HttpClient(messageHandler));
+      var httpClient = new HttpClient(messageHandler)
+      {
+          BaseAddress = new Uri(Configuration.BASE_SECURE_URL)
+      };
+      api.SetHttpClient(httpClient);
     }
 
     private HttpClient httpClient;
@@ -89,7 +93,7 @@ namespace Mandrill.Tests.UnitTests
         var api = new MandrillApi("");
         RespondWith(api, HttpStatusCode.OK, responseString);
         await api.Post<SampleObject>("", new SamplePayload());
-
+        await api.Post<SampleObject>("", new SamplePayload());
     }
 
     [Fact]
