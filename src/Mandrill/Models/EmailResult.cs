@@ -64,7 +64,6 @@ namespace Mandrill.Models
     /// <summary>
     ///   Reason for reject
     /// </summary>
-    [JsonProperty("reject_reason")]
     public string RejectReason { get; set; }
 
     /// <summary>

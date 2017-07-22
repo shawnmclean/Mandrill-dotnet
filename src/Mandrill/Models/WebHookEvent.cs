@@ -167,13 +167,11 @@ namespace Mandrill.Models
     /// <summary>
     /// for click events only, the url clicked for the event
     /// </summary>
-    [JsonProperty("url")]
     public string Url { get; set; }
 
     /// <summary>
     /// for open and click events only, the user agent string for the environment (ie, browser or email client) where the open or click occurred
     /// </summary>
-    [JsonProperty("user_agent")]
     public string UserAgent { get; set; }
     #endregion
 
@@ -214,7 +212,6 @@ namespace Mandrill.Models
     /// <summary>
     ///   Gets or sets the bounce description.
     /// </summary>
-    [JsonProperty("bounce_description")]
     public string BounceDescription { get; set; }
 
     /// <summary>
@@ -245,13 +242,11 @@ namespace Mandrill.Models
     /// <summary>
     ///   Gets or sets the from email.
     /// </summary>
-    [JsonProperty("from_email")]
     public string FromEmail { get; set; }
 
     /// <summary>
     ///   Gets or sets the from name.
     /// </summary>
-    [JsonProperty("from_name")]
     public string FromName { get; set; }
 
 	/// <summary>
@@ -289,7 +284,6 @@ namespace Mandrill.Models
     /// <summary>
     ///   Gets or sets the raw msg.
     /// </summary>
-    [JsonProperty("raw_msg ")]
     public string RawMsg { get; set; }
 
     /// <summary>
@@ -300,7 +294,6 @@ namespace Mandrill.Models
     /// <summary>
     ///   Gets or sets the smtp events.
     /// </summary>
-    [JsonProperty("smtp_events")]
     public List<SmtpEvent> SmtpEvents { get; set; }
 
     /// <summary>
@@ -317,6 +310,7 @@ namespace Mandrill.Models
     /// <summary>
     ///   Gets or sets the sub account
     /// </summary>
+    [JsonProperty("subaccount")]
     public string SubAccount { get; set; }
 
     /// <summary>

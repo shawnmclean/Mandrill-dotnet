@@ -10,6 +10,7 @@
 using System.Diagnostics;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 
 namespace Mandrill.Utilities
 {
@@ -25,6 +26,10 @@ namespace Mandrill.Utilities
     /// </summary>
     private static readonly JsonSerializerSettings settings = new JsonSerializerSettings
     {
+      ContractResolver = new CamelCasePropertyNamesContractResolver
+      {
+          NamingStrategy = new SnakeCaseNamingStrategy()
+      },
       Converters =
         new[]
         {

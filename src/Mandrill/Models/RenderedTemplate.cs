@@ -21,7 +21,6 @@ namespace Mandrill.Models
     /// <summary>
     ///   Gets or sets the html.
     /// </summary>
-    [JsonProperty("html")]
     public string Html { get; set; }
 
     #endregion
