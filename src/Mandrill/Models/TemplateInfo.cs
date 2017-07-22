@@ -23,7 +23,7 @@ namespace Mandrill.Models
     /// <summary>
     ///   The date and time the template was first created.
     /// </summary>
-    public DateTime Created { get; set; }
+    public DateTime CreatedAt { get; set; }
 
     /// <summary>
     ///   The default sender address for the template, if provided.
