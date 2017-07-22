@@ -78,20 +78,17 @@ namespace Mandrill.Models
     /// <summary>
     ///   Gets or sets the email.
     /// </summary>
-    [JsonProperty("email")]
     public string Email { get; set; }
 
     /// <summary>
     ///   Gets or sets the name.
     /// </summary>
-    [JsonProperty("name")]
     public string Name { get; set; }
 
     /// <summary>
     ///   The header type to use for the recipient, defaults to "to" if not provided
     ///   oneof(to, cc, bcc)
     /// </summary>
-    [JsonProperty("type")]
     public string Type { get; set; }
 
     #endregion

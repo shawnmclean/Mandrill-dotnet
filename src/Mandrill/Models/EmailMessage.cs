@@ -8,7 +8,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
-using System.Dynamic;
 using System.Linq;
 using Newtonsoft.Json;
 
@@ -180,134 +179,112 @@ namespace Mandrill.Models
     /// <summary>
     ///   Gets or sets the attachments.
     /// </summary>
-    [JsonProperty("attachments")]
     public IEnumerable<EmailAttachment> Attachments { get; set; }
 
     /// <summary>
     ///   Gets or sets a value indicating whether auto_html.
     /// </summary>
-    [JsonProperty("auto_html")]
     public bool? AutoHtml { get; set; }
 
     /// <summary>
     ///   Gets or sets a value indicating whether auto_text.
     /// </summary>
-    [JsonProperty("auto_text")]
     public bool? AutoText { get; set; }
 
     /// <summary>
     ///   Gets or sets the bcc_address.
     /// </summary>
-    [JsonProperty("bcc_address")]
     public string BccAddress { get; set; }
 
     /// <summary>
     ///   Gets or sets the from_email.
     /// </summary>
-    [JsonProperty("from_email")]
     public string FromEmail { get; set; }
 
     /// <summary>
     ///   Gets or sets the from_name.
     /// </summary>
-    [JsonProperty("from_name")]
     public string FromName { get; set; }
 
     /// <summary>
     ///   Gets the global_merge_vars.
     /// </summary>
-    [JsonProperty("global_merge_vars")]
     public List<MergeVar> GlobalMergeVars { get; private set; }
 
     /// <summary>
     ///   Gets or sets the google_analytics_campaign.
     ///   TODO the api docs state that this can be a string or an array
     /// </summary>
-    [JsonProperty("google_analytics_campaign")]
     public string GoogleAnalyticsCampaign { get; set; }
 
     /// <summary>
     ///   Gets or sets the google_analytics_domains.
     /// </summary>
-    [JsonProperty("google_analytics_domains")]
     public IEnumerable<string> GoogleAnalyticsDomains { get; set; }
 
     /// <summary>
     ///   Gets the headers.
     /// </summary>
-    [JsonProperty("headers")]
     public Dictionary<string, string> Headers { get; private set; }
 
     /// <summary>
     ///   Gets or sets the html.
     /// </summary>
-    [JsonProperty("html")]
     public string Html { get; set; }
 
     /// <summary>
     ///   Gets or sets the images.
     /// </summary>
-    [JsonProperty("images")]
     public IEnumerable<Image> Images { get; set; }
 
     /// <summary>
     ///   Get s or sets a value indicating whether important.
     /// </summary>
-    [JsonProperty("important")]
     public bool? Important { get; set; }
 
     /// <summary>
     ///   Gets or sets a value indicating whether inline_css.
     /// </summary>
-    [JsonProperty("inline_css")]
     public bool? InlineCss { get; set; }
 
     /// <summary>
     ///   Gets or sets a value indicating whether merge.
     /// </summary>
-    [JsonProperty("merge")]
     public bool? Merge { get; set; }
 
     /// <summary>
     ///   Gets the merge_vars.
     /// </summary>
-    [JsonProperty("merge_vars")]
     public List<RcptMergeVar> MergeVars { get; private set; }
 
     /// <summary>
     ///   Gets the metadata.
     /// </summary>
-    [JsonProperty("metadata")]
     public Dictionary<string, string> Metadata { get; private set; }
 
     /// <summary>
     ///   Gets or sets whether or not to expose all recipients in to "To" header for each email.
     /// </summary>
-    [JsonProperty("preserve_recipients")]
     public bool PreserveRecipients { get; set; }
 
     /// <summary>
     ///   Gets or sets the raw_message.
     /// </summary>
-    [JsonProperty("raw_message")]
     public string RawMessage { get; set; }
 
     /// <summary>
     ///   Gets or sets the string array to.
     /// </summary>
-    [JsonProperty("raw_to")]
     public IEnumerable<string> RawTo { get; set; }
 
     /// <summary>
     ///   Gets or sets the recipient_metadata.
     /// </summary>
-    [JsonProperty("recipient_metadata")]
     public IEnumerable<RcptMetadata> RecipientMetadata { get; set; }
 
     /// <summary>
     ///   Gets or sets the return_path_domain.
     /// </summary>
-    [JsonProperty("return_path_domain")]
     public string ReturnPathDomain { get; set; }
 
     /// <summary>
@@ -319,7 +296,6 @@ namespace Mandrill.Models
     /// <value>
     ///   The signing_domain.
     /// </value>
-    [JsonProperty("signing_domain")]
     public string SigningDomain { get; set; }
 
     /// <summary>
@@ -331,43 +307,36 @@ namespace Mandrill.Models
     /// <summary>
     ///   Gets or sets the subject.
     /// </summary>
-    [JsonProperty("subject")]
     public string Subject { get; set; }
 
     /// <summary>
     ///   Gets or sets the merge language.
     /// </summary>
-    [JsonProperty("merge_language")]
     public string MergeLanguage { get; set; }
 
     /// <summary>
     ///   Gets or sets the tags.
     /// </summary>
-    [JsonProperty("tags")]
     public IEnumerable<string> Tags { get; set; }
 
     /// <summary>
     ///   Gets or sets the text.
     /// </summary>
-    [JsonProperty("text")]
     public string Text { get; set; }
 
     /// <summary>
     ///   Gets or sets the to.
     /// </summary>
-    [JsonProperty("to")]
     public IEnumerable<EmailAddress> To { get; set; }
 
     /// <summary>
     ///   Gets or sets a value indicating whether track_clicks.
     /// </summary>
-    [JsonProperty("track_clicks")]
     public bool? TrackClicks { get; set; }
 
     /// <summary>
     ///   Gets or sets a value indicating whether track_opens.
     /// </summary>
-    [JsonProperty("track_opens")]
     public bool? TrackOpens { get; set; }
 
     /// <summary>
@@ -379,19 +348,16 @@ namespace Mandrill.Models
     /// <value>
     ///   The tracking_domain.
     /// </value>
-    [JsonProperty("tracking_domain")]
     public string TrackingDomain { get; set; }
 
     /// <summary>
     ///   Gets or sets a value indicating whether url_strip_qs.
     /// </summary>
-    [JsonProperty("url_strip_qs")]
     public bool? UrlStripQs { get; set; }
 
     /// <summary>
     ///   Gets or sets a value indicating whether view_content_link
     /// </summary>
-    [JsonProperty("view_content_link")]
     public bool? ViewContentLink { get; set; }
 
     #endregion
