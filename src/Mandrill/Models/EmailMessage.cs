@@ -265,7 +265,7 @@ namespace Mandrill.Models
     /// <summary>
     ///   Gets or sets whether or not to expose all recipients in to "To" header for each email.
     /// </summary>
-    public bool PreserveRecipients { get; set; }
+    public bool? PreserveRecipients { get; set; }
 
     /// <summary>
     ///   Gets or sets the raw_message.
