@@ -31,7 +31,7 @@ namespace Mandrill
     {
       string path = "rejects/add.json";
 
-      RejectAddResult response = await Post<RejectAddResult>(path, request);
+      RejectAddResult response = await Post<RejectAddResult>(path, request).ConfigureAwait(false);
 
       return response;
     }
@@ -47,7 +47,7 @@ namespace Mandrill
     {
       string path = "rejects/delete.json";
 
-      RejectDeleteResult response = await Post<RejectDeleteResult>(path, request);
+      RejectDeleteResult response = await Post<RejectDeleteResult>(path, request).ConfigureAwait(false);
 
       return response;
     }
@@ -62,7 +62,7 @@ namespace Mandrill
     {
       string path = "rejects/list.json";
 
-      List<RejectInfo> response = await Post<List<RejectInfo>>(path, request);
+      List<RejectInfo> response = await Post<List<RejectInfo>>(path, request).ConfigureAwait(false);
 
       return response;
     }

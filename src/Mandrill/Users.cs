@@ -31,7 +31,7 @@ namespace Mandrill
     {
       var path = "users/ping.json";
 
-      var response = await Post<string>(path, new RequestBase());
+      var response = await Post<string>(path, new RequestBase()).ConfigureAwait(false);
 
       return response;
     }

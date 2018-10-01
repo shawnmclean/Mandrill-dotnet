@@ -19,7 +19,7 @@ namespace Mandrill
     {
       const string path = "subaccounts/add.json";
 
-      SubaccountInfo resp = await Post<SubaccountInfo>(path, request);
+      SubaccountInfo resp = await Post<SubaccountInfo>(path, request).ConfigureAwait(false);
 
       return resp;
     }
@@ -36,7 +36,7 @@ namespace Mandrill
     {
       const string path = "subaccounts/delete.json";
 
-      SubaccountInfo resp = await Post<SubaccountInfo>(path, request);
+      SubaccountInfo resp = await Post<SubaccountInfo>(path, request).ConfigureAwait(false);
 
       return resp;
     }
@@ -52,7 +52,7 @@ namespace Mandrill
     {
       const string path = "subaccounts/list.json";
 
-      List<SubaccountInfo> resp = await Post<List<SubaccountInfo>>(path, request);
+      List<SubaccountInfo> resp = await Post<List<SubaccountInfo>>(path, request).ConfigureAwait(false);
 
       return resp;
     }
@@ -68,7 +68,7 @@ namespace Mandrill
     {
       const string path = "subaccounts/pause.json";
 
-      SubaccountInfo resp = await Post<SubaccountInfo>(path, request);
+      SubaccountInfo resp = await Post<SubaccountInfo>(path, request).ConfigureAwait(false);
 
       return resp;
     }
@@ -83,7 +83,7 @@ namespace Mandrill
     {
       const string path = "subaccounts/resume.json";
 
-      SubaccountInfo response = await Post<SubaccountInfo>(path, request);
+      SubaccountInfo response = await Post<SubaccountInfo>(path, request).ConfigureAwait(false);
 
       return response;
     }
@@ -98,7 +98,7 @@ namespace Mandrill
     {
       const string path = "subaccounts/info.json";
 
-      SubaccountInfo response = await Post<SubaccountInfo>(path, request);
+      SubaccountInfo response = await Post<SubaccountInfo>(path, request).ConfigureAwait(false);
 
       return response;
     }
@@ -113,7 +113,7 @@ namespace Mandrill
     {
       const string path = "subaccounts/update.json";
 
-      SubaccountInfo response = await Post<SubaccountInfo>(path, request);
+      SubaccountInfo response = await Post<SubaccountInfo>(path, request).ConfigureAwait(false);
 
       return response;
     }

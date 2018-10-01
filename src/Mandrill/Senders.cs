@@ -33,7 +33,7 @@ namespace Mandrill
     {
       string path = "senders/check-domain.json";
 
-      SenderDomain response = await Post<SenderDomain>(path, request);
+      SenderDomain response = await Post<SenderDomain>(path, request).ConfigureAwait(false);
 
       return response;
     }
@@ -48,7 +48,7 @@ namespace Mandrill
     {
       const string path = "senders/list.json";
 
-      List<Sender> response = await Post<List<Sender>>(path, new RequestBase());
+      List<Sender> response = await Post<List<Sender>>(path, new RequestBase()).ConfigureAwait(false);
 
       return response;
     }
@@ -64,7 +64,7 @@ namespace Mandrill
     {
       const string path = "senders/domains.json";
 
-      List<SenderDomain> response = await Post<List<SenderDomain>>(path, new RequestBase());
+      List<SenderDomain> response = await Post<List<SenderDomain>>(path, new RequestBase()).ConfigureAwait(false);
 
       return response;
     }

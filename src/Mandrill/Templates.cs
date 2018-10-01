@@ -32,7 +32,7 @@ namespace Mandrill
     {
       string path = "templates/add.json";
 
-      TemplateInfo resp = await Post<TemplateInfo>(path, request);
+      TemplateInfo resp = await Post<TemplateInfo>(path, request).ConfigureAwait(false);
 
       return resp;
     }
@@ -47,7 +47,7 @@ namespace Mandrill
     {
       const string path = "templates/list.json";
 
-      List<TemplateInfo> resp = await Post<List<TemplateInfo>>(path, request);
+      List<TemplateInfo> resp = await Post<List<TemplateInfo>>(path, request).ConfigureAwait(false);
 
       return resp;
     }
@@ -65,7 +65,7 @@ namespace Mandrill
     {
       const string path = "templates/render.json";
 
-      RenderedTemplate response = await Post<RenderedTemplate>(path, request);
+      RenderedTemplate response = await Post<RenderedTemplate>(path, request).ConfigureAwait(false);
 
       return response;
     }
@@ -86,7 +86,7 @@ namespace Mandrill
     {
       const string path = "templates/update.json";
 
-      TemplateInfo response = await Post<TemplateInfo>(path, request);
+      TemplateInfo response = await Post<TemplateInfo>(path, request).ConfigureAwait(false);
 
       return response;
     }
@@ -104,7 +104,7 @@ namespace Mandrill
     {
       const string path = "templates/delete.json";
 
-      TemplateInfo response = await Post<TemplateInfo>(path, request);
+      TemplateInfo response = await Post<TemplateInfo>(path, request).ConfigureAwait(false);
 
       return response;
     }
@@ -122,7 +122,7 @@ namespace Mandrill
     {
       const string path = "templates/info.json";
 
-      TemplateInfo response = await Post<TemplateInfo>(path, request);
+      TemplateInfo response = await Post<TemplateInfo>(path, request).ConfigureAwait(false);
 
       return response;
     }
@@ -140,7 +140,7 @@ namespace Mandrill
     {
       const string path = "templates/time-series.json";
 
-      List<TemplateTimeSeries> response = await Post<List<TemplateTimeSeries>>(path, request);
+      List<TemplateTimeSeries> response = await Post<List<TemplateTimeSeries>>(path, request).ConfigureAwait(false);
 
       return response;
     }
