@@ -1,22 +1,37 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>netstandard2.0;net471</TargetFrameworks>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Authors>Shawn Mclean</Authors>
     <PackageLicenseUrl>http://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/shawnmclean/Mandrill-dotnet</PackageProjectUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/shawnmclean/Mandrill-dotnet/master/docs/icons/32x32.png</PackageIconUrl>
     <RepositoryUrl>https://github.com/shawnmclean/Mandrill-dotnet</RepositoryUrl>
-    <PackageReleaseNotes>- Updated to NetStandard 2.0
-</PackageReleaseNotes>
+    <PackageReleaseNotes>
+      - Updated to NetStandard 2.0
+    </PackageReleaseNotes>
     <PackageTags>Mandrill, MailChimp</PackageTags>
     <Description>Mandrill .Net is a quick and easy wrapper for getting started with the Mandrill API.</Description>
     <Product>Mandrill.net</Product>
     <Copyright>2017</Copyright>
     <Version>1.0.0</Version>
   </PropertyGroup>
+  
   <ItemGroup>
-    <PackageReference Include="Microsoft.CSharp" Version="4.4.1" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+    <PackageReference Include="Microsoft.CSharp" Version="4.4.1" />
+  </ItemGroup>
+    
+  <ItemGroup Condition="'$(TargetFramework)' == 'net471'">
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Net">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http" >
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
 </Project>
