@@ -34,7 +34,7 @@ namespace Mandrill
     {
       string path = "messages/cancel-scheduled.json";
 
-      ScheduledEmailResult resp = await Post<ScheduledEmailResult>(path, request);
+      ScheduledEmailResult resp = await Post<ScheduledEmailResult>(path, request).ConfigureAwait(false);
 
       return resp;
     }
@@ -53,7 +53,7 @@ namespace Mandrill
     {
       string path = "messages/content.json";
 
-      Content response = await Post<Content>(path, request);
+      Content response = await Post<Content>(path, request).ConfigureAwait(false);
 
       return response;
     }
@@ -68,7 +68,7 @@ namespace Mandrill
     {
       string path = "messages/info.json";
 
-      MessageInfo result = await Post<MessageInfo>(path, request);
+      MessageInfo result = await Post<MessageInfo>(path, request).ConfigureAwait(false);
 
       return result;
     }
@@ -87,7 +87,7 @@ namespace Mandrill
     {
       string path = "messages/list-scheduled.json";
 
-      List<ScheduledEmailResult> resp = await Post<List<ScheduledEmailResult>>(path, request);
+      List<ScheduledEmailResult> resp = await Post<List<ScheduledEmailResult>>(path, request).ConfigureAwait(false);
 
       return resp;
     }
@@ -108,7 +108,7 @@ namespace Mandrill
     {
       string path = "messages/reschedule.json";
 
-      ScheduledEmailResult response = await Post<ScheduledEmailResult>(path, request);
+      ScheduledEmailResult response = await Post<ScheduledEmailResult>(path, request).ConfigureAwait(false);
 
       return response;
     }
@@ -125,7 +125,7 @@ namespace Mandrill
     {
       const string path = "messages/search.json";
 
-      var response = await Post<List<SearchResult>>(path, request);
+      var response = await Post<List<SearchResult>>(path, request).ConfigureAwait(false);
 
       return response;
     }
@@ -146,7 +146,7 @@ namespace Mandrill
     {
       string path = "messages/send.json";
 
-      List<EmailResult> resp = await Post<List<EmailResult>>(path, request);
+      List<EmailResult> resp = await Post<List<EmailResult>>(path, request).ConfigureAwait(false);
       return resp;
     }
 
@@ -161,7 +161,7 @@ namespace Mandrill
     {
       string path = "messages/send-template.json";
 
-      List<EmailResult> resp = await Post<List<EmailResult>>(path, request);
+      List<EmailResult> resp = await Post<List<EmailResult>>(path, request).ConfigureAwait(false);
       return resp;
     }
 
@@ -181,7 +181,7 @@ namespace Mandrill
     {
       string path = "messages/send-raw.json";
 
-      List<EmailResult> response = await Post<List<EmailResult>>(path, request);
+      List<EmailResult> response = await Post<List<EmailResult>>(path, request).ConfigureAwait(false);
 
       return response;
     }
