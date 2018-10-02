@@ -151,7 +151,7 @@ namespace Mandrill
           string requestContent;
           try
           {
-            requestContent = JsonConvert.SerializeObject(data);
+            requestContent = JSON.Serialize(data);
           }
           catch (JsonException ex)
           {
