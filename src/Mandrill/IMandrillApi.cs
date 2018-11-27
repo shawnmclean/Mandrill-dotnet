@@ -131,6 +131,15 @@ namespace Mandrill
     Task<List<Sender>> ListSenders();
 
     /// <summary>
+    ///  The sender info.
+    /// </summary>
+    /// <param name="request">The sender info request.</param>
+    /// <returns>
+    ///  a <see cref="Sender" />
+    /// </returns>
+    Task<Sender> SenderInfo(SenderInfoRequest request);
+
+    /// <summary>
     ///   The list senders.
     /// </summary>
     /// <returns>
