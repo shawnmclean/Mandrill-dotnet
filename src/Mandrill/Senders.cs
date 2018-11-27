@@ -53,6 +53,20 @@ namespace Mandrill
       return response;
     }
 
+    /// <summary>
+    ///   The sender info.
+    /// </summary>
+    /// <returns>
+    ///   The <see cref="Sender" />
+    /// </returns>
+    public async Task<Sender> SenderInfo(SenderInfoRequest request)
+    {
+      const string path = "senders/info.json";
+
+      Sender response = await Post<Sender>(path, request).ConfigureAwait(false);
+    
+      return response;
+    }
 
     /// <summary>
     ///   The list senders.
