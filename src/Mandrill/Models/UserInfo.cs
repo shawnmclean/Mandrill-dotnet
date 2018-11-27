@@ -21,26 +21,31 @@ namespace Mandrill.Models
     /// <summary>
     ///   The all_time.
     /// </summary>
+    [JsonProperty("all_time")]
     public UserInfoStats AllTime { get; set; }
 
     /// <summary>
     ///   The last_30_days.
     /// </summary>
+    [JsonProperty("last_30_days")]
     public UserInfoStats Last30Days { get; set; }
 
     /// <summary>
     ///   The last_60_days.
     /// </summary>
+    [JsonProperty("last_60_days")]
     public UserInfoStats Last60Days { get; set; }
 
     /// <summary>
     ///   The last_7_days.
     /// </summary>
+    [JsonProperty("last_7_days")]
     public UserInfoStats Last7Days { get; set; }
 
     /// <summary>
     ///   The last_90_days.
     /// </summary>
+    [JsonProperty("last_90_days")]
     public UserInfoStats Last90Days { get; set; }
 
     /// <summary>
