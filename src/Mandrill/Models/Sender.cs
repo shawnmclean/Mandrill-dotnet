@@ -68,6 +68,11 @@ namespace Mandrill.Models
     /// </summary>
     public int Unsubs { get; set; }
 
+    /// <summary>
+    ///   Gets or sets the stats.
+    /// </summary>
+    public Stats Stats { get; set; }
+
     #endregion
   }
 }
