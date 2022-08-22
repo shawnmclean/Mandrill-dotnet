@@ -8,8 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
+using System.Text.Json.Serialization;
 
 namespace Mandrill.Models
 {
@@ -31,32 +30,38 @@ namespace Mandrill.Models
     /// <summary>
     ///   Gets or sets the destination_ip.
     /// </summary>
+    [JsonPropertyName("destination_ip")]
     public string DestinationIp { get; set; }
 
     /// <summary>
     ///   Gets or sets the diag.
     /// </summary>
+    [JsonPropertyName("diag")]
     public string Diag { get; set; }
 
     /// <summary>
     ///   Gets or sets the size.
     /// </summary>
+    [JsonPropertyName("size")]
     public int Size { get; set; }
 
     /// <summary>
     ///   Gets or sets the source_ip.
     /// </summary>
+    [JsonPropertyName("source_ip")]
     public string SourceIp { get; set; }
 
     /// <summary>
     ///   Gets or sets the ts.
     /// </summary>
+    [JsonPropertyName("ts")]
     public int Ts { get; set; }
 
     /// <summary>
     ///   Gets or sets the type.
     /// </summary>
-    [JsonConverter(typeof (StringEnumConverter))]
+    [JsonPropertyName("type")]
+    [JsonConverter(typeof(JsonStringEnumMemberConverter))]
     public SearchResultState Type { get; set; }
 
     #endregion

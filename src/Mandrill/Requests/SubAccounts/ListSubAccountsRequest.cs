@@ -1,10 +1,10 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace Mandrill.Requests.SubAccounts
 {
   public class ListSubAccountsRequest : RequestBase
   {
-    [JsonProperty("q")]
+    [JsonPropertyName("q")]
     public string Q { get; set; }
   }
 }

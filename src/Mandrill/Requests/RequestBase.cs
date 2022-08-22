@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace Mandrill.Requests
 {
@@ -10,7 +10,7 @@ namespace Mandrill.Requests
     /// <summary>
     ///   The API Key property.
     /// </summary>
-    [JsonProperty("key")]
+    [JsonPropertyName("key")]
     public string Key { get; set; }
   }
 }

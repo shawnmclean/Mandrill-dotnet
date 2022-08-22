@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace Mandrill.Requests.Rejects
 {
@@ -16,21 +16,21 @@ namespace Mandrill.Requests.Rejects
     ///   Gets or sets the email.
     /// </summary>
     /// <value>The email.</value>
-    [JsonProperty("email")]
+    [JsonPropertyName("email")]
     public string Email { get; set; }
 
     /// <summary>
     ///   Gets or sets the comment.
     /// </summary>
     /// <value>The comment.</value>
-    [JsonProperty("comment")]
+    [JsonPropertyName("comment")]
     public string Comment { get; set; }
 
     /// <summary>
     ///   Gets or sets the subaccount.
     /// </summary>
     /// <value>The subaccount.</value>
-    [JsonProperty("subaccount")]
+    [JsonPropertyName("subaccount")]
     public string SubAccount { get; set; }
   }
 }

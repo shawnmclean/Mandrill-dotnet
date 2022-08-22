@@ -1,10 +1,10 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace Mandrill.Requests.Messages
 {
   public class ListScheduledMessagesRequest : RequestBase
   {
-    [JsonProperty("to")]
+    [JsonPropertyName("to")]
     public string ToEmail { get; set; }
   }
 }

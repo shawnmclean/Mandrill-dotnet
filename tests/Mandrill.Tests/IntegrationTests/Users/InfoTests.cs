@@ -1,5 +1,7 @@
-﻿using System.Threading.Tasks;
-using Mandrill.Utilities;
+﻿using Mandrill.Utilities;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace Mandrill.Tests.IntegrationTests.Users
@@ -12,8 +14,12 @@ namespace Mandrill.Tests.IntegrationTests.Users
       // Setup
       var apiKey = Settings.ApiKey;
 
-      // Exercise
-      var api = new MandrillApi(apiKey);
+      var serviceProvider = new ServiceCollection()
+        .AddMandrillApi(apiKey)
+        .BuildServiceProvider();
+
+      var api = serviceProvider.GetRequiredService<IMandrillApi>();
+
       var result = await api.UserInfo();
 
       // Verify
@@ -27,7 +33,11 @@ namespace Mandrill.Tests.IntegrationTests.Users
       var apiKey = " ";
 
       // Exercise
-      var api = new MandrillApi(apiKey);
+      var serviceProvider = new ServiceCollection()
+        .AddMandrillApi(apiKey)
+        .BuildServiceProvider();
+
+      var api = serviceProvider.GetRequiredService<IMandrillApi>();
 
       // Verify
       var ex = await Assert.ThrowsAsync<MandrillException>(async () => await api.UserInfo());

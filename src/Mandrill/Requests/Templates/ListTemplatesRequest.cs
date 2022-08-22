@@ -1,10 +1,10 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace Mandrill.Requests.Templates
 {
   public class ListTemplatesRequest : RequestBase
   {
-    [JsonProperty("label")]
+    [JsonPropertyName("label")]
     public string Label { get; set; }
   }
 }

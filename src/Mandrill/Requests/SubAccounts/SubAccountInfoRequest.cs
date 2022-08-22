@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace Mandrill.Requests.SubAccounts
 {
@@ -9,7 +9,7 @@ namespace Mandrill.Requests.SubAccounts
       Id = id;
     }
 
-    [JsonProperty("id")]
+    [JsonPropertyName("id")]
     public string Id { get; set; }
   }
 }

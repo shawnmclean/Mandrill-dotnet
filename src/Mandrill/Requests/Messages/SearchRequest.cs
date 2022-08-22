@@ -9,7 +9,7 @@
 
 using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace Mandrill.Requests.Messages
 {
@@ -23,43 +23,44 @@ namespace Mandrill.Requests.Messages
     /// <summary>
     ///   Start date.
     /// </summary>
-    [JsonProperty("date_from")]
+    [JsonPropertyName("date_from")]
     public DateTime? DateFrom { get; set; }
 
     /// <summary>
     ///   End date.
     /// </summary>
-    [JsonProperty("date_to")]
+    [JsonPropertyName("date_to")]
     public DateTime? DateTo { get; set; }
 
     /// <summary>
     ///   The maximum number of results to return, defaults to 100, 1000 is the maximum.
     /// </summary>
-    [JsonProperty("limit")]
+    [JsonPropertyName("limit")]
     public int? Limit { get; set; }
 
     /// <summary>
     ///   Search terms to find matching messages
     /// </summary>
-    [JsonProperty("query", NullValueHandling = NullValueHandling.Ignore)]
+    [JsonPropertyName("query")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public string Query { get; set; }
 
     /// <summary>
     ///   An array of sender addresses to narrow the search to, will return messages sent by ANY of the senders.
     /// </summary>
-    [JsonProperty("senders")]
+    [JsonPropertyName("senders")]
     public IEnumerable<string> Senders { get; set; }
 
     /// <summary>
     ///   An array of tag names to narrow the search to, will return messages that contain ANY of the tags.
     /// </summary>
-    [JsonProperty("tags")]
+    [JsonPropertyName("tags")]
     public IEnumerable<string> Tags { get; set; }
 
     /// <summary>
     /// An array of API keys to narrow the search to, will return messages sent by ANY of the keys.
     /// </summary>
-    [JsonProperty("api_keys")]
+    [JsonPropertyName("api_keys")]
     public IEnumerable<string> ApiKeys { get; set; }
 
     #endregion

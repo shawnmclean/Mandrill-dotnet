@@ -23,26 +23,41 @@ Reference the `Mandrill.dll` library in your project or download from NuGet.
 [https://mandrillapp.com/api/docs/](https://mandrillapp.com/api/docs/)
 
 #### Example
+```csharp
+    /// Startup.cs
+    services.AddMandrillApi("xxxxx-xxxx-xxxx-xxxx");
 
-    MandrillApi api = new MandrillApi("xxxxx-xxxx-xxxx-xxxx");
-    UserInfo info = await api.UserInfo();
-    Console.WriteLine(info.Reputation);
+    /// In code
+    public class MyService {
+
+        private IMandrillApi _mandrill;
+
+        public MyService(IMandrillApi mandrill){
+            _mandrill = mandrill;
+        }
+
+        public Task<int> GetReputation(){
+           var info =  await _mandrill.UserInfo();
+           return info.Reputation;
+        }
+    }
+```
 
 All endpoints are covered by integration tests and can be used as a reference.
 
 ## Necessary prerequisites
 
-### Net Core / NetStandard
+### Net Core / NetStandard / NET 6.0
 
 Mandrill.net now supports these platforms.
 
-### .NET 4.5
+### .NET 4.7.1
 
-This wrapper uses async and await, hence the dependency on .NET 4.5.
+Support for .NET 4.7.1 has been dropped. The last build for .NET 4.7.1 is the NuGet version `3.1.0`. The code can be found on tag [.net-4.7.1](https://github.com/shawnmclean/Mandrill-dotnet/tree/net-4.7.1).
 
 ### .NET 4
 
-Support for .NET 4 has be dropped. The last build for .NET 4 is the NuGet version `1.3.1`. The code can be found on tag [.net-4.0](https://github.com/shawnmclean/Mandrill-dotnet/tree/net-4.0).
+Support for .NET 4 has been dropped. The last build for .NET 4 is the NuGet version `1.3.1`. The code can be found on tag [.net-4.0](https://github.com/shawnmclean/Mandrill-dotnet/tree/net-4.0).
 Async and Sync methods were merged into using the async pattern as suggested as [best practice](http://blogs.msdn.com/b/pfxteam/archive/2012/04/13/10293638.aspx) by the parallel programming team at microsoft.
 
 ## Contributing

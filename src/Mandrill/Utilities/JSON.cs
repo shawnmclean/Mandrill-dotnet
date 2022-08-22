@@ -7,10 +7,8 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Diagnostics;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Serialization;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Mandrill.Utilities
 {
@@ -24,24 +22,10 @@ namespace Mandrill.Utilities
     /// <summary>
     ///   The settings.
     /// </summary>
-    private static readonly JsonSerializerSettings settings = new JsonSerializerSettings
+    public static readonly JsonSerializerOptions settings = new JsonSerializerOptions
     {
-      ContractResolver = new CamelCasePropertyNamesContractResolver
-      {
-          NamingStrategy = new SnakeCaseNamingStrategy()
-      },
-      Converters =
-        new[]
-        {
-          new IsoDateTimeConverter
-            ()
-        },
-      DefaultValueHandling =
-        DefaultValueHandling
-          .Ignore,
-      NullValueHandling =
-        NullValueHandling
-          .Ignore,
+      DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault,
+      PropertyNamingPolicy = new SnakeCaseNamingPolicy()
     };
 
     #endregion
@@ -54,55 +38,31 @@ namespace Mandrill.Utilities
     /// <param name="json">
     ///   The json.
     /// </param>
-    /// <returns>
-    ///   The <see cref="dynamic" />.
-    /// </returns>
-    public static dynamic Parse(string json)
-    {
-      return JsonConvert.DeserializeObject<dynamic>(json, settings);
-    }
-
-    /// <summary>
-    ///   The parse.
-    /// </summary>
-    /// <param name="json">
-    ///   The json.
-    /// </param>
     /// <typeparam name="T">
     /// </typeparam>
     /// <returns>
     ///   The <see cref="T" />.
     /// </returns>
-    public static T Parse<T>(string json) where T : new()
+    public static T Parse<T>(string json)
     {
       if (json == null)
-      {
-        return new T();
-      }
+        return default(T);
 
-      try
-      {
-        return JsonConvert.DeserializeObject<T>(json, settings);
-      }
-      catch (JsonReaderException)
-      {
-        Debug.WriteLine("Unable to parse JSON - {0}", json);
-        return new T();
-      }
+      return JsonSerializer.Deserialize<T>(json, settings);
     }
 
     /// <summary>
     ///   The serialize.
     /// </summary>
-    /// <param name="dyn">
+    /// <param name="value">
     ///   The dyn.
     /// </param>
     /// <returns>
     ///   The <see cref="string" />.
     /// </returns>
-    public static string Serialize(dynamic dyn)
+    public static string Serialize(object value)
     {
-      return JsonConvert.SerializeObject(dyn, settings);
+      return JsonSerializer.Serialize(value, settings);
     }
 
     #endregion
