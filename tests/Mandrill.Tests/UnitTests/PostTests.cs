@@ -30,12 +30,14 @@ namespace Mandrill.Tests.UnitTests
       httpClient?.Dispose();
     }
 
-    private IMandrillApi RespondWith(string path, HttpStatusCode statusCode, string content)
+    private IMandrillApi CreateFakeApi(string path, HttpStatusCode statusCode, string content)
     {
       var httpMessageHandlerMock = new MockHttpMessageHandler();
+
       httpMessageHandlerMock
           .When(HttpMethod.Post, path)
           .Respond(statusCode, MediaTypeNames.Text.Plain, content);
+
       // Create our test DI container
       var serviceProvider = new ServiceCollection()
           // Add and configure our typed HTTP client
@@ -43,6 +45,7 @@ namespace Mandrill.Tests.UnitTests
           // Overwrite what you need
           .OverridePrimaryHttpMessageHandler<IMandrillApi>(httpMessageHandlerMock)
           .BuildServiceProvider();
+
       return serviceProvider.GetRequiredService<IMandrillApi>();
     }
 
@@ -108,7 +111,7 @@ namespace Mandrill.Tests.UnitTests
      ""Name"": ""Shawn"",
      ""Id"": 1
         }";
-      var api = RespondWith($"{Configuration.BASE_SECURE_URL}", HttpStatusCode.OK, responseString);
+      var api = CreateFakeApi($"{Configuration.BASE_SECURE_URL}", HttpStatusCode.OK, responseString);
       await api.Post<SampleObject>("", new SamplePayload());
       await api.Post<SampleObject>("", new SamplePayload());
     }
@@ -120,7 +123,7 @@ namespace Mandrill.Tests.UnitTests
        ""Name"": ""Shawn"",
        ""Id"": 1
       }";
-      var api = RespondWith($"{Configuration.BASE_SECURE_URL}", HttpStatusCode.OK, responseString);
+      var api = CreateFakeApi($"{Configuration.BASE_SECURE_URL}", HttpStatusCode.OK, responseString);
 
       var response = await api.Post<SampleObject>("", new SamplePayload());
 
@@ -133,7 +136,7 @@ namespace Mandrill.Tests.UnitTests
     {
       var responseString = @"<html></html>";
 
-      var api = RespondWith($"{Configuration.BASE_SECURE_URL}", HttpStatusCode.OK, responseString);
+      var api = CreateFakeApi($"{Configuration.BASE_SECURE_URL}", HttpStatusCode.OK, responseString);
 
 
       var ex = await Assert.ThrowsAsync<MandrillSerializationException>(async () =>
@@ -152,7 +155,7 @@ namespace Mandrill.Tests.UnitTests
        ""status"": ""s1""
       }";
 
-      var api = RespondWith($"{Configuration.BASE_SECURE_URL}", HttpStatusCode.InternalServerError, responseString);
+      var api = CreateFakeApi($"{Configuration.BASE_SECURE_URL}", HttpStatusCode.InternalServerError, responseString);
 
       var ex = await Assert.ThrowsAsync<MandrillException>(async () => await api.Post<object>("", new SamplePayload()));
       Assert.Equal(501, ex.Error.Code);
