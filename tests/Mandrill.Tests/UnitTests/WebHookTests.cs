@@ -169,5 +169,46 @@ namespace Mandrill.Tests.UnitTests
       Assert.Equal(1, events.Count);
       Assert.Equal(WebHookMessageState.Soft_bounced, events[0].Msg.State);
     }
+    
+    [Fact]
+    public void Delivered_Deserialize()
+    {
+        var events_json = @"[	{
+		""event"": ""delivered"",
+		""ts"": 1674757507,
+		""_id"": ""example123"",
+		""msg"": {
+			""ts"": 1674757507,
+			""_id"": ""000000000000000000000001"",
+			""state"": ""sent"",
+			""subject"": ""Subject line"",
+			""email"": ""itdoesnot@exist.org"",
+			""tags"": [],
+			""opens"": [],
+			""clicks"": [],
+			""smtp_events"": [
+				{
+					""ts"": 1674757510,
+					""type"": ""sent"",
+					""diag"": ""gibberish..."",
+					""source_ip"": ""100.100.100.100"",
+					""destination_ip"": ""100.100.100.100"",
+					""size"": 4385
+				}
+			],
+			""resends"": [],
+			""_version"": ""XYZ"",
+			""metadata"": {
+				""UserId"": ""11124""
+			},
+			""sender"": ""someone@somewhere.com"",
+			""template"": null
+		}
+	}]";
+
+        var events = JSON.Parse<List<WebHookEvent>>(events_json);
+        Assert.Single(events);
+        Assert.Equal(WebHookEventType.Delivered, events[0].Event);
+    }
   }
 }
