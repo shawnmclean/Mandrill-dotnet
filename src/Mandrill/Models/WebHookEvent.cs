@@ -40,6 +40,11 @@ namespace Mandrill.Models
     Send, // message has been sent
 
     /// <summary>
+    ///   The delivered.
+    /// </summary>
+    Delivered, // message has been delivered
+    
+    /// <summary>
     ///   The hard_bounce.
     /// </summary>
     Hard_bounce, // message has hard bounced
