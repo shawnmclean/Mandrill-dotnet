@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Mandrill.Models;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 /// <summary>
 /// The Requests namespace.
@@ -22,21 +22,21 @@ namespace Mandrill.Requests.Templates
     ///   Gets or sets the template_name.
     /// </summary>
     /// <value>The template_name.</value>
-    [JsonProperty("template_name")]
+    [JsonPropertyName("template_name")]
     public string TemplateName { get; set; }
 
     /// <summary>
     ///   Gets or sets the template_content.
     /// </summary>
     /// <value>The template_content.</value>
-    [JsonProperty("template_content")]
+    [JsonPropertyName("template_content")]
     public IEnumerable<TemplateContent> TemplateContent { get; set; }
 
     /// <summary>
     ///   Gets or sets the merge_vars.
     /// </summary>
     /// <value>The merge_vars.</value>
-    [JsonProperty("merge_vars")]
+    [JsonPropertyName("merge_vars")]
     public IEnumerable<MergeVar> MergeVars { get; set; }
   }
 }

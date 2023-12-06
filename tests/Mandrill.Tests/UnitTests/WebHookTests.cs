@@ -1,7 +1,9 @@
-using System;
-using System.Collections.Generic;
 using Mandrill.Models;
 using Mandrill.Utilities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.Json;
 using Xunit;
 
 namespace Mandrill.Tests.UnitTests
@@ -57,7 +59,7 @@ namespace Mandrill.Tests.UnitTests
       Assert.Equal(numberOfEvents, zot.Count);
 
       // Try parsing out WebHook events
-      var events = JSON.Parse<List<WebHookEvent>>(events_json);
+      var events = JsonSerializer.Deserialize<List<WebHookEvent>>(events_json);
       Assert.Equal(numberOfEvents, events.Count);
       var e = events[0];
 
@@ -86,10 +88,10 @@ namespace Mandrill.Tests.UnitTests
       Assert.Equal("tag3", message.Tags[2]);
 
       Assert.Equal(2, message.Metadata.Count);
-      Assert.Equal("key1", message.Metadata[0].Key);
-      Assert.Equal("val1", message.Metadata[0].Value);
-      Assert.Equal("key2", message.Metadata[1].Key);
-      Assert.Equal("val2", message.Metadata[1].Value);
+      Assert.Equal("key1", message.Metadata.ElementAt(0).Key);
+      Assert.Equal("val1", message.Metadata.ElementAt(0).Value.ToString());
+      Assert.Equal("key2", message.Metadata.ElementAt(1).Key);
+      Assert.Equal("val2", message.Metadata.ElementAt(1).Value.ToString());
 
       Assert.Equal(2, message.Opens.Count);
       Assert.Equal(eventTimeDate, message.Opens[0].TimeStamp);
@@ -113,11 +115,11 @@ namespace Mandrill.Tests.UnitTests
             TS = 1355340679,
             Subject = "Important Stuff",
             Email = "ValidToOne@Valid.com",
-            Tags = new List<string> {"tag1", "tag2", "tag3"},
-            Metadata = new List<WebHookMetadata>
+            Tags = new List<string> { "tag1", "tag2", "tag3" },
+            Metadata = new Dictionary<string, object>
             {
-              new WebHookMetadata {Key = "key1", Value = "val1"},
-              new WebHookMetadata {Key = "key2", Value = "val2"}
+              { "key1", "val1" },
+              { "key2", "val2" }
             },
             Opens = new List<WebHookOpen>
             {
@@ -136,8 +138,8 @@ namespace Mandrill.Tests.UnitTests
           }
         };
 
-      var output = JSON.Serialize(webhook);
-      var clone = JSON.Parse<WebHookEvent>(output);
+      var output = JsonSerializer.Serialize(webhook);
+      var clone = JsonSerializer.Deserialize<WebHookEvent>(output);
       Assert.True(webhook.Msg.Metadata.Count == clone.Msg.Metadata.Count);
     }
 
@@ -165,7 +167,7 @@ namespace Mandrill.Tests.UnitTests
       ""diag"": ""smtp;552 5.2.2 Over Quota""
     }
   }]";
-      var events = JSON.Parse<List<WebHookEvent>>(events_json);
+      var events = JsonSerializer.Deserialize<List<WebHookEvent>>(events_json, JSON.settings);
       Assert.Equal(1, events.Count);
       Assert.Equal(WebHookMessageState.Soft_bounced, events[0].Msg.State);
     }

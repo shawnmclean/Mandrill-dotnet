@@ -1,5 +1,5 @@
 ﻿using System;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace Mandrill.Requests.Messages
 {
@@ -11,10 +11,10 @@ namespace Mandrill.Requests.Messages
       SendAt = sendAt;
     }
 
-    [JsonProperty("id")]
+    [JsonPropertyName("id")]
     public string Id { get; set; }
 
-    [JsonProperty("send_at")]
+    [JsonPropertyName("send_at")]
     public DateTime SendAt { get; set; }
   }
 }

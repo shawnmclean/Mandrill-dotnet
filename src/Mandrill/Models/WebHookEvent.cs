@@ -19,13 +19,11 @@
    }
 */
 
+using Mandrill.Converters;
 using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
-using System.Reflection;
+using System.Text.Json.Serialization;
 
 namespace Mandrill.Models
 {
@@ -123,7 +121,8 @@ namespace Mandrill.Models
     /// <summary>
     ///   The soft_bounced.
     /// </summary>
-    [EnumMember(Value = "soft-bounced")] Soft_bounced,
+    [EnumMember(Value = "soft-bounced")]
+    Soft_bounced,
 
     /// <summary>
     ///   The deferred.
@@ -146,17 +145,20 @@ namespace Mandrill.Models
     /// <summary>
     ///   Gets or sets the event.
     /// </summary>
-    [JsonConverter(typeof (StringEnumConverter))]
+    [JsonPropertyName("event")]
+    [JsonConverter(typeof(JsonStringEnumMemberConverter))]
     public WebHookEventType Event { get; set; }
 
     /// <summary>
     ///   Gets or sets the msg.
     /// </summary>
+    [JsonPropertyName("msg")]
     public WebHookMessage Msg { get; set; }
 
     /// <summary>
     ///   Gets or sets the ts.
     /// </summary>
+    [JsonPropertyName("ts")]
     public uint TS { get; set; }
 
     /// <summary>
@@ -167,16 +169,18 @@ namespace Mandrill.Models
       get { return FromUnixTime(TS); }
     }
 
-    [JsonProperty("ip")]
+    [JsonPropertyName("ip")]
     public string IP { get; set; }
     /// <summary>
     /// for click events only, the url clicked for the event
     /// </summary>
+    [JsonPropertyName("url")]
     public string Url { get; set; }
 
     /// <summary>
     /// for open and click events only, the user agent string for the environment (ie, browser or email client) where the open or click occurred
     /// </summary>
+    [JsonPropertyName("user_agent")]
     public string UserAgent { get; set; }
     #endregion
 
@@ -212,135 +216,159 @@ namespace Mandrill.Models
     /// <summary>
     ///   Gets or sets the attachments.
     /// </summary>
+    [JsonPropertyName("attachments")]
     public Dictionary<string, EmailAttachment> Attachments { get; set; }
 
     /// <summary>
     ///   Gets or sets the bounce description.
     /// </summary>
+    [JsonPropertyName("bounce_description")]
     public string BounceDescription { get; set; }
 
     /// <summary>
     ///   Gets or sets the cc.
     /// </summary>
+    [JsonPropertyName("cc")]
     public List<List<string>> CC { get; set; }
 
     /// <summary>
     ///   Gets or sets the clicks.
     /// </summary>
+    [JsonPropertyName("clicks")]
     public List<WebHookClick> Clicks { get; set; }
 
     /// <summary>
     ///   Gets or sets the diag.
     /// </summary>
+    [JsonPropertyName("diag")]
     public string Diag { get; set; }
 
     /// <summary>
     ///   Gets or sets the dkim.
     /// </summary>
+    [JsonPropertyName("dkim")]
     public WebHookDkim Dkim { get; set; }
 
     /// <summary>
     ///   Gets or sets the email.
     /// </summary>
+    [JsonPropertyName("email")]
     public string Email { get; set; }
 
     /// <summary>
     ///   Gets or sets the from email.
     /// </summary>
+    [JsonPropertyName("from_email")]
     public string FromEmail { get; set; }
 
     /// <summary>
     ///   Gets or sets the from name.
     /// </summary>
+    [JsonPropertyName("from_name")]
     public string FromName { get; set; }
 
-	/// <summary>
-	/// Gets or sets the headers.
-	/// </summary>
-	public Dictionary<string, dynamic> Headers { get; set; }
+    /// <summary>
+    /// Gets or sets the headers.
+    /// </summary>
+    [JsonPropertyName("headers")]
+    public Dictionary<string, dynamic> Headers { get; set; }
 
     /// <summary>
     ///   Gets or sets the html.
     /// </summary>
+    [JsonPropertyName("html")]
     public string Html { get; set; }
 
     /// <summary>
     ///   Gets or sets the id.
     /// </summary>
-    [JsonProperty("_id")]
+    [JsonPropertyName("_id")]
     public string Id { get; set; }
 
     /// <summary>
     ///   Gets or sets the images.
     /// </summary>
+    [JsonPropertyName("images")]
     public Dictionary<string, Image> Images { get; set; }
 
     /// <summary>
     ///   Gets or sets the metadata.
     /// </summary>
-    [JsonConverter(typeof (MetadataConverter))]
-    public List<WebHookMetadata> Metadata { get; set; }
+    [JsonPropertyName("metadata")]
+    [JsonConverter(typeof(DictionaryJsonConverter<object>))]
+    public Dictionary<string, object> Metadata { get; set; }
 
     /// <summary>
     ///   Gets or sets the opens.
     /// </summary>
+    [JsonPropertyName("opens")]
     public List<WebHookOpen> Opens { get; set; }
 
     /// <summary>
     ///   Gets or sets the raw msg.
     /// </summary>
+    [JsonPropertyName("raw_msg")]
     public string RawMsg { get; set; }
 
     /// <summary>
     ///   Gets or sets the sender.
     /// </summary>
+    [JsonPropertyName("sender")]
     public string Sender { get; set; }
 
     /// <summary>
     ///   Gets or sets the smtp events.
     /// </summary>
+    [JsonPropertyName("smtp_events")]
     public List<SmtpEvent> SmtpEvents { get; set; }
 
     /// <summary>
     ///   Gets or sets the spf.
     /// </summary>
+    [JsonPropertyName("spf")]
     public WebHookSpf Spf { get; set; }
 
     /// <summary>
     ///   Gets or sets the state.
     /// </summary>
-    [JsonConverter(typeof (StringEnumConverter))]
+    [JsonPropertyName("state")]
+    [JsonConverter(typeof(JsonStringEnumMemberConverter))]
     public WebHookMessageState State { get; set; }
 
     /// <summary>
     ///   Gets or sets the sub account
     /// </summary>
-    [JsonProperty("subaccount")]
+    [JsonPropertyName("subaccount")]
     public string SubAccount { get; set; }
 
     /// <summary>
     ///   Gets or sets the subject.
     /// </summary>
+    [JsonPropertyName("subject")]
     public string Subject { get; set; }
 
     /// <summary>
     ///   Gets or sets the ts.
     /// </summary>
+    [JsonPropertyName("ts")]
     public uint TS { get; set; }
 
     /// <summary>
     ///   Gets or sets the tags.
     /// </summary>
+    [JsonPropertyName("tags")]
     public List<string> Tags { get; set; }
 
     /// <summary>
     ///   Gets or sets the template.
     /// </summary>
+    [JsonPropertyName("template")]
     public string Template { get; set; }
 
     /// <summary>
     ///   Gets or sets the text.
     /// </summary>
+    [JsonPropertyName("text")]
     public string Text { get; set; }
 
     /// <summary>
@@ -354,107 +382,10 @@ namespace Mandrill.Models
     /// <summary>
     ///   Gets or sets the to.
     /// </summary>
+    [JsonPropertyName("to")]
     public List<List<string>> To { get; set; }
 
     #endregion
-
-    /// <summary>
-    ///   The metadata converter.
-    /// </summary>
-    private class MetadataConverter : JsonConverter
-    {
-      #region Public Methods and Operators
-
-      /// <summary>
-      ///   The can convert.
-      /// </summary>
-      /// <param name="objectType">
-      ///   The object type.
-      /// </param>
-      /// <returns>
-      ///   The <see cref="bool" />.
-      /// </returns>
-      public override bool CanConvert(Type objectType)
-      {
-        return typeof (WebHookMetadata).GetTypeInfo().IsAssignableFrom(objectType.GetTypeInfo());
-      }
-
-      /// <summary>
-      ///   The read json.
-      /// </summary>
-      /// <param name="reader">
-      ///   The reader.
-      /// </param>
-      /// <param name="objectType">
-      ///   The object type.
-      /// </param>
-      /// <param name="existingValue">
-      ///   The existing value.
-      /// </param>
-      /// <param name="serializer">
-      ///   The serializer.
-      /// </param>
-      /// <returns>
-      ///   The <see cref="object" />.
-      /// </returns>
-      public override object ReadJson(
-        JsonReader reader,
-        Type objectType,
-        object existingValue,
-        JsonSerializer serializer)
-      {
-        JObject jObject = JObject.Load(reader);
-
-        var list = new List<WebHookMetadata>();
-
-        foreach (var prop in jObject)
-        {
-          list.Add(new WebHookMetadata {Key = prop.Key, Value = prop.Value.ToString()});
-        }
-
-        return list;
-      }
-
-      /// <summary>
-      ///   The write json.
-      /// </summary>
-      /// <param name="writer">
-      ///   The writer.
-      /// </param>
-      /// <param name="value">
-      ///   The value.
-      /// </param>
-      /// <param name="serializer">
-      ///   The serializer.
-      /// </param>
-      /// <exception cref="NotImplementedException">
-      /// </exception>
-      public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
-      {
-        if (value == null) return;
-
-        //generate JSON for WebHookMetadata
-        var webHookMetadata = value as List<WebHookMetadata>;
-
-        if (webHookMetadata == null)
-        {
-          writer.WriteNull();
-          return;
-        }
-
-        writer.WriteStartObject();
-
-        foreach (var metadata in webHookMetadata)
-        {
-          writer.WritePropertyName(metadata.Key);
-          serializer.Serialize(writer, metadata.Value);  
-        }
-        
-        writer.WriteEndObject();
-      }
-
-      #endregion
-    }
   }
 
   /// <summary>
@@ -467,6 +398,7 @@ namespace Mandrill.Models
     /// <summary>
     ///   Gets or sets the ts.
     /// </summary>
+    [JsonPropertyName("ts")]
     public uint TS { get; set; }
 
     /// <summary>
@@ -490,6 +422,7 @@ namespace Mandrill.Models
     /// <summary>
     ///   Gets or sets the ts.
     /// </summary>
+    [JsonPropertyName("ts")]
     public uint TS { get; set; }
 
     /// <summary>
@@ -503,27 +436,8 @@ namespace Mandrill.Models
     /// <summary>
     ///   Gets or sets the url.
     /// </summary>
+    [JsonPropertyName("url")]
     public string Url { get; set; }
-
-    #endregion
-  }
-
-  /// <summary>
-  ///   The web hook metadata.
-  /// </summary>
-  public class WebHookMetadata
-  {
-    #region Public Properties
-
-    /// <summary>
-    ///   Gets or sets the key.
-    /// </summary>
-    public string Key { get; set; }
-
-    /// <summary>
-    ///   Gets or sets the value.
-    /// </summary>
-    public string Value { get; set; }
 
     #endregion
   }
@@ -538,11 +452,13 @@ namespace Mandrill.Models
     /// <summary>
     ///   Gets or sets a value indicating whether signed.
     /// </summary>
+    [JsonPropertyName("signed")]
     public bool Signed { get; set; }
 
     /// <summary>
     ///   Gets or sets a value indicating whether valid.
     /// </summary>
+    [JsonPropertyName("valid")]
     public bool Valid { get; set; }
 
     #endregion
@@ -558,11 +474,13 @@ namespace Mandrill.Models
     /// <summary>
     ///   Gets or sets the detail.
     /// </summary>
+    [JsonPropertyName("detail")]
     public string Detail { get; set; }
 
     /// <summary>
     ///   Gets or sets the result.
     /// </summary>
+    [JsonPropertyName("result")]
     public string Result { get; set; }
 
     #endregion

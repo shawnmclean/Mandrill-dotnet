@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace Mandrill.Models
 {
@@ -21,11 +21,13 @@ namespace Mandrill.Models
     /// <summary>
     ///   Gets or sets the content.
     /// </summary>
+    [JsonPropertyName("content")]
     public string Content { get; set; }
 
     /// <summary>
     ///   Gets or sets the name.
     /// </summary>
+    [JsonPropertyName("name")]
     public string Name { get; set; }
 
     #endregion

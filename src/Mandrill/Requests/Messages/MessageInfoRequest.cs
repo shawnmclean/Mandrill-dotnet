@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace Mandrill.Requests.Messages
 {
@@ -9,7 +9,7 @@ namespace Mandrill.Requests.Messages
       Id = id;
     }
 
-    [JsonProperty("id")]
+    [JsonPropertyName("id")]
     public string Id { get; set; }
   }
 }

@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace Mandrill.Requests.Senders
 {
@@ -9,7 +9,7 @@ namespace Mandrill.Requests.Senders
       Domain = domain;
     }
 
-    [JsonProperty("domain")]
+    [JsonPropertyName("domain")]
     public string Domain { get; set; }
   }
 }

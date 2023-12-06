@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +21,7 @@ namespace Mandrill.Requests.Templates
     /// Gets or sets the template name.
     /// </summary>
     /// <value>The template name.</value>
-    [JsonProperty("name")]
+    [JsonPropertyName("name")]
     public string Name { get; set; }
   }
 }

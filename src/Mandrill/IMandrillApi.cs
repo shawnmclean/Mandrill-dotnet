@@ -1,12 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Mandrill.Models;
+using Mandrill.Requests;
 using Mandrill.Requests.Messages;
 using Mandrill.Requests.Rejects;
 using Mandrill.Requests.Senders;
 using Mandrill.Requests.SubAccounts;
 using Mandrill.Requests.Templates;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Mandrill
 {
@@ -16,6 +17,7 @@ namespace Mandrill
     ///   The Api Key for the project received from the MandrillApp website
     /// </summary>
     string ApiKey { get; }
+    Task<T> Post<T>(string path, RequestBase data);
 
     /// <summary>
     ///   The cancel scheduled message.

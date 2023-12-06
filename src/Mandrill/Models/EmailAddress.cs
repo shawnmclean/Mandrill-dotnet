@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace Mandrill.Models
 {
@@ -78,17 +78,20 @@ namespace Mandrill.Models
     /// <summary>
     ///   Gets or sets the email.
     /// </summary>
+    [JsonPropertyName("email")]
     public string Email { get; set; }
 
     /// <summary>
     ///   Gets or sets the name.
     /// </summary>
+    [JsonPropertyName("name")]
     public string Name { get; set; }
 
     /// <summary>
     ///   The header type to use for the recipient, defaults to "to" if not provided
     ///   oneof(to, cc, bcc)
     /// </summary>
+    [JsonPropertyName("type")]
     public string Type { get; set; }
 
     #endregion

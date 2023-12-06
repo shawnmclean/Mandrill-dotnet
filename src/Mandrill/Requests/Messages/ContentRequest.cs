@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace Mandrill.Requests.Messages
 {
@@ -13,7 +13,7 @@ namespace Mandrill.Requests.Messages
     ///   Unique id of the message to get -- passed as the "_id" field in
     ///   webhooks, send calls, or search calls.
     /// </summary>
-    [JsonProperty("id")]
+    [JsonPropertyName("id")]
     public string Id { get; set; }
   }
 }

@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace Mandrill.Requests.Templates
 {
@@ -9,7 +9,7 @@ namespace Mandrill.Requests.Templates
       Name = name;
     }
 
-    [JsonProperty("name")]
+    [JsonPropertyName("name")]
     public string Name { get; set; }
   }
 }

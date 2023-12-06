@@ -7,11 +7,10 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System;
-using System.Net;
-using System.Net.Http;
 using Mandrill.Models;
 using Mandrill.Requests;
+using System;
+using System.Net.Http;
 
 namespace Mandrill.Utilities
 {
@@ -68,7 +67,7 @@ namespace Mandrill.Utilities
       : base(message, innerException)
     {
     }
-    
+
     #endregion
 
     #region Public Properties

@@ -9,7 +9,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace Mandrill.Models
 {
@@ -39,13 +39,13 @@ namespace Mandrill.Models
     /// <summary>
     ///   The content.
     /// </summary>
-    [JsonProperty("content")]
-      public dynamic Content { get; set; }
+    [JsonPropertyName("content")]
+    public dynamic Content { get; set; }
 
     /// <summary>
     ///   The name.
     /// </summary>
-    [JsonProperty("name")]
+    [JsonPropertyName("name")]
     public string Name { get; set; }
 
     #endregion
@@ -61,13 +61,13 @@ namespace Mandrill.Models
     /// <summary>
     ///   The rcpt.
     /// </summary>
-    [JsonProperty("rcpt")]
+    [JsonPropertyName("rcpt")]
     public string Rcpt { get; set; }
 
     /// <summary>
     ///   The vars.
     /// </summary>
-    [JsonProperty("vars")]
+    [JsonPropertyName("vars")]
     public List<MergeVar> Vars { get; set; }
 
     #endregion
@@ -95,13 +95,13 @@ namespace Mandrill.Models
     /// <summary>
     ///   The rcpt.
     /// </summary>
-    [JsonProperty("rcpt")]
+    [JsonPropertyName("rcpt")]
     public string Rcpt { get; set; }
 
     /// <summary>
     ///   The values.
     /// </summary>
-    [JsonProperty("values")]
+    [JsonPropertyName("values")]
     public dynamic Values { get; set; }
 
     #endregion
@@ -117,25 +117,25 @@ namespace Mandrill.Models
     /// <summary>
     ///   The content.
     /// </summary>
-    [JsonProperty("content")]
+    [JsonPropertyName("content")]
     public string Content { get; set; }
 
     /// <summary>
     ///   The name.
     /// </summary>
-    [JsonProperty("name")]
+    [JsonPropertyName("name")]
     public string Name { get; set; }
 
     /// <summary>
     ///   The type.
     /// </summary>
-    [JsonProperty("type")]
+    [JsonPropertyName("type")]
     public string Type { get; set; }
 
     /// <summary>
     ///   True if the attachment is base64 encoded
     /// </summary>
-    [JsonProperty("base64")]
+    [JsonPropertyName("base64")]
     public bool Base64 { get; set; }
 
     #endregion
@@ -151,19 +151,19 @@ namespace Mandrill.Models
     /// <summary>
     ///   The content.
     /// </summary>
-    [JsonProperty("content")]
+    [JsonPropertyName("content")]
     public string Content { get; set; }
 
     /// <summary>
     ///   The name.
     /// </summary>
-    [JsonProperty("name")]
+    [JsonPropertyName("name")]
     public string Name { get; set; }
 
     /// <summary>
     ///   The type.
     /// </summary>
-    [JsonProperty("type")]
+    [JsonPropertyName("type")]
     public string Type { get; set; }
 
     #endregion
@@ -179,112 +179,134 @@ namespace Mandrill.Models
     /// <summary>
     ///   Gets or sets the attachments.
     /// </summary>
+    [JsonPropertyName("attachments")]
     public IEnumerable<EmailAttachment> Attachments { get; set; }
 
     /// <summary>
     ///   Gets or sets a value indicating whether auto_html.
     /// </summary>
+    [JsonPropertyName("auto_html")]
     public bool? AutoHtml { get; set; }
 
     /// <summary>
     ///   Gets or sets a value indicating whether auto_text.
     /// </summary>
+    [JsonPropertyName("auto_text")]
     public bool? AutoText { get; set; }
 
     /// <summary>
     ///   Gets or sets the bcc_address.
     /// </summary>
+    [JsonPropertyName("bcc_address")]
     public string BccAddress { get; set; }
 
     /// <summary>
     ///   Gets or sets the from_email.
     /// </summary>
+    [JsonPropertyName("from_email")]
     public string FromEmail { get; set; }
 
     /// <summary>
     ///   Gets or sets the from_name.
     /// </summary>
+    [JsonPropertyName("from_name")]
     public string FromName { get; set; }
 
     /// <summary>
     ///   Gets the global_merge_vars.
     /// </summary>
+    [JsonPropertyName("global_merge_vars")]
     public List<MergeVar> GlobalMergeVars { get; private set; }
 
     /// <summary>
     ///   Gets or sets the google_analytics_campaign.
     ///   TODO the api docs state that this can be a string or an array
     /// </summary>
+    [JsonPropertyName("google_analytics_campaign")]
     public string GoogleAnalyticsCampaign { get; set; }
 
     /// <summary>
     ///   Gets or sets the google_analytics_domains.
     /// </summary>
+    [JsonPropertyName("google_analytics_domains")]
     public IEnumerable<string> GoogleAnalyticsDomains { get; set; }
 
     /// <summary>
     ///   Gets the headers.
     /// </summary>
+    [JsonPropertyName("headers")]
     public Dictionary<string, string> Headers { get; private set; }
 
     /// <summary>
     ///   Gets or sets the html.
     /// </summary>
+    [JsonPropertyName("html")]
     public string Html { get; set; }
 
     /// <summary>
     ///   Gets or sets the images.
     /// </summary>
+    [JsonPropertyName("images")]
     public IEnumerable<Image> Images { get; set; }
 
     /// <summary>
     ///   Get s or sets a value indicating whether important.
     /// </summary>
+    [JsonPropertyName("important")]
     public bool? Important { get; set; }
 
     /// <summary>
     ///   Gets or sets a value indicating whether inline_css.
     /// </summary>
+    [JsonPropertyName("inline_css")]
     public bool? InlineCss { get; set; }
 
     /// <summary>
     ///   Gets or sets a value indicating whether merge.
     /// </summary>
+    [JsonPropertyName("merge")]
     public bool? Merge { get; set; }
 
     /// <summary>
     ///   Gets the merge_vars.
     /// </summary>
+    [JsonPropertyName("merge_vars")]
     public List<RcptMergeVar> MergeVars { get; private set; }
 
     /// <summary>
     ///   Gets the metadata.
     /// </summary>
+    [JsonPropertyName("metadata")]
     public Dictionary<string, string> Metadata { get; private set; }
 
     /// <summary>
     ///   Gets or sets whether or not to expose all recipients in to "To" header for each email.
     /// </summary>
+    [JsonPropertyName("preserve_recipients")]
     public bool? PreserveRecipients { get; set; }
 
     /// <summary>
     ///   Gets or sets the raw_message.
     /// </summary>
+    [JsonPropertyName("raw_message")]
     public string RawMessage { get; set; }
 
     /// <summary>
     ///   Gets or sets the string array to.
     /// </summary>
+    [JsonPropertyName("raw_to")]
     public IEnumerable<string> RawTo { get; set; }
 
     /// <summary>
     ///   Gets or sets the recipient_metadata.
     /// </summary>
+    [JsonPropertyName("recipient_metadata")]
     public IEnumerable<RcptMetadata> RecipientMetadata { get; set; }
 
     /// <summary>
     ///   Gets or sets the return_path_domain.
     /// </summary>
+    [JsonPropertyName("return_path_domain")]
     public string ReturnPathDomain { get; set; }
 
     /// <summary>
@@ -296,47 +318,55 @@ namespace Mandrill.Models
     /// <value>
     ///   The signing_domain.
     /// </value>
+    [JsonPropertyName("signing_domain")]
     public string SigningDomain { get; set; }
 
     /// <summary>
     ///   Gets or sets the subaccount.
     /// </summary>
-    [JsonProperty("subaccount")]
+    [JsonPropertyName("subaccount")]
     public string SubAccount { get; set; }
 
     /// <summary>
     ///   Gets or sets the subject.
     /// </summary>
+    [JsonPropertyName("subject")]
     public string Subject { get; set; }
 
     /// <summary>
     ///   Gets or sets the merge language.
     /// </summary>
+    [JsonPropertyName("merge_language")]
     public string MergeLanguage { get; set; }
 
     /// <summary>
     ///   Gets or sets the tags.
     /// </summary>
+    [JsonPropertyName("tags")]
     public IEnumerable<string> Tags { get; set; }
 
     /// <summary>
     ///   Gets or sets the text.
     /// </summary>
+    [JsonPropertyName("text")]
     public string Text { get; set; }
 
     /// <summary>
     ///   Gets or sets the to.
     /// </summary>
+    [JsonPropertyName("to")]
     public IEnumerable<EmailAddress> To { get; set; }
 
     /// <summary>
     ///   Gets or sets a value indicating whether track_clicks.
     /// </summary>
+    [JsonPropertyName("track_clicks")]
     public bool? TrackClicks { get; set; }
 
     /// <summary>
     ///   Gets or sets a value indicating whether track_opens.
     /// </summary>
+    [JsonPropertyName("track_opens")]
     public bool? TrackOpens { get; set; }
 
     /// <summary>
@@ -348,16 +378,19 @@ namespace Mandrill.Models
     /// <value>
     ///   The tracking_domain.
     /// </value>
+    [JsonPropertyName("tracking_domain")]
     public string TrackingDomain { get; set; }
 
     /// <summary>
     ///   Gets or sets a value indicating whether url_strip_qs.
     /// </summary>
+    [JsonPropertyName("url_strip_qs")]
     public bool? UrlStripQs { get; set; }
 
     /// <summary>
     ///   Gets or sets a value indicating whether view_content_link
     /// </summary>
+    [JsonPropertyName("view_content_link")]
     public bool? ViewContentLink { get; set; }
 
     #endregion
@@ -380,7 +413,7 @@ namespace Mandrill.Models
         GlobalMergeVars = new List<MergeVar>();
       }
 
-      var mv = new MergeVar {Name = name, Content = content};
+      var mv = new MergeVar { Name = name, Content = content };
       GlobalMergeVars.Add(mv);
     }
 
@@ -441,14 +474,14 @@ namespace Mandrill.Models
         MergeVars = new List<RcptMergeVar>();
       }
 
-      RcptMergeVar entry = MergeVars.Where(e => e.Rcpt == recipient).FirstOrDefault();
+      var entry = MergeVars.Where(e => e.Rcpt == recipient).FirstOrDefault();
       if (entry == null)
       {
-        entry = new RcptMergeVar {Rcpt = recipient};
+        entry = new RcptMergeVar { Rcpt = recipient };
         MergeVars.Add(entry);
       }
 
-      var mv = new MergeVar {Name = name, Content = content};
+      var mv = new MergeVar { Name = name, Content = content };
 
       entry.Vars.Add(mv);
     }

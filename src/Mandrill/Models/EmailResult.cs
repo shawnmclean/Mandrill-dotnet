@@ -7,8 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
+using System.Text.Json.Serialization;
 
 namespace Mandrill.Models
 {
@@ -53,23 +52,26 @@ namespace Mandrill.Models
     /// <summary>
     ///   Gets or sets the email.
     /// </summary>
+    [JsonPropertyName("email")]
     public string Email { get; set; }
 
     /// <summary>
     ///   Gets or sets the id.
     /// </summary>
-    [JsonProperty("_id")]
+    [JsonPropertyName("_id")]
     public string Id { get; set; }
 
     /// <summary>
     ///   Reason for reject
     /// </summary>
+    [JsonPropertyName("reject_reason")]
     public string RejectReason { get; set; }
 
     /// <summary>
     ///   Gets or sets the status.
     /// </summary>
-    [JsonConverter(typeof (StringEnumConverter))]
+    [JsonPropertyName("status")]
+    [JsonConverter(typeof(JsonStringEnumMemberConverter))]
     public EmailResultStatus Status { get; set; }
 
     #endregion

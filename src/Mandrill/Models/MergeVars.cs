@@ -1,13 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace Mandrill.Models
 {
-    public class MergeVars
-    {
-        public string rcpt { get; set; }
-        public IEnumerable<TemplateContent> vars { get; set; }
-    }
+  public class MergeVars
+  {
+    [JsonPropertyName("rcpt")]
+    public string Rcpt { get; set; }
+
+    [JsonPropertyName("vars")]
+    public IEnumerable<TemplateContent> Vars { get; set; }
+  }
 }

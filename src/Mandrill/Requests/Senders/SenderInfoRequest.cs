@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace Mandrill.Requests.Senders
 {
@@ -12,7 +12,7 @@ namespace Mandrill.Requests.Senders
        Address = address;
     }
 
-    [JsonProperty("address")]
+    [JsonPropertyName("address")]
     public string Address { get; set; }
   }
 }
